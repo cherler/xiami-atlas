@@ -1,0 +1,94 @@
+{
+ "$why": "三条动线。页面的「接下来」从这里渲染，**不是每页手写链接** —— 手写的迟早对不上。 校验 R41/R42 盯着它：引用的 page 必须存在、除末步外 exits 必须非空。 没有动线，拆页只是把一堆页面摆开。",
+ "flows": [
+  {
+   "id": "pick",
+   "name": "我要做一件事，用谁？",
+   "note": "最高频。分发进来的人如果带着具体任务，走这条。",
+   "steps": [
+    {
+     "page": "/video",
+     "q": "你想做什么",
+     "exits": [
+      "/compare/kling-vs-seedance",
+      "/video/models"
+     ]
+    },
+    {
+     "page": "/compare/kling-vs-seedance",
+     "q": "这两个选哪个",
+     "exits": [
+      "/caveats"
+     ]
+    },
+    {
+     "page": "/caveats",
+     "q": "下单前还要注意什么",
+     "exits": []
+    }
+   ]
+  },
+  {
+   "id": "status",
+   "name": "这东西现在到什么程度了？",
+   "note": "演化树分享图带来的人走这条。",
+   "steps": [
+    {
+     "page": "/video/tree",
+     "q": "谁在什么时候长出了什么",
+     "exits": [
+      "/model/wan",
+      "/video/map"
+     ]
+    },
+    {
+     "page": "/model/wan",
+     "q": "这个模型到底能做什么",
+     "exits": [
+      "/capability/flf",
+      "/caveats"
+     ]
+    },
+    {
+     "page": "/caveats",
+     "q": "能力对了就能用吗",
+     "exits": []
+    }
+   ]
+  },
+  {
+   "id": "track",
+   "name": "我在追踪这个领域",
+   "note": "复访靠它。",
+   "steps": [
+    {
+     "page": "/changes",
+     "q": "变了什么，意味着什么",
+     "exits": [
+      "/video/tree",
+      "/toolkit"
+     ]
+    },
+    {
+     "page": "/video/tree",
+     "q": "放到整条线上看",
+     "exits": [
+      "/model/wan"
+     ]
+    },
+    {
+     "page": "/model/wan",
+     "q": "这一家的全貌",
+     "exits": [
+      "/toolkit"
+     ]
+    },
+    {
+     "page": "/toolkit",
+     "q": "该去哪个站查",
+     "exits": []
+    }
+   ]
+  }
+ ]
+}

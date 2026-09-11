@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8" /><title>2026-08-17 AI 视频模型能力矩阵</title><style>
+  :root{--paper:#EFF0EC;--ink:#171B18;--muted:#6B716C;--rule:#D3D6CE;--yes:#2C6B5A;--no:#B03A2C;--unk:#AD8324}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1080px;height:1440px;background:var(--paper);color:var(--ink);padding:52px 48px 40px;
+       font-family:"PingFang SC","Hiragino Sans GB",system-ui,sans-serif;display:flex;flex-direction:column;gap:15px;
+       -webkit-font-smoothing:antialiased}
+  .eyebrow{font-size:18px;letter-spacing:.16em;color:var(--muted);display:flex;align-items:center;gap:14px}
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+  h1{font-size:42px;line-height:1.16;font-weight:600;letter-spacing:-.01em}
+  .sub{font-size:19px;color:var(--muted);line-height:1.55}
+  .sub b{color:var(--ink);font-variant-numeric:tabular-nums}
+  table{border-collapse:collapse;width:100%;table-layout:fixed}
+  th.cap{width:158px;text-align:left;padding:0 10px 0 2px}
+  th.cap b{display:block;font-size:18px;font-weight:600;line-height:1.2}
+  th.cap span{display:block;font-size:12px;color:var(--muted);font-weight:400}
+  thead th{padding-bottom:12px;vertical-align:bottom}
+  .mn{display:block;font-size:11.5px;font-weight:600;line-height:1.2}
+  .mn.dead{color:var(--no);text-decoration:line-through;text-decoration-thickness:1.5px}
+  .mn.old{color:var(--muted)}
+  .st{display:block;font-size:10px;font-weight:600;margin-top:2px}
+  .mv{display:block;font-size:11px;color:var(--muted);font-weight:400}
+  tbody tr{border-top:1px solid var(--rule)}
+  tbody td{text-align:center;height:52px;font-size:23px}
+  td.unk i{display:inline-block;width:19px;height:19px;border:2px dashed var(--unk);border-radius:4px;opacity:.85}
+  .band{display:flex;gap:14px;align-items:stretch}
+  .big{background:#F7F8F5;border:1px solid var(--rule);border-radius:10px;padding:13px 18px;flex:1}
+  .big .n{font-size:36px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .big .l{font-size:14px;color:var(--muted);margin-top:5px;line-height:1.35}
+  .notes{border-top:1px solid var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .notes p{font-size:13.5px;line-height:1.45;color:var(--ink)}
+  .notes b{color:var(--no)}
+  .notes span{color:var(--muted)}
+  footer{margin-top:auto;border-top:1px solid var(--rule);padding-top:14px;display:flex;justify-content:space-between;
+         gap:24px;font-size:14px;color:var(--muted);line-height:1.6}
+  footer .who{text-align:right;flex:none;color:var(--ink);font-weight:600}
+  footer .who span{display:block;color:var(--muted);font-weight:400;margin-top:2px}
+</style></head><body>
+  <div class="eyebrow">AI 视频能力地图 · 数据版本 1.7</div>
+  <h1>2026 年 8 月，<br />这些 AI 视频模型分别能做什么</h1>
+  <p class="sub"><b>10</b> 个模型 × <b>13</b> 项能力 ·
+     核验于 <b>2026-08-17</b> · 下次复核 <b>2026-09-16</b> · 来源 <b>413</b> 条（官方 340 条）</p>
+  <table><thead><tr><th class="cap"></th><th><span class="mn ">Seedance 2.5</span><span class="mv">2026-07-31</span></th><th><span class="mn ">MiniMax Hailuo H3</span><span class="mv">2026-07-31</span></th><th><span class="mn ">Gemini Omni Flash</span><span class="mv">2026-05-19</span></th><th><span class="mn ">Wan 3.0</span><span class="mv">2026-08-07</span></th><th><span class="mn ">Runway Gen-4.5</span><span class="mv">2025-12-11</span></th><th><span class="mn ">Kling 3.0</span><span class="mv">2026-02-04</span></th><th><span class="mn ">Vidu Q3</span><span class="mv">2026-04-13</span></th><th><span class="mn old">Veo 3.1</span><span class="mv">2025-10</span><span class="st" style="color:var(--muted)">非主力</span></th><th><span class="mn ">LTX 2.5</span><span class="mv">2026-08-13</span></th><th><span class="mn ">PixVerse V6</span><span class="mv">2026-08-14</span></th></tr></thead><tbody><tr><th class="cap"><b>文生视频</b><span>Text-to-Video</span></th><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>图生视频</b><span>Image-to-Video</span></th><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>首尾帧</b><span>First/Last Frame</span></th><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="no">❌</td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>角色参考</b><span>Character Ref</span></th><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td></tr><tr><th class="cap"><b>多参考</b><span>Multi-reference</span></th><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>动作复刻</b><span>Motion Control</span></th><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>运镜控制</b><span>Camera Control</span></th><td class="unk"><i></i></td><td class="yes">✅</td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td></tr><tr><th class="cap"><b>原生音频</b><span>Native Audio</span></th><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="no">❌</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>对口型</b><span>Lip Sync</span></th><td class="unk"><i></i></td><td class="yes">✅</td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td></tr><tr><th class="cap"><b>视频延长</b><span>Video Extension</span></th><td class="yes">✅</td><td class="unk"><i></i></td><td class="no">❌</td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="yes">✅</td></tr><tr><th class="cap"><b>开源权重</b><span>Open Weights</span></th><td class="no">❌</td><td class="yes">✅</td><td class="no">❌</td><td class="unk"><i></i></td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="yes">✅</td><td class="no">❌</td></tr><tr><th class="cap"><b>开源权重</b><span>Open Weights</span></th><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td></tr><tr><th class="cap"><b>视频转视频</b><span>Video-to-Video</span></th><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="yes">✅</td><td class="yes">✅</td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="unk"><i></i></td><td class="yes">✅</td></tr></tbody></table>
+  <div class="band">
+    <div class="big"><div class="n" style="color:var(--yes)">71</div><div class="l">支持<br />有明确来源</div></div>
+    <div class="big"><div class="n" style="color:var(--no)">10</div><div class="l">不支持<br />或查无支持迹象</div></div>
+    <div class="big" style="flex:2.1;border-color:var(--unk)">
+      <div class="n" style="color:var(--unk)">39</div>
+      <div class="l"><b style="color:var(--ink)">官方没说</b> —— 九家都已用厂商官方文档逐格核过，仍然查不到的。<br />
+      <b style="color:var(--ink)">而且高度集中：Wan 3.0 9 格 · Runway Gen-4.5 6 格 · Seedance 2.5 4 格，三家占 49%</b> —— 不透明是分化的，不是普遍的。</div>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Veo 3.1</b> <span>官方总览页原话：「Use Gemini Omni Flash as your default model for video generation. Use Veo 3.1 for specific capabilities like scene extension, last-frame control, or integration with legacy pipelines」—— 厂商自己把它定位成「特定能力与老管线」用</span></p>
+    <p><b>Kling 3.0 · 首尾帧</b> <span>2026-05-07：多镜头视频可定义首尾帧，并解除了「多镜头」与「首尾帧」的互斥</span></p><p><b>Veo 3.1 · 首尾帧</b> <span>官方「Frame-specific generation: Generate a video by specifying the first and last frames」，并注明「available for Veo 3.1 models only」</span></p><p><b>LTX 2.5 · 文生视频</b> <span>官方仓库 pipeline 标签含 text-to-video / text-to-audio-video　这条证据核的是 2.3</span></p><p><b>Wan 3.0 · 视频转视频</b> <span>这一格核的是 Wan2.1 的 VACE 变体，不是当前主力 3.0 —— 官方没说 3.0 的 API 里也有</span></p><p><b>Seedance 2.5 · 视频转视频</b> <span>官方文档里没有「拿一段视频进去、改完再出来」这一路的端点或参数</span></p><p><b>MiniMax Hailuo H3 · 视频转视频</b> <span>官方文档里没有「拿一段视频进去、改完再出来」这一路的端点或参数</span></p>
+    <p style="color:var(--muted)"><b style="color:var(--ink)">另有实时交互轨</b>
+      <span>Vidu S1、Decart Lucy 2.5 —— 边生成边看、可干预、时长不预设。
+      它们和这张表不共用能力轴（「视频延长」对没有终点的东西没有意义），所以单列一张，不混在这里。</span></p>
+  </div>
+  <footer>
+    <div>每一格的来源、原文链接与判定说明全部公开可复核。<br />
+      <b style="color:var(--unk)">本批数据全部为机器录入</b> —— 我们把这件事印在脸上，而不是藏起来。</div>
+    <div class="who">AI 视频能力地图<span>xiamimate.com/atlas（建设中）</span></div>
+  </footer>
+</body></html>

@@ -1,0 +1,44 @@
+.DS_Store
+node_modules/
+.next/
+out/
+out-*.png
+.env
+.env.*
+next-env.d.ts
+tsconfig.tsbuildinfo
+assets/demo-raw/
+data/watch.log
+data/launchd.*.log
+# 审阅台的运行日志（launchd 起的时候往这儿写）。报告本身是要进 git 的，日志不是。
+data/station.log
+.env
+# data/inbox 先不进 git：候选里可能含厂商页面原文摘录，等人审流程定了再决定要不要留档
+data/inbox/
+# 分享图是从 data/atlas.json 生成的产物，不是源码。
+# 进 git 只会让每次数据微调都拖着 2.6MB 二进制 diff，
+# 而且**图和数据可能对不上** —— 忘了重跑就会发出去一张过期的图。
+# 打包脚本每次都会重出（scripts/package.sh 第 3 步）。
+public/og/
+
+dist/
+
+# 演示视频/大图不进 git —— .git 里 24M 有 21M 是这些。
+# 它们是构建产物与素材，不是源码；要分发就走 dist/ 或 publicity/。
+assets/*.mp4
+assets/*.webm
+assets/*.png
+assets/demo-raw*/
+data/watch-report.partial.md
+.next-dev/
+
+# 架构图由 scripts/make-diagrams.mjs 从 data/atlas.json 的 mermaid 源确定性生成。
+# 不进 git：真源是那段 mermaid，产物进库只会让每次改图都拖一坨 20KB 的 diff。
+# 构建前自动生成（package.json 的 prebuild）。
+public/diagrams/
+
+# 宣传片的中间帧（840 张 PNG，由 scripts/film.mjs 重新生成）
+assets/film-frames/
+assets/film-shots/
+assets/film-cut/
+assets/film-audio/

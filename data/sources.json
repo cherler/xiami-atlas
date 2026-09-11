@@ -1,0 +1,6243 @@
+{
+ "$comment": "Source Registry。按原方案 §29（权威度 S/A/B/C）与 §30（第一批重点源）建。这份表本该在录第一条数据之前就存在 —— 没有它，采集退化成即席搜索，而即席搜索在 9 个 Family 上错了 6 个。",
+ "$two_axes": "权威度与机器可读度是**两个维度**，不要混成一个轴（我第一版混了）。tier 决定「这条声称能不能当事实」，kind 决定「能不能自动 diff」。一个来源可以是 S 级但只有 HTML（官方 changelog），也可以是 A 级且机器可读（Epoch CSV）。",
+ "tiers": {
+  "S": "Primary：官方 Docs / Blog / API / Paper / 官方 GitHub。适合 Capability、发布时间、API、模型版本、官方产品关系",
+  "A": "Independent Data：Epoch AI、Artificial Analysis、高质量 Benchmark。适合独立 benchmark、历史数据、研究型数据",
+  "B": "Secondary：高质量媒体、采访、AI Wiki。适合 Discovery、补充背景、寻找原始来源",
+  "C": "Community：Reddit / X / B站 / YouTube / 博客。适合发现 Skill 与 Workflow。**一般不作为核心事实的唯一证据**"
+ },
+ "kinds": {
+  "json": "JSON API —— 最好，结构化可直接 diff",
+  "csv": "CSV 定期发布 —— 好，可 diff",
+  "atom": "Atom/RSS —— 好，天然带条目与时间",
+  "html": "网页 —— 要抽正文再 diff，最费事也最容易误报",
+  "spa": "SPA 文档站 —— 内容由 JS 渲染，纯 HTTP 抓只能拿到导航壳，必须用无头浏览器"
+ },
+ "$epoch_finding": "实测 2026-08-07：Epoch AI 的 notable_ai_models.csv 共 1043 行，只命中 12 个我们跟踪的名字，且全是旧版本（Veo 2/3/3.1、Sora、Seedance 2.0、Gen-1/2）；无 Kling、无 Wan、无 Hailuo H3、无 Vidu、无 Seedance 2.5、无 Gen-4.5。Domain 分类里没有「视频生成」。它记的是训练算力与参数这类研究指标。→ 与 §29 一致：A 级适合研究型数据，**不适合能力面**。",
+ "sources": [
+  {
+   "id": "seed-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seedance,seedream",
+   "name": "ByteDance Seed · 官方博客",
+   "url": "https://seed.bytedance.com/en/blog",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "seed-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seedance",
+   "name": "ByteDance Seed · 模型页",
+   "url": "https://seed.bytedance.com/en/models",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ]
+  },
+  {
+   "id": "kling-api-updates",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "kling",
+   "name": "Kling AI · API 更新日志",
+   "url": "https://kling.ai/document-api/updates/api",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "api",
+    "version"
+   ],
+   "expect": [
+    "首尾帧",
+    "lip",
+    "multi_shot",
+    "2026",
+    "更新"
+   ],
+   "note": "**实测只抓到 43 字的空壳（'KlingAI Open Platform'×2）。而 atlas.json 里有 5 格 Kling 的能力署了这个 URL 当来源** —— 那些结论其实来自搜索摘要。这是本项目最不能犯的错：署了一个自己没读过、且根本没内容的官方链接。已改 spa 重抓"
+  },
+  {
+   "id": "kling-site",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "kling",
+   "name": "Kling AI 官网",
+   "url": "https://klingai.com/",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ]
+  },
+  {
+   "id": "google-video-docs",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "veo,gemini-omni",
+   "name": "Google AI for Developers · 视频生成",
+   "url": "https://ai.google.dev/gemini-api/docs/video",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "api",
+    "version"
+   ]
+  },
+  {
+   "id": "deepmind-veo",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "veo",
+   "name": "Google DeepMind · Veo",
+   "url": "https://deepmind.google/models/veo/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "vertex-video-ref",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "veo",
+   "name": "Vertex AI · 参考图引导生成",
+   "url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/video/use-reference-images-to-guide-video-generation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "openai-sora-eol",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "sora",
+   "name": "OpenAI 帮助中心 · Sora 停服说明",
+   "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation",
+   "refresh_days": 14,
+   "good_for": [
+    "status"
+   ],
+   "note": "盯停服日期是否变化、是否宣布继任。2026-08-12 由 html 改为 spa⚠️ **2026-08-12 查清：这两页在 Cloudflare 人机验证后面**（失败现场的页面标题是「Just a moment...」）。裸 fetch 回 403、浏览器有时能过有时被挡 —— **换抓法救不了，也不该去绕**（那是反爬在正常工作）。这条源标为人工核：Sora 的停服状态本来就低频变化，人隔阵子打开看一眼即可",
+   "manual": true
+  },
+  {
+   "id": "openai-sora-2",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "sora",
+   "name": "OpenAI · Sora 2 发布页",
+   "url": "https://openai.com/index/sora-2/",
+   "refresh_days": 30,
+   "good_for": [
+    "capability"
+   ],
+   "note": "2026-08-12 由 html 改为 spa⚠️ **2026-08-12 查清：这两页在 Cloudflare 人机验证后面**（失败现场的页面标题是「Just a moment...」）。裸 fetch 回 403、浏览器有时能过有时被挡 —— **换抓法救不了，也不该去绕**（那是反爬在正常工作）。这条源标为人工核：Sora 的停服状态本来就低频变化，人隔阵子打开看一眼即可",
+   "manual": true
+  },
+  {
+   "id": "wan-gh-releases",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "wan",
+   "name": "GitHub · Wan-Video releases",
+   "url": "https://api.github.com/repos/Wan-Video/Wan2.1/releases",
+   "refresh_days": 7,
+   "good_for": [
+    "openweights",
+    "version"
+   ],
+   "note": "实测 releases 为空数组：Wan 不用 GitHub Release 发版，权重走 HF。**这条源没有信息量**，openweights 以 wan-hf 为准"
+  },
+  {
+   "id": "wan-hf",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "wan",
+   "name": "Hugging Face · Wan-AI 名下仓库",
+   "url": "https://huggingface.co/api/models?author=Wan-AI&sort=lastModified&direction=-1&limit=40",
+   "refresh_days": 7,
+   "good_for": [
+    "openweights"
+   ],
+   "note": "「Wan 到底开没开源」这一格的直接证据源"
+  },
+  {
+   "id": "minimax-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "hailuo",
+   "name": "MiniMax · 官方博客",
+   "url": "https://www.minimax.io/blog",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "minimax-hf",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "hailuo",
+   "name": "Hugging Face · MiniMaxAI 名下仓库",
+   "url": "https://huggingface.co/api/models?author=MiniMaxAI&sort=lastModified&direction=-1&limit=40",
+   "refresh_days": 7,
+   "good_for": [
+    "openweights"
+   ]
+  },
+  {
+   "id": "runway-research",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "runway",
+   "name": "Runway · Research",
+   "url": "https://runwayml.com/research",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ]
+  },
+  {
+   "id": "luma-site",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "luma",
+   "name": "Luma AI 官网",
+   "url": "https://lumalabs.ai/",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ]
+  },
+  {
+   "id": "vidu-changelog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "vidu-q,vidu-s",
+   "name": "Vidu 平台 · 更新日志",
+   "url": "https://platform.vidu.com/docs/update",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version",
+    "api"
+   ],
+   "note": "项目负责人手工找到 2026-04-13「新增 viduq3 / mix / turbo」，我漏了。漏的两个机械原因：① 站点是 SPA，纯 HTTP 只拿到壳；② 路径是猜的（/docs/changelog 不存在），真实路径 /docs/update —— **导航上的文字是「Api Reference」，href 却是 update**，按标签猜必然猜不到。教训：路径要从页面里读出来，不能凭常识拼"
+  },
+  {
+   "id": "vidu-model-map",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "vidu-q,vidu-s",
+   "name": "Vidu 平台 · Model Map（官方模型清单）",
+   "url": "https://platform.vidu.com/docs/model-map",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "availability"
+   ]
+  },
+  {
+   "id": "vidu-function-list",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "vidu-q,vidu-s",
+   "name": "Vidu 平台 · Function List（官方按模型列的能力清单）",
+   "url": "https://platform.vidu.com/docs/function-list",
+   "refresh_days": 7,
+   "good_for": [
+    "capability"
+   ],
+   "note": "**厂商自己发布的能力矩阵。** 比我们手工拼的那张可靠得多 —— 该找的是这类页面，而不是去搜第三方评测。其它家有没有对应物，值得逐个翻一遍导航",
+   "expect": [
+    "Image to Video",
+    "Reference to Video"
+   ]
+  },
+  {
+   "id": "vidu-site",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "vidu-q",
+   "name": "Vidu 官网",
+   "url": "https://www.vidu.com/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "vidu-s1-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "vidu-s",
+   "name": "GitHub · Vidu-S1 releases",
+   "url": "https://api.github.com/repos/shengshu-ai/Vidu-S1/releases",
+   "refresh_days": 14,
+   "good_for": [
+    "openweights"
+   ],
+   "note": "实测 releases 为空数组 —— 有仓库不等于有发布。Vidu S1 的 openweights 维持 unknown 是对的"
+  },
+  {
+   "id": "pika-site",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "pika",
+   "name": "Pika 官网",
+   "url": "https://pika.art/",
+   "refresh_days": 14,
+   "good_for": [
+    "skill"
+   ]
+  },
+  {
+   "id": "higgsfield-site",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "higgsfield",
+   "name": "Higgsfield（平台，不是模型）",
+   "url": "https://higgsfield.ai/",
+   "refresh_days": 14,
+   "good_for": [
+    "platform",
+    "skill"
+   ]
+  },
+  {
+   "id": "decart-research",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "lucy",
+   "name": "Decart · Research",
+   "url": "https://decart.ai/research",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "arxiv-video",
+   "tier": "S",
+   "kind": "atom",
+   "vendor": "",
+   "name": "arXiv · 视频生成新论文",
+   "url": "http://export.arxiv.org/api/query?search_query=abs:%22video%20generation%22&sortBy=submittedDate&sortOrder=descending&max_results=40",
+   "refresh_days": 7,
+   "good_for": [
+    "discovery",
+    "paper"
+   ]
+  },
+  {
+   "id": "epoch-notable",
+   "tier": "A",
+   "kind": "csv",
+   "vendor": "",
+   "name": "Epoch AI · Notable AI Models（每日）",
+   "url": "https://epoch.ai/data/notable_ai_models.csv",
+   "refresh_days": 7,
+   "good_for": [
+    "discovery"
+   ],
+   "not_for": [
+    "capability"
+   ],
+   "note": "见 $epoch_finding：覆盖不到视频模型的版本与能力",
+   "expect": []
+  },
+  {
+   "id": "aa-t2v",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Artificial Analysis · 文生视频榜",
+   "url": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+   "refresh_days": 7,
+   "good_for": [
+    "discovery",
+    "benchmark"
+   ],
+   "not_for": [
+    "capability"
+   ],
+   "note": "只答「谁生成得更好看」，不答「谁支持首尾帧」。榜上出现没见过的名字＝发现信号",
+   "expect": [
+    "Elo",
+    "Kling",
+    "Seedance"
+   ]
+  },
+  {
+   "id": "aa-i2v",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Artificial Analysis · 图生视频榜",
+   "url": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+   "refresh_days": 7,
+   "good_for": [
+    "discovery",
+    "benchmark"
+   ],
+   "expect": [
+    "Elo",
+    "Kling",
+    "Seedance"
+   ]
+  },
+  {
+   "id": "hf-t2v",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · text-to-video 按下载量",
+   "url": "https://huggingface.co/api/models?filter=text-to-video&sort=downloads&direction=-1&limit=60",
+   "refresh_days": 3,
+   "good_for": [
+    "openweights",
+    "discovery"
+   ],
+   "note": "按 downloads 排。**按 lastModified 排是错的** —— 排出来 81 个组织里绝大多数是个人搬运/量化号，噪音淹没信号",
+   "expect": [
+    "Wan",
+    "Hunyuan",
+    "LTX",
+    "CogVideo",
+    "Mochi"
+   ]
+  },
+  {
+   "id": "hf-i2v",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · image-to-video 按下载量",
+   "url": "https://huggingface.co/api/models?filter=image-to-video&sort=downloads&direction=-1&limit=60",
+   "refresh_days": 3,
+   "good_for": [
+    "openweights",
+    "discovery"
+   ],
+   "note": "按 downloads 排。**按 lastModified 排是错的** —— 排出来 81 个组织里绝大多数是个人搬运/量化号，噪音淹没信号",
+   "expect": [
+    "Wan",
+    "Hunyuan",
+    "LTX",
+    "CogVideo",
+    "Mochi"
+   ]
+  },
+  {
+   "id": "hf-v2v",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · video-to-video 按下载量",
+   "url": "https://huggingface.co/api/models?filter=video-to-video&sort=downloads&direction=-1&limit=60",
+   "refresh_days": 7,
+   "good_for": [
+    "openweights",
+    "discovery"
+   ],
+   "note": "按 downloads 排。**按 lastModified 排是错的** —— 排出来 81 个组织里绝大多数是个人搬运/量化号，噪音淹没信号",
+   "expect": [
+    "Wan",
+    "Hunyuan",
+    "LTX",
+    "CogVideo",
+    "Mochi"
+   ]
+  },
+  {
+   "id": "fal-video",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "",
+   "name": "fal · 视频模型目录",
+   "url": "https://fal.ai/models?categories=text-to-video",
+   "refresh_days": 7,
+   "good_for": [
+    "availability"
+   ],
+   "note": "「去哪用」矩阵的直接来源。API 需 token，先抓页面。⚠️ **裸 fetch 会拿到 403/429，走浏览器就是 200** —— 那不是封禁，是缺浏览器指纹。2026-08-12 由 html 改为 spa"
+  },
+  {
+   "id": "replicate-t2v",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Replicate · text-to-video 集合",
+   "url": "https://replicate.com/collections/text-to-video",
+   "refresh_days": 7,
+   "good_for": [
+    "availability"
+   ]
+  },
+  {
+   "id": "aiwiki",
+   "tier": "B",
+   "kind": "spa",
+   "vendor": "",
+   "name": "AI Wiki",
+   "url": "https://aiwiki.ai/",
+   "refresh_days": 30,
+   "good_for": [
+    "discovery"
+   ],
+   "not_for": [
+    "capability"
+   ],
+   "note": "⚠️ **裸 fetch 会拿到 403/429，走浏览器就是 200** —— 那不是封禁，是缺浏览器指纹。2026-08-12 由 html 改为 spa"
+  },
+  {
+   "id": "futurepedia",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "",
+   "name": "Futurepedia",
+   "url": "https://www.futurepedia.io/",
+   "refresh_days": 30,
+   "good_for": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "comfyui-releases",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · ComfyUI releases",
+   "url": "https://api.github.com/repos/comfyanonymous/ComfyUI/releases",
+   "refresh_days": 14,
+   "good_for": [
+    "workflow"
+   ]
+  },
+  {
+   "id": "capcut-templates",
+   "tier": "C",
+   "kind": "html",
+   "vendor": "",
+   "name": "CapCut 模板",
+   "url": "https://www.capcut.com/templates",
+   "refresh_days": 30,
+   "good_for": [
+    "skill"
+   ],
+   "not_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "picsart-effects",
+   "tier": "C",
+   "kind": "html",
+   "vendor": "",
+   "name": "Picsart Effects",
+   "url": "https://picsart.com/ai-video-effects/",
+   "refresh_days": 30,
+   "good_for": [
+    "skill"
+   ]
+  },
+  {
+   "id": "runway-changelog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "runway",
+   "name": "Runway · Changelog（官方更新日志）",
+   "url": "https://runway.com/changelog",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Gen-4",
+    "Gen-3",
+    "Act-One",
+    "Aleph"
+   ],
+   "note": "**我原先在 $missing 里断言「Runway 没有可 diff 的公开更新页」—— 那是错的，我只是没看。** 沿导航一扫就在。断言「没有」之前必须先扫一遍导航"
+  },
+  {
+   "id": "runway-models",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "runway",
+   "name": "Runway · Models 指南",
+   "url": "https://docs.dev.runwayml.com/guides/models/",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Gen-4",
+    "model"
+   ]
+  },
+  {
+   "id": "luma-changelog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "luma",
+   "name": "Luma · Changelog",
+   "url": "https://docs.lumalabs.ai/changelog",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Ray",
+    "update"
+   ],
+   "note": "实测：条目最新是「1 year ago」的 Photon（图像），视频侧久未更新 —— 这条源的价值有限，别指望它报 Ray 的新版本 ⚠️ **2026-08-14 转人工核**：渲染后正文只有 273 字符，是个壳。连着多轮抓不到 —— **这不是失败，是信息**：Luma 没有可 diff 的公开更新入口，版本要靠人隔阵子打开看。",
+   "manual": true
+  },
+  {
+   "id": "google-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "veo,gemini-omni",
+   "name": "Google · 全部模型清单",
+   "url": "https://ai.google.dev/gemini-api/docs/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "availability"
+   ],
+   "expect": [
+    "Veo",
+    "Gemini"
+   ]
+  },
+  {
+   "id": "seed-models-hub",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seedance",
+   "name": "ByteDance Seed · Models（首页 tab）",
+   "url": "https://seed.bytedance.com/models?view_from=homepage_tab",
+   "refresh_days": 7,
+   "good_for": [
+    "version"
+   ],
+   "expect": [
+    "Seedance",
+    "Seed"
+   ]
+  },
+  {
+   "id": "apiyi-models",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "",
+   "name": "APIYI · 更新日志（API 聚合商）",
+   "url": "https://docs.apiyi.com/changelog",
+   "refresh_days": 7,
+   "good_for": [
+    "availability",
+    "pricing"
+   ],
+   "expect": [
+    "模型",
+    "上线",
+    "新增",
+    "API"
+   ],
+   "note": "项目负责人补充并给了正确 URL。国内 API 聚合商的更新日志 —— 「哪个模型在国内能用上了」这条信号，fal / Replicate 覆盖不到"
+  },
+  {
+   "id": "arxiv-worldmodel",
+   "tier": "S",
+   "kind": "atom",
+   "vendor": "",
+   "name": "arXiv · world model / 实时视频生成",
+   "url": "http://export.arxiv.org/api/query?search_query=abs:%22world%20model%22+AND+abs:%22video%22&sortBy=submittedDate&sortOrder=descending&max_results=40",
+   "refresh_days": 7,
+   "good_for": [
+    "discovery"
+   ],
+   "expect": [
+    "world"
+   ],
+   "note": "专门补 realtime 轨的盲区 —— 这一类模型先在论文里出现，不在榜单上"
+  },
+  {
+   "id": "techcrunch-ai",
+   "tier": "B",
+   "kind": "atom",
+   "vendor": "",
+   "name": "TechCrunch · AI（RSS）",
+   "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+   "refresh_days": 3,
+   "good_for": [
+    "discovery"
+   ],
+   "note": "Decart Lucy 2 是 Forbes/TechCrunch 这类媒体先报的，榜单与 HF 都没有 —— 科技媒体是 realtime 与闭源新品类的主要曝光渠道"
+  },
+  {
+   "id": "decart-blog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "lucy",
+   "name": "Decart · Publications 索引",
+   "url": "https://decart.ai/",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Lucy",
+    "real-time"
+   ]
+  },
+  {
+   "id": "ltx-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ltx",
+   "name": "GitHub · Lightricks/LTX-2 releases",
+   "url": "https://api.github.com/repos/Lightricks/LTX-2/releases",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "openweights"
+   ]
+  },
+  {
+   "id": "ltx-hf-org",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ltx",
+   "name": "Hugging Face · Lightricks 组织全部仓库",
+   "url": "https://huggingface.co/api/models?author=Lightricks&sort=downloads&direction=-1&limit=40",
+   "refresh_days": 3,
+   "good_for": [
+    "version",
+    "openweights",
+    "capability"
+   ],
+   "expect": [
+    "LTX"
+   ],
+   "note": "**收 LTX 当天就是靠它发现版本不对的**：我按 LTX-2 收录，而 Lightricks/LTX-2.3 下载 178 万、是前者的 4 倍。仓库名本身就是能力清单（IC-LoRA-Ingredients / Motion-Track-Control / DubIt…）"
+  },
+  {
+   "id": "decart-site",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "lucy",
+   "name": "Decart 官网首屏（当前版本）",
+   "url": "https://decart.ai/",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "expect": [
+    "Lucy",
+    "real-time"
+   ]
+  },
+  {
+   "id": "picsart-video",
+   "tier": "C",
+   "kind": "html",
+   "vendor": "",
+   "name": "Picsart AI 视频",
+   "url": "https://picsart.com/ai-video-generator/",
+   "refresh_days": 30,
+   "good_for": [
+    "platform"
+   ],
+   "note": "⚠️ **大陆直连不通，本机经代理才 200** —— 那是可达性事实，不是抓取故障。裸 HTML 有 7,491 字正文，2026-08-12 由 spa 改 html"
+  },
+  {
+   "id": "libtv",
+   "tier": "C",
+   "kind": "spa",
+   "vendor": "",
+   "name": "LibTV",
+   "url": "https://libtv.com/",
+   "refresh_days": 30,
+   "good_for": [
+    "platform"
+   ],
+   "retired": {
+    "at": "2026-08-12",
+    "why": "三个观测点（本机直连 / 本机走代理 / 大陆服务器）全部失败，**TCP 443 都不通** —— 不是拒绝，是没有服务在监听。站点已消失"
+   }
+  },
+  {
+   "id": "dreamina",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seedance",
+   "name": "即梦 Dreamina（字节自有产品）",
+   "url": "https://dreamina.capcut.com/",
+   "refresh_days": 14,
+   "good_for": [
+    "platform",
+    "availability"
+   ],
+   "note": "2026-08-12：原标 spa，Playwright 45 秒超时；实测裸 HTML 就有 25,078 字正文，改回 html"
+  },
+  {
+   "id": "hailuo-video",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "hailuo",
+   "name": "海螺视频（MiniMax 自有产品）",
+   "url": "https://hailuoai.video/",
+   "refresh_days": 14,
+   "good_for": [
+    "platform",
+    "availability"
+   ],
+   "expect": 400,
+   "note": "⚠️ 2026-08-12：spa 抓法 45 秒超时，改 html 后能抓到 —— **但正文只有约 570 字，全是导航与营销词**。这是个图片驱动的落地页，没有可 diff 的能力描述。**换抓法救不了它**，能力证据得去 MiniMax 开放平台文档取"
+  },
+  {
+   "id": "volcengine-ark-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "seedance",
+   "name": "火山引擎方舟 · 模型计费",
+   "url": "https://docs.volcengine.com/docs/82379/1544106",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "路径是从导航里读出来的，不是猜的 —— 我猜的 /docs/82379/1099320 只有导航壳。另注：字节把**视频模型价格快查表放在飞书多维表里**（bytedance.larkoffice.com），文档站上只有说明。 换 html→spa：文档站正文靠 JS 渲染，不渲染只拿得到导航壳（1964 字符、零个价）。"
+  },
+  {
+   "id": "minimax-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "hailuo",
+   "name": "MiniMax 开放平台 · 价格",
+   "url": "https://platform.minimaxi.com/docs/guides/pricing-video",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "我猜的 /document/price 落到了语音资源包 —— 视频价在 /docs/guides/pricing-video。"
+  },
+  {
+   "id": "google-ai-price",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "veo",
+   "name": "Google AI · Gemini API 定价",
+   "url": "https://ai.google.dev/gemini-api/docs/pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**"
+  },
+  {
+   "id": "bailian-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "wan",
+   "name": "阿里云百炼 · 模型计费",
+   "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "我猜的 /models 是模型清单不是价格页；价格在 /model-pricing。"
+  },
+  {
+   "id": "runway-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "runway",
+   "name": "Runway · 定价",
+   "url": "https://runway.com/pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**"
+  },
+  {
+   "id": "kling-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "kling",
+   "name": "可灵开放平台 · 计费",
+   "url": "https://klingai.com/dev/pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "真地址在导航「前往购买」后面。我猜的 API commonInfo 页只有鉴权说明，一个价都没有。"
+  },
+  {
+   "id": "vidu-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "vidu-q",
+   "name": "Vidu 平台 · 价格",
+   "url": "https://platform.vidu.com/docs/pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "我猜的是 /docs/price，官方是 /docs/pricing。"
+  },
+  {
+   "id": "fal-ltx-price",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "",
+   "name": "fal · 平台定价",
+   "url": "https://fal.ai/pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "改成平台价格总页 —— 单个模型页上没有价，价在 pricing 页。"
+  },
+  {
+   "id": "replicate-price",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Replicate · 定价",
+   "url": "https://replicate.com/pricing",
+   "refresh_days": 30,
+   "good_for": [
+    "pricing"
+   ],
+   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**"
+  },
+  {
+   "id": "hf-course",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "hugging-face",
+   "name": "Hugging Face · Diffusion Models Course",
+   "url": "https://huggingface.co/learn/diffusion-course/en/unit0/1",
+   "refresh_days": 90,
+   "good_for": [
+    "application-resource",
+    "course"
+   ]
+  },
+  {
+   "id": "comfy-docs",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "comfyui",
+   "name": "ComfyUI · 官方原生工作流文档",
+   "url": "https://docs.comfy.org/tutorials/",
+   "refresh_days": 14,
+   "good_for": [
+    "application-resource",
+    "docs",
+    "workflow"
+   ]
+  },
+  {
+   "id": "h3-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "minimax",
+   "name": "Hugging Face · MiniMax H3 模型卡",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+   "refresh_days": 14,
+   "good_for": [
+    "application-resource",
+    "openweights",
+    "version"
+   ]
+  },
+  {
+   "id": "hf-lineage",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "hugging-face",
+   "name": "Hugging Face · 模型公开目录",
+   "url": "https://huggingface.co/api/models?sort=lastModified&direction=-1&limit=100",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "openweights",
+    "version"
+   ]
+  },
+  {
+   "id": "vacetools-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · ComfyUI-SuperUltimateVaceTools",
+   "url": "https://api.github.com/repos/bbaudio-2025/ComfyUI-SuperUltimateVaceTools",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "framepack-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "framepack",
+   "name": "GitHub · FramePack",
+   "url": "https://api.github.com/repos/lllyasviel/FramePack",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project",
+    "version"
+   ]
+  },
+  {
+   "id": "fpwrapper-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · ComfyUI-FramePackWrapper",
+   "url": "https://api.github.com/repos/kijai/ComfyUI-FramePackWrapper",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "latentsync-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "bytedance",
+   "name": "GitHub · bytedance/LatentSync",
+   "url": "https://api.github.com/repos/bytedance/LatentSync",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project",
+    "version",
+    "license"
+   ]
+  },
+  {
+   "id": "lswrapper-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · ComfyUI-LatentSyncWrapper",
+   "url": "https://api.github.com/repos/ShmuelRonen/ComfyUI-LatentSyncWrapper",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "float-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · ComfyUI-FLOAT",
+   "url": "https://api.github.com/repos/yuvraj108c/ComfyUI-FLOAT",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "sviflf-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · ComfyUI-Wan-SVI2Pro-FLF",
+   "url": "https://api.github.com/repos/Well-Made/ComfyUI-Wan-SVI2Pro-FLF",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "flflatent-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · Wan22FirstLastFrameToVideoLatent",
+   "url": "https://api.github.com/repos/stduhpf/ComfyUI--Wan22FirstLastFrameToVideoLatent",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "mm-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "minimax",
+   "name": "MiniMax · H3 官方发布",
+   "url": "https://www.minimax.io/blog/minimax-h3",
+   "refresh_days": 30,
+   "good_for": [
+    "application-resource",
+    "version"
+   ]
+  },
+  {
+   "id": "wanwrapper-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "community",
+   "name": "GitHub · ComfyUI-WanVideoWrapper",
+   "url": "https://api.github.com/repos/kijai/ComfyUI-WanVideoWrapper",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project"
+   ]
+  },
+  {
+   "id": "comfy-org-hf",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "comfyui",
+   "name": "Hugging Face · Comfy-Org 官方组织",
+   "url": "https://huggingface.co/api/models?author=Comfy-Org&sort=lastModified&direction=-1&limit=40",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "openweights",
+    "version"
+   ]
+  },
+  {
+   "id": "ltx-comfy-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "lightricks",
+   "name": "GitHub · ComfyUI-LTXVideo",
+   "url": "https://api.github.com/repos/Lightricks/ComfyUI-LTXVideo",
+   "refresh_days": 7,
+   "good_for": [
+    "application-resource",
+    "project",
+    "version",
+    "license"
+   ]
+  },
+  {
+   "id": "mpt-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · harry0703/MoneyPrinterTurbo",
+   "url": "https://api.github.com/repos/harry0703/MoneyPrinterTurbo",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★102,454，许可 MIT。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "manim-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · ManimCommunity/manim",
+   "url": "https://api.github.com/repos/ManimCommunity/manim",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★40,048，许可 MIT。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "pyvideotrans-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · jianchang512/pyvideotrans",
+   "url": "https://api.github.com/repos/jianchang512/pyvideotrans",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★18,636，许可 GPL-3.0。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "duix-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · duixcom/Duix-Avatar",
+   "url": "https://api.github.com/repos/duixcom/Duix-Avatar",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★14,401，许可 DUIX.COM COMMUNITY LICENSE AGREEMENT（自定义社区许可）。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "fay-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · xszyou/Fay",
+   "url": "https://api.github.com/repos/xszyou/Fay",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★13,405，许可 GPL-3.0。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "narrato-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · linyqh/NarratoAI",
+   "url": "https://api.github.com/repos/linyqh/NarratoAI",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★10,650，许可 MIT。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "zho-wf-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO",
+   "url": "https://api.github.com/repos/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★7,724，许可 GPL-3.0。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "echomimic-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · antgroup/echomimic",
+   "url": "https://api.github.com/repos/antgroup/echomimic",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★4,282，许可 Apache-2.0。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "linly-talker-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · Kedreamix/Linly-Talker",
+   "url": "https://api.github.com/repos/Kedreamix/Linly-Talker",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★3,424，许可 MIT。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "animate-anything-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · alibaba/animate-anything",
+   "url": "https://api.github.com/repos/alibaba/animate-anything",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "应用页公开资源。收录时 ★970，许可 MIT。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "huobao-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · chatfire-AI/huobao-drama",
+   "url": "https://api.github.com/repos/chatfire-AI/huobao-drama",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "收录时 ★13,898，**仓库无 LICENSE 文件**。盯这条源的首要目的是等作者补许可证 —— 补上了才谈得上「可用」"
+  },
+  {
+   "id": "awesome-vd-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · showlab/Awesome-Video-Diffusion",
+   "url": "https://api.github.com/repos/showlab/Awesome-Video-Diffusion",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "收录时 ★5,747，**仓库无 LICENSE 文件**。盯这条源的首要目的是等作者补许可证 —— 补上了才谈得上「可用」"
+  },
+  {
+   "id": "seedream-page",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seedream",
+   "name": "ByteDance Seed · Seedream 官方页",
+   "url": "https://seed.bytedance.com/en/seedream5_0_pro",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ],
+   "note": "AI 图像方向的版本真源。**官方页只写当前版本、不写发布日期** —— 日期缺就缺着"
+  },
+  {
+   "id": "openai-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "openai",
+   "name": "OpenAI · 官方模型列表",
+   "url": "https://developers.openai.com/api/docs/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version"
+   ],
+   "note": "AI 图像方向的版本真源。**官方页只写当前版本、不写发布日期** —— 日期缺就缺着"
+  },
+  {
+   "id": "gemini-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gemini",
+   "name": "Google · Gemini API 官方模型列表",
+   "url": "https://ai.google.dev/gemini-api/docs/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version"
+   ],
+   "note": "AI 图像方向的版本真源。**官方页只写当前版本、不写发布日期** —— 日期缺就缺着"
+  },
+  {
+   "id": "google-gemini-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gemini-image",
+   "name": "Google 官方博客 · Gemini",
+   "url": "https://blog.google/products/gemini/updated-image-editing-model/",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "azure-foundry-blog",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "gpt-image",
+   "name": "Microsoft Azure AI Foundry 博客",
+   "url": "https://azure.microsoft.com/en-us/blog/unveiling-gpt-image-1-rising-to-new-heights-with-image-generation-in-azure-ai-foundry/",
+   "refresh_days": 30,
+   "good_for": [
+    "version"
+   ],
+   "note": "**不是模型厂商自己的页**。openai.com 有 403 反爬（见 $blocked），gpt-image-1 的发布日只能从同日上线的 Azure 一侧取 —— 平台方与模型方同日发布，日期可信，但口径是二手的。"
+  },
+  {
+   "id": "recraft-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "recraft",
+   "name": "Recraft 官方博客",
+   "url": "https://www.recraft.ai/blog",
+   "refresh_days": 30,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "kolors-gh",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "kolors",
+   "name": "Kolors 官方 GitHub（含发布日志）",
+   "url": "https://github.com/Kwai-Kolors/Kolors",
+   "refresh_days": 30,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "krea-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "krea-img",
+   "name": "Krea 官方博客",
+   "url": "https://www.krea.ai/blog",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "wiki-midjourney",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "midjourney",
+   "name": "Wikipedia · Midjourney（版本年表）",
+   "url": "https://en.wikipedia.org/wiki/Midjourney",
+   "refresh_days": 60,
+   "good_for": [
+    "version"
+   ],
+   "note": "**降级取源**。Midjourney 官方文档站 docs.midjourney.com 挂 Cloudflare 挑战，浏览器外一律 403；官方没有可抓的 changelog。版本年表只能取 B 级。"
+  },
+  {
+   "id": "comfyui-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "comfy-org",
+   "name": "ComfyUI · 官方仓库",
+   "url": "https://github.com/Comfy-Org/ComfyUI",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "sdwebui-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "automatic1111",
+   "name": "Stable Diffusion web UI · 官方仓库",
+   "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "fooocus-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "lllyasviel",
+   "name": "Fooocus · 官方仓库",
+   "url": "https://github.com/lllyasviel/Fooocus",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "invokeai-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "invoke-ai",
+   "name": "InvokeAI · 官方仓库",
+   "url": "https://github.com/invoke-ai/InvokeAI",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "iopaint-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "sanster",
+   "name": "IOPaint · 官方仓库",
+   "url": "https://github.com/Sanster/IOPaint",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "rembg-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "danielgatis",
+   "name": "rembg · 官方仓库",
+   "url": "https://github.com/danielgatis/rembg",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "realesrgan-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "xinntao",
+   "name": "Real-ESRGAN · 官方仓库",
+   "url": "https://github.com/xinntao/Real-ESRGAN",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "gfpgan-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "tencentarc",
+   "name": "GFPGAN · 官方仓库",
+   "url": "https://github.com/TencentARC/GFPGAN",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "codeformer-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "sczhou",
+   "name": "CodeFormer · 官方仓库",
+   "url": "https://github.com/sczhou/CodeFormer",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "oldphoto-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "microsoft",
+   "name": "Bringing Old Photos Back to Life · 官方仓库",
+   "url": "https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "controlnet-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "lllyasviel",
+   "name": "ControlNet · 官方仓库",
+   "url": "https://github.com/lllyasviel/ControlNet",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "ipadapter-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "tencent-ailab",
+   "name": "IP-Adapter · 官方仓库",
+   "url": "https://github.com/tencent-ailab/IP-Adapter",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "instantid-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "instantx-research",
+   "name": "InstantID · 官方仓库",
+   "url": "https://github.com/instantX-research/InstantID",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "photomaker-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "tencentarc",
+   "name": "PhotoMaker · 官方仓库",
+   "url": "https://github.com/TencentARC/PhotoMaker",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "iclight-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "lllyasviel",
+   "name": "IC-Light · 官方仓库",
+   "url": "https://github.com/lllyasviel/IC-Light",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "idmvton-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "yisol",
+   "name": "IDM-VTON · 官方仓库",
+   "url": "https://github.com/yisol/IDM-VTON",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "ootd-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "levihsu",
+   "name": "OOTDiffusion · 官方仓库",
+   "url": "https://github.com/levihsu/OOTDiffusion",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "catvton-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "zheng-chong",
+   "name": "CatVTON · 官方仓库",
+   "url": "https://github.com/Zheng-Chong/CatVTON",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "kritaai-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "acly",
+   "name": "Krita AI Diffusion · 官方仓库",
+   "url": "https://github.com/Acly/krita-ai-diffusion",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "omnigen-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "vectorspacelab",
+   "name": "OmniGen · 官方仓库",
+   "url": "https://github.com/VectorSpaceLab/OmniGen",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "step1x-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "stepfun-ai",
+   "name": "Step1X-Edit · 官方仓库",
+   "url": "https://github.com/stepfun-ai/Step1X-Edit",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "qwenimage-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "qwenlm",
+   "name": "Qwen-Image · 官方仓库",
+   "url": "https://github.com/QwenLM/Qwen-Image",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "anytext-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "tyxsspa",
+   "name": "AnyText · 官方仓库",
+   "url": "https://github.com/tyxsspa/AnyText",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "incontextlora-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ali-vilab",
+   "name": "In-Context-LoRA · 官方仓库",
+   "url": "https://github.com/ali-vilab/In-Context-LoRA",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "comictrans-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ogkalu2",
+   "name": "comic-translate · 官方仓库",
+   "url": "https://github.com/ogkalu2/comic-translate",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "manganinjia-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ali-vilab",
+   "name": "MangaNinjia · 官方仓库",
+   "url": "https://github.com/ali-vilab/MangaNinjia",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "starvector-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "joanrod",
+   "name": "StarVector · 官方仓库",
+   "url": "https://github.com/joanrod/star-vector",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "svgdreamer-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ximinng",
+   "name": "SVGDreamer · 官方仓库",
+   "url": "https://github.com/ximinng/SVGDreamer",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "easyphoto-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "aigc-apps",
+   "name": "EasyPhoto · 官方仓库",
+   "url": "https://github.com/aigc-apps/EasyPhoto",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "ipadapter-plus-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "cubiq",
+   "name": "ComfyUI IPAdapter plus · 官方仓库",
+   "url": "https://github.com/cubiq/ComfyUI_IPAdapter_plus",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "controlnet-aux-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "fannovel16",
+   "name": "ComfyUI ControlNet 预处理器 · 官方仓库",
+   "url": "https://github.com/Fannovel16/comfyui_controlnet_aux",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "ultimate-upscale-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ssitu",
+   "name": "ComfyUI Ultimate SD Upscale · 官方仓库",
+   "url": "https://github.com/ssitu/ComfyUI_UltimateSDUpscale",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "comfy-manager-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "comfy-org",
+   "name": "ComfyUI-Manager · 官方仓库",
+   "url": "https://github.com/Comfy-Org/ComfyUI-Manager",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "comfy-examples-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "comfyanonymous",
+   "name": "ComfyUI 官方工作流示例集",
+   "url": "https://github.com/comfyanonymous/ComfyUI_examples",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "comfy-templates-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "comfy-org",
+   "name": "ComfyUI 官方模板工作流",
+   "url": "https://github.com/Comfy-Org/workflow_templates",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "hf-diffusion-class-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "huggingface",
+   "name": "Hugging Face 扩散模型课程 · 代码仓库",
+   "url": "https://github.com/huggingface/diffusion-models-class",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "fastai-course",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "fastai",
+   "name": "fast.ai · Part 2（从零实现 Stable Diffusion）",
+   "url": "https://course.fast.ai/Lessons/part2.html",
+   "refresh_days": 90,
+   "good_for": [
+    "course"
+   ]
+  },
+  {
+   "id": "dreamtextures-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "carson-katri",
+   "name": "Dream Textures（Blender 内出图）· 官方仓库",
+   "url": "https://github.com/carson-katri/dream-textures",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "char2d-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "mor-o",
+   "name": "ComfyUI 2D 角色流水线 · 官方仓库",
+   "url": "https://github.com/mor-o/comfyui-2d-character-pipeline",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "hf-pixelart-lora",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "nerijs",
+   "name": "Hugging Face · nerijs/pixel-art-xl",
+   "url": "https://huggingface.co/api/models/nerijs/pixel-art-xl",
+   "refresh_days": 60,
+   "good_for": [
+    "opensource"
+   ],
+   "note": "⚠️ 2026-08-12 换 URL：原来填的是**网页版**模型页，而这条源登记的 kind 是 json —— 拿回 HTML 自然报「Unexpected token '<'」。那不是抓不到，是我们自己填错了地址"
+  },
+  {
+   "id": "google-nb-blog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gemini-image",
+   "name": "Google 官方博客 · Nano Banana 系列",
+   "url": "https://blog.google/innovation-and-ai/",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "ms-foundry-blog",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "gpt-image",
+   "name": "Microsoft Foundry 博客",
+   "url": "https://techcommunity.microsoft.com/category/azure-ai-foundry-blog",
+   "refresh_days": 30,
+   "good_for": [
+    "version"
+   ],
+   "note": "**不是模型厂商自己的页**。openai.com 与 help.openai.com 都是 403（见 $blocked），gpt-image 这条线的发布日只能从同日上线的微软一侧取。"
+  },
+  {
+   "id": "hf-image-org",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "多家",
+   "name": "Hugging Face 官方组织 · 出图模型",
+   "url": "https://huggingface.co/api/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "opensource"
+   ]
+  },
+  {
+   "id": "mj-updates",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "midjourney",
+   "name": "Midjourney 官方更新日志（updates.midjourney.com）",
+   "url": "https://updates.midjourney.com/",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "**官方一手源，能抓。**之前只登记了被 Cloudflare 挡住的 docs.midjourney.com，就以为 Midjourney 整家抓不到、把版本年表退到了 Wikipedia —— **一个域名挡住不等于这家挡住**。"
+  },
+  {
+   "id": "aa-t2i",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Artificial Analysis · 文生图竞技场",
+   "url": "https://artificialanalysis.ai/text-to-image/arena",
+   "refresh_days": 7,
+   "good_for": [
+    "discovery",
+    "benchmark"
+   ],
+   "not_for": [
+    "capability"
+   ],
+   "note": "出图侧的发现信号。和视频榜同一个毛病：只答「谁画得更好看」，不答「谁能按蒙版重绘」。榜上出现没见过的名字＝发现信号",
+   "expect": [
+    "Elo",
+    "FLUX",
+    "Imagen"
+   ]
+  },
+  {
+   "id": "hf-t2i",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · text-to-image 按下载量",
+   "url": "https://huggingface.co/api/models?filter=text-to-image&sort=downloads&direction=-1&limit=60",
+   "refresh_days": 3,
+   "good_for": [
+    "openweights",
+    "discovery"
+   ],
+   "note": "按 downloads 排，理由同 hf-t2v：按 lastModified 排会被个人搬运/量化号淹没",
+   "expect": [
+    "FLUX",
+    "stable-diffusion",
+    "Qwen-Image"
+   ]
+  },
+  {
+   "id": "hf-i2i",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · image-to-image 按下载量",
+   "url": "https://huggingface.co/api/models?filter=image-to-image&sort=downloads&direction=-1&limit=60",
+   "refresh_days": 3,
+   "good_for": [
+    "openweights",
+    "discovery"
+   ],
+   "note": "改图那一侧的开源采用度。和 t2i 分开看 —— 出图强的不一定改图强",
+   "expect": [
+    "Kontext",
+    "Qwen-Image-Edit",
+    "instruct"
+   ]
+  },
+  {
+   "id": "anthropic-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "claude",
+   "name": "Anthropic 官方文档 · 模型总览",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Context window",
+    "Max output",
+    "thinking"
+   ]
+  },
+  {
+   "id": "deepseek-docs",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "deepseek",
+   "name": "DeepSeek 官方 API 文档",
+   "url": "https://api-docs.deepseek.com/",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Tool Calls",
+    "JSON Output",
+    "Context Caching"
+   ]
+  },
+  {
+   "id": "xai-docs",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "grok",
+   "name": "xAI 官方文档 · 模型清单",
+   "url": "https://docs.x.ai/docs/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "expect": [
+    "grok-4"
+   ]
+  },
+  {
+   "id": "doubao-force-2026",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "doubao",
+   "name": "新华网 · 火山引擎 2026 夏季 FORCE 大会（豆包 2.1 Pro）",
+   "url": "https://www.news.cn/tech/20260623/acd6f2f27fc34459a7d1684c03278431/c.html",
+   "refresh_days": 90,
+   "good_for": [
+    "version"
+   ],
+   "note": "**降级取源**：火山方舟的模型清单页是 SPA，抓到的是导航壳（docs.volcengine.com/docs/82379/1330310）。豆包的当前版本只能退到媒体报道。"
+  },
+  {
+   "id": "hf-text-org",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "多家",
+   "name": "Hugging Face 官方组织 · 文本模型",
+   "url": "https://huggingface.co/api/models",
+   "refresh_days": 3,
+   "good_for": [
+    "version",
+    "opensource"
+   ]
+  },
+  {
+   "id": "wan3-qbitai",
+   "tier": "B",
+   "kind": "spa",
+   "vendor": "wan",
+   "name": "量子位 · 阿里 Wan3.0 开启公测",
+   "url": "https://www.qbitai.com/2026/08/467877.html",
+   "refresh_days": 90,
+   "good_for": [
+    "version"
+   ],
+   "note": "盯 Wan3.0 公测的中文报道。⚠️ **2026-08-12 查清：两层原因叠在一起，都不是「这家没了公开入口」**。① 本机 DNS 把 www.qbitai.com 解析到 `127.0.0.1`（换 223.5.5.5 / 114.114.114.114 / 8.8.8.8 都一样，hosts 文件里没有），所以本机怎么抓都是连不上；服务器解析到 183.134.9.99，正常。② 服务器上用我们裸抓那串诚实 UA 拿到 403，带浏览器 UA 才 200（49,064 字）。**这条源标为人工核**：它是 B 级二手报道、90 天才看一次，为它单开一条抓取例外不划算。",
+   "manual": true
+  },
+  {
+   "id": "kimi-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "kimi",
+   "name": "Kimi 开放平台 · Chat API",
+   "url": "https://platform.kimi.com/docs/api/chat",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "expect": [
+    "工具调用",
+    "JSON Mode",
+    "reasoning_effort"
+   ]
+  },
+  {
+   "id": "glm-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm",
+   "name": "Z.ai 官方 API 参考 · Chat Completion",
+   "url": "https://docs.z.ai/api-reference/llm/chat-completion",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "expect": [
+    "thinking",
+    "tools",
+    "response_format"
+   ]
+  },
+  {
+   "id": "minimax-platform",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台文档 · 视频生成指南",
+   "url": "https://platform.minimaxi.com/docs/guides/video-generation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "**抓到了但没内容**：整站 SPA，纯 HTTP 拿到的只有标题「MiniMax-与用户共创智能」。这一列的 ⬜ 是我们读不到，不是它没有。。⚠️ 2026-08-12 换 URL：原来指向 /document/platform，那是**入口页**，渲染后只有 15 个字（「MiniMax-与用户共创智能」）。正文在 /docs/ 下面，改指视频生成指南（9,360 字）。另有 /docs/release-notes/models（2,753 字）是发布记录，声音卷的谱系日期就取自那里"
+  },
+  {
+   "id": "langchain-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "langchain-ai",
+   "name": "LangChain · 官方仓库",
+   "url": "https://github.com/langchain-ai/langchain",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "langgraph-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "langchain-ai",
+   "name": "LangGraph · 官方仓库",
+   "url": "https://github.com/langchain-ai/langgraph",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "llamaindex-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "run-llama",
+   "name": "LlamaIndex · 官方仓库",
+   "url": "https://github.com/run-llama/llama_index",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "vllm-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "vllm-project",
+   "name": "vLLM · 官方仓库",
+   "url": "https://github.com/vllm-project/vllm",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "llamacpp-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ggml-org",
+   "name": "llama.cpp · 官方仓库",
+   "url": "https://github.com/ggml-org/llama.cpp",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "ollama-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "ollama",
+   "name": "Ollama · 官方仓库",
+   "url": "https://github.com/ollama/ollama",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "ragflow-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "infiniflow",
+   "name": "RAGFlow · 官方仓库",
+   "url": "https://github.com/infiniflow/ragflow",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "dify-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "langgenius",
+   "name": "Dify · 官方仓库",
+   "url": "https://github.com/langgenius/dify",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "n8n-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "n8n-io",
+   "name": "n8n · 官方仓库",
+   "url": "https://github.com/n8n-io/n8n",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "openwebui-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "open-webui",
+   "name": "Open WebUI · 官方仓库",
+   "url": "https://github.com/open-webui/open-webui",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "autogen-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "microsoft",
+   "name": "AutoGen · 官方仓库",
+   "url": "https://github.com/microsoft/autogen",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "crewai-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "crewaiinc",
+   "name": "CrewAI · 官方仓库",
+   "url": "https://github.com/crewAIInc/crewAI",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "litellm-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "berriai",
+   "name": "LiteLLM · 官方仓库",
+   "url": "https://github.com/BerriAI/litellm",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "transformers-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "huggingface",
+   "name": "Transformers · 官方仓库",
+   "url": "https://github.com/huggingface/transformers",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "unsloth-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "unslothai",
+   "name": "Unsloth · 官方仓库",
+   "url": "https://github.com/unslothai/unsloth",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "llamafactory-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "hiyouga",
+   "name": "LLaMA-Factory · 官方仓库",
+   "url": "https://github.com/hiyouga/LlamaFactory",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "aider-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "aider-ai",
+   "name": "Aider · 官方仓库",
+   "url": "https://github.com/Aider-AI/aider",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "cline-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "cline",
+   "name": "Cline · 官方仓库",
+   "url": "https://github.com/cline/cline",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "continue-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "continuedev",
+   "name": "Continue · 官方仓库",
+   "url": "https://github.com/continuedev/continue",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "openhands-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "openhands",
+   "name": "OpenHands · 官方仓库",
+   "url": "https://github.com/OpenHands/OpenHands",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "browseruse-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "browser-use",
+   "name": "browser-use · 官方仓库",
+   "url": "https://github.com/browser-use/browser-use",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "markitdown-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "microsoft",
+   "name": "MarkItDown · 官方仓库",
+   "url": "https://github.com/microsoft/markitdown",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "unstructured-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "unstructured-io",
+   "name": "Unstructured · 官方仓库",
+   "url": "https://github.com/Unstructured-IO/unstructured",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "mineru-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "opendatalab",
+   "name": "MinerU · 官方仓库",
+   "url": "https://github.com/opendatalab/MinerU",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "mcpservers-gh",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "modelcontextprotocol",
+   "name": "MCP Servers · 官方仓库",
+   "url": "https://github.com/modelcontextprotocol/servers",
+   "refresh_days": 30,
+   "good_for": [
+    "opensource"
+   ]
+  },
+  {
+   "id": "anthropic-features",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "claude",
+   "name": "Anthropic 官方文档 · Features overview",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/overview",
+   "refresh_days": 7,
+   "good_for": [
+    "capability"
+   ],
+   "expect": [
+    "Structured outputs",
+    "Web search",
+    "Code execution",
+    "Computer use"
+   ]
+  },
+  {
+   "id": "openai-docs",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gpt",
+   "name": "OpenAI 开发者文档 · 指南索引",
+   "url": "https://developers.openai.com/api/docs",
+   "refresh_days": 7,
+   "good_for": [
+    "capability"
+   ],
+   "expect": [
+    "Function calling",
+    "Batch API"
+   ]
+  },
+  {
+   "id": "deepseek-pricing",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "deepseek",
+   "name": "DeepSeek 官方文档 · 模型与价格",
+   "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+   "refresh_days": 3,
+   "good_for": [
+    "capability",
+    "pricing"
+   ],
+   "expect": [
+    "Context Length",
+    "Max Output"
+   ],
+   "note": "⚠️ **URL 末尾那个斜杠不是可有可无的。** 不带斜杠时 Docusaurus 返回 200，但正文是首页「Your First API Call」——抓得到、有内容、每次都「无变化」，而我们照着它记了一版价格与上下文长度。2026-09-10 补上斜杠后才拿到真的「Models & Pricing」页。（2026-09-10 同时把 refresh_days 从 7 收到 3：DeepSeek 那一格的 version_src 现在署的就是它，版本源该盯得比一般页勤）"
+  },
+  {
+   "id": "deepseek-updates",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "deepseek",
+   "name": "DeepSeek 官方文档 · 更新日志",
+   "url": "https://api-docs.deepseek.com/updates/",
+   "refresh_days": 3,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "expect": [
+    "Change Log",
+    "DeepSeek-V4"
+   ],
+   "note": "2026-09-10 补进来。此前 DeepSeek 名下三个源都是 API 用法页，**发布公告这一路一个都没监视** —— 于是 V4-Pro-0813（08-13）、V4-Flash-Vision-Exp（08-21）两次发布我们全都没看见。"
+  },
+  {
+   "id": "bailian-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "qwen-text",
+   "name": "阿里云百炼 · 支持的模型清单",
+   "url": "https://www.alibabacloud.com/help/en/model-studio/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "expect": [
+    "qwen3"
+   ]
+  },
+  {
+   "id": "kimi-pricing",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "kimi",
+   "name": "Kimi 开放平台 · 模型推理价格",
+   "url": "https://platform.kimi.com/docs/pricing/chat",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability",
+    "pricing"
+   ]
+  },
+  {
+   "id": "glm-52-doc",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm",
+   "name": "Z.ai 开放平台 · GLM-5.2 模型文档",
+   "url": "https://docs.z.ai/guides/llm/glm-5.2",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "GLM-5.2"
+   ]
+  },
+  {
+   "id": "kimi-websearch",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "kimi",
+   "name": "Kimi 开放平台 · 联网搜索",
+   "url": "https://platform.kimi.com/docs/guide/use-web-search",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "kimi-chat-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "kimi",
+   "name": "Kimi 开放平台 · Chat Completions",
+   "url": "https://platform.kimi.com/docs/api/chat",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "bailian-websearch",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "qwen-text",
+   "name": "阿里云百炼 · 大模型联网搜索",
+   "url": "https://www.alibabacloud.com/help/en/model-studio/web-search",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "glm-websearch",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm",
+   "name": "智谱开放平台 · 联网搜索工具",
+   "url": "https://docs.bigmodel.cn/cn/guide/tools/web-search",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "bailian-coder",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "qwen-text",
+   "name": "阿里云百炼 · Qwen-Coder",
+   "url": "https://help.aliyun.com/zh/model-studio/qwen-coder",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "ark-models",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "doubao",
+   "name": "火山方舟 · 模型列表",
+   "url": "https://www.volcengine.com/docs/82379/1330310",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "lang": "zh-CN"
+  },
+  {
+   "id": "minimax-api-overview",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台 · 接口概览",
+   "url": "https://platform.minimaxi.com/docs/api-reference/api-overview",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "lang": "zh-CN"
+  },
+  {
+   "id": "claude-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "claude",
+   "name": "Anthropic · Models overview",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "openai-caching",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gpt",
+   "name": "OpenAI · Prompt Caching",
+   "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "openai-structured",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gpt",
+   "name": "OpenAI · Structured model outputs",
+   "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "deepseek-chat-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "deepseek",
+   "name": "DeepSeek · Create Chat Completion",
+   "url": "https://api-docs.deepseek.com/api/create-chat-completion",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "gemini-audio",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "gemini-text",
+   "name": "Gemini API · Audio understanding",
+   "url": "https://ai.google.dev/gemini-api/docs/audio",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "gemini-vision",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "gemini-text",
+   "name": "Gemini API · Image understanding",
+   "url": "https://ai.google.dev/gemini-api/docs/image-understanding",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "minimax-anthropic-api",
+   "tier": "S",
+   "kind": "spa",
+   "lang": "zh-CN",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台 · Anthropic SDK 兼容",
+   "url": "https://platform.minimaxi.com/docs/api-reference/text-anthropic-api",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "minimax-openai-api",
+   "tier": "S",
+   "kind": "spa",
+   "lang": "zh-CN",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台 · OpenAI SDK 兼容",
+   "url": "https://platform.minimaxi.com/docs/api-reference/text-openai-api",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "minimax-server-tools",
+   "tier": "S",
+   "kind": "spa",
+   "lang": "zh-CN",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台 · 服务端工具",
+   "url": "https://platform.minimaxi.com/docs/guides/server-tools",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "minimax-caching",
+   "tier": "S",
+   "kind": "spa",
+   "lang": "zh-CN",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台 · Prompt 缓存",
+   "url": "https://platform.minimaxi.com/docs/api-reference/text-prompt-caching",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "minimax-openapi",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "minimax-text",
+   "name": "MiniMax 开放平台 · Chat Completions OpenAPI 规格",
+   "url": "https://platform.minimaxi.com/docs/api-reference/text/api/openapi-chat-openai.json",
+   "refresh_days": 7,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "gemini-computer-use",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "gemini-text",
+   "name": "Gemini API · Computer Use",
+   "url": "https://ai.google.dev/gemini-api/docs/computer-use",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "pricing"
+   ]
+  },
+  {
+   "id": "ark-pricing",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "doubao",
+   "name": "火山方舟 · 模型价格",
+   "url": "https://www.volcengine.com/docs/82379/1544106",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "pricing"
+   ],
+   "lang": "zh-CN"
+  },
+  {
+   "id": "bailian-models-zh",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "qwen-text",
+   "name": "阿里云百炼 · 模型列表（中文站）",
+   "url": "https://help.aliyun.com/zh/model-studio/models",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "lang": "zh-CN"
+  },
+  {
+   "id": "glm-batch",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm",
+   "name": "智谱开放平台 · 批量处理",
+   "url": "https://docs.bigmodel.cn/cn/guide/tools/batch.md",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "glm-chat-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm",
+   "name": "智谱开放平台 · 对话补全 API",
+   "url": "https://docs.bigmodel.cn/api-reference/模型-api/对话补全.md",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "claude-deprecations",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "claude",
+   "name": "Anthropic · Model deprecations",
+   "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "lineage"
+   ]
+  },
+  {
+   "id": "openai-changelog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "gpt",
+   "name": "OpenAI · API Changelog",
+   "url": "https://developers.openai.com/api/docs/changelog",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "lineage"
+   ]
+  },
+  {
+   "id": "gemini-changelog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "gemini-text",
+   "name": "Gemini API · Release notes",
+   "url": "https://ai.google.dev/gemini-api/docs/changelog",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "lineage"
+   ]
+  },
+  {
+   "id": "xai-release-notes",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "grok",
+   "name": "xAI · API Release Notes",
+   "url": "https://docs.x.ai/developers/release-notes",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "lineage"
+   ]
+  },
+  {
+   "id": "aa-llm",
+   "tier": "B",
+   "kind": "spa",
+   "vendor": null,
+   "name": "Artificial Analysis · LLM 智能分数榜",
+   "url": "https://artificialanalysis.ai/leaderboards/models",
+   "refresh_days": 14,
+   "good_for": [
+    "effect"
+   ]
+  },
+  {
+   "id": "ideogram-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram · API 文档（generate v4）",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/generate-v4",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "elevenlabs-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "elevenlabs",
+   "name": "ElevenLabs · Models",
+   "url": "https://elevenlabs.io/docs/models",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "openai-realtime",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gpt",
+   "name": "OpenAI · Realtime API 指南",
+   "url": "https://developers.openai.com/api/docs/guides/realtime",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "gemini-tts",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gemini-text",
+   "name": "Gemini API · Speech generation",
+   "url": "https://ai.google.dev/gemini-api/docs/speech-generation",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "elevenlabs-tts",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "elevenlabs",
+   "name": "ElevenLabs · Text to Speech",
+   "url": "https://elevenlabs.io/docs/capabilities/text-to-speech",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "bailian-omni",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "qwen-omni",
+   "name": "阿里云百炼 · Qwen-Omni",
+   "url": "https://www.alibabacloud.com/help/en/model-studio/qwen-omni",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "elevenlabs-remix",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "elevenlabs",
+   "name": "ElevenLabs · Voice remixing",
+   "url": "https://elevenlabs.io/docs/capabilities/voice-remixing",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "openai-tts",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "openai-tts",
+   "name": "OpenAI · Text to speech",
+   "url": "https://developers.openai.com/api/docs/guides/text-to-speech",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "gemini-music",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "lyria",
+   "name": "Gemini API · Music generation（Lyria 3）",
+   "url": "https://ai.google.dev/gemini-api/docs/music-generation",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-09-10 起 refresh_days 从 14 收到 7：Lyria 那一格的 version_src 现在署的就是它。"
+  },
+  {
+   "id": "glm-tts-doc",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm-tts",
+   "name": "智谱 · GLM-TTS",
+   "url": "https://docs.bigmodel.cn/cn/guide/models/sound-and-video/glm-tts.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "glm-tts-clone-doc",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm-tts",
+   "name": "智谱 · GLM-TTS-Clone",
+   "url": "https://docs.bigmodel.cn/cn/guide/models/sound-and-video/glm-tts-clone.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "glm-voice-doc",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "glm-voice",
+   "name": "智谱 · GLM-4-Voice",
+   "url": "https://docs.bigmodel.cn/cn/guide/models/sound-and-video/glm-4-voice.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "xai-voice",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "grok-voice",
+   "name": "xAI · Voice APIs",
+   "url": "https://docs.x.ai/docs/guides/voice",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "hf-sound-org",
+   "tier": "S",
+   "kind": "json",
+   "name": "Hugging Face · 官方组织（声音）",
+   "url": "https://huggingface.co/api/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "lineage"
+   ]
+  },
+  {
+   "id": "kokoro-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "kokoro",
+   "name": "Hugging Face · hexgrad/Kokoro-82M 模型卡",
+   "url": "https://huggingface.co/hexgrad/Kokoro-82M",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "xai-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "grok",
+   "name": "xAI · Models",
+   "url": "https://docs.x.ai/docs/models",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "mistral-models",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "mistral-text",
+   "name": "Mistral · Models overview",
+   "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ]
+  },
+  {
+   "id": "mistral-tools",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "mistral-text",
+   "name": "Mistral · Function calling",
+   "url": "https://docs.mistral.ai/capabilities/function_calling/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "mistral-vision",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "mistral-text",
+   "name": "Mistral · Vision",
+   "url": "https://docs.mistral.ai/capabilities/vision/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "fish-s2pro-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "fish-speech",
+   "name": "Hugging Face · fishaudio/s2-pro 模型卡",
+   "url": "https://huggingface.co/fishaudio/s2-pro",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "cosyvoice-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "cosyvoice",
+   "name": "Hugging Face · Fun-CosyVoice3-0.5B-2512 模型卡",
+   "url": "https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "llama-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "llama",
+   "name": "Meta · Llama 4 模型卡与提示格式",
+   "url": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama4/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "elevenlabs-voices",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "elevenlabs",
+   "name": "ElevenLabs · Voices",
+   "url": "https://elevenlabs.io/docs/capabilities/voices",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "wan-t2v-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "wan",
+   "name": "Hugging Face · Wan2.2-T2V-A14B 模型卡",
+   "url": "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ]
+  },
+  {
+   "id": "minimax-release",
+   "tier": "S",
+   "kind": "spa",
+   "lang": "zh-CN",
+   "vendor": "mm-speech",
+   "name": "MiniMax 开放平台 · 模型发布记录",
+   "url": "https://platform.minimaxi.com/docs/release-notes/models",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "lineage"
+   ]
+  },
+  {
+   "id": "s-e2ab-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · DrewThomasson/ebook2audiobook",
+   "url": "https://api.github.com/repos/DrewThomasson/ebook2audiobook",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★19,666，许可 Apache-2.0，最后推送 2026-08-09。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-abogen-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · denizsafak/abogen",
+   "url": "https://api.github.com/repos/denizsafak/abogen",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★5,661，许可 MIT，最后推送 2026-07-30。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-epub2tts-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · aedocw/epub2tts",
+   "url": "https://api.github.com/repos/aedocw/epub2tts",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★951，许可 Apache-2.0，最后推送 2026-02-08。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-abcreator-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · prakharsr/audiobook-creator",
+   "url": "https://api.github.com/repos/prakharsr/audiobook-creator",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★521，许可 GPL-3.0，最后推送 2025-11-17。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-pvt-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · jianchang512/pyvideotrans",
+   "url": "https://api.github.com/repos/jianchang512/pyvideotrans",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★18,655，许可 GPL-3.0，最后推送 2026-08-10。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-smartsub-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · buxuku/SmartSub",
+   "url": "https://api.github.com/repos/buxuku/SmartSub",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★4,604，许可 MIT，最后推送 2026-08-10。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-youdub-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · liuzhao1225/YouDub",
+   "url": "https://api.github.com/repos/liuzhao1225/YouDub",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★614，许可 Apache-2.0，最后推送 2024-05-14。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-pipecat-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · pipecat-ai/pipecat",
+   "url": "https://api.github.com/repos/pipecat-ai/pipecat",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★14,068，许可 BSD-2-Clause，最后推送 2026-08-12。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-livekit-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · livekit/agents",
+   "url": "https://api.github.com/repos/livekit/agents",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★12,940，许可 Apache-2.0，最后推送 2026-08-12。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-hfs2s-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · huggingface/speech-to-speech",
+   "url": "https://api.github.com/repos/huggingface/speech-to-speech",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★12,332，许可 Apache-2.0，最后推送 2026-08-11。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-moshi-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · kyutai-labs/moshi",
+   "url": "https://api.github.com/repos/kyutai-labs/moshi",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★10,849，许可 Apache-2.0，最后推送 2026-05-16。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-acestep15-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · ace-step/ACE-Step-1.5",
+   "url": "https://api.github.com/repos/ace-step/ACE-Step-1.5",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★12,151，许可 MIT，最后推送 2026-07-25。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-acestep-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · ace-step/ACE-Step",
+   "url": "https://api.github.com/repos/ace-step/ACE-Step",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★4,748，许可 Apache-2.0，最后推送 2026-02-15。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-yue-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · multimodal-art-projection/YuE",
+   "url": "https://api.github.com/repos/multimodal-art-projection/YuE",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★6,375，许可 Apache-2.0，最后推送 2025-06-04。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-audiocraft-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · facebookresearch/audiocraft",
+   "url": "https://api.github.com/repos/facebookresearch/audiocraft",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★23,555，许可 代码 MIT / 权重 CC-BY-NC 4.0，最后推送 2026-03-03。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-gptsovits-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · RVC-Boss/GPT-SoVITS",
+   "url": "https://api.github.com/repos/RVC-Boss/GPT-SoVITS",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★60,756，许可 MIT，最后推送 2026-07-22。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-rvc-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
+   "url": "https://api.github.com/repos/RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★37,287，许可 MIT，最后推送 2026-08-04。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-fishspeech-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · fishaudio/fish-speech",
+   "url": "https://api.github.com/repos/fishaudio/fish-speech",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★32,158，许可 Fish Audio 研究许可（商用需另谈），最后推送 2026-08-03。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-indextts-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · index-tts/index-tts",
+   "url": "https://api.github.com/repos/index-tts/index-tts",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★22,677，许可 bilibili 自定义模型许可，最后推送 2026-08-12。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-cosyvoice-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · QwenAudio/CosyVoice",
+   "url": "https://api.github.com/repos/QwenAudio/CosyVoice",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★22,710，许可 Apache-2.0，最后推送 2026-05-25。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-f5tts-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · SWivid/F5-TTS",
+   "url": "https://api.github.com/repos/SWivid/F5-TTS",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★15,112，许可 MIT，最后推送 2026-07-23。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "s-qwen3omni-gh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · QwenLM/Qwen3-Omni",
+   "url": "https://api.github.com/repos/QwenLM/Qwen3-Omni",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★3,946，许可 Apache-2.0，最后推送 2026-04-23。星标只用于排序兜底，不作可信度"
+  },
+  {
+   "id": "ideogram-overview",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 概览（能力总览）",
+   "url": "https://developer.ideogram.ai/ideogram-api/api-overview",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-v4-remix",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 参考 · Remix with Ideogram 4.0",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/remix-v4",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-v3-inpaint",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 参考 · Inpaint with Ideogram 3.0",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/inpaint-v3",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-v3-reframe",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 参考 · Reframe with Ideogram 3.0",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/reframe-v3",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-v3-generate",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 参考 · Generate with Ideogram 3.0",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/generate-v3",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-edit",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 参考 · Edit images with a prompt",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/edit-with-prompt",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-upscale",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 API 参考 · Upscale",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/upscale",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "ideogram-hf",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "ideogram",
+   "name": "Ideogram 官方 Hugging Face 组织 · ideogram-4-fp8",
+   "url": "https://huggingface.co/ideogram-ai/ideogram-4-fp8",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 developer.ideogram.ai/llms.txt —— 抓这个比抓渲染后的 HTML 稳"
+  },
+  {
+   "id": "bailian-qimg3",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼 · 千问-图像生成与编辑3.0 API参考",
+   "url": "https://help.aliyun.com/zh/model-studio/qwen-image-generation-and-editing-api-reference",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "百炼中文文档是**静态 HTML，直接 curl 就能拿到全文**（不必走 SPA 抓取）。⚠️ 中英文站不同步，以中文站为准"
+  },
+  {
+   "id": "bailian-qimg",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼 · 千问-文生图API参考（模型概览）",
+   "url": "https://help.aliyun.com/zh/model-studio/qwen-image-api",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "百炼中文文档是**静态 HTML，直接 curl 就能拿到全文**（不必走 SPA 抓取）。⚠️ 中英文站不同步，以中文站为准"
+  },
+  {
+   "id": "bailian-textgen-zh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼中文站 · 文本生成（推荐模型能力表）",
+   "url": "https://help.aliyun.com/zh/model-studio/text-generation-model/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+  },
+  {
+   "id": "bailian-thinking-zh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼中文站 · 深度思考",
+   "url": "https://help.aliyun.com/zh/model-studio/deep-thinking",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+  },
+  {
+   "id": "bailian-cache-zh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼中文站 · 上下文缓存",
+   "url": "https://help.aliyun.com/zh/model-studio/context-cache",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+  },
+  {
+   "id": "bailian-batch-zh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼中文站 · 批量推理",
+   "url": "https://help.aliyun.com/zh/model-studio/batch-interfaces-compatible-with-openai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+  },
+  {
+   "id": "bailian-websearch-zh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alibaba",
+   "name": "阿里云百炼中文站 · 联网搜索",
+   "url": "https://help.aliyun.com/zh/model-studio/web-search",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+  },
+  {
+   "id": "hf-kokoro",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · hexgrad/Kokoro-82M",
+   "url": "https://huggingface.co/api/models/hexgrad/Kokoro-82M",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-cosyvoice2",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · FunAudioLLM/CosyVoice2-0.5B",
+   "url": "https://huggingface.co/api/models/FunAudioLLM/CosyVoice2-0.5B",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-glmtts",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · zai-org/GLM-TTS",
+   "url": "https://huggingface.co/api/models/zai-org/GLM-TTS",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-glm4voice",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · zai-org/glm-4-voice-9b",
+   "url": "https://huggingface.co/api/models/zai-org/glm-4-voice-9b",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-fishspeech15",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · fishaudio/fish-speech-1.5",
+   "url": "https://huggingface.co/fishaudio/fish-speech-1.5/raw/main/README.md",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的） ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "hf-qwen3omni",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · Qwen/Qwen3-Omni-30B-A3B-Instruct",
+   "url": "https://huggingface.co/api/models/Qwen/Qwen3-Omni-30B-A3B-Instruct",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-qwen-layered",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · Qwen/Qwen-Image-Layered（官方模型卡）",
+   "url": "https://huggingface.co/Qwen/Qwen-Image-Layered/raw/main/README.md",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的） ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "hf-org-minimax",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · MiniMaxAI 官方组织（全量仓库清单）",
+   "url": "https://huggingface.co/api/models?author=MiniMaxAI&limit=100",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "**盯这条源是为了等它变**：今天组织里没有这一类权重，是我们判 ❌ 的依据；哪天多出来一个，那一格就该翻。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-org-xai",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · xai-org 官方组织（全量仓库清单）",
+   "url": "https://huggingface.co/api/models?author=xai-org&limit=100",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "**盯这条源是为了等它变**：今天组织里没有这一类权重，是我们判 ❌ 的依据；哪天多出来一个，那一格就该翻。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-org-elevenlabs",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · elevenlabs 官方组织（全量仓库清单）",
+   "url": "https://huggingface.co/api/models?author=elevenlabs&limit=100",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "**盯这条源是为了等它变**：今天组织里没有这一类权重，是我们判 ❌ 的依据；哪天多出来一个，那一格就该翻。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "hf-org-openai",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · openai 官方组织（全量仓库清单）",
+   "url": "https://huggingface.co/api/models?author=openai&limit=200",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "**盯这条源是为了等它变**：今天组织里没有这一类权重，是我们判 ❌ 的依据；哪天多出来一个，那一格就该翻。⚠️ 2026-08-12 修：这里填的必须是 **API 端点**，给读者点的网页地址在 atlas.sources 里（两份 URL 不是同一个，mpt-gh 就是这么分的）"
+  },
+  {
+   "id": "ideogram-layerize",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Ideogram 官方 API 参考 · Layerize Text",
+   "url": "https://developer.ideogram.ai/api-reference/api-reference/layerize-text-v3.md",
+   "refresh_days": 30,
+   "good_for": [
+    "openweights",
+    "capability"
+   ],
+   "note": "权重仓库。许可要看模型卡的 license_name，**不能只看 GitHub 上写的那个**。⚠️ 2026-08-12 修：原来登记成 json 却指着 HTML 页。改抓官方提供的 `.md` 版（页面 URL 后加 .md），正文干净、不需要浏览器"
+  },
+  {
+   "id": "recraft-endpoints",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Recraft 官方 API 参考 · Endpoints",
+   "url": "https://www.recraft.ai/docs/api-reference/endpoints.md",
+   "refresh_days": 21,
+   "good_for": [
+    "capability"
+   ],
+   "note": "Recraft 文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 www.recraft.ai/docs/llms.txt —— 抓 .md 比抓渲染后的 HTML 干净得多"
+  },
+  {
+   "id": "recraft-nl-edit",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Recraft Studio 文档 · 用自然语言改图",
+   "url": "https://www.recraft.ai/docs/recraft-studio/image-editing/editing-images-with-natural-language.md",
+   "refresh_days": 21,
+   "good_for": [
+    "capability"
+   ],
+   "note": "Recraft 文档站每页都有 `.md` 版（URL 后加 .md），全量索引在 www.recraft.ai/docs/llms.txt —— 抓 .md 比抓渲染后的 HTML 干净得多"
+  },
+  {
+   "id": "hunyuan-image-hf",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "腾讯官方 Hugging Face · HunyuanImage-3.0 模型卡",
+   "url": "https://huggingface.co/api/models/tencent/HunyuanImage-3.0",
+   "refresh_days": 21,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ 抓的是 API 端点；给读者点的网页地址在 atlas.sources 里（R72 卡的就是这一对不能混）"
+  },
+  {
+   "id": "bfl-flux2-overview",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "flux",
+   "name": "Black Forest Labs 官方文档 · FLUX.2 概览",
+   "url": "https://docs.bfl.ml/flux_2/flux2_overview.md",
+   "refresh_days": 21,
+   "good_for": [
+    "capability"
+   ],
+   "note": "BFL 文档站每页都有 `.md` 版，全量索引在 docs.bfl.ai/llms.txt。⚠️ 抓的是 docs.bfl.**ml** —— 官方 llms.txt 里给的就是这个域名，docs.bfl.ai 会返回整站壳"
+  },
+  {
+   "id": "bfl-flux2-multiref",
+   "url": "https://docs.bfl.ml/guides/prompting_editing_multi_reference.md",
+   "kind": "html",
+   "tier": "A",
+   "name": "Black Forest Labs 官方文档 · FLUX.2 多图参考编辑指南",
+   "note": "风格参考那一格的唯一依据在这页的 `Style & Material Transfer` 一节 —— 概览页没有，所以概览页进了监视清单也照样漏。"
+  },
+  {
+   "id": "ark-seedream-api",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "seedream",
+   "lang": "zh-CN",
+   "name": "火山方舟 API 参考 · 图片生成 API",
+   "url": "https://www.volcengine.com/docs/82379/1541523",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **必须走 SPA 渲染**：裸抓只有 3,839 字的导航壳（页面明写 You need to enable JavaScript）。渲染后 2,700 字，模型能力与参数表都在里面"
+  },
+  {
+   "id": "arxiv-fp8",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "arXiv:2209.05433 · FP8 Formats for Deep Learning（2022-09-12）",
+   "url": "https://arxiv.org/abs/2209.05433",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "论文页，内容不会变（arXiv 有版本号，改动会另发新版）—— 半年看一次即可"
+  },
+  {
+   "id": "arxiv-int8",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "arXiv:2208.07339 · LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale（2022-08-15）",
+   "url": "https://arxiv.org/abs/2208.07339",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "论文页，内容不会变（arXiv 有版本号，改动会另发新版）—— 半年看一次即可"
+  },
+  {
+   "id": "arxiv-qlora",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "arXiv:2305.14314 · QLoRA: Efficient Finetuning of Quantized LLMs（2023-05-23）",
+   "url": "https://arxiv.org/abs/2305.14314",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "论文页，内容不会变（arXiv 有版本号，改动会另发新版）—— 半年看一次即可"
+  },
+  {
+   "id": "arxiv-gptq",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "arXiv:2210.17323 · GPTQ: Accurate Post-Training Quantization（2022-10-31）",
+   "url": "https://arxiv.org/abs/2210.17323",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "论文页，内容不会变（arXiv 有版本号，改动会另发新版）—— 半年看一次即可"
+  },
+  {
+   "id": "arxiv-awq",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "arXiv:2306.00978 · AWQ: Activation-aware Weight Quantization（2023-06-01）",
+   "url": "https://arxiv.org/abs/2306.00978",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "论文页，内容不会变（arXiv 有版本号，改动会另发新版）—— 半年看一次即可"
+  },
+  {
+   "id": "arxiv-lora",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "arXiv:2106.09685 · LoRA: Low-Rank Adaptation of Large Language Models（2021-06-17）",
+   "url": "https://arxiv.org/abs/2106.09685",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "论文页，内容不会变（arXiv 有版本号，改动会另发新版）—— 半年看一次即可"
+  },
+  {
+   "id": "hf-gguf-doc",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face 官方文档 · GGUF 格式说明",
+   "url": "https://huggingface.co/docs/hub/en/gguf",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "官方文档，跟着工具链更新"
+  },
+  {
+   "id": "hf-diffusers-memory",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face diffusers 官方文档 · 显存优化",
+   "url": "https://huggingface.co/docs/diffusers/main/en/optimization/memory",
+   "refresh_days": 180,
+   "good_for": [
+    "capability"
+   ],
+   "note": "官方文档，跟着工具链更新"
+  },
+  {
+   "id": "zimage-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Tongyi-MAI/Z-Image 官方仓库（模型表与规格）",
+   "url": "https://raw.githubusercontent.com/Tongyi-MAI/Z-Image/main/README.md",
+   "refresh_days": 21,
+   "good_for": [
+    "capability",
+    "openweights"
+   ],
+   "note": "⚠️ 抓的是 API 端点，给读者点的网页地址在 atlas.sources 里（R72）。**GitHub README 比 HF 模型卡写得全** —— 模型表、分辨率上限这些只在仓库里 ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "hunyuan-image-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Tencent-Hunyuan/HunyuanImage-3.0 官方仓库",
+   "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanImage-3.0/main/README.md",
+   "refresh_days": 21,
+   "good_for": [
+    "capability",
+    "openweights"
+   ],
+   "note": "⚠️ 抓的是 API 端点，给读者点的网页地址在 atlas.sources 里（R72）。**GitHub README 比 HF 模型卡写得全** —— 模型表、分辨率上限这些只在仓库里 ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "skyreels-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "skywork",
+   "name": "SkyworkAI/SkyReels-V3 官方仓库",
+   "url": "https://raw.githubusercontent.com/SkyworkAI/SkyReels-V3/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "openweights"
+   ],
+   "note": "盯这条源的首要目的是**等 V4 出现**。2026-08-13 核过：官方组织下只有 V1/V2/V3，没有 V4 ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "bfl-flux3",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "bfl",
+   "name": "Black Forest Labs 官方文档 · FLUX 3 概览",
+   "url": "https://docs.bfl.ml/flux_3/flux3_overview.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ 抓 docs.bfl.**ml** 的 `.md` 版 —— 官方 llms.txt 里给的就是这个域名，docs.bfl.ai 返回整站壳。盯它的首要目的是**等 preview 转正**与「视频编辑」上线"
+  },
+  {
+   "id": "anthropic-privacy",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Anthropic 官方隐私政策（含注册地址）",
+   "url": "https://www.anthropic.com/legal/privacy",
+   "refresh_days": 180,
+   "good_for": [
+    "hq"
+   ],
+   "note": "法务页面，地址变动极少 —— 半年看一次即可"
+  },
+  {
+   "id": "stability-terms",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Stability AI 官方服务条款（含法定地址）",
+   "url": "https://stability.ai/terms-of-use",
+   "refresh_days": 180,
+   "good_for": [
+    "hq"
+   ],
+   "note": "法务页面，地址变动极少 —— 半年看一次即可"
+  },
+  {
+   "id": "recraft-blog-b",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "recraft",
+   "name": "Recraft 官方博客",
+   "url": "https://www.recraft.ai/blog",
+   "refresh_days": 30,
+   "good_for": [
+    "investment"
+   ],
+   "note": "⚠️ 融资公告只在博客列表页的摘要里，没有单独的新闻页 —— 抓列表页本身"
+  },
+  {
+   "id": "gh-llm-universe",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · datawhalechina/llm-universe（动手学大模型应用开发）",
+   "url": "https://api.github.com/repos/datawhalechina/llm-universe",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-all-in-rag",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · datawhalechina/all-in-rag（RAG 技术全栈指南）",
+   "url": "https://api.github.com/repos/datawhalechina/all-in-rag",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-handy-multi-agent",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · datawhalechina/handy-multi-agent（多智能体教程）",
+   "url": "https://api.github.com/repos/datawhalechina/handy-multi-agent",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-llm-action",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · liguodongiot/llm-action（大模型工程化实战）",
+   "url": "https://api.github.com/repos/liguodongiot/llm-action",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-self-llm",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · datawhalechina/self-llm（开源大模型食用指南）",
+   "url": "https://api.github.com/repos/datawhalechina/self-llm",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-langchain-zh",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · LangChain 中文入门教程",
+   "url": "https://api.github.com/repos/liaokongVFX/LangChain-Chinese-Getting-Started-Guide",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-llamafactory",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · hiyouga/LLaMA-Factory",
+   "url": "https://api.github.com/repos/hiyouga/LLaMA-Factory",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
+  },
+  {
+   "id": "gh-gptsovits-cn",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GPT-SoVITS 官方中文文档",
+   "url": "https://api.github.com/repos/RVC-Boss/GPT-SoVITS",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "gh-cosyvoice-doc",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "CosyVoice 官方仓库文档",
+   "url": "https://api.github.com/repos/QwenAudio/CosyVoice",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "gh-chattts-cn",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "ChatTTS 官方中文文档",
+   "url": "https://api.github.com/repos/2noise/ChatTTS",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "gh-pyvideotrans-doc",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "pyvideotrans 官方仓库（中文）",
+   "url": "https://api.github.com/repos/jianchang512/pyvideotrans",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "gh-comfy-zho",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · ZHO 的 ComfyUI 中文工作流合集",
+   "url": "https://api.github.com/repos/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "gh-comfyui",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · Comfy-Org/ComfyUI",
+   "url": "https://api.github.com/repos/Comfy-Org/ComfyUI",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "gh-sdbook",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GitHub · StableDiffusionBook（中文 AI 绘画手册）",
+   "url": "https://api.github.com/repos/sudoskys/StableDiffusionBook",
+   "refresh_days": 30,
+   "good_for": [
+    "workflow"
+   ],
+   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
+  },
+  {
+   "id": "waytoagi-wiki",
+   "tier": "C",
+   "kind": "spa",
+   "vendor": "",
+   "name": "通往 AGI 之路（WaytoAGI）知识库",
+   "url": "https://waytoagi.feishu.cn/wiki/QPe5w5g7UisbEkkow8XcDmOpn8e",
+   "refresh_days": 30,
+   "good_for": [
+    "resource"
+   ],
+   "note": "中文社区共建知识库，2023-04-26 创建。**站上各方向的场景应用页引它的分板块**（1.4 绘画 / 1.5 视频 / 1.6 音乐 / 1.7 数字人+语音合成 / 1.9 ComfyUI / 1.2 Prompts / 1.3 Agents / 2.0 编程）。⚠️ **标为人工核：它是飞书云文档，纯前端渲染，裸抓得到 0 字符**；而且没有 LICENSE、内容社区共建质量不均，机器判不出「变没变」。板块的 wiki token 是 2026-08-13 用浏览器逐个点出来的 —— 侧栏是 div 不是链接，抓 HTML 里没有。",
+   "manual": true
+  },
+  {
+   "id": "hf-hunyuan3d-21",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "tencent",
+   "name": "腾讯混元3D 2.1 · HF 模型卡",
+   "url": "https://huggingface.co/tencent/Hunyuan3D-2.1",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。"
+  },
+  {
+   "id": "tripo-docs-generation",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "tripo",
+   "name": "Tripo · Generation 端点文档",
+   "url": "https://platform.tripo3d.ai/docs/generation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。⚠️ 纯前端渲染，裸抓拿不到正文，watch 要走 spa 抓法"
+  },
+  {
+   "id": "meshy-docs-api",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "meshy",
+   "name": "Meshy · API 文档",
+   "url": "https://docs.meshy.ai/en/api/text-to-3d",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。⚠️ 纯前端渲染，裸抓拿不到正文，watch 要走 spa 抓法"
+  },
+  {
+   "id": "meshy-site",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "meshy",
+   "name": "Meshy 官网",
+   "url": "https://www.meshy.ai/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。⚠️ 纯前端渲染，裸抓拿不到正文，watch 要走 spa 抓法"
+  },
+  {
+   "id": "rodin-api-docs",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "rodin",
+   "name": "Rodin / Hyper3D · API 文档索引",
+   "url": "https://developer.hyper3d.ai/llms.txt",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。"
+  },
+  {
+   "id": "gh-trellis",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "trellis",
+   "name": "microsoft/TRELLIS 仓库",
+   "url": "https://github.com/microsoft/TRELLIS",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。"
+  },
+  {
+   "id": "seed3d-page",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "seed3d",
+   "name": "字节 Seed3D 1.0 官方模型页",
+   "url": "https://seed.bytedance.com/en/seed3d",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。⚠️ 纯前端渲染，裸抓拿不到正文，watch 要走 spa 抓法 ⚠️ **2026-08-14 转人工核**：这一页纯前端渲染，抓下来正文 0 字符，watch 每轮都报「抓不到」。**能力与版本改从 arXiv 技术报告读**（arxiv-seed3d-10 / -20）—— 也正是那条路让我们发现它已经出到 2.0。这条源留着只是为了记住「官方页读不到」这件事本身。",
+   "manual": true
+  },
+  {
+   "id": "stability-spar3d",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "spar3d",
+   "name": "Stability · SPAR3D 发布公告",
+   "url": "https://stability.ai/news/stable-point-aware-3d",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。"
+  },
+  {
+   "id": "tripo-site",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "tripo",
+   "name": "Tripo 官网",
+   "url": "https://www.tripo3d.ai/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。⚠️ 纯前端渲染，watch 要走 spa 抓法"
+  },
+  {
+   "id": "rodin-site",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "rodin",
+   "name": "Rodin / Hyper3D 官网",
+   "url": "https://hyper3d.ai/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "AI 3D 方向 2026-08-13 立项时登记。⚠️ 纯前端渲染，watch 要走 spa 抓法"
+  },
+  {
+   "id": "tripo-docs-animation",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "tripo",
+   "name": "Tripo · Animation 端点文档",
+   "url": "https://platform.tripo3d.ai/docs/animation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ 纯前端渲染。**绑定的证据在这一页，不在端点侧栏** —— 侧栏只写 Animation，第一遍照侧栏判成「没有绑定」，是错的"
+  },
+  {
+   "id": "gh-hunyuan3d-buffalo",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "hunyuan3d",
+   "name": "Tencent-Hunyuan/Hunyuan3D-Buffalo1.0 仓库",
+   "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Buffalo1.0",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ],
+   "note": "盯它什么时候真放出代码与权重 —— 现在只有技术报告"
+  },
+  {
+   "id": "replicate-hunyuan3d-31",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "hunyuan3d",
+   "name": "Replicate · 腾讯官方账号 tencent/hunyuan-3d-3.1",
+   "url": "https://replicate.com/tencent/hunyuan-3d-3.1",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "⚠️ **这是托管平台不是厂商站，但账号是腾讯官方的（页面标 Official）。**之所以只能引它：3d.hunyuan.tencent.com 与 cloud.tencent.com/product/hunyuan3d 都在登录墙后面，裸抓分别只有 79 与 38 字。混元 3D 的**托管那一支**目前只有这个能引的出处"
+  },
+  {
+   "id": "replicate-3d",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Replicate · 3D 模型合集",
+   "url": "https://replicate.com/collections/3d-models",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "盯 3D 这一侧有哪些模型能按次调用；⚠️ 合集页带「Our pick」编辑推荐，那是平台的判断不是测评"
+  },
+  {
+   "id": "hf-image-to-3d",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Hugging Face · Image-to-3D 任务页",
+   "url": "https://huggingface.co/models?pipeline_tag=image-to-3d&sort=downloads",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "开源侧的 3D 权重集中在这个任务标签下"
+  },
+  {
+   "id": "comfy-3d-hunyuan",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "ComfyUI 官方 · Hunyuan3D-2 教程",
+   "url": "https://docs.comfy.org/tutorials/3d/hunyuan3D-2",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "本地跑 3D 生成的官方工作流"
+  },
+  {
+   "id": "gh-hunyuan3d-21",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Tencent-Hunyuan/Hunyuan3D-2.1 仓库",
+   "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "AI 3D 场景应用的公开资源，2026-08-13 走 GitHub API 核过描述、星标与许可"
+  },
+  {
+   "id": "gh-hunyuan3d-part",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Tencent-Hunyuan/Hunyuan3D-Part 仓库",
+   "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Part",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "AI 3D 场景应用的公开资源，2026-08-13 走 GitHub API 核过描述、星标与许可"
+  },
+  {
+   "id": "gh-spar3d",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Stability-AI/stable-point-aware-3d 仓库",
+   "url": "https://github.com/Stability-AI/stable-point-aware-3d",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "AI 3D 场景应用的公开资源，2026-08-13 走 GitHub API 核过描述、星标与许可"
+  },
+  {
+   "id": "gh-triposg",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "VAST-AI-Research/TripoSG 仓库",
+   "url": "https://github.com/VAST-AI-Research/TripoSG",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "AI 3D 场景应用的公开资源，2026-08-13 走 GitHub API 核过描述、星标与许可"
+  },
+  {
+   "id": "gh-instantmesh",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "TencentARC/InstantMesh 仓库",
+   "url": "https://github.com/TencentARC/InstantMesh",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "AI 3D 场景应用的公开资源，2026-08-13 走 GitHub API 核过描述、星标与许可"
+  },
+  {
+   "id": "modelscope-orgs",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "modelscope",
+   "name": "魔搭 ModelScope · 官方组织模型目录",
+   "url": "https://modelscope.cn/api/v1/dolphin/models",
+   "refresh_days": 7,
+   "good_for": [
+    "openweights",
+    "version",
+    "application-resource"
+   ],
+   "manual": true,
+   "note": "负责人 2026-08-13 点名加的中文侧模型源。**由 `node scripts/modelscope.mjs --json` 跑**，不走 watch 的通用抓法：这个接口是 **PUT**（不是 GET/POST）、要带 `Criterion` 组织过滤，watch 那套 GET 抓法调不动它。⚠️ 接口是用浏览器拦请求抓出来的，魔搭没有公开的列表 API 文档；`GET /api/v1/models` 回 404、`POST /api/v1/models` 回「user not logged in」。"
+  },
+  {
+   "id": "hf-wan-vace",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · Wan2.1-VACE-14B 模型卡",
+   "url": "https://huggingface.co/Wan-AI/Wan2.1-VACE-14B",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "万相的统一编辑那一支"
+  },
+  {
+   "id": "hf-ltx-25",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · LTX-2.5 模型卡",
+   "url": "https://huggingface.co/Lightricks/LTX-2.5",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "⚠️ **权重是受限访问**：未登录读 README 得到「Access to model Lightricks/LTX-2.5 is restricted」，只能引 API 返回的元数据（标签 / 许可 / 下载量）"
+  },
+  {
+   "id": "meshy-changelog",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "meshy",
+   "name": "Meshy · API 更新日志",
+   "url": "https://docs.meshy.ai/en/api/changelog",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "两年的逐条记录（2024-11 起），**闭源那几家里少见的可引发布史**。⚠️ 纯前端渲染，要走 spa 抓法"
+  },
+  {
+   "id": "hf-instantmesh",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · TencentARC/InstantMesh 模型卡",
+   "url": "https://huggingface.co/TencentARC/InstantMesh",
+   "refresh_days": 21,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "AI 3D 扩展层，2026-08-13 核过下载量与许可"
+  },
+  {
+   "id": "hf-apple-sharp",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · apple/Sharp 模型卡",
+   "url": "https://huggingface.co/apple/Sharp",
+   "refresh_days": 21,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "AI 3D 扩展层，2026-08-13 核过下载量与许可"
+  },
+  {
+   "id": "gh-hunyuan3d-api",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "hunyuan3d",
+   "name": "混元3D-2.1 仓库 · api_server.py / api_models.py",
+   "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1/blob/main/api_server.py",
+   "refresh_days": 21,
+   "good_for": [
+    "capability"
+   ],
+   "note": "⚠️ **引的是官方代码不是官方文档**：混元 3D 的产品站在登录墙后面，仓库 README 也没写导出格式与面数控制 —— 这些只能从官方 API 代码里读到。代码是厂商自己写的，算官方来源，但要在格子里标明「出处是代码」"
+  },
+  {
+   "id": "hf-anysplat",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · lhjiang/anysplat 模型卡",
+   "url": "https://huggingface.co/lhjiang/anysplat",
+   "refresh_days": 21,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "高斯泼溅那一侧，2026-08-14 判据放宽后收进来的第一条"
+  },
+  {
+   "id": "arxiv-seed3d-20",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seed3d",
+   "name": "arXiv · Seed3D 2.0 技术报告",
+   "url": "https://arxiv.org/abs/2605.13862",
+   "refresh_days": 30,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "字节 Seed 团队自己的论文，2026-04-22。**产品页在登录墙后面，这是能读到全文的官方出处**"
+  },
+  {
+   "id": "arxiv-seed3d-10",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "seed3d",
+   "name": "arXiv · Seed3D 1.0 技术报告",
+   "url": "https://arxiv.org/abs/2510.19944",
+   "refresh_days": 30,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "2025-10-22，摘要末尾给出火山方舟的体验地址"
+  },
+  {
+   "id": "hf-trellis2",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "trellis",
+   "name": "Hugging Face · microsoft/TRELLIS.2-4B 模型卡",
+   "url": "https://huggingface.co/microsoft/TRELLIS.2-4B",
+   "refresh_days": 21,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "第二代的模型卡（论文 arXiv 2512.14692）—— 首发那一支的 README 只讲 TRELLIS 1，能力要来这里重核"
+  },
+  {
+   "id": "pixverse-caps",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "pixverse",
+   "name": "PixVerse · 官方能力矩阵",
+   "url": "https://docs.platform.pixverse.ai/capability-matrix-2144288m0.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "**厂商自己出的能力对照表**（C1 / V6 / Legacy 三列），这一卷里少见的直接可逐格核的源"
+  },
+  {
+   "id": "pixverse-v6",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "pixverse",
+   "name": "PixVerse · V6 模型文档",
+   "url": "https://docs.platform.pixverse.ai/v6-2056814m0.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "逐能力的端点、时长、分辨率、参数表"
+  },
+  {
+   "id": "pixverse-fusion",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "pixverse",
+   "name": "PixVerse · Fusion（多参考图生视频）文档",
+   "url": "https://docs.platform.pixverse.ai/fusionreference-to-video-1339253m0.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "多主体 + 背景的参考合成"
+  },
+  {
+   "id": "hf-cogvideox",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · zai-org/CogVideoX-2b",
+   "url": "https://huggingface.co/zai-org/CogVideoX-2b",
+   "refresh_days": 21,
+   "good_for": [
+    "version",
+    "capability",
+    "openweights"
+   ],
+   "note": "2026-08-14 按规则四补充「能收就收」收进扩展层时核过"
+  },
+  {
+   "id": "hf-i2vgen",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · ali-vilab/i2vgen-xl",
+   "url": "https://huggingface.co/ali-vilab/i2vgen-xl",
+   "refresh_days": 21,
+   "good_for": [
+    "version",
+    "capability",
+    "openweights"
+   ],
+   "note": "2026-08-14 按规则四补充「能收就收」收进扩展层时核过"
+  },
+  {
+   "id": "hf-longcat-edit",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · meituan-longcat/LongCat-Image-Edit",
+   "url": "https://huggingface.co/meituan-longcat/LongCat-Image-Edit",
+   "refresh_days": 21,
+   "good_for": [
+    "version",
+    "capability",
+    "openweights"
+   ],
+   "note": "2026-08-14 按规则四补充「能收就收」收进扩展层时核过"
+  },
+  {
+   "id": "hf-magi",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · sand-ai/MAGI-1 与 MAGI-2-preview",
+   "url": "https://huggingface.co/sand-ai/MAGI-1",
+   "refresh_days": 21,
+   "good_for": [
+    "version",
+    "capability",
+    "openweights"
+   ],
+   "note": "2026-08-14 按规则四补充「能收就收」收进扩展层时核过"
+  },
+  {
+   "id": "heygen-docs",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "",
+   "name": "HeyGen · 开发者文档索引",
+   "url": "https://docs.heygen.com/llms.txt",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。**整份文档的机器可读索引**（38,892 字符），端点与能力名一次列全 —— 这一卷里最好的可核来源"
+  },
+  {
+   "id": "synthesia-docs",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Synthesia · API 文档",
+   "url": "https://docs.synthesia.io/docs/getting-started",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。模板 / 视频 / 配音三组端点"
+  },
+  {
+   "id": "hf-longcat-avatar",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 美团 LongCat-Video-Avatar-1.5",
+   "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.5",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。♥714、MIT，开源侧关注度最高的一支"
+  },
+  {
+   "id": "hf-hunyuan-avatar",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 腾讯 HunyuanVideo-Avatar",
+   "url": "https://huggingface.co/tencent/HunyuanVideo-Avatar",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。论文 arXiv 2505.20156"
+  },
+  {
+   "id": "hf-liveportrait",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 快手 LivePortrait",
+   "url": "https://huggingface.co/KwaiVGI/LivePortrait",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。♥487、MIT，视频驱动那一路的代表"
+  },
+  {
+   "id": "hf-musetalk",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 腾讯音乐 MuseTalk",
+   "url": "https://huggingface.co/TMElyralab/MuseTalk",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。♥162"
+  },
+  {
+   "id": "hf-hallo2",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 复旦 Hallo2",
+   "url": "https://huggingface.co/fudan-generative-ai/hallo2",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "AI 数字人方向 2026-08-14 立项时登记。♥136、MIT"
+  },
+  {
+   "id": "replicate-lipsync",
+   "tier": "A",
+   "kind": "spa",
+   "vendor": "",
+   "name": "Replicate · 搜索「lipsync」",
+   "url": "https://replicate.com/search?query=lipsync",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "按次调用的对口型模型集中在这儿；⚠️ 搜索页会变，引的是当天看到的条目"
+  },
+  {
+   "id": "comfy-s2v",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "ComfyUI 官方 · Wan2.2-S2V 音频驱动工作流",
+   "url": "https://docs.comfy.org/tutorials/video/wan/wan2-2-s2v",
+   "refresh_days": 21,
+   "good_for": [
+    "resource"
+   ],
+   "note": "本地跑数字人的官方工作流"
+  },
+  {
+   "id": "heygen-translate",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "heygen",
+   "name": "HeyGen · Video Translation 文档",
+   "url": "https://developers.heygen.com/docs/video-translate.md",
+   "refresh_days": 21,
+   "good_for": [
+    "application-resource"
+   ],
+   "note": "数字人卷场景应用的公开资源，2026-08-14 从官方文档索引里取的直链"
+  },
+  {
+   "id": "heygen-live",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "heygen",
+   "name": "HeyGen · Live Avatar 文档",
+   "url": "https://developers.heygen.com/live-avatar.md",
+   "refresh_days": 21,
+   "good_for": [
+    "application-resource"
+   ],
+   "note": "数字人卷场景应用的公开资源，2026-08-14 从官方文档索引里取的直链"
+  },
+  {
+   "id": "heygen-photo",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "heygen",
+   "name": "HeyGen · Photo Avatar 文档",
+   "url": "https://developers.heygen.com/photo-avatar.md",
+   "refresh_days": 21,
+   "good_for": [
+    "application-resource"
+   ],
+   "note": "数字人卷场景应用的公开资源，2026-08-14 从官方文档索引里取的直链"
+  },
+  {
+   "id": "heygen-training",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "heygen",
+   "name": "HeyGen · 培训与入职视频（Cookbook）",
+   "url": "https://developers.heygen.com/training-and-onboarding-videos.md",
+   "refresh_days": 21,
+   "good_for": [
+    "application-resource"
+   ],
+   "note": "数字人卷场景应用的公开资源，2026-08-14 从官方文档索引里取的直链"
+  },
+  {
+   "id": "heygen-changelog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HeyGen · API 更新日志",
+   "url": "https://developers.heygen.com/changelog.md",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "70 条带月份的记录（2026-04 起）。⚠️ **只到 2026-04**：更早的代际（Avatar III/IV 何时上线）这份日志里没有"
+  },
+  {
+   "id": "hf-hallo-live",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 复旦 Hallo-Live",
+   "url": "https://huggingface.co/fudan-generative-ai/Hallo-Live",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "这条线的当前发布"
+  },
+  {
+   "id": "hf-longcat-avatar-10",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 美团 LongCat-Video-Avatar（1.0）",
+   "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "1.5 的上一代"
+  },
+  {
+   "id": "gh-video-retalking",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "OpenTalker/video-retalking 仓库",
+   "url": "https://github.com/OpenTalker/video-retalking",
+   "refresh_days": 21,
+   "good_for": [
+    "application-resource"
+   ],
+   "note": "数字人 Skill 的公开实现，2026-08-14 走 GitHub API 核过星标与许可"
+  },
+  {
+   "id": "elevenlabs-changelog",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "ElevenLabs · 更新日志索引",
+   "url": "https://elevenlabs.io/docs/changelog/llms.txt",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "88 期周更记录的机器可读索引；⚠️ 每期正文要单独取 `.md`"
+  },
+  {
+   "id": "hf-glm-voice",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 智谱 glm-4-voice-9b",
+   "url": "https://huggingface.co/zai-org/glm-4-voice-9b",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "声音卷谱系 2026-08-14 补采时登记"
+  },
+  {
+   "id": "hf-glm-tts",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "",
+   "name": "HF · 智谱 GLM-TTS",
+   "url": "https://huggingface.co/zai-org/GLM-TTS",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "capability"
+   ],
+   "note": "声音卷谱系 2026-08-14 补采时登记"
+  },
+  {
+   "id": "openai-model-tts",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "openai",
+   "name": "OpenAI · GPT-4o mini TTS 模型页",
+   "url": "https://platform.openai.com/docs/models/gpt-4o-mini-tts",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ],
+   "note": "⚠️ **谱系日期取自官方快照 slug**（如 `gpt-4o-mini-tts-2025-12-15`）—— 那是厂商自己打的日期。改用它是因为官方更新日志的条目**只写「Jan 13」不写年份**，而页面横跨 2023–2026，**按印象补年份就是编**。"
+  },
+  {
+   "id": "openai-model-realtime",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "openai",
+   "name": "OpenAI · GPT-Realtime 模型页",
+   "url": "https://platform.openai.com/docs/models/gpt-realtime",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ],
+   "note": "⚠️ **谱系日期取自官方快照 slug**（如 `gpt-4o-mini-tts-2025-12-15`）—— 那是厂商自己打的日期。改用它是因为官方更新日志的条目**只写「Jan 13」不写年份**，而页面横跨 2023–2026，**按印象补年份就是编**。"
+  },
+  {
+   "id": "elevenlabs-docs",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "elevenlabs",
+   "name": "ElevenLabs · 文档索引（llms.txt）",
+   "url": "https://elevenlabs.io/docs/llms.txt",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "note": "20 万字符的机器可读索引，端点与能力页一次列全"
+  },
+  {
+   "id": "gemini-robotics-er",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "gemini-robotics",
+   "name": "Google 官方文档 · Gemini Robotics ER（能力表 / 端点 / 定价）",
+   "url": "https://ai.google.dev/gemini-api/docs/robotics-overview?hl=en",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "api",
+    "price",
+    "version"
+   ],
+   "expect": [
+    "Spatial reasoning",
+    "Agentic vision",
+    "Task orchestration",
+    "Streaming",
+    "Video progress"
+   ],
+   "note": "**这一卷唯一有 API + 定价 + 端点的源**，`Robotics capabilities` 那张表就是 `er` 轨能力轴的全部出处。⚠️ 必须带 `accept-language: en-US` —— 2026-08-14 实测不带会拿回**西班牙语页面**，标题变成「Capacidades de robótica」，diff 全是噪音。URL 上的 `?hl=en` 是第二道保险。"
+  },
+  {
+   "id": "figure-helix",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "helix",
+   "name": "Figure 官方 · Helix 模型发布页",
+   "url": "https://www.figure.ai/news/helix",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Vision-Language-Action",
+    "Helix"
+   ],
+   "note": "闭源，没有权重也没有 API —— **这一页就是 Helix 的全部官方能力叙述**（正文 16k，2026-08-14 实测）。"
+  },
+  {
+   "id": "pi-pi05-blog",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "pi",
+   "name": "Physical Intelligence 官方博客 · π₀.₅",
+   "url": "https://www.physicalintelligence.company/blog/pi05",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Open-World Generalization",
+    "VLA"
+   ],
+   "note": "π 系列的能力叙述在博客里，**权重与用法在 `openpi` 仓库里，两边都要抓**。仓库 README 讲的全是怎么微调、怎么起 policy server，一句能力命名都没有。"
+  },
+  {
+   "id": "pi-openpi-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "pi",
+   "name": "Physical-Intelligence/openpi 官方仓库",
+   "url": "https://raw.githubusercontent.com/Physical-Intelligence/openpi/main/README.md",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "openweights"
+   ],
+   "note": "π₀ / π₀-FAST / π₀.₅ 的基座检查点清单在 README 的 `Base Models` 表里；**checkpoint 放在 `gs://openpi-assets`，不在 HF** —— 按 HF 下载量给这条产品线排序会严重低估它。 ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "nvidia-groot-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "groot",
+   "name": "NVIDIA/Isaac-GR00T 官方仓库",
+   "url": "https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/README.md",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "capability",
+    "openweights"
+   ],
+   "note": "⚠️ **本体标签（`--embodiment-tag`）的完整清单不在 README，在 `getting_started/policy.md`。** README 只说「see the Policy API Guide」。按规则十四那条教训，只抓 README 会重演「读了页首」的漏法。 ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。"
+  },
+  {
+   "id": "openvla-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "openvla",
+   "name": "openvla/openvla 官方仓库",
+   "url": "https://huggingface.co/openvla/openvla-7b/raw/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "version",
+    "openweights"
+   ],
+   "note": "这一卷里被第三方微调最多的一支（`moojink/` `Sakits/` 等都是它的 LIBERO 基准微调）——**统计家族规模时要先折叠，否则会把它数成四五家**。 ⚠️ **2026-08-15 改了盯的地址。** 原来盯的是元数据接口（GitHub `/repos` 或 HF `/api/models`），而格子引的是**模型卡 / README 的正文** —— 接口返回里根本没有那句话，等于「引文永远无法回查、页面改了也不会有人知道」。改盯 README 原文之后 `requote.mjs` 才能真的比对。**引用表里的 URL 不动**（那是给读者点的人读页），两本账各司其职。 ⚠️ **改盯法时我第一次还改错了**：把它指到了 GitHub README，而引用表里写的是 **HF 模型卡** —— 两处文字并不一样，格子引的那几句（「supports controlling multiple robots out-of-the-box」等）只在模型卡里。**盯哪一页要由「引用表说我们读的是哪一页」决定**，不能看仓库在哪就盯哪。"
+  },
+  {
+   "id": "openvla-repo",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "openvla",
+   "name": "openvla/openvla 官方仓库 README",
+   "url": "https://raw.githubusercontent.com/openvla/openvla/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability"
+   ],
+   "expect": [
+    "RLDS",
+    "Fine-Tuning OpenVLA via LoRA"
+   ],
+   "note": "⚠️ **和 `openvla-gh`（HF 模型卡）是两页，不能混用一个 id。** 2026-08-15 `requote.mjs` 照出来的：`RLDS` 与 `Fine-Tuning OpenVLA via LoRA` 只在仓库 README 里，而「supports controlling multiple robots out-of-the-box」「released under an MIT License」只在模型卡里 —— 原来两边的引文都署了 `openvla-gh`，**其中一半永远回查不到**。"
+  },
+  {
+   "id": "hf-robotics",
+   "tier": "B",
+   "kind": "json",
+   "vendor": "",
+   "name": "Hugging Face · robotics 榜（按下载）",
+   "url": "https://huggingface.co/api/models?filter=robotics&sort=downloads&direction=-1&limit=100",
+   "refresh_days": 7,
+   "good_for": [
+    "roster"
+   ],
+   "note": "⚠️ **中文侧在这张榜上基本看不见**：腾讯混元具身、上海 AI 实验室 InternVLA、小米、星海图、逐际动力全是只在魔搭有。**只看这张榜会得出「具身智能没有中国厂商」的错误结论。**"
+  },
+  {
+   "id": "lerobot-gh",
+   "url": "https://api.github.com/repos/huggingface/lerobot",
+   "kind": "json",
+   "tier": "A",
+   "name": "Hugging Face 官方 · LeRobot 仓库",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "openweights"
+   ],
+   "note": "这一卷事实上的公共底座：π₀ 与 SmolVLA 的权重托管在它名下，openpi 要求先转成它的数据格式。**它一改数据格式，这一卷好几家都得跟。**"
+  },
+  {
+   "id": "groot-policy-doc",
+   "url": "https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/getting_started/policy.md",
+   "kind": "html",
+   "tier": "A",
+   "name": "NVIDIA Isaac GR00T · Policy API 文档（本体标签清单）",
+   "refresh_days": 7,
+   "good_for": [
+    "capability"
+   ],
+   "expect": [
+    "embodiment-tag",
+    "zero-shot",
+    "NEW_EMBODIMENT"
+   ],
+   "note": "⚠️ **本体标签清单只在这一页，README 里没有。** 2026-08-14 只读 README 差点漏掉整格 —— 所以它单独进清单，不跟着仓库那条走。"
+  },
+  {
+   "id": "rynnbrain-card",
+   "url": "https://huggingface.co/Alibaba-DAMO-Academy/RynnBrain1.1-9B/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "name": "阿里达摩院官方 · RynnBrain 1.1 模型卡",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "RynnBrain 1.1",
+    "contact point grounding"
+   ],
+   "note": "这一卷中文侧唯一一份内容够厚的官方模型卡（12k），也是唯一一条**官方公告里写了明确日期**的谱系。"
+  },
+  {
+   "id": "maniskill-gh",
+   "url": "https://api.github.com/repos/haosulab/ManiSkill",
+   "kind": "json",
+   "tier": "B",
+   "name": "ManiSkill 仿真环境仓库",
+   "refresh_days": 30,
+   "good_for": [
+    "roster"
+   ],
+   "note": "第三方，不是厂商。收它是因为这一卷多数检查点是跟着仿真基准发的，没有仿真环境连官方给的档都跑不起来。"
+  },
+  {
+   "id": "cosmos3-card",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "cosmos",
+   "name": "NVIDIA 官方 · Cosmos3-Nano 模型卡（输入输出规格与本体维度表）",
+   "url": "https://huggingface.co/nvidia/Cosmos3-Nano/raw/main/README.md",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "Omnimodal World Models",
+    "Action Trajectory",
+    "world simulation",
+    "action commands"
+   ],
+   "note": "**这一卷的锚点**：44k，有输入输出规格、各本体的动作维度表、许可与基准。⚠️ 同族的 `Cosmos-Reason2-8B` 与 `Cosmos-Predict2-2B-Video2World` 模型卡**要登录才能看（HTTP 401 gated）** —— 下载量最高的两个反而读不到，和当初 LTX 那次一样。"
+  },
+  {
+   "id": "genie3-blog",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "genie",
+   "name": "Google DeepMind 官方博客 · Genie 3",
+   "url": "https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "navigate in real time",
+    "24 frames per second",
+    "retaining consistency"
+   ],
+   "note": "⚠️ **抓 `deepmind.google/models/genie/` 会拿回导航壳**（正文全是站点菜单，2026-08-14 实测）。这条博客才有实数：24fps、consistency for a few minutes。"
+  },
+  {
+   "id": "odyssey-site",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "odyssey",
+   "name": "Odyssey 官网（产品线自述）",
+   "url": "https://odyssey.world/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "world model",
+    "real-time"
+   ],
+   "note": "「多智能体共世界」这根轴的唯一出处：官方自述 `a multi-agent world model, enabling multiple participants—human or AI—to share and interact within the same world simulation in real-time`。"
+  },
+  {
+   "id": "worldlabs-marble",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "marble",
+   "name": "World Labs 官方博客 · Marble",
+   "url": "https://www.worldlabs.ai/blog/marble-world-model",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "Multimodal World Model",
+    "3D worlds"
+   ],
+   "note": "「3D 可漫游」那根轴的出处。⚠️ **这一支离 3D 卷最近**，判它属于哪一卷要看「能不能被交互地改变」，不能照名字推（规则十六边界二）。"
+  },
+  {
+   "id": "matrixgame-card",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "matrix-game",
+   "name": "昆仑万维官方 · Matrix-Game 3.0 模型卡",
+   "url": "https://huggingface.co/Skywork/Matrix-Game-3.0/raw/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "Real-Time and Streaming",
+    "Long-Horizon Memory",
+    "action-conditioned"
+   ],
+   "note": "**中文侧这一卷最能核的一支**：标题一行写全了实时、流式、长时记忆三根轴。"
+  },
+  {
+   "id": "hunyuanworld-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "hunyuan-world",
+   "name": "腾讯混元官方 · HunyuanWorld 仓库更新日志",
+   "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanWorld-1.0/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ],
+   "expect": [
+    "HY-World-2.0",
+    "WorldPlay"
+   ],
+   "note": "⚠️ **日志能证明「发布过什么」，证明不了「它能做什么」** —— 混元世界的技术细节分散在四个独立仓库（HY-World-2.0 / HY-WorldPlay / WorldMirror / FlashWorld），这条只盯发布节奏。其中 `WorldMirror` 自述是 3D 几何预测，**属 3D 卷不属世界模型卷**。"
+  },
+  {
+   "id": "wham-card",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "wham",
+   "name": "微软官方 · WHAM 模型卡",
+   "url": "https://huggingface.co/microsoft/wham/raw/main/README.md",
+   "refresh_days": 30,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "World and Human Action Model",
+    "persistent"
+   ],
+   "note": "这一卷唯一一支论文发在 Nature 的（s41586-025-08600-3）。产品名 Muse，模型名 WHAM。"
+  },
+  {
+   "id": "vjepa2-blog",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "vjepa",
+   "name": "Meta 官方博客 · V-JEPA 2 world model",
+   "url": "https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/",
+   "refresh_days": 30,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "world model",
+    "physical reasoning"
+   ],
+   "note": "⚠️ **和它自己的 HF 模型卡口径不一致**：博客称 world model，模型卡第一句称 video understanding model。我们按博客收它，但这个不一致要留痕。"
+  },
+  {
+   "id": "vjepa2-card",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "vjepa",
+   "name": "Meta 官方 · V-JEPA 2 模型卡",
+   "url": "https://huggingface.co/facebook/vjepa2-vitl-fpc64-256/raw/main/README.md",
+   "refresh_days": 30,
+   "good_for": [
+    "version",
+    "openweights"
+   ],
+   "note": "单独收它就是为了盯上面那条不一致 —— **哪天两边口径统一了，我们的记法也要跟着改**。"
+  },
+  {
+   "id": "sci-boltz-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "boltz",
+   "name": "Boltz 官方仓库 README（MIT）",
+   "url": "https://raw.githubusercontent.com/jwohlwend/boltz/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "biomolecular interaction prediction",
+    "binding affinities",
+    "affinity_pred_value"
+   ],
+   "note": "**这一卷唯一一份能照着做的官方材料**：装法、命令、输入格式、输出字段含义全在里面。⚠️ 它自述「approach the accuracy of physics-based FEP methods, while running 1000x faster」—— **那是它自己说的，没有第三方复核**，这一轨也没有评测榜可对照。"
+  },
+  {
+   "id": "sci-af3-blog",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "alphafold",
+   "name": "Google 官方博客 · AlphaFold 3",
+   "url": "https://blog.google/technology/ai/google-deepmind-isomorphic-alphafold-3-ai-model/",
+   "refresh_days": 30,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "expect": [
+    "AlphaFold 3",
+    "proteins, DNA, RNA, ligands"
+   ],
+   "note": "⚠️ **AlphaFold Server（alphafoldserver.com）是 SPA 壳**，2026-08-15 抓回来 0k —— 能引的只有这篇博客。⚠️ 博客里那句「for **academic use**」是这一卷最要紧的一条限制：**学术免费、商用要另谈**。"
+  },
+  {
+   "id": "sci-esm2-card",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "esm",
+   "name": "Meta 官方 · ESM-2 模型卡",
+   "url": "https://huggingface.co/facebook/esm2_t33_650M_UR50D/raw/main/README.md",
+   "refresh_days": 30,
+   "good_for": [
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "esm2_t33_650M_UR50D"
+   ],
+   "note": "⚠️ 收它主要是盯「有没有新代」—— 检查点停在 2022-09 已经三年多。⚠️ **它是蛋白质语言模型不是结构预测器**，模型卡示例是带 `<mask>` 的氨基酸序列填空，别按名气把它当 AlphaFold 的同类。"
+  },
+  {
+   "id": "sci-wn-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "wn",
+   "name": "Google DeepMind 官方仓库 · WeatherNext / GraphCast",
+   "url": "https://raw.githubusercontent.com/google-deepmind/graphcast/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "WeatherNext 2",
+    "GraphCast",
+    "ensemble"
+   ],
+   "note": "⚠️ **三代在同一个仓库里**（GraphCast → WeatherNext Gen/GenCast → WeatherNext 2），这是这一卷谱系最清楚的一支。⚠️ 抓的是 README —— DeepMind 的产品页 `deepmind.google/science/weathernext/` **是导航壳**（正文全是站点菜单，2026-08-15 实测），博客 URL 还 404。**这一卷要看仓库不要看营销页。**"
+  },
+  {
+   "id": "sci-aurora-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "aurora",
+   "name": "微软官方仓库 · Aurora",
+   "url": "https://raw.githubusercontent.com/microsoft/aurora/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "Foundation Model for the Earth System"
+   ],
+   "note": "「不止天气」那一格的唯一依据。⚠️ GitHub 标的许可是 NOASSERTION。"
+  },
+  {
+   "id": "sci-neuralgcm-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "neuralgcm",
+   "name": "NeuralGCM 官方仓库",
+   "url": "https://raw.githubusercontent.com/neuralgcm/neuralgcm/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "hybrid ML/physics"
+   ],
+   "note": "⚠️ README 只有 1k，逐项能力在文档站 `neuralgcm.readthedocs.io` —— **还没读**。"
+  },
+  {
+   "id": "sci-mattergen-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "mattergen",
+   "name": "微软官方仓库 · MatterGen",
+   "url": "https://raw.githubusercontent.com/microsoft/mattergen/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "generative model for inorganic materials",
+    "property constraints"
+   ],
+   "note": "⚠️ HF 上 `microsoft/mattergen` 下载量 **0**，但仓库 1,789★ —— **这一卷的模型走 GitHub 与 pip 分发，HF 下载量不是有效指标**。我一度拿它判断「材料撑不起一条轨」，是错的。"
+  },
+  {
+   "id": "sci-mace-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "mace",
+   "name": "MACE 官方仓库",
+   "url": "https://raw.githubusercontent.com/ACEsuit/mace/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "interatomic potentials",
+    "MACE-MP"
+   ],
+   "note": "⚠️ 两套基座覆盖体系不同（MACE-MP 无机 / MACE-OFF 有机），**选错等于用错力场**。"
+  },
+  {
+   "id": "sci-gnome-gh",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "gnome",
+   "name": "Google DeepMind 官方仓库 · GNoME",
+   "url": "https://raw.githubusercontent.com/google-deepmind/materials_discovery/main/README.md",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "openweights"
+   ],
+   "expect": [
+    "381,000 novel stable materials"
+   ],
+   "note": "⚠️ **它放的是数据集与凸包，不是模型权重** —— 和这一轨别家不是一类东西。"
+  },
+  {
+   "id": "kling-api",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Kling AI · API 更新日志（171 条，需 JS 渲染）",
+   "url": "https://kling.ai/document-api/updates/api",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "seed-25",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "ByteDance Seed 官方博客 · Seedance 2.5（2026-07-31）",
+   "url": "https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "veo-doc",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Google · Veo 3.1 官方文档",
+   "url": "https://ai.google.dev/gemini-api/docs/veo",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "sora-eol-search",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "",
+   "name": "OpenAI Sora 停服说明（⚠️ 页面反爬，我们抓不到，内容来自搜索摘要转述）",
+   "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "sora-api",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "OpenAI API · sora-2 模型页（⚠️ 同上，403）",
+   "url": "https://developers.openai.com/api/docs/models/sora-2",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "sora-2",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "OpenAI · Sora 2 发布页（⚠️ 对我们的采集器返回 403，本轮未能一手复核）",
+   "url": "https://openai.com/index/sora-2/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "wan-site",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "通义万相官网（首屏，仅营销描述）",
+   "url": "https://wan.video/",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 9 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "mm-hf-api",
+   "tier": "A",
+   "kind": "json",
+   "vendor": "",
+   "name": "HF API · MiniMaxAI/MiniMax-H3 元数据（许可与文件清单）",
+   "url": "https://huggingface.co/api/models/MiniMaxAI/MiniMax-H3",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 3 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "vidu-fl",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Vidu 平台 · Function List（官方功能清单）",
+   "url": "https://platform.vidu.com/docs/function-list",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 8 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "vidu-up",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Vidu 平台 · Update Notice（官方更新日志）",
+   "url": "https://platform.vidu.com/docs/update",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "vidu-mm",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Vidu 平台 · Model Map（官方模型清单）",
+   "url": "https://platform.vidu.com/docs/model-map",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "rw-changelog",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Runway · 官方 Changelog",
+   "url": "https://runway.com/changelog",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 14 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "vidu-s1-paper",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Vidu S1 论文（作者：生数）",
+   "url": "https://arxiv.org/abs/2607.03118",
+   "refresh_days": 90,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 5 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。 ⚠️ 论文页基本不会变，`refresh_days` 放到 90。"
+  },
+  {
+   "id": "omni-doc",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Google · Gemini Omni Flash 官方文档",
+   "url": "https://ai.google.dev/gemini-api/docs/omni",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 8 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "g-video",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Google · 视频生成总览（两个模型如何取舍）",
+   "url": "https://ai.google.dev/gemini-api/docs/video",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "ltx-hf-23",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face · Lightricks/LTX-2.3（当前主力）",
+   "url": "https://huggingface.co/Lightricks/LTX-2.3",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 3 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "aa-board",
+   "tier": "B",
+   "kind": "html",
+   "vendor": "",
+   "name": "Artificial Analysis 榜（只证明「存在且有人用」，不证明能力）",
+   "url": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "gemini-image-docs",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Google · Gemini API 图像生成官方文档",
+   "url": "https://ai.google.dev/gemini-api/docs/image-generation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 11 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "openai-image-docs",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "OpenAI · Image generation 官方指南",
+   "url": "https://developers.openai.com/api/docs/guides/image-generation",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "recraft-docs",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Recraft · 官方文档",
+   "url": "https://www.recraft.ai/docs",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 4 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "bfl-docs",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Black Forest Labs · 官方文档索引",
+   "url": "https://docs.bfl.ai/llms.txt",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 6 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "zimage-card",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Z-Image 官方模型卡（Hugging Face）",
+   "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "hunyuan-image-card",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "HunyuanImage-3.0 官方模型卡（Hugging Face）",
+   "url": "https://huggingface.co/tencent/HunyuanImage-3.0-Instruct",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 4 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "smolvla-card",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Hugging Face 官方 · SmolVLA 模型卡",
+   "url": "https://huggingface.co/lerobot/smolvla_base",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 4 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "molmoact-card",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Ai2 官方 · MolmoAct2 模型卡",
+   "url": "https://huggingface.co/allenai/MolmoAct2",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 5 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "hf-whisper",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "OpenAI 官方 · Whisper large-v3 模型卡",
+   "url": "https://huggingface.co/openai/whisper-large-v3",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 4 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "hf-sensevoice",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "阿里 FunAudioLLM 官方 · SenseVoiceSmall 模型卡",
+   "url": "https://huggingface.co/FunAudioLLM/SenseVoiceSmall",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "hf-qwen3-asr",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "阿里官方 · Qwen3-ASR 模型卡",
+   "url": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "minimax-release-notes",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "MiniMax 开放平台 · 模型发布日志",
+   "url": "https://platform.minimax.io/docs/release-notes/models",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 5 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "seed-blog-1_5",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "字节 Seed · Seedance 1.5 pro 发布（2025-12-16）",
+   "url": "https://seed.bytedance.com/en/blog/sound-and-vision-all-in-one-take-the-official-release-of-seedance-1-5-pro",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "seed-blog-2_0",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "字节 Seed · Seedance 2.0 发布（2026-02-12）",
+   "url": "https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "ideogram-x",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "",
+   "name": "Ideogram 官方账号发布公告（@ideogram_ai）",
+   "url": "https://x.com/ideogram_ai/status/1917985285679530232",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  }
+ ],
+ "$missing": [
+  "Wan 官方 changelog：找不到可 diff 的能力更新页，只有 GitHub / HF 两个开源侧信号 —— 这就是 Wan 那几格质量最差的原因，且短期无解",
+  "fal / Replicate 的 JSON API 需要 token —— 拿到 token 后应从 html 升级为 json，那是「去哪用」矩阵的正解",
+  "微信公众号生态：机器抓不到。按 A3 的发现，中文侧的新版本消息常常先出现在这里 —— 这一块只能靠人工，且要计入每周 3 小时",
+  "decart.ai/publications 与 epoch 的 frontier CSV 都是我 URL 写错（404），已移除；decart 用 /research 那条覆盖",
+  "Kling：app.klingai.com 的开发者文档渲染不出链接（可能要登录或是重前端），kling.ai/document-api 页面本身抓得到但导航扫不出结构 —— 待人工确认入口",
+  "wan.video / HF 组织页：Playwright 取不到链接（前端结构特殊），Wan 的开源侧只能靠 HF API，产品侧仍缺官方更新页"
+ ],
+ "$blocked": [
+  "openai.com：403 反爬，S 级源但抓不到 —— Sora 的状态只能靠人工看",
+  "fal.ai / aiwiki.ai：429 限流，需要加退避重试后再评估",
+  "docs.midjourney.com：Cloudflare 挑战，浏览器外一律 403 —— Midjourney 版本年表只能退到 B 级源",
+  "help.openai.com：同样 403 —— OpenAI 侧一手来源整片抓不到"
+ ],
+ "$silent_failure": "抓取成功 ≠ 抓到内容。AA 榜单与 Vidu 文档都是 SPA，纯 HTTP 抓回来的 4000 字全是导航壳，监视器却报「无变化」—— **静默的成功比失败更危险**，因为失败会喊，成功不会。故给源加 expect 关键词，抓到但一个都不含就报警。 又一例：Runway 的 changelog 抓回来是整页 cookie 同意书，而 expect 里的「Gen」恰好被同意书里的词命中，自检没拦住 —— **关键词要挑那种只可能出现在正文里的**（改成 Gen-4 / Act-One / Aleph）。",
+ "$corrections": [
+  "2026-08-07：曾断言「Runway 没有可 diff 的公开更新页」，**错**。runway.com/changelog 与 docs.dev.runwayml.com/guides/models/ 都在，沿导航一扫就找到。教训：说一个源「不存在」之前，必须先做一遍导航扫描 —— 搜索搜不到不等于没有。"
+ ],
+ "$blind_spot": {
+  "发现": "Decart / Lucy 在 42 个源里**零命中**：AA 榜没有、HF 没有、Epoch 没有、Futurepedia 没有。",
+  "原因": "现有发现源全是围绕「离线出片」这一个品类建的 —— 榜单比的是生成出来的片子（实时流式模型没法进盲测 Elo）、HF 收的是开源权重（Lucy 闭源）、Epoch 记的是训练算力且分类里根本没有视频。**三重不可见。**",
+  "后果": "如果只跑现有管线，整个 realtime 轨会被系统性漏掉 —— 它是项目负责人手工点名才进来的，watcher 再跑一百遍也发现不了。",
+  "补救": "加两类机器可读源：① arXiv 的 world model / real-time video 查询（realtime 品类先在论文里出现）；② 科技媒体 RSS（Lucy 2 是 Forbes 先报的，不是榜单）。"
+ },
+ "$pricing": "价格（G5 · §59.4）。**只从厂商官方价格页取，Artificial Analysis 只做交叉校验。**\n理由：AA 量的是质量与速度，价格是它顺带记的，而且**它没有公开条款**（terms 页 404），\n拿它的价当事实等于把别人的顺带产物当自己的一等数据。\n\n价格这类字段和能力格不同的地方：**它天生带维度**（分辨率/时长/档位/是否含音频），\n记成一个数字必然是错的。所以要么连维度一起记，要么就别记。",
+ "$excluded_resources": [
+  "DeepLearning.AI《How Diffusion Models Work》：内容免费但**必须注册账号**才能看，与「公开可访问：不要求购买、订阅或登录」这条硬门槛冲突（docs/应用开源资源治理.md 二·硬门槛 2），不收",
+  "blendi-remade/sprite-sheet-creator（★1,648）：**仓库里没有 LICENSE**，且核心链路必须调 fal.ai 付费 API 才能跑 —— 授权与「不导流收费平台」两条都卡着，不收",
+  "steven2711/pixel-sprite-lab、hafiidz/sprigen：搜索结果里出现过，实测 GitHub API 404，**仓库不存在**。搜索摘要不能当收录依据"
+ ]
+}

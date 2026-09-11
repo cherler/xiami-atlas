@@ -1,0 +1,4974 @@
+第一轮：
+有，而且我查完以后反而更支持你做，但要把定义改一下。
+
+**“AI 百科全书”已经有人做，而且有人做得很认真。**
+真正还有空间的，不是再写一套 AI 版 Wikipedia，而是做成：
+
+> **AI 模型 / 公司 / 平台 / 应用 / Skill / Workflow 之间的关系型知识地图。**
+
+也就是回答你刚才真正困惑的那些问题：
+
+> Seedance 到底是谁做的？
+> 和字节什么关系？
+> 即梦、CapCut、火山引擎又是什么关系？
+> Seedance 2.0 能干什么？
+> Kling 又有什么不同？
+> Higgsfield 自己有没有模型？还是集成别人的？
+> Motion Control 是模型能力还是产品 Skill？
+> 哪个平台能用？有没有 API？
+> 有没有开源替代？
+> 有哪些现成 Skill / Workflow？
+
+这个方向我觉得有价值。
+
+---
+
+# 一、先看市场：已经有哪些人在做
+
+目前这些产品各自占了一块，但非常割裂。
+
+| 产品                                          | 它解决什么                 | 缺什么                      |
+| ------------------------------------------- | --------------------- | ------------------------ |
+| **AI Wiki**                                 | AI 公司、模型、概念、工具的真正“百科” | 缺应用关系、Skill/Workflow 实用层 |
+| **Epoch AI**                                | 模型历史、训练规模、算力、参数等研究数据库 | 太研究向，不解决“我该用哪个”          |
+| **Artificial Analysis**                     | 模型质量、速度、价格 Benchmark  | 只有模型比较，不讲公司、产品生态和 Skill  |
+| **Hugging Face**                            | 开源模型、数据集、Spaces       | 偏开发者仓库，不是知识导航            |
+| **OpenRouter**                              | LLM 型号、价格、上下文、调用供应商   | API 采购视角                 |
+| **Replicate / fal**                         | 可以直接调用的大量模型           | 模型市场/API 平台              |
+| **Futurepedia / AIBase**                    | AI 应用导航               | 工具很多，但关系浅                |
+| **Higgsfield / Pika / LibTV / MiniMax Hub** | Skill / Effect / 模板   | 都局限在自己的平台里               |
+
+其中有一个需要特别注意：
+
+## AI Wiki 已经非常接近你说的“AI 百科全书”
+
+它目前自称有 **4,258 篇带引用文章、98 个分类，每日更新**，覆盖模型、公司、产品、框架、概念等。([AI Wiki][1])
+
+比如它的 Seedance 页面已经会写：
+
+* ByteDance Seed 团队；
+* 发布时间；
+* 技术架构；
+* 输入输出模态；
+* 闭源还是开源；
+* Seedance 1.0 → 1.5 → 2.0 的演进；
+* 即梦 / Dreamina / CapCut / 火山引擎等产品入口；
+* 和 Veo、Kling 等竞争关系。([AI Wiki][2])
+
+Kling 甚至有：
+
+> Kling 总页 → Kling 2.1 → Kling 2.6 → Kling O1 → Kling 3.0
+
+这样的版本关系。([AI Wiki][3])
+
+所以：
+
+> **如果你做“OpenAI 公司介绍、DeepSeek 历史、什么是 Transformer”这一类百科，没必要。**
+
+有人已经做得很好。
+
+---
+
+# 二、但你现在真正需要的东西，它还没有完全解决
+
+拿你最近的困惑举例。
+
+假设搜索：
+
+# Kling
+
+普通百科给你的信息可能是：
+
+> 快手开发的视频生成模型，2024 年发布……
+
+但你真正想知道的是下面这一整张图：
+
+```text
+快手
+│
+├── Kling AI
+│   │
+│   ├── Kling 3.0
+│   ├── Kling O1
+│   ├── Image 3.0
+│   └── ...
+│
+├── 产品能力
+│   ├── Text-to-Video
+│   ├── Image-to-Video
+│   ├── Motion Control
+│   ├── First / Last Frame
+│   ├── Elements
+│   └── Video Editing
+│
+├── 使用入口
+│   ├── Kling 官方网站
+│   ├── API
+│   └── 第三方平台
+│       ├── Higgsfield
+│       ├── fal
+│       └── ...
+│
+├── 适合
+│   ├── 人物动作
+│   ├── 参考视频控制
+│   └── 人物一致性
+│
+├── 不适合 / 局限
+│
+├── Benchmark
+│   └── Artificial Analysis
+│
+└── Skills / Workflows
+    ├── Motion Control
+    ├── 单人舞蹈
+    ├── ...
+    └── 社区 Workflow
+```
+
+这才是你想要的。
+
+不是百科文章。
+
+而是：
+
+# **AI 能力知识图谱。**
+
+---
+
+# 三、这是一个非常明显的信息断层
+
+现在互联网上大概有四套平行世界。
+
+### 世界 1：模型
+
+Seedance、Kling、Veo、Wan、Flux、GPT Image……
+
+Artificial Analysis 很强。比如现在可以直接比较 Image-to-Video 的 Elo、发布时间和 API 成本。([Artificial Analysis][4])
+
+### 世界 2：模型运行平台
+
+Replicate、fal、OpenRouter、火山引擎、百炼、SiliconFlow……
+
+例如 fal 已经提供 **1,000+ production-ready AI models**，涵盖图像、视频、音频、多模态和 3D。([Fal.ai][5])
+
+Replicate 则同时展示模型用途、Run 次数、提示教程等。([Replicate][6])
+
+### 世界 3：商业应用
+
+Higgsfield、Picsart、CapCut、Pika、Krea、Lovart、HeyGen……
+
+它们往往不告诉普通用户：
+
+> 这个功能背后是什么模型？
+
+甚至同一个平台内部，不同功能可能使用完全不同模型。
+
+### 世界 4：Skill / Workflow
+
+* Kling Motion Control
+* Higgsfield Effects
+* Pika Effects
+* MiniMax Hub Skills
+* LibTV Skills
+* ComfyUI Workflow
+* Claude Skills
+* MCP
+* Agent Workflow
+
+这部分最乱。
+
+甚至研究界到 2026 年还在专门研究怎样自动发现、构造和复用 ComfyUI workflow；COMFYCLAW 就是把成功/失败轨迹沉淀成可重复使用 Skill。([arXiv][7])
+
+**而这四个世界之间缺连接。**
+
+这就是你可以做的地方。
+
+---
+
+# 四、所以我不建议叫“AI 百科”
+
+名字暂且不重要，但产品概念应该从：
+
+> AI Encyclopedia
+
+变成：
+
+# **AI Atlas / AI Knowledge Map**
+
+中文可以先内部叫：
+
+> **AI 图谱**
+
+或者：
+
+> **AI 能力地图**
+
+它不是回答：
+
+> “什么是 Seedance？”
+
+而是回答：
+
+> **Seedance 在整个 AI 生态里到底处于什么位置，我能拿它干什么？**
+
+---
+
+# 五、最核心的数据结构
+
+我建议你一开始就别把所有东西都叫“AI 工具”。
+
+至少分 7 类实体。
+
+```text
+Company / Organization
+        ↓
+Team / Lab
+        ↓
+Model Family
+        ↓
+Model Version
+        ↓
+Platform
+        ↓
+Application
+        ↓
+Skill / Workflow
+```
+
+外加：
+
+```text
+Use Case
+Benchmark
+Open-source Project
+API Provider
+Research Paper
+```
+
+它们之间建立关系。
+
+例如：
+
+## ByteDance
+
+```text
+ByteDance
+    ↓ owns
+Seed Team
+    ↓ develops
+Seedance
+    ↓ version
+Seedance 2.0
+
+Seedance 2.0
+    ↓ available_on
+Dreamina
+Doubao
+CapCut
+Volcano Engine
+BytePlus
+Replicate
+...
+
+Seedance 2.0
+    ↓ capability
+Text-to-Video
+Image-to-Video
+Multi-reference
+Audio-Video Generation
+
+Seedance 2.0
+    ↓ suitable_for
+Cinematic Video
+Character Consistency
+Product Creative
+...
+
+Seedance 2.0
+    ↓ benchmarked_by
+Artificial Analysis
+```
+
+到这里，知识开始“长起来”。
+
+---
+
+# 六、Skill 应该变成第一等公民
+
+这是你和 AI Wiki 最应该不同的地方。
+
+例如：
+
+## Motion Control
+
+它本身应该有独立页面。
+
+```text
+Motion Control
+
+类型：
+Video Skill
+
+目标：
+把参考视频动作迁移到指定人物
+
+实现：
+
+Kling
+→ 原生 Motion Control
+
+Vidu
+→ XXX
+
+ComfyUI
+→ Wan Animate Workflow
+
+Picsart
+→ AI Dance Generator
+```
+
+然后继续：
+
+### 输入要求
+
+* 单人物
+* 全身图优先
+* 参考动作视频
+* 遮挡要求
+
+### 可实现产品
+
+* AI Dance
+* 动漫人物跳舞
+* IP 角色动作复制
+* 商品 Mascot 动画
+
+### 开源实现
+
+找到就放 GitHub / Hugging Face / ComfyUI Workflow。
+
+找不到：
+
+> **Commercial only**
+
+结束。
+
+你完全不需要自己花钱测试所有东西。
+
+这一点我同意你现在的调整。
+
+---
+
+# 七、你还可以加入一个非常重要的东西：发展树
+
+这是普通 Wiki 很弱，而我觉得会很好玩的地方。
+
+例如：
+
+# AI 视频发展树
+
+```text
+2022
+Make-A-Video
+Imagen Video
+      ↓
+2023
+Runway Gen-2
+Pika
+ModelScope T2V
+      ↓
+2024
+Sora
+Kling 1.0
+Hailuo
+Hunyuan Video
+      ↓
+2025
+Veo 3
+Kling 2.x
+Seedance 1.x
+Wan 2.x
+      ↓
+2026
+Seedance 2.0
+Kling 3.0
+Wan 2.7
+...
+```
+
+点某个节点进去：
+
+> 为什么它重要？
+
+然后继续：
+
+> 它解决了上一代什么问题？
+
+比如：
+
+> Text-to-Video
+> → Image-to-Video
+> → Reference Video
+> → First/Last Frame
+> → Character Reference
+> → Motion Control
+> → Multi-shot
+> → Native Audio
+> → Unified Editing
+
+这就开始回答你今天真正的问题：
+
+> **AI 视频到底研发到哪一步了？**
+
+这句话其实比：
+
+> “Seedance 2.0 排名第一”
+
+有价值得多。
+
+Epoch AI 已经在模型历史、训练规模等方面做出了 3,500+ 模型数据库，而且公开 CSV，非常适合作为部分基础数据来源。([Epoch AI][8])
+
+但它偏研究。
+
+你的可以偏：
+
+> **能力演化。**
+
+---
+
+# 八、页面不要写成 Wiki 长文
+
+我尤其不建议照搬 Wikipedia。
+
+因为你自己刚才说的需求，本质不是：
+
+> 我要读 6000 字 Seedance 历史。
+
+而是：
+
+> 我完全不知道它怎么来的，现在处于什么位置。
+
+所以单模型页面可以这样：
+
+# Seedance 2.0
+
+**一句话**
+
+> 字节跳动 Seed 团队的视频基础模型，重点能力是多模态参考、视频生成与原生音视频联合生成。
+
+### 身份
+
+|      |                        |
+| ---- | ---------------------- |
+| 公司   | ByteDance              |
+| 团队   | Seed                   |
+| 发布时间 | 2026                   |
+| 模型家族 | Seedance               |
+| 上一代  | Seedance 1.5 Pro       |
+| 类型   | Video Foundation Model |
+| 权重   | Closed                 |
+
+### 它解决了什么
+
+> 1.5 → 2.0 最大变化……
+
+### 可以做什么
+
+`文生视频` `图生视频` `参考视频` `音频` `多镜头`……
+
+### 在哪使用
+
+Dreamina / 即梦 / CapCut / Volcano Engine / API Provider……
+
+### 相关 Skill
+
+* Character reference
+* Product shot
+* Motion reference
+* Cinematic camera
+* …
+
+### 对手
+
+Kling / Veo / Wan / Hailuo……
+
+### 当前水平
+
+接 Artificial Analysis。
+
+### 时间线
+
+1.0 → 1.5 → 2.0
+
+### 来源
+
+官方博客 / Paper / API Docs / Benchmark。
+
+这样才好用。
+
+---
+
+# 九、视频内容反而特别适合从这个数据库长出来
+
+这个方向我很看好。
+
+因为每一条知识记录都可以变成视频。
+
+例如：
+
+### 《Kling 到底是谁家的？》
+
+30～60 秒：
+
+> 可灵不是一家 AI 公司。
+> 它是快手内部开发的视频生成模型……
+
+---
+
+### 《一分钟看懂 AI 视频走到哪一步了》
+
+从：
+
+> 文生视频
+
+讲到：
+
+> Motion Control / Multi-shot / Native Audio / Unified Editing。
+
+---
+
+### 《Higgsfield 到底是不是视频模型？》
+
+解释：
+
+> Higgsfield 是产品平台
+> ↓
+> 自己有能力
+> ＋
+> 接入 Kling / Seedance / Veo 等模型
+> ↓
+> 再包装成 Effects / Apps。
+
+---
+
+### 《Kling、Seedance、Higgsfield 到底是什么关系？》
+
+这类内容甚至比单纯：
+
+> Kling 3.0 好不好用？
+
+信息价值更高。
+
+而且你自己在制作这些视频过程中，就会逐渐把 AI 世界搞明白。
+
+---
+
+# 十、但我强烈反对你现在直接做“全部 AI”
+
+这是这里最大的坑。
+
+AI Wiki 现在已经有 4,000+ 篇；Epoch 有 3,500+ 模型；Futurepedia 的分类里仅 AI Video Generator 就已经上百条；AIBase 的产品索引更大。([AI Wiki][9])
+
+你一个人如果立项：
+
+> “我要做全球 AI 百科。”
+
+大概率三个月后在维护：
+
+> XXX 模型 3.1 更新了没有？
+
+最终被信息维护拖死。
+
+---
+
+# 十一、我建议第一阶段只做：
+
+# **AI 创作能力地图**
+
+而不是整个 AI。
+
+范围：
+
+```text
+AI Creative
+│
+├── Image
+├── Video
+├── Audio / Voice
+├── Music
+├── 3D
+├── Avatar
+└── Multimodal Creative
+```
+
+第一期甚至更窄：
+
+# AI Video
+
+你最近本来就在研究它。
+
+首批只收：
+
+### 公司 / 团队
+
+ByteDance Seed
+Kuaishou
+Google DeepMind
+OpenAI
+Alibaba
+MiniMax
+Runway
+Luma
+Pika
+Vidu
+Higgsfield
+...
+
+### 模型
+
+Seedance
+Kling
+Veo
+Sora
+Wan
+Hailuo
+Ray
+Runway
+Pika
+...
+
+### 平台
+
+Higgsfield
+Picsart
+CapCut
+Dreamina
+Krea
+LibTV
+MiniMax Hub
+Replicate
+fal
+...
+
+### 能力
+
+T2V
+I2V
+Reference Image
+Reference Video
+Motion Control
+First/Last Frame
+Lip Sync
+Video Editing
+Multi-shot
+Native Audio
+...
+
+### Skills
+
+能找到多少放多少。
+
+### Workflows
+
+GitHub / Hugging Face / ComfyUI / 官方教程。
+
+---
+
+# 十二、MVP 其实很小
+
+不用做后台复杂 CRUD。
+
+先做 **30 张知识卡**。
+
+其中：
+
+* 10 个核心视频模型
+* 10 个视频平台
+* 10 个 Skill / Capability
+
+加：
+
+## 3 个关系页面
+
+例如：
+
+**AI 视频模型地图**
+
+**AI 视频能力演进图**
+
+**AI 视频平台 × 模型关系表**
+
+如果你自己用了两周以后发现：
+
+> “以前我搞不清 Kling、Higgsfield、Seedance，现在查自己的网站十秒就清楚。”
+
+这个东西已经成立一半了。
+
+---
+
+# 最后的独立判断
+
+这次这个方向，我比前面的“粒子视频”“地图故事生成器”更认可。
+
+但我认可的不是：
+
+> **做一个 AI 百科全书。**
+
+而是：
+
+> **建立一个持续更新的 AI 能力知识库，把“谁做的 → 什么模型 → 在什么平台 → 有什么能力 → 能做什么 → 有哪些 Skill / Workflow”连接起来。**
+
+市场并非没人做。**AI Wiki 已经很像真正的 AI Wikipedia；Artificial Analysis、Epoch AI、Futurepedia、Hugging Face 又分别把 Benchmark、模型数据库、应用导航和开源生态占住了。**
+
+但我目前没有看到一个强势产品把这条链真正连完整：
+
+> **公司 → 团队 → 模型 → 平台 → 应用 → Capability → Skill / Workflow → Use Case**
+
+尤其是**面向中文普通 AI 创作者、强调“到底有什么用”**这一层。
+
+所以这不应该靠“文章数量”竞争。
+
+你真正可以做出的东西是：
+
+> **AI 世界的关系图 + 能力地图 + 实用入口。**
+
+而且最合适的起点就是 **AI 视频**。你先通过这个模块把自己最缺的认知补齐，Skill 库自然就变成其中一个节点，而不是再次单独开一个项目。
+
+[1]: https://aiwiki.ai/about?utm_source=chatgpt.com "About | AI Wiki"
+[2]: https://aiwiki.ai/wiki/seedance?utm_source=chatgpt.com "Seedance | AI Wiki"
+[3]: https://aiwiki.ai/wiki/kling_3?utm_source=chatgpt.com "Kling 3.0 | AI Wiki"
+[4]: https://artificialanalysis.ai/video/leaderboard/image-to-video?utm_source=chatgpt.com "Image to Video Leaderboard - Top AI Video Models"
+[5]: https://fal.ai/docs/documentation/model-apis/overview?utm_source=chatgpt.com "Model APIs - fal"
+[6]: https://replicate.com/explore?utm_source=chatgpt.com "Explore – Replicate"
+[7]: https://arxiv.org/abs/2607.01709?utm_source=chatgpt.com "COMFYCLAW: Self-Evolving Skill Harnesses for Image Generation Workflows"
+[8]: https://epoch.ai/data/notable-ai-models?utm_source=chatgpt.com "Data on AI Models | Epoch AI"
+[9]: https://aiwiki.ai/?utm_source=chatgpt.com "AI Wiki - The Encyclopedia of Artificial Intelligence"
+
+第二轮：
+这次这个方向我认为可以正式立项，但产品的核心不应是“写 AI 百科文章”，而是：
+
+> **把 AI 世界整理成可查询、可追溯、可视化的能力地图。**
+
+而且先只做 **AI 视频能力地图** 很合适。现在外部信息确实被拆散在几类网站里：AI Wiki 偏百科文章，Epoch AI 偏模型历史数据，Artificial Analysis 偏质量/价格 Benchmark，Futurepedia 偏应用导航。它们都很强，但没有把“公司 → 模型 → 能力 → 平台 → Skill/Workflow → 应用场景”完整连起来。([AI Wiki][1])
+
+下面我按**产品、数据结构、后台、前端、图片/视频、开发顺序**给你整理一版。
+
+---
+
+# 一、产品不要叫“AI 百科”，核心是 4 个东西
+
+第一阶段内部可以叫：
+
+# AI Video Atlas｜AI 视频能力地图
+
+首页只解决四个问题：
+
+1. **现在有哪些重要的视频模型？**
+2. **AI 视频能力是怎么一步一步发展到今天的？**
+3. **这些模型到底在哪些平台能用？**
+4. **这些能力可以组合成哪些 Skill / Workflow？**
+
+也就是：
+
+```text
+AI Video Atlas
+│
+├── ① AI 视频模型地图
+├── ② AI 视频能力演进图
+├── ③ 平台 × 模型关系表
+└── ④ Skill / Workflow 库
+```
+
+再加一个：
+
+```text
+⑤ AI 导航
+```
+
+这里就是你说的早期 Yahoo / hao123：
+
+* AI Wiki
+* Artificial Analysis
+* Epoch AI
+* Hugging Face
+* Futurepedia
+* fal
+* Replicate
+* 各模型官方网站
+* GitHub
+* arXiv
+* ComfyUI
+* 各种 Skill Hub
+
+但导航只是附属入口，**关系图谱才是主体**。
+
+---
+
+# 二、三个核心页面应该长什么样
+
+## ① AI 视频模型地图
+
+不要做传统 Wiki 的长列表。
+
+默认就是一张图：
+
+```text
+                    ByteDance
+                       │
+                      Seed
+                       │
+                    Seedance
+                 ┌─────┴─────┐
+              1.5 Pro       2.0
+                              │
+          ┌─────────┬─────────┼─────────┐
+         T2V       I2V    多参考      音视频
+                              │
+                    ┌─────────┼─────────┐
+                   即梦     火山引擎   fal
+```
+
+另一边：
+
+```text
+Kuaishou
+   │
+ Kling
+   │
+ Kling 3.x
+   │
+ ├─ Image-to-Video
+ ├─ Motion Control
+ ├─ First / Last Frame
+ └─ Elements
+```
+
+节点点击后，右边弹出卡片：
+
+**Kling Motion Control**
+
+`能力` `商业` `人物动作`
+
+输入：
+
+🖼 人物图 + 🎬 参考视频
+
+输出：
+
+🎬 视频
+
+提供：
+
+Kling
+
+相关：
+
+AI Dance / Character Animation / IP Character
+
+开源替代：
+
+Wan Animate Workflow
+
+资料：
+
+官方文档 ↗
+教程 ↗
+相关 Skill ↗
+
+**不要先显示 1000 个节点。**
+
+默认只显示“当前主流 AI 视频生态”，大约 30～50 个节点。搜索某个节点以后才展开它的一跳、两跳关系。
+
+这是避免知识图谱最后变成“一团蜘蛛网”的关键。
+
+### 前端技术
+
+我第一版推荐 **Cytoscape.js**。
+
+它本身就是专门做 graph/network 可视化和分析的 JS 库，支持 directed graph、compound graph、布局、缩放、选择、遍历等，非常适合这种实体关系图。([Cytoscape.js][2])
+
+如果将来真的达到几千甚至几万个同时展示的节点，再考虑 Sigma.js。Sigma 是 WebGL 图可视化，目标就是 thousands of nodes / edges。([Sigma.js][3])
+
+**第一版没必要 Sigma。**
+
+---
+
+# 三、② AI 视频能力演进图，比模型排行榜更重要
+
+我很建议做。
+
+而且它不要是一张普通时间线，而是一个**能力树 / Swimlane**：
+
+```text
+               2023        2024        2025         2026
+
+生成
+Text→Video   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Image→Video       ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+控制
+首尾帧                  ●━━━━━━━━━━━━━━━━━━━━━━━━━━
+角色参考                     ●━━━━━━━━━━━━━━━━━━━━━
+多图参考                         ●━━━━━━━━━━━━━━━━━━
+参考视频                            ●━━━━━━━━━━━━━━━
+Motion Control                        ●━━━━━━━━━━━━━
+
+叙事
+多镜头                              ●━━━━━━━━━━━━━━
+镜头控制                               ●━━━━━━━━━━━━
+视频编辑                                   ●━━━━━━━━
+
+声音
+Lip Sync                        ●━━━━━━━━━━━━━━━━━━
+原生音频                                 ●━━━━━━━━━━
+音视频联合生成                              ●━━━━━━━
+```
+
+点击 `Motion Control`：
+
+```text
+Motion Control
+首次重要落地：……
+代表模型：
+Kling
+Wan
+……
+
+它解决的问题：
+“人物长得像”已经不够，还需要“动作能受参考视频控制”。
+
+相关 Skill：
+AI Dance
+Character Animation
+动作复刻
+```
+
+这实际上回答的是：
+
+> **AI 视频技术到底发展到哪一步了？**
+
+而不是告诉用户：
+
+> Kling 1190 Elo，Seedance 1200 Elo。
+
+Artificial Analysis 已经很擅长后者，它目前的视频榜单会同时展示 Elo、样本量、发布时间和 API 成本；你的价值应该是解释“能力是怎么出现的”。([Artificial Analysis][4])
+
+### 前端技术
+
+这里反而**不要用图数据库可视化组件**。
+
+直接：
+
+**React + SVG / D3**
+
+做一张定制时间轴最好。
+
+因为它是“编辑过的知识图”，不是自由图谱。
+
+---
+
+# 四、③ 平台 × 模型关系表
+
+这个很实用。
+
+例如：
+
+| 平台         | Kling | Seedance | Veo | Wan | Hailuo | Sora |
+| ---------- | ----- | -------- | --- | --- | ------ | ---- |
+| 官方         | ✓     | ✓        | ✓   | ✓   | ✓      | ✓    |
+| Higgsfield | ✓     | ✓        | ✓   | …   | …      | ✓    |
+| fal        | ✓     | ✓        | ✓   | ✓   | …      | …    |
+| Replicate  | …     | ✓        | …   | ✓   | …      | …    |
+| 即梦         | —     | ✓        | —   | —   | —      | —    |
+| 火山引擎       | —     | ✓        | —   | —   | —      | —    |
+
+但点击 ✓ 还应该弹：
+
+```text
+Seedance 2.0 @ fal
+
+API：✓
+Web：—
+分辨率：……
+价格：……
+官方/第三方：第三方
+最后核实：2026-08-07
+来源：fal 官方
+```
+
+### 前端
+
+用 **TanStack Table**。
+
+它已经解决：
+
+* 排序
+* 筛选
+* Facet
+* 分组
+* 固定列
+* 列显隐
+* 分页
+* Virtualization
+
+而且 Headless，非常适合做成你自己的视觉风格。([TanStack][5])
+
+---
+
+# 五、④ Skill / Workflow 不应该只是文字卡片
+
+这里是整个产品以后最好玩的地方。
+
+例如：
+
+## Motion Control
+
+左边不是文章，而是：
+
+```text
+┌─────────────────────────┐
+│      官方效果视频       │
+│          ▶             │
+└─────────────────────────┘
+
+输入
+🖼 角色图 + 🎬 动作视频
+
+           ↓
+
+      Motion Control
+
+           ↓
+
+输出
+🎬 角色动作视频
+```
+
+下面：
+
+**实现**
+
+Kling Native
+Wan Animate
+ComfyUI Workflow
+
+**相关玩法**
+
+AI Dance
+动漫人物跳舞
+IP 角色动作迁移
+
+**资源**
+
+官方文档 ↗
+GitHub ↗
+Workflow ↗
+教程 ↗
+
+这里就真正把：
+
+> “模型能力”
+
+变成：
+
+> “我能拿它干嘛”。
+
+---
+
+# 六、后台数据模型：先不要上 Neo4j
+
+这点我建议非常明确：
+
+> **第一版用 PostgreSQL。**
+
+虽然这个东西看起来是知识图谱，但它的大部分数据仍然是：
+
+* 模型名称
+* 日期
+* 公司
+* URL
+* 描述
+* 开源状态
+* API
+* 价格
+* 图片
+* 发布时间
+* 来源
+* 版本
+* 修改记录
+
+这些是典型关系数据。
+
+PostgreSQL 自己也支持 Recursive CTE，可以处理树和层级关系。([PostgreSQL][6])
+
+Neo4j 的 property graph 模型当然天然适合 node + relationship 查询。([Neo4j Graph Intelligence Platform][7])
+
+但你现在没必要承担：
+
+```text
+Postgres
++
+Neo4j
++
+两套数据同步
++
+两种查询语言
+```
+
+第一版先这样：
+
+```text
+PostgreSQL
+│
+├── entities
+├── relations
+├── facts
+├── sources
+├── media
+├── aliases
+└── revisions
+```
+
+就够了。
+
+---
+
+# 七、最重要的数据表，其实只有两个
+
+## entities
+
+所有东西统一称 Entity：
+
+```text
+entity
+────────────────────
+id
+type
+name
+slug
+summary
+logo
+status
+released_at
+metadata JSONB
+created_at
+updated_at
+```
+
+`type` 可以是：
+
+```text
+company
+team
+model_family
+model_version
+platform
+application
+capability
+skill
+workflow
+use_case
+benchmark
+open_source_project
+resource
+```
+
+---
+
+## relations
+
+```text
+relation
+────────────────────
+id
+source_entity_id
+relation_type
+target_entity_id
+
+valid_from
+valid_to
+
+confidence
+verified_at
+source_id
+```
+
+例如：
+
+```text
+ByteDance
+    develops
+Seedance
+
+Seedance 2.0
+    version_of
+Seedance
+
+Seedance 2.0
+    supports
+Image-to-Video
+
+Seedance 2.0
+    available_on
+fal
+
+Motion Control
+    implemented_by
+Kling
+
+Motion Control
+    has_open_source_impl
+Wan Animate
+```
+
+这样前端所有图都只是：
+
+> **不同条件下查询 Entities + Relations。**
+
+---
+
+# 八、一定再加一层：Fact + Evidence
+
+这是我认为这个项目最不能偷懒的地方。
+
+比如：
+
+> Seedance 2.0 支持 X 能力。
+
+不要只写：
+
+```text
+supports_x = true
+```
+
+而应该：
+
+```text
+Fact
+
+Subject:
+Seedance 2.0
+
+Property:
+supports
+
+Value:
+multi-reference
+
+Evidence:
+ByteDance 官方文档 URL
+
+Observed:
+2026-08-07
+
+Verified:
+2026-08-07
+```
+
+因为 AI 世界更新太快。
+
+半年之后一个信息很可能已经失效。
+
+所以整个产品真正重要的字段是：
+
+> **“最后核实时间” + “来源”。**
+
+Epoch 在这一点做得很好，它公开模型数据库的字段、更新方式和数据来源，并且数据集可每日更新、可下载，还明确要求引用来源。([Epoch AI][8])
+
+---
+
+# 九、来源分等级
+
+后台直接设计成：
+
+### S｜Primary
+
+* 官方 Docs
+* 官方 Blog
+* 官方 API
+* Paper
+* 官方 GitHub
+
+### A｜Independent Data
+
+* Artificial Analysis
+* Epoch AI
+* Papers With Code 等
+
+### B｜Secondary
+
+* 权威媒体
+* 高质量采访
+
+### C｜Community
+
+* Reddit
+* X
+* B站
+* YouTube
+* 博客
+
+页面上甚至可以很简单：
+
+> **来源可信度：S**
+
+点击展开来源。
+
+这比写很多解释文字更有价值。
+
+---
+
+# 十、搜索怎么做
+
+第一版：
+
+> PostgreSQL Full Text Search
+
+就够。
+
+Postgres 本身已经有 `tsvector` / `tsquery` 全文检索。([PostgreSQL][9])
+
+数据达到几千条以后，我会加：
+
+## Meilisearch
+
+因为你的用户可能会搜：
+
+```text
+seed dance
+SeedDance
+seedance
+字节视频
+动作控制
+motion contral
+```
+
+Meilisearch 默认支持 typo tolerance，同时很适合 facet/filter 类型的导航搜索。([Meilisearch][10])
+
+以后再加 pgvector：
+
+> “找和 Motion Control 类似的能力。”
+
+Supabase/Postgres 的 pgvector 就可以完成语义相似度检索。([Supabase][11])
+
+**不要第一版就 RAG。**
+
+---
+
+# 十一、推荐的完整后台架构
+
+如果让我现在给一个单人开发版本：
+
+```text
+                    Web Sources
+                         │
+      ┌──────────────────┼──────────────────┐
+      │                  │                  │
+ Official Docs       GitHub/arXiv       Data Sites
+      │                  │                  │
+      └──────────────────┼──────────────────┘
+                         ↓
+                 Collector / Importer
+                         ↓
+                 LLM Structured Extract
+                         ↓
+                  Draft / Diff Review
+                         ↓
+                    人工确认
+                         ↓
+                    PostgreSQL
+        ┌────────────────┼────────────────┐
+        │                │                │
+     Entities         Relations         Sources
+        │                │                │
+        └────────────────┼────────────────┘
+                         ↓
+                     API Layer
+                         ↓
+      ┌──────────────┬───────────────┬──────────────┐
+      ↓              ↓               ↓              ↓
+   Model Map     Evolution Map    Matrix         Skill Hub
+```
+
+---
+
+# 十二、后台录入不要自己造 CMS
+
+这部分特别容易浪费时间。
+
+有两个选择。
+
+### 如果前端采用 Next.js
+
+可以考虑 **Payload CMS**。
+
+它会直接生成 Admin Panel，并且有 Relationship field、反向 Join、版本/草稿等内容管理能力，非常适合你这种“实体＋关系＋资料”的后台。([Payload][12])
+
+### 如果想让数据库完全独立
+
+我更偏向：
+
+> PostgreSQL + Directus
+
+Directus 可以直接基于 SQL 数据库提供 Data Studio，对关系模型也有完整支持，不强迫你使用它自己的特殊 schema。([Directus 文档][13])
+
+### 我个人给你的选择顺序
+
+如果重新独立起项目：
+
+> **Next.js + PostgreSQL + Payload**
+
+如果要挂在现有项目下面，不想改变现有后端：
+
+> **现有后端 + PostgreSQL + Directus 管理后台**
+
+没必要为了一个知识库自己写几十个 CRUD 页面。
+
+---
+
+# 十三、最终前端技术组合
+
+我会这样定：
+
+```text
+Next.js / React
+│
+├── Tailwind / 现有 Design System
+│
+├── Cytoscape.js
+│   └── AI 模型关系地图
+│
+├── D3 + SVG
+│   └── 能力演进图
+│
+├── TanStack Table
+│   └── 平台 × 模型矩阵
+│
+├── 普通 React Card
+│   └── Skill / Workflow
+│
+└── Video Player
+    └── 官方 Demo / 能力演示
+```
+
+React Flow 也很优秀，自带 node、edge、拖拽、缩放等能力。([React Flow][14])
+
+但它更适合：
+
+> **“人工设计好的流程图 / Node Editor”**
+
+而不是大规模自动知识图谱。
+
+所以我会：
+
+* **Cytoscape：知识图谱**
+* **React Flow：以后如果做 Workflow 展示器/编辑器**
+
+---
+
+# 十四、图片一定要加，而且要多
+
+你说：
+
+> 能用图说话就尽量不用文字。
+
+这个产品非常适合。
+
+一张模型卡：
+
+```text
+┌─────────────────────────────┐
+│  [Logo] Seedance 2.0        │
+│                             │
+│     ByteDance → Seed        │
+│                             │
+│ 📝 → 🎬                     │
+│ 🖼 → 🎬                     │
+│ 🖼🖼🎵🎬 → 🎬🔊             │
+│                             │
+│ Closed · Commercial         │
+│ Released 2026               │
+└─────────────────────────────┘
+```
+
+比：
+
+> Seedance 是由字节跳动 Seed 团队……
+
+好理解得多。
+
+---
+
+# 十五、视频也要加，但不是每个页面都自动播放
+
+我的建议：
+
+> **图片负责认知，视频负责证明。**
+
+Skill 页面尤其应该有视频。
+
+例如：
+
+## Motion Control
+
+直接播放 4～8 秒：
+
+> 输入人物 → 跳舞结果。
+
+用户 3 秒就懂。
+
+文字根本解释不清。
+
+但是：
+
+**Model 页面不需要满屏视频。**
+
+可以有一个：
+
+> “代表能力 Demo”
+
+点击播放。
+
+否则：
+
+* 页面太重
+* 加载慢
+* 信息噪音大
+* 用户不知道该看哪里
+
+---
+
+# 十六、视频来源分两种
+
+## A. 外部官方 Demo
+
+优先：
+
+* 官方 YouTube
+* 官方视频
+* 官方产品页
+* GitHub README Demo
+* Hugging Face Demo
+
+尽可能采用：
+
+> Embed / 链接
+
+而不是把别人视频全部下载到自己服务器重新托管。
+
+---
+
+## B. 你自己的“能力演绎视频”
+
+这个我反而很建议后面做。
+
+因为数据库已经有：
+
+```text
+Company
+Model
+Capability
+Release Date
+Relationship
+Logo
+```
+
+完全可以自动生成：
+
+### 《30 秒看懂 Kling》
+
+```text
+快手
+   ↓
+Kling
+   ↓
+1.0 → 1.6 → 2.x → 3.x
+             ↓
+          Motion Control
+             ↓
+      人物图 + 动作视频
+```
+
+配上旁白。
+
+最终：
+
+> 网站上的数据结构
+> → 自动生成 Remotion 动画
+> → 抖音 / B站 / 小红书视频。
+
+这时候你的网站和视频内容生产形成一个非常漂亮的闭环：
+
+```text
+研究 AI
+   ↓
+录入知识库
+   ↓
+生成能力地图
+   ↓
+自动生成讲解视频
+   ↓
+视频吸引用户
+   ↓
+用户回来查知识库
+```
+
+我认为这比单纯做一个 Wiki 有意思很多。
+
+---
+
+# 十七、甚至可以让“图”本身成为视频
+
+例如：
+
+## AI 视频能力演进｜2023 → 2026
+
+视频开始：
+
+```text
+2023
+
+Text to Video
+    ↓
+
+2024
+
++ Image to Video
++ Character Reference
+
+2025
+
++ First / Last Frame
++ Multi-reference
+
+2026
+
++ Motion Control
++ Native Audio
++ Multi-shot
++ Unified Editing
+```
+
+每出现一个能力：
+
+对应模型 Logo 跳出来。
+
+最后：
+
+```text
+2026 AI Video Landscape
+```
+
+这本身就是很好的科普视频。
+
+而且每一项下面都可以：
+
+> `Source: Official Docs`
+
+---
+
+# 十八、首页我建议长这样
+
+不是传统内容网站。
+
+```text
+────────────────────────────────
+
+AI VIDEO ATLAS
+
+看懂 AI 视频发展到了哪一步
+
+[ 搜模型、能力、平台、Skill…… ]
+
+────────────────────────────────
+
+    AI 视频世界地图
+    [交互图]
+
+────────────────────────────────
+
+2026 当前能力
+
+文生视频       ●
+图生视频       ●
+参考人物       ●
+首尾帧         ●
+动作控制       ●
+原生音频       ●
+多镜头         ●
+统一编辑       ◐
+
+[查看能力演进]
+
+────────────────────────────────
+
+主流模型
+
+[Kling] [Seedance] [Veo]
+[Wan]   [Hailuo]   [Sora]
+
+────────────────────────────────
+
+在哪使用？
+
+平台 × 模型 →
+
+────────────────────────────────
+
+Skill / Workflow
+
+[Motion Control ▶]
+[First/Last Frame ▶]
+[Product Shot ▶]
+[Character Reference ▶]
+
+────────────────────────────────
+
+AI 重要资源
+
+AI Wiki
+Artificial Analysis
+Epoch AI
+Hugging Face
+Futurepedia
+fal
+Replicate
+GitHub
+arXiv
+...
+
+────────────────────────────────
+```
+
+这已经很接近你说的：
+
+> **AI 时代的 Yahoo + Wikipedia + 能力地图。**
+
+但比三者任何一个都更偏：
+
+> **“看懂整个生态关系”。**
+
+---
+
+# 十九、MVP 不需要多大
+
+我建议第一阶段只录入：
+
+**8 家公司/团队**
+
+**12 个主流视频模型家族**
+
+**20 个重要模型版本**
+
+**15 个核心 Capability**
+
+**10 个平台**
+
+**20 个 Skill / Workflow**
+
+也就是几十个实体、一两百条关系。
+
+然后只完成三个页面：
+
+### P0
+
+**AI 视频模型地图**
+
+**AI 视频能力演进图**
+
+**平台 × 模型关系表**
+
+### P0.5
+
+Skill / Workflow 页。
+
+### P1
+
+模型详情页。
+
+### P2
+
+自动生成演绎视频。
+
+---
+
+# 二十、还有一个数据版权问题一定提前注意
+
+**Epoch 很友好。**
+
+它明确把公开数据以 CC-BY 提供，只要署名，就允许使用、传播和复制。([Epoch AI][8])
+
+Artificial Analysis 要谨慎。
+
+其商业页面明确写到：
+
+> 数据 redistribution / external use 需要联系他们。
+
+因此不要一开始就：
+
+> 把 Artificial Analysis 整张榜单扒下来，作为自己数据库。
+
+可以：
+
+> 当前排名：查看 Artificial Analysis ↗
+
+或者自己引用几个事实并明确标源；真要程序化把整个 benchmark 接进产品，再谈授权/API。([Artificial Analysis][15])
+
+AI Wiki 同理，**引用和跳转，不要镜像整个文章库。**
+
+---
+
+# 最终技术方案
+
+如果现在让我直接给你定版：
+
+```text
+前端
+Next.js + React
+
+关系地图
+Cytoscape.js
+
+能力演进
+D3 + SVG
+
+模型 / 平台矩阵
+TanStack Table
+
+Skill 展示
+React Card + Lazy Video
+
+─────────────────
+
+后台
+PostgreSQL
+
+CMS
+Payload（Next 技术栈）
+或
+Directus（独立数据库型）
+
+搜索
+第一阶段 PostgreSQL
+第二阶段 Meilisearch
+第三阶段 pgvector
+
+─────────────────
+
+数据模型
+Entity
+Relation
+Fact
+Source
+Media
+Revision
+
+─────────────────
+
+内容生产
+官方资料
+→ LLM 结构化抽取
+→ Draft
+→ 人工审核
+→ Publish
+
+─────────────────
+
+视频
+结构化数据
+→ Remotion
+→ 能力演进 / 模型关系讲解视频
+```
+
+**暂时不要 Neo4j，不要 RAG，不要自己写 CMS，不要一次做整个 AI 世界。**
+
+先让 **AI Video Atlas** 达到一个标准：
+
+> 我想搞懂 Kling / Seedance / Higgsfield / Motion Control 之间是什么关系时，打开这个页面，10 秒钟能看明白，而且每条关系都可以点到来源。
+
+只要这个成立，这个模块就已经有实际价值了。后面从 Video 横向复制到 Image、Audio、Music、3D、Agent，数据结构基本都不用推倒重来。
+
+[1]: https://aiwiki.ai/wiki/seedance?utm_source=chatgpt.com "Seedance | AI Wiki"
+[2]: https://js.cytoscape.org/index.html?utm_source=chatgpt.com "Cytoscape.js"
+[3]: https://www.sigmajs.org/docs/?utm_source=chatgpt.com "Introduction | sigma.js"
+[4]: https://artificialanalysis.ai/video/leaderboard/image-to-video?utm_source=chatgpt.com "Image to Video Leaderboard - Top AI Video Models"
+[5]: https://tanstack.com/table/latest/docs/overview?utm_source=chatgpt.com "Overview | TanStack Table Docs"
+[6]: https://www.postgresql.org/docs/current/queries-with.html?utm_source=chatgpt.com "PostgreSQL: Documentation: 18: 7.8. WITH Queries (Common Table Expressions)"
+[7]: https://neo4j.com/docs/getting-started/appendix/graphdb-concepts/?utm_source=chatgpt.com "Graph database concepts - Getting Started"
+[8]: https://epoch.ai/data/ai-models-documentation?utm_source=chatgpt.com "AI Models Documentation – Overview | Epoch AI"
+[9]: https://www.postgresql.org/docs/current/functions-textsearch.html?utm_source=chatgpt.com "PostgreSQL: Documentation: 18: 9.13. Text Search Functions and Operators"
+[10]: https://www.meilisearch.com/docs/resources/internals/typo_tolerance?utm_source=chatgpt.com "Typo tolerance vs fuzzy search: how Meilisearch handles misspellings - Meilisearch Documentation"
+[11]: https://supabase.com/docs/guides/database/extensions/pgvector?utm_source=chatgpt.com "pgvector: Embeddings and vector similarity | Supabase Docs"
+[12]: https://payloadcms.com/docs/admin/overview?utm_source=chatgpt.com "The Admin Panel | Documentation | Payload"
+[13]: https://docs.directus.io/app/data-model/relationships?utm_source=chatgpt.com "Relationships | Directus Docs"
+[14]: https://reactflow.dev/?utm_source=chatgpt.com "Node-Based UIs in React - React Flow"
+[15]: https://artificialanalysis.ai/pricing?utm_source=chatgpt.com "Pricing | Artificial Analysis"
+
+第三轮：
+会，而且我会对上一版做一个关键修正：
+
+> **把它从“知识数据库 + 三种可视化”升级成“视觉编辑型 AI 知识产品”。**
+
+上一版在数据架构上我仍然认可，但如果直接照那个方案开发，最大的风险是：**最后做出来很正确、很完整，但像一个科研工具，不够让人想逛。**
+
+Our World in Data 在重做其数据产品时采用的原则很值得借鉴：**Overview first → zoom/filter → details on demand**，目的就是避免高信息密度产品把用户淹没。Stanford AI Index 的定位也不是“堆数据”，而是 track、collate、distill、visualize——先筛选，再组织，再呈现。([Our World in Data][1])
+
+---
+
+# 一、先审查上一版：我认为有 7 个缺点
+
+| 缺点              | 会导致什么                                   | 优化                                  |
+| --------------- | --------------------------------------- | ----------------------------------- |
+| ① 把“知识图谱”看得太重   | 一打开就是蜘蛛网，好看 10 秒，之后不知道干什么               | 图谱降级成一种 View，不是产品本身                 |
+| ② 按数据结构设计产品     | Company / Model / Skill 很正确，但用户并不是这么思考的 | 增加“我想知道什么”入口                        |
+| ③ 自动布局过多        | Cytoscape 自动排图容易有科研软件感                  | **数据图谱与视觉布局彻底分离**                   |
+| ④ 缺“编辑观点”       | 什么都展示等于什么都没讲                            | 每张图必须有一个明确结论                        |
+| ⑤ Skill 仍然偏文字卡片 | Motion Control 光看描述仍然不知道是什么             | 4～8 秒视频就是 Skill 的第一语言               |
+| ⑥ 缺持续更新机制       | AI 信息一个月就可能过期                           | 增加 Change Event、Stale、Last verified |
+| ⑦ 首页功能太多        | 地图、时间线、矩阵、Skill、导航一起出现会像门户站             | 首页只承担“看懂现在 AI 视频到了哪一步”              |
+
+其中第三条最重要。
+
+---
+
+# 二、数据层和视觉层必须分开
+
+上一版数据：
+
+```text
+Entity
+Relation
+Fact
+Source
+Media
+```
+
+没有问题。
+
+但要增加一个非常重要的东西：
+
+# `Visual View / Story View`
+
+也就是说：
+
+> **数据库负责事实，设计师负责告诉用户怎么看这些事实。**
+
+例如数据库里可能有 300 个实体。
+
+但首页的「2026 AI 视频地图」只允许出现 25 个。
+
+后台增加：
+
+```text
+visual_view
+
+id
+name
+type
+title
+subtitle
+
+included_entities
+included_relations
+
+layout
+├── x/y
+├── group
+├── order
+├── size
+└── emphasis
+
+camera
+├── initial_position
+├── zoom
+└── focus_sequence
+
+annotations
+source_notes
+updated_at
+```
+
+这样同一批数据可以产生：
+
+### View A
+
+**2026 AI 视频主流格局**
+
+只展示：
+
+Kling / Seedance / Veo / Sora / Wan / Hailuo / Runway……
+
+### View B
+
+**人物控制能力**
+
+只展示：
+
+Character Reference
+→ Elements
+→ Motion Control
+→ Lip Sync
+→ Video Edit
+
+### View C
+
+**中国 AI 视频模型**
+
+字节 / 快手 / 阿里 / MiniMax……
+
+---
+
+这会直接决定产品是：
+
+> 数据库 visualization
+
+还是：
+
+> **真正有编辑和设计的视觉知识产品。**
+
+我推荐后者。
+
+---
+
+# 三、首页也需要彻底改
+
+上一版首页还是偏“门户首页”。
+
+我现在建议第一屏直接做成一个作品。
+
+# 首页第一屏：《AI 视频走到了哪里？》
+
+不是几十个卡片。
+
+打开以后就是一个沉浸式视觉：
+
+```text
+                 AI VIDEO — 2026
+
+              生成          控制
+               │             │
+Text → Video ━━━━━━━        │
+Image → Video ━━━━━━━       │
+                             │
+Reference ━━━━━━━━━━━━━━━━━━━
+First / Last Frame ━━━━━━━━━━
+Character Reference ━━━━━━━━━
+Motion Control ━━━━━━━━━━━━━━━
+Multi-shot ━━━━━━━━━━━━━━━━━━━
+Native Audio ━━━━━━━━━━━━━━━━━
+Unified Editing ━━━━━━━━◐
+```
+
+旁边悬浮：
+
+**12 个重要模型**
+
+Kling · Seedance · Veo · Wan · Hailuo · Sora……
+
+然后用户鼠标移到：
+
+> Motion Control
+
+整个页面发生变化。
+
+其他内容变暗，只剩：
+
+```text
+Motion Control
+
+人物图片
+   ↓
+参考动作视频
+   ↓
+角色执行动作
+
+代表实现：
+
+[Kling]       [Wan]
+   │            │
+Commercial    Open
+```
+
+右边自动播放一个 4 秒 Demo。
+
+这时候用户甚至不用读解释：
+
+> **“哦，原来 Motion Control 是这个。”**
+
+这才符合你的“能用图说话就不用文字”。
+
+---
+
+# 四、模型地图不要设计成普通 Network Graph
+
+我现在会修改之前的技术建议。
+
+### 第一阶段不优先 Cytoscape。
+
+Cytoscape 很强，但天然容易产生这种东西：
+
+```text
+○────○──○
+│ ╲╱ │╲ │
+○──○─○──○
+ ╲ │╱ ╲
+   ○──○
+```
+
+信息是真的，但不一定漂亮。
+
+你的数据第一阶段只有几十个主节点，所以我反而推荐：
+
+# React Flow + ELK 自动布局 + 人工固定重点节点
+
+优势是每个 Node 可以是完整 React Component。
+
+例如模型节点：
+
+```text
+┌────────────────────┐
+│  ◉ Kling 3.x       │
+│                    │
+│ Kuaishou           │
+│                    │
+│ 🖼 → 🎬   🎬→🎬    │
+│                    │
+│ Motion Control ●   │
+└────────────────────┘
+```
+
+Capability：
+
+```text
+╭────────────────╮
+│ Motion Control │
+│                │
+│ 🖼 + 🎬 → 🎬   │
+╰────────────────╯
+```
+
+Company：
+
+```text
+ByteDance
+   SEED
+```
+
+它们完全可以拥有不同视觉语言。
+
+React Flow 本身更像一个 UI Canvas，而不是科研 Graph。
+
+等节点达到几千个，再考虑 Cytoscape / Sigma。
+
+---
+
+# 五、我建议形成三套完全不同的视觉语言
+
+不是“三个页面换个标题”。
+
+## 1. Model Landscape
+
+视觉感觉：
+
+> **星图 / 生态地图**
+
+展示关系：
+
+```text
+Company
+   ↓
+Model Family
+   ↓
+Model
+   ↓
+Capability
+```
+
+以空间位置表达生态。
+
+它回答：
+
+> 谁是谁家的？
+
+> 模型之间什么关系？
+
+---
+
+## 2. Capability Evolution
+
+视觉感觉：
+
+> **科技发展纪录片时间轴**
+
+横向：
+
+2022 → 2023 → 2024 → 2025 → 2026
+
+纵向：
+
+Generation
+Control
+Identity
+Story
+Audio
+Editing
+
+节点不是普通圆点，而是：
+
+```text
+2024.06
+Kling
+
+──────────────
+
+Image-to-Video
+开始进入高质量
+长时序生成阶段
+```
+
+然后能力线继续向右生长。
+
+可以拖动年份。
+
+还可以点击：
+
+▶ **播放 AI 视频进化史**
+
+页面自动从 2022 播到 2026。
+
+这个功能我很推荐。
+
+---
+
+## 3. Platform × Model
+
+这里反而不要炫。
+
+做成非常克制的专业表格。
+
+因为它解决的是：
+
+> **我去哪用？**
+
+例如用户点 Seedance：
+
+```text
+                Web   API   中国可用   官方
+即梦             ●      —       ●        ●
+火山引擎          —      ●       ●        ●
+Higgsfield       ●      —       ●        —
+fal              —      ●       ●        —
+```
+
+点击格子展开：
+
+> API 地址
+> 当前模型版本
+> 输入能力
+> 官方来源
+> 最后核实时间
+
+这里**效率比视觉冲击重要**。
+
+---
+
+# 六、Skill 页必须把视频提到第一优先级
+
+这一点现在我会比上一版更激进。
+
+一个 Skill：
+
+# Motion Control
+
+第一屏：
+
+```text
+┌───────────────┐     ┌───────────────┐
+│ 输入人物       │  +  │ 参考动作       │
+│    🧍          │     │      ▶        │
+└───────────────┘     └───────────────┘
+
+                   ↓
+
+          ┌─────────────────┐
+          │   结果视频 ▶    │
+          └─────────────────┘
+```
+
+下面才是：
+
+> Kling 原生实现
+> Wan 开源实现
+> ComfyUI Workflow
+
+然后：
+
+`人物` `动作控制` `参考视频` `Dance` `IP 动画`
+
+---
+
+# 七、所以：图片和视频都要加，但作用不同
+
+我的定义会变成：
+
+> **图负责解释结构。**
+
+> **视频负责证明能力。**
+
+### 图片
+
+大量使用：
+
+* Logo
+* 架构图
+* Input → Output 图
+* 时间线
+* 关系图
+* Before / After
+* 静态关键帧
+* 模型版本树
+
+### 视频
+
+严格用于：
+
+* Skill Demo
+* Capability Demo
+* 模型代表能力
+* 自动演绎知识故事
+
+不做：
+
+> 首页十几个视频一起 autoplay。
+
+会又乱又重。
+
+---
+
+# 八、视频最好的表现形式不是完整播放器，而是 Hover Preview
+
+例如 Skill 卡：
+
+```text
+┌─────────────────────────────┐
+│                             │
+│       Motion Control        │
+│                             │
+│          [静态帧]           │
+│                             │
+│   🖼 + 🎬 → 🎬              │
+└─────────────────────────────┘
+```
+
+鼠标 Hover：
+
+直接循环播放 3～5 秒。
+
+移走：
+
+恢复关键帧。
+
+移动端：
+
+点击播放。
+
+这比满页面：
+
+▶ ▶ ▶ ▶ ▶
+
+舒服得多。
+
+---
+
+# 九、增加一个前一版完全缺失的功能：Focus Mode
+
+知识图最大的痛点是：
+
+> 信息太多。
+
+所以点击 Seedance：
+
+不要只是打开 Drawer。
+
+而是整个图：
+
+```text
+其他节点 opacity = 0.08
+
+               ByteDance
+                   │
+                 Seed
+                   │
+              Seedance
+             /        \
+          1.5          2.0
+                       │
+       ┌───────────────┼─────────────┐
+      I2V       Multi-ref      Native Audio
+```
+
+其他一切消失。
+
+下面出现一句：
+
+> **Seedance 是字节 Seed 团队的视频生成模型家族，目前重点向多参考与音视频联合生成发展。**
+
+然后：
+
+`展开生态`
+
+再显示平台和 Skills。
+
+这才是真正的：
+
+> Zoom / Filter → Details on demand。
+
+Our World in Data 就是在重新设计其大量信息产品时明确采用这一原则。([Our World in Data][1])
+
+---
+
+# 十、再增加一个非常重要的功能：Compare Mode
+
+例如：
+
+选择：
+
+`Kling` + `Seedance`
+
+页面不要只显示表格。
+
+先画：
+
+```text
+              Kling      Seedance
+
+I2V             ●           ●
+
+Character       ●           ●
+
+Motion          ●           ○
+
+First/Last      ●           ●
+
+Multi-ref       ●           ●
+
+Native Audio    ●           ●
+
+Open weights    —           —
+```
+
+再展开：
+
+* 发布时间
+* 官方入口
+* API
+* 平台
+* Skill
+* 来源
+
+这种比较才是用户真正会反复回来的功能。
+
+---
+
+# 十一、链接导航也要改，不能做成 hao123 本身
+
+你说“像 Yahoo、hao123”。
+
+我理解的是：
+
+> **重要入口不能藏着。**
+
+这个是对的。
+
+但如果最终页面：
+
+```text
+AI Wiki
+Epoch
+Artificial Analysis
+Hugging Face
+fal
+Replicate
+Futurepedia
+GitHub
+arXiv
+...
+```
+
+一排 Logo，那其实价值很低。
+
+应该变成：
+
+# AI Research Toolkit
+
+### 想知道哪个模型更强
+
+→ Artificial Analysis
+
+### 想查模型历史和训练数据
+
+→ Epoch AI
+
+### 想找开源模型
+
+→ Hugging Face
+
+### 想直接调用模型 API
+
+→ fal
+→ Replicate
+
+### 想快速了解一个 AI 概念
+
+→ AI Wiki
+
+### 想找应用
+
+→ Futurepedia
+
+这就是：
+
+> **导航 + 判断。**
+
+而不只是链接。
+
+---
+
+# 十二、后台也要增加三个东西
+
+上一版：
+
+```text
+Entity
+Relation
+Fact
+Source
+Media
+Revision
+```
+
+我现在会增加：
+
+```text
+VisualView
+ChangeEvent
+EditorialInsight
+```
+
+最终：
+
+```text
+Knowledge Layer
+│
+├── Entity
+├── Relation
+├── Fact
+├── Source
+├── Alias
+└── Revision
+
+
+Presentation Layer
+│
+├── VisualView
+├── Layout
+├── Annotation
+├── Media
+└── EditorialInsight
+
+
+Update Layer
+│
+├── ChangeEvent
+├── Verification
+└── Staleness
+```
+
+这三个 Layer 分离以后，整个产品会舒服很多。
+
+---
+
+# 十三、ChangeEvent 非常重要
+
+AI 产品有一个与普通百科完全不同的问题：
+
+> **变化太快。**
+
+所以数据库不要只保存：
+
+> Seedance supports X。
+
+还要保存：
+
+```text
+2026-02-xx
+Seedance 2.0 released
+
+2026-03-xx
+Added XXX
+
+2026-07-xx
+Available on XXX
+```
+
+然后首页自然多一个非常有价值的区域：
+
+# 最近 AI 视频发生了什么？
+
+不是新闻 Feed。
+
+而是：
+
+```text
+Aug 6
+Kling
+新增 XXXX
+
+Aug 4
+Veo
+API 上线 XXXX
+
+Jul 30
+Wan
+发布 XXXX
+```
+
+全部来自你的结构化数据库。
+
+这非常适合持续访问。
+
+---
+
+# 十四、Editorial Insight 解决另一个问题
+
+数据并不自动产生认知。
+
+后台允许你针对一张图写：
+
+```text
+Insight
+
+title:
+“2025–2026 最大变化不是画质，而是控制能力”
+
+related_entities:
+Motion Control
+Reference Video
+Character Reference
+Video Editing
+```
+
+前端显示成：
+
+> **一个判断**
+
+而不是一篇文章。
+
+用户点击展开相关证据。
+
+这特别适合你的“少文字”。
+
+---
+
+# 十五、这也直接解决你以后做视频的问题
+
+因为：
+
+```text
+VisualView
++
+EditorialInsight
++
+Entity
++
+Relation
++
+Media
+```
+
+天然就是视频脚本。
+
+例如你建立：
+
+# 《AI 视频控制能力演进》
+
+网页上是互动时间线。
+
+点击：
+
+> ▶ 播放
+
+页面自动演绎：
+
+```text
+2023
+Text → Video
+
+↓
+
+2024
+Image → Video
+
+↓
+
+Character Reference
+
+↓
+
+First / Last Frame
+
+↓
+
+Motion Control
+```
+
+同时旁白解释。
+
+之后甚至：
+
+> **导出 9:16**
+
+直接变成你的抖音视频。
+
+这个闭环我很认可。
+
+---
+
+# 十六、前端视觉风格我会怎么定
+
+我不会做：
+
+> 黑底 + 满屏荧光线 + Cyberpunk。
+
+这种“AI 网站感”很快就廉价了。
+
+我会做：
+
+# **Editorial Tech**
+
+感觉接近：
+
+> 科技杂志 × 数据地图 × Apple 式克制动画。
+
+基础：
+
+* 大量留白/留黑
+* 极少量主色
+* 信息分类颜色固定
+* 线条细
+* Node 不做厚重玻璃卡片
+* Logo 很小
+* 字体清楚
+* 动画慢而准确
+
+例如：
+
+```text
+Company        灰
+Model          主强调色
+Capability     第二语义色
+Platform       轮廓节点
+Skill          带 ▶ 的媒体节点
+Open Source    ◇
+Commercial     ●
+```
+
+颜色永远有语义。
+
+不是为了漂亮随机上色。
+
+---
+
+# 十七、动效也要遵循一个原则
+
+> **动画必须解释关系，而不是装饰。**
+
+好的动画：
+
+Seedance 节点点击
+↓
+公司路径亮起
+↓
+Capability 生长出来
+↓
+Platform 从另一侧连接
+
+用户因此理解：
+
+> 谁开发 → 能干嘛 → 去哪用。
+
+坏动画：
+
+* 粒子背景
+* Logo 一直漂
+* 卡片上下浮动
+* 发光
+* 不停旋转
+
+这些全部不要。
+
+---
+
+# 十八、修改后的技术选择
+
+我会把上一版修改成：
+
+```text
+Frontend
+────────────────
+
+Next.js + React
+
+基础 UI
+Tailwind
+
+动画
+Motion
+
+模型关系地图
+React Flow + ELK
+（第一阶段）
+
+能力时间轴
+D3 + SVG
+
+矩阵
+TanStack Table
+
+Skill
+Native Video / HLS
+Lazy Load
+Hover Preview
+
+
+Backend
+────────────────
+
+PostgreSQL
+
+ORM
+Drizzle / Prisma
+
+CMS
+Directus 或 Payload
+
+Storage
+S3 / R2
+
+Search
+Postgres FTS
+
+后期：
+Meilisearch
+
+
+Knowledge
+────────────────
+
+Entity
+Relation
+Fact
+Source
+Alias
+Revision
+
+
+Presentation
+────────────────
+
+VisualView
+EditorialInsight
+Annotation
+Media
+
+
+Update
+────────────────
+
+ChangeEvent
+Verification
+Staleness
+```
+
+---
+
+# 十九、如果让我重新安排 MVP
+
+我甚至不会先把全部后台做好。
+
+## Sprint 1：只做一张“假数据”的漂亮图
+
+### 《2026 AI 视频地图》
+
+手工写 JSON：
+
+* Kling
+* Seedance
+* Veo
+* Sora
+* Wan
+* Hailuo
+
+6 家生态。
+
+目标只有一个：
+
+> **截图发出去的时候，本身就让人想点进去看。**
+
+如果这张图不好看，不进入后台开发。
+
+---
+
+## Sprint 2
+
+做：
+
+### 《AI 视频能力演进 2022–2026》
+
+仍然可以先用 JSON。
+
+目标：
+
+> 用户拖一次时间轴，就理解这几年发生了什么。
+
+---
+
+## Sprint 3
+
+做：
+
+### Platform × Model
+
+这时候验证实用性。
+
+---
+
+## Sprint 4
+
+才开始：
+
+Postgres
+Entity
+Relation
+Source
+CMS
+
+把之前的静态 JSON 换成动态数据。
+
+---
+
+# 二十、最终审查结论
+
+上一版我会保留大约 **70% 的后台设计**。
+
+但前端产品思想要重做。
+
+原方案更像：
+
+> **建立 AI 数据库，然后想办法可视化。**
+
+修改后应该是：
+
+> **先设计几张足够优秀、能真正让人理解 AI 的“知识作品”，再建立统一数据库给这些作品供数。**
+
+这是完全不同的优先级。
+
+我认为产品的三个核心壁垒最后会变成：
+
+**可信** —— 每个事实都有来源和核实时间。
+
+**看得懂** —— 关系、时间和能力优先用图表达。
+
+**愿意逛** —— 每一个重要 Skill 都能看到实际效果，每张知识地图本身都有视觉吸引力和观点。
+
+而且我会用一个非常苛刻的标准判断前端是否合格：
+
+> **即使把所有正文解释删掉，只留下 Logo、节点、线、日期、图标和几个关键词，用户仍然大致能理解这张图在讲什么。**
+
+如果做到这一点，AI Video Atlas 就不会只是另一个“AI 资料网站”，而有机会成为一个真正有识别度的**视觉化 AI 知识产品**。
+
+[1]: https://ourworldindata.org/owid-entry-redesign?utm_source=chatgpt.com "Introducing our updated work on Poverty: a new design for our content | Our World in Data"
+
+第四轮：
+有，而且这一轮我会换成“**这个产品为什么可能失败**”来审，不再从技术完整性出发。
+
+我先给结论：
+
+> **新版方案最大的问题已经不是前端够不够漂亮，而是“漂亮之后，用户为什么还要第二次回来”。**
+
+前端确实重要，但它更像第一道门。真正决定这个产品能不能活下来的，是三件事：
+
+* 能不能在 10 秒内让用户获得认知；
+* 能不能在 1 分钟内解决一个具体问题；
+* 能不能持续给用户新的、可信的变化。
+
+这三件事里，第一件靠前端，后两件靠产品结构和内容系统。
+
+---
+
+# 第一处缺点：现在仍然有点“展示型产品”
+
+新版已经从数据库网站进化成了视觉知识产品，但它仍有一个危险：
+
+> 用户第一次打开会觉得“哇，这张图不错”。
+
+然后呢？
+
+如果他看完：
+
+* AI 视频地图
+* 能力演进图
+* Kling / Seedance 关系
+* 平台矩阵
+
+之后没有明确的后续任务，产品可能变成：
+
+> 一次性看展。
+
+这其实和你前面测试粒子特效时的问题很像：第一次有趣，第二次呢？
+
+## 优化
+
+必须给产品设计三个**长期任务入口**：
+
+### 我想知道最近发生了什么
+
+对应：
+
+**What changed**
+
+> 过去 7 天 AI 视频领域新增了什么模型、能力、API、平台支持。
+
+### 我现在想做一个东西
+
+对应：
+
+**What can do this**
+
+例如：
+
+> 我想做人物动作复刻
+
+直接返回：
+
+```text
+Motion Control
+├─ Kling
+├─ Wan Animate
+├─ 对应官方入口
+├─ 开源 Workflow
+└─ 相关 Skill
+```
+
+### 我现在要选一个东西
+
+对应：
+
+**Compare**
+
+> Kling vs Seedance
+> Higgsfield vs 即梦
+> Motion Control 有哪些实现？
+
+这样产品从：
+
+> “来看图。”
+
+变成：
+
+> **“遇到 AI 问题时，我来这里查。”**
+
+这个差别非常大。
+
+---
+
+# 第二处缺点：我们还没有真正定义核心用户
+
+现在方案同时适合：
+
+* 普通 AI 用户
+* AI 视频创作者
+* 开发者
+* 产品经理
+* 投资者
+* 行业研究者
+
+看起来用户很多，其实很危险。
+
+因为这些人想看的完全不同。
+
+比如：
+
+### 开发者
+
+想知道：
+
+* API
+* 输入输出
+* 价格
+* Context / resolution
+* 商用许可
+* 开源权重
+
+### AI 创作者
+
+想知道：
+
+* 这能做什么效果
+* 去哪里点
+* Skill
+* Demo
+* 哪个最容易用
+
+### 投资研究
+
+想知道：
+
+* 公司
+* 团队
+* 融资
+* 模型发布时间
+* 市场格局
+
+如果首页想同时满足三类人，一定越来越复杂。
+
+## 优化
+
+第一阶段我会正式把核心用户限定为：
+
+> **想跟上 AI 创作技术、但没有精力自己追所有平台的创作者 / 产品人 / 技术从业者。**
+
+也就是“懂一点 AI，但不知道整个生态”。
+
+这与你自己当前的状态非常接近。
+
+于是默认首页优先回答：
+
+> 能做什么？
+
+而不是：
+
+> 参数多少？
+
+开发者参数放第二层。
+
+公司融资也放第二层。
+
+---
+
+# 第三处缺点：Capability 这个词看似清楚，其实非常容易乱
+
+这是我这一轮认为非常严重的一点。
+
+比如：
+
+> Motion Control
+
+到底是什么？
+
+Kling 的 Motion Control 是模型原生能力。
+
+但 Picsart 的 AI Dance 可能是：
+
+> 产品模板 + 某个动作控制模型 + Prompt + 后处理。
+
+而 MiniMax Hub 的某个 Skill 又可能只是：
+
+> Workflow。
+
+如果最后数据库都写：
+
+```text
+supports Motion Control = true
+```
+
+就会把不同层级的能力混成一锅。
+
+## 必须增加“能力实现层级”
+
+例如：
+
+### Native Capability
+
+模型原生提供：
+
+> Kling Motion Control
+
+### Platform Feature
+
+平台封装：
+
+> Picsart AI Dance
+
+### Workflow
+
+多个模型拼出来：
+
+> ComfyUI Dance Workflow
+
+### Effect / Skill
+
+用户感知层：
+
+> “让照片跳舞”
+
+最终关系应该是：
+
+```text
+用户需求
+让照片跳舞
+      ↓
+
+Skill
+AI Dance
+      ↓
+
+Implementation
+Motion Control
+      ↓
+
+Model
+Kling
+```
+
+这其实可能成为你整个知识库最重要的知识抽象。
+
+---
+
+# 第四处缺点：平台 × 模型关系表比想象中更复杂
+
+之前我们写：
+
+| 平台         | Kling | Seedance |
+| ---------- | ----- | -------- |
+| Higgsfield | ✓     | ✓        |
+
+实际上这个 ✓ 很危险。
+
+因为真实情况可能是：
+
+> Kling 3.0
+> Kling 2.6
+> Kling O1
+
+平台可能只接了其中一个。
+
+还存在：
+
+* 中国区是否可用
+* API 是否可用
+* Web 是否可用
+* 当前是否 Preview
+* 是否已经下线
+* 是否仅 Pro
+* 是否支持某个 Capability
+
+所以：
+
+> Platform → Model
+
+并不是一个静态关系。
+
+它至少需要：
+
+```text
+Platform
+Model Version
+Access Type
+Region
+Plan
+Status
+Valid From
+Valid To
+Verified At
+Source
+```
+
+例如：
+
+```text
+Higgsfield
+→ Kling 3.0
+→ Web
+→ Global
+→ Pro
+→ Active
+→ verified 2026-08-07
+```
+
+这一点不解决，未来这个矩阵会越来越不可信。
+
+---
+
+# 第五处缺点：更新维护可能成为整个项目最大的敌人
+
+这甚至比前端难。
+
+AI 信息变化速度太快。
+
+今天：
+
+> Seedance 2.0 available on X
+
+下个月：
+
+> 2.1 发布。
+
+再过一个月：
+
+> X 平台下线旧版。
+
+一个普通百科可以半年更新一次。
+
+AI 能力地图不行。
+
+社区现在对 AI Directory 的一个典型批评就是：覆盖越大，越容易堆积过期、低质量条目；而大型目录的“全”反而导致发现困难。([Reddit][1])
+
+## 优化
+
+不要只做：
+
+> `verified_at`
+
+要做：
+
+# 字段级 Freshness
+
+不同事实设置不同保鲜期。
+
+例如：
+
+| 数据            |   建议复核 |
+| ------------- | -----: |
+| API 价格        | 7～14 天 |
+| 平台是否提供模型      |   14 天 |
+| 模型 Capability |   30 天 |
+| 模型版本          |   30 天 |
+| 开源状态          |   60 天 |
+| 公司归属          |  180 天 |
+
+超过以后：
+
+```text
+Fresh
+↓
+Needs review
+↓
+Stale
+```
+
+前台甚至可以显示一个很轻的标记：
+
+> Verified 6 days ago
+
+这会形成可信度。
+
+---
+
+# 第六处缺点：“Visual View”还是容易变成精美的信息海报
+
+这是很微妙的问题。
+
+我们目前的 VisualView 是：
+
+> 人工挑节点 → 布局 → 标注 → 做漂亮。
+
+这很好。
+
+但它仍可能只是：
+
+> 一张优秀 PPT。
+
+真正优秀的交互视觉作品，需要一个：
+
+# Question
+
+或者一个：
+
+# Thesis
+
+The Pudding 对视觉叙事有一个非常好的判断标准：
+
+> 好故事不是只有一个 topic，而应该有一个值得讨论的 thesis；并且视觉形式本身应该比普通文章更适合解释这个东西。([The Pudding][2])
+
+所以以后不要建立：
+
+> 《AI 视频能力演进图》
+
+这种标题就结束。
+
+应该进一步变成：
+
+> **《AI 视频这两年最大的进步，其实不是画质》**
+
+然后视觉证明：
+
+```text
+2023
+生成
+
+↓
+
+2024
+一致性
+
+↓
+
+2025
+控制
+
+↓
+
+2026
+导演能力
+```
+
+这就从：
+
+> database visualization
+
+变成：
+
+> **知识观点。**
+
+这个差别会决定内容有没有传播力。
+
+---
+
+# 第七处缺点：太强调“交互”，可能反而制造视觉疲劳
+
+你刚刚提到现在用户视觉疲劳。
+
+这里反而要小心一个反直觉问题：
+
+> **越高级的前端，不代表越多动画。**
+
+第一次打开：
+
+* Logo 飞
+* 节点生长
+* 边线变化
+* Hover 视频
+* Timeline 移动
+* 背景动
+
+这些全加上之后，会非常累。
+
+The Pudding 自己对优秀动画的评价也常常强调：动画的价值在于让用户出现“哦，原来如此”的理解，而不是动画本身漂亮。([The Pudding][3])
+
+## 优化
+
+以后任何动画上线前都问：
+
+> 去掉这个动画，用户会少理解什么？
+
+如果答案：
+
+> 没少理解，只是没那么酷。
+
+删掉。
+
+因此建议只保留三种动画：
+
+### Relationship Motion
+
+展示：
+
+> A 和 B 原来有关。
+
+### Temporal Motion
+
+展示：
+
+> 2024 → 2026 发生了什么。
+
+### Capability Demo
+
+展示：
+
+> 这个能力到底能生成什么。
+
+其余动效尽量克制。
+
+---
+
+# 第八处缺点：我们一直按桌面端设计
+
+这一点很危险。
+
+关系图、矩阵、时间轴：
+
+> 全部天然适合 1440px 屏幕。
+
+但你的用户很可能从：
+
+* 抖音
+* 小红书
+* 微信
+* 搜索结果
+
+手机点进来。
+
+Our World in Data 在自己的地图产品里也专门为移动端简化交互，而不是硬把桌面版本缩小。([Our World in Data][4])
+
+所以不能：
+
+> PC 关系图 → CSS scale 到手机。
+
+## 手机应该是另一套表达
+
+例如桌面：
+
+```text
+ByteDance
+   ↓
+Seed
+   ↓
+Seedance → Capability → Platform
+```
+
+手机：
+
+```text
+Seedance
+
+ByteDance / Seed
+
+能力
+● I2V
+● Multi-reference
+● Native Audio
+
+↓
+
+在哪使用
+即梦
+火山
+Higgsfield
+
+↓
+
+相关能力
+Motion Control
+...
+```
+
+再有一个按钮：
+
+> 查看完整关系图
+
+所以我会要求：
+
+> **任何 VisualView 都必须拥有 desktop view + mobile narrative view。**
+
+不是响应式缩小。
+
+---
+
+# 第九处缺点：目前缺少“分享单位”
+
+你以后想靠视频引流，这是对的。
+
+但网站本身也要天然可传播。
+
+不能用户看到：
+
+> Seedance vs Kling 很有意思。
+
+却只能分享整个网页。
+
+应该每一个：
+
+* View
+* Comparison
+* Timeline state
+* Entity focus
+* Capability
+
+都生成唯一 URL。
+
+例如：
+
+```text
+/video/compare/kling-vs-seedance
+```
+
+甚至：
+
+```text
+/video/evolution?year=2025&focus=motion-control
+```
+
+同时自动生成：
+
+* 16:9 分享图
+* 1:1
+* 3:4
+* 9:16
+
+这时候用户发出去的不是：
+
+> 一个网站链接。
+
+而是：
+
+> **一张本身就有信息量的知识图。**
+
+这很重要。
+
+---
+
+# 第十处缺点：我们缺少一个非常强的“搜索答案层”
+
+现在搜索设想还是：
+
+> 搜 Kling → Kling 页面。
+
+太传统了。
+
+真正适合这个产品的搜索应该允许：
+
+> 哪个视频模型支持动作控制？
+
+> Seedance 在哪里可以用？
+
+> 有哪些开源视频编辑模型？
+
+> Kling 和 Wan 有什么共同能力？
+
+> 什么能把人物动作迁移到动漫角色？
+
+然后直接返回一个：
+
+# Answer View
+
+例如：
+
+> **支持 Motion Control 的主要实现**
+
+```text
+       Motion Control
+          │
+ ┌────────┼────────┐
+ Kling    Wan     ...
+ ●原生    ◇开源
+```
+
+下面才给资料来源。
+
+未来甚至不一定需要聊天机器人。
+
+**搜索 → 自动生成一个小型 VisualView**
+
+就已经非常强。
+
+---
+
+# 第十一处缺点：没有考虑“认知地图”和“事实数据库”的冲突
+
+这是以后一定会发生的。
+
+假设真实世界有：
+
+> 56 个视频模型。
+
+为了让用户看懂，VisualView 只放：
+
+> 8 个。
+
+那有人会问：
+
+> 为什么没有 XXX？
+
+所以每张编辑型图必须明确：
+
+> Curated view
+
+并且写：
+
+> 展示当前具有代表性的主要模型，并非完整列表。
+
+下面：
+
+> 查看全部 56 个模型 →
+
+这可以避免：
+
+> “你怎么漏了谁？”
+
+同时保住视觉质量。
+
+---
+
+# 第十二处缺点：缺少“变化的重要性”
+
+Change Event 当前是：
+
+```text
+Aug 6
+Kling 新增 XXX
+```
+
+这容易再次变成 AI 新闻站。
+
+更好的形式是：
+
+```text
+Aug 6
+
+Kling 新增 XXXX
+
+为什么重要
+
+过去只能 A
+现在可以 B
+
+影响
+
+→ AI Dance
+→ Character animation
+→ ...
+```
+
+也就是说：
+
+# Change + So What
+
+不是新闻。
+
+这会非常符合整个产品定位：
+
+> **不是告诉你发生了什么，而是帮你理解意味着什么。**
+
+---
+
+# 第十三处缺点：缺乏开放贡献机制
+
+一个人维护整个 AI 世界，很难。
+
+但也不能直接开放 Wiki 编辑，否则质量会崩。
+
+以后建议：
+
+> Suggest correction
+
+用户只提交：
+
+```text
+哪里错了
+新来源
+URL
+一句说明
+```
+
+进入后台 Draft。
+
+你审核。
+
+还可以允许厂商：
+
+> Claim / Submit official update
+
+但同样不能直接发布。
+
+这样未来：
+
+> 社区帮你找到变化，你负责编辑判断。
+
+而不是你自己监视全互联网。
+
+---
+
+# 第十四处缺点：目前没有真正的护城河定义
+
+漂亮前端会被抄。
+
+数据库也会被抄。
+
+模型列表更会被抄。
+
+最后真正不容易复制的可能有三样：
+
+### 1. Ontology
+
+你怎么定义：
+
+> Model
+> Capability
+> Skill
+> Workflow
+> Platform Feature
+
+以及它们的关系。
+
+### 2. Temporal Knowledge
+
+你不仅知道现在，还知道：
+
+> 什么时候发生变化。
+
+### 3. Editorial Views
+
+同样的数据，你持续做出：
+
+> “为什么 2026 是 AI 视频控制元年？”
+
+这类高质量解释。
+
+这三者结合才开始形成资产。
+
+---
+
+# 第十五处缺点：我们现在太想做“网站”
+
+换一个更远的角度看：
+
+它以后可能根本不只是网站。
+
+你的核心资产应该是：
+
+```text
+AI Knowledge Graph
+         ↓
+ ┌───────┼────────┐
+ ↓       ↓        ↓
+Web    Video     API
+ ↓       ↓        ↓
+Atlas   抖音     其他产品
+        B站
+        小红书
+```
+
+甚至以后：
+
+> MCP / API
+
+别人问：
+
+> “Seedance 当前支持哪些控制能力？”
+
+你的数据库直接提供答案。
+
+所以后台数据应该从第一天就：
+
+> **Content-independent**
+
+不要把一条关系写死成：
+
+> “页面上的第三个卡片”。
+
+VisualView 才负责页面。
+
+这点上一版已经开始做了，但我会把它提升到核心架构原则。
+
+---
+
+# 我现在会把产品重新压成四层
+
+## 第一层：Hook
+
+让第一次用户停下来。
+
+只有：
+
+> **AI 视频发展到了哪一步？**
+
+一张极强的 Visual Story。
+
+---
+
+## 第二层：Explore
+
+让用户产生兴趣。
+
+* 模型地图
+* 能力演进
+* Skill Demo
+* 公司生态
+
+---
+
+## 第三层：Utility
+
+让用户回来。
+
+* 搜索
+* Compare
+* 平台 × 模型
+* 哪个能力去哪用
+* 开源 Workflow
+* 官方入口
+
+---
+
+## 第四层：Freshness
+
+让产品持续存在。
+
+* What changed
+* Last verified
+* Change + So What
+* Source
+* Correction
+
+---
+
+# 这轮审查后，我认为真正的 P0 应该变化
+
+之前：
+
+> 三张可视化。
+
+现在我会改成：
+
+### P0-1
+
+**一个极优秀的 Visual Story**
+
+> 《AI 视频已经发展到哪一步了？》
+
+这是品牌第一印象。
+
+### P0-2
+
+**一个真正有用的 Search**
+
+支持：
+
+> 模型 / 平台 / Capability / Skill。
+
+### P0-3
+
+**一个 Entity Focus 页面**
+
+例如 Seedance。
+
+10 秒看清：
+
+> 谁做的 → 能干嘛 → 去哪用 → 相关 Skill → 来源。
+
+### P0-4
+
+**Compare**
+
+先只比较两个模型。
+
+### P0-5
+
+**What Changed**
+
+哪怕第一版只有 10 条。
+
+---
+
+模型全景图、复杂 Network Graph、完整 Wiki 页面，反而都可以往后。
+
+---
+
+## 最后一个反向判断
+
+你说：
+
+> 做好前端才是成功的基石。
+
+我会把这句话稍微修正成：
+
+> **做好“认知体验”才是成功的基石，前端只是它最重要的表达工具。**
+
+因为视觉前端做得太优秀也可能只是 Digital Art。
+
+最理想的用户反馈不是：
+
+> “这个网站好酷。”
+
+而是：
+
+> “靠，我终于搞懂 Kling、Seedance、Higgsfield 到底是什么关系了。”
+
+The Pudding 之所以值得参考，不是因为它动画多，而是它明确把视觉叙事定义成：有些复杂东西，用普通长文很难解释，而视觉可以让它突然变得可理解。([The Pudding][5])
+
+**这才应该成为 AI Video Atlas 前端的最高验收标准。**
+
+[1]: https://www.reddit.com/r/AIToolsAndTips/comments/1uxqonh/the_ai_directories_that_are_actually_serious/?utm_source=chatgpt.com "The AI directories that are actually serious about staying around"
+[2]: https://pudding.cool/pitch/?utm_source=chatgpt.com "Pitch a Story"
+[3]: https://pudding.cool/pudding-cup/?utm_source=chatgpt.com "The Pudding Cup"
+[4]: https://ourworldindata.org/new-features-better-maps?utm_source=chatgpt.com "Announcing new features: better interactive maps | Our World in Data"
+[5]: https://pudding.cool/about/?utm_source=chatgpt.com "About Us"
+
+第五轮：
+有，而且这一次我觉得问题已经不再主要出在“产品功能设计”上了。
+
+第三版已经把前三个大坑基本补上了：
+
+> 第一版解决“有什么知识”
+> 第二版解决“用户愿不愿意看”
+> 第三版解决“用户为什么回来”
+
+如果现在继续审，我认为第四版真正要解决的是：
+
+# **这些知识从哪里来、凭什么是真的、怎样持续保持是真的。**
+
+也就是从“产品设计”进入 **Knowledge Supply Chain（知识供应链）**。
+
+而你提出“大模型智能体自动获取和更新数据”，方向是对的。我甚至认为这个项目**天然适合 Agent**，但我会强烈限制 Agent 的权力：
+
+> **让 Agent 做研究员，不让 Agent 做主编。**
+
+至少第一阶段一定这样。
+
+---
+
+# 一、第三版还有一个最大的隐藏问题：我们一直在说 Fact，但现实世界里没有那么简单
+
+上一版后台里有：
+
+```text
+Entity
+Relation
+Fact
+Source
+```
+
+现在我会改。
+
+因为互联网上经常不是：
+
+> 一个 Fact → 一个 Source。
+
+而是：
+
+```text
+Source A：
+Seedance 支持 XXX
+
+Source B：
+某个平台接入 Seedance
+
+Source C：
+平台写的模型名字又不一样
+
+Source D：
+Benchmark 把它叫 Dreamina Seedance 2.0 720p
+```
+
+甚至官方自己以后还会修改网页。
+
+因此真正应该储存的是：
+
+```text
+Source Snapshot
+       ↓
+     Claim
+       ↓
+ Evidence
+       ↓
+ Resolution
+       ↓
+Canonical Fact
+```
+
+也就是说：
+
+> **先保存“某个来源说了什么”，最后才决定“我们认为当前事实是什么”。**
+
+这是第四版我认为非常重要的变化。
+
+---
+
+# 二、为什么这件事重要
+
+拿 Kling Motion Control 来说。
+
+Kling 官方当前明确把 Motion Control 描述为模型能力，并且说明 VIDEO 3.0 是在 VIDEO 2.6 Motion Control 基础上升级的。([Kling AI][1])
+
+所以数据库可以记录：
+
+```text
+Claim
+
+subject:
+Kling Video 3.0
+
+predicate:
+supports
+
+object:
+Motion Control
+
+source:
+Kling Official
+
+evidence:
+官方明确说明……
+
+observed_at:
+2026-08-07
+```
+
+然后：
+
+```text
+Canonical Fact
+
+Kling Video 3.0
+    supports
+Motion Control
+```
+
+但是另外一个网站说：
+
+> “XXX 平台支持 Motion Control。”
+
+这不能自动推导：
+
+> XXX 平台用了 Kling。
+
+这就是 Agent 特别容易“聪明过头”的地方。
+
+所以系统必须遵守：
+
+> **Explicit evidence > AI inference。**
+
+如果来源没有说，就标：
+
+> Unknown
+
+而不是让模型补全。
+
+---
+
+# 三、大模型 Agent 非常适合这个项目，但不要搞“自由智能体”
+
+我不建议一上来做：
+
+```text
+给 Agent 一个浏览器
+
+“去网上研究今天 AI 视频发生了什么。”
+
+↓
+
+Agent 自己搜索
+自己判断
+自己修改数据库
+自己发布
+```
+
+这东西 Demo 很爽，数据库迟早烂掉。
+
+更好的结构是：
+
+# **确定性 Workflow + LLM 节点**
+
+```text
+Source Registry
+      ↓
+Scheduler
+      ↓
+Fetcher
+      ↓
+Snapshot
+      ↓
+Change Detector
+      ↓
+LLM Extractor
+      ↓
+Entity Resolver
+      ↓
+Claim Validator
+      ↓
+Conflict Detector
+      ↓
+Impact Analyzer
+      ↓
+Review Queue
+      ↓
+Publish
+```
+
+Agent 只是里面几个需要认知能力的节点。
+
+---
+
+# 四、我会这样划分“机器”和“AI”的职责
+
+| 环节                | 怎么做          | Agent 权限 |
+| ----------------- | ------------ | -------- |
+| 定时检查              | 程序           | 无需 LLM   |
+| 下载页面/API          | 程序           | 无需 LLM   |
+| 判断页面有没有变化         | Hash / Diff  | 无需 LLM   |
+| 从新内容发现模型/能力       | LLM          | 可以       |
+| 提取结构化 Claim       | LLM + Schema | 可以       |
+| Entity 去重         | 规则 + LLM     | 建议       |
+| 判断两个来源冲突          | LLM + 规则     | 可以       |
+| 判断更新重要性           | LLM          | 可以       |
+| 写一句「为什么重要」        | LLM          | 可以       |
+| 修改 Canonical Fact | 规则/人工        | 第一阶段禁止自动 |
+| 发布到前台             | 人工确认         | 第一阶段禁止自动 |
+
+所以严格来说，它不是：
+
+> Agent 自动建百科。
+
+而是：
+
+> **AI-assisted Knowledge ETL。**
+
+我更喜欢这个定位。
+
+---
+
+# 五、真正省成本的地方不是“模型便宜”，而是 Diff
+
+这一点很重要。
+
+假设你监控 100 个页面。
+
+千万不要每天：
+
+```text
+抓100个页面
+↓
+100个页面全部丢给LLM
+↓
+重新分析
+```
+
+完全没有必要。
+
+应该：
+
+```text
+GET / API
+↓
+ETag
+Last-Modified
+Content Hash
+↓
+没变化
+结束
+
+有变化
+↓
+DOM Diff
+↓
+只提取 Changed Section
+↓
+交给 LLM
+```
+
+例如某个官方页面只是：
+
+> `Seedance 2.0 API available`
+
+这一小段发生变化。
+
+Agent 就只研究这一小段。
+
+这样未来哪怕几千个 Source，成本也不会离谱。
+
+---
+
+# 六、某些源甚至根本不用爬网页
+
+这是第一批数据源选择时非常重要的一点。
+
+Epoch AI 已经提供每日更新 CSV，目前 AI Models Dataset 有 2,000+ 模型，并且明确是 CC-BY，可以在署名条件下使用、传播和再利用；他们本身也是近乎每天加入新模型。([Epoch AI][2])
+
+所以：
+
+```text
+Epoch AI CSV
+↓
+每天 diff
+↓
+发现新模型
+↓
+进入 Candidate Queue
+```
+
+这比让 Agent 搜 Google 稳定太多。
+
+Hugging Face 更适合自动化。Hub 有开放 API，而且官方还提供 Webhook，可以获得 Repo 的增量变化。([Hugging Face][3])
+
+GitHub 同理，官方 Releases API 可以直接查询公开项目 Releases，所以 Wan、ComfyUI Workflow、开源视频模型等完全可以靠 API 监控版本变化，而不是爬页面。([GitHub Docs][4])
+
+所以原则应该是：
+
+> **API > RSS/Webhook > Sitemap > HTML 页面 > 搜索引擎。**
+
+搜索引擎应该主要负责：
+
+> Discovery
+
+而不是：
+
+> Evidence。
+
+---
+
+# 七、第一批 Source Registry，我已经可以给你定了
+
+如果现在正式开发，我会先建立大约 **30～50 个 Source**，而不是让 Agent 漫游互联网。
+
+第一批来源结构如下：
+
+| 层级 | 来源                     | 用途                    |
+| -- | ---------------------- | --------------------- |
+| S  | 模型官方 Docs / Blog / API | Capability、版本、发布时间    |
+| S  | 官方 GitHub              | 开源状态、版本、Workflow      |
+| S  | 官方平台 Model Catalog     | Platform × Model      |
+| A  | Epoch AI               | 模型/公司基础数据、历史          |
+| A  | Artificial Analysis    | Benchmark、价格参考、当前活跃模型 |
+| A  | Hugging Face           | 开源模型、Model Card、Repo  |
+| B  | AI Wiki                | 发现关系、寻找原始引用           |
+| B  | arXiv                  | Paper、作者、研究发展         |
+| B  | fal / Replicate        | API 可用性、输入输出          |
+| C  | Reddit / X / B站等       | 发现新的 Skill / Workflow |
+
+但等级的意义不是“S一定正确”。
+
+而是：
+
+> 对某一类 Claim，哪个 Source 有资格成为证据。
+
+例如：
+
+**Kling 支持 Motion Control**
+
+应该优先 Kling 官方。([Kling AI][1])
+
+**某模型 Benchmark 排名**
+
+Artificial Analysis 才是正确来源；其当前视频榜单确实持续记录模型 Elo、发布时间、样本量和 API 价格。([Artificial Analysis][5])
+
+**AI 公司投资数据**
+
+Epoch / 官方融资公告 / SEC 等。
+
+不能因为 Kling 官网是 S Source，就拿它自己声称的：
+
+> 世界第一。
+
+作为 Benchmark。
+
+---
+
+# 八、Artificial Analysis 有个很典型的数据授权问题
+
+这个也说明为什么必须做 `Source Registry`。
+
+Artificial Analysis 很适合：
+
+> 给用户链接过去
+> 引用某个当前结论
+> 给 Benchmark 提供出处。
+
+但他们目前明确写：
+
+> 数据 redistribution 或 external use 需要联系他们。([Artificial Analysis][6])
+
+所以暂时不能：
+
+```text
+定时爬完整榜单
+↓
+复制成自己的 Benchmark 数据库
+```
+
+除非获得许可。
+
+可以：
+
+```text
+Benchmark:
+Artificial Analysis
+
+[查看当前排名 ↗]
+```
+
+或者只保存有限的、带时间的引用事实。
+
+Epoch 则不同，明确 CC-BY，可以成为你很好的 Bootstrap 数据源。([Epoch AI][2])
+
+这就是为什么每个 Source 都应该有：
+
+```text
+license
+redistribution_policy
+crawl_policy
+authority
+update_method
+```
+
+---
+
+# 九、AI Wiki 我建议定位成“侦察兵”，不是“母数据库”
+
+AI Wiki 目前已经 4,000+ 篇，并明确说内容持续更新、有引用，而且最近还会展示每天的新文章和实质修改；它也强调文章来自 primary sources。([AI Wiki][7])
+
+所以 Agent 可以：
+
+```text
+AI Wiki
+↓
+发现：
+“居然还有这个模型”
+↓
+读取它引用的官方来源
+↓
+回官方源核实
+↓
+入库
+```
+
+而不是：
+
+```text
+AI Wiki
+↓
+复制进自己的数据库
+```
+
+这样它就成为你的：
+
+> Discovery Source。
+
+Futurepedia 同理。
+
+---
+
+# 十、第一批数据甚至可以用 Agent 从 Seedance 开始跑通
+
+Seedance 是非常好的第一个测试对象，因为官方页面已经包含大量可结构化信息。
+
+ByteDance 官方目前明确给出：
+
+* Seedance 2.0 于 2026-02-12 发布；
+* 支持 text / image / audio / video 四种输入；
+* 最多可参考 9 张图、3 个视频、3 个音频；
+* 支持视频编辑、延长；
+* 可生成 15 秒多镜头音视频；
+* 已上线即梦、豆包、火山方舟等。([字节跳动 Seed][8])
+
+Agent 读完后不是写一篇文章。
+
+而应该吐出：
+
+```text
+Entity
+Seedance
+Seedance 2.0
+ByteDance
+ByteDance Seed
+Dreamina
+Doubao
+Volcano Engine
+
+Relations
+ByteDance Seed -> develops -> Seedance
+Seedance 2.0 -> version_of -> Seedance
+Seedance 2.0 -> available_on -> Dreamina
+...
+
+Capabilities
+Text-to-Video
+Image-to-Video
+Audio Reference
+Video Reference
+Multi-reference
+Video Editing
+Video Extension
+Multi-shot
+Native Audio
+```
+
+每一个 Claim 都带：
+
+```text
+source_url
+evidence
+observed_at
+```
+
+这就是第一条完整流水线。
+
+---
+
+# 十一、然后系统自动发现变化
+
+这一点会非常漂亮。
+
+例如火山引擎早期页面说：
+
+> Seedance 2.0 API 即将开放。([火山引擎开发者社区][9])
+
+后来官方页面又说：
+
+> Seedance 2.0 API 已全面开放。([火山引擎开发者社区][10])
+
+Agent 应该识别：
+
+```text
+Previous Claim
+
+Seedance 2.0
+API Status
+Coming Soon
+
+↓
+
+New Claim
+
+Seedance 2.0
+API Status
+Available
+```
+
+然后产生：
+
+# Change Event
+
+```text
+Seedance 2.0 API 正式开放
+
+Before:
+Preview / Coming Soon
+
+After:
+Available
+
+Impact:
+开发者现在可以正式接入生产工作流
+
+Source:
+Volcano Engine
+```
+
+于是你第三版里的：
+
+> **What Changed + So What**
+
+就不需要人工每天写。
+
+Agent 已经把 Draft 做出来了。
+
+你只需要：
+
+> ✓ Publish
+
+---
+
+# 十二、这里还有第三版没有意识到的一个问题：Entity Resolution
+
+这是以后数据库最容易烂掉的地方之一。
+
+例如：
+
+```text
+Seedance 2
+Seedance 2.0
+Dreamina Seedance 2.0
+Doubao-Seedance-2.0
+seedance-2.0
+```
+
+可能其实是：
+
+> 同一个模型 / 同一模型不同 Provider ID。
+
+不能创建五个 Entity。
+
+所以实体至少需要：
+
+```text
+canonical_name
+
+aliases[]
+
+vendor_model_ids[]
+
+family
+
+version
+
+provider_aliases[]
+```
+
+例如 Artificial Analysis 当前写的是：
+
+> Dreamina Seedance 2.0 720p。([Artificial Analysis][11])
+
+ByteDance 官方写：
+
+> Seedance 2.0。([字节跳动 Seed][8])
+
+你的系统需要知道：
+
+> 这里相关，但不一定完全是同一个部署 Variant。
+
+LLM 可以提出：
+
+> `possible_same_entity = true`
+
+但**第一阶段不能自己 Merge**。
+
+---
+
+# 十三、Capability Ontology 必须在 Agent 之前确定
+
+这一点非常重要。
+
+如果不给 Schema，Agent 今天可能写：
+
+```text
+Motion Reference
+```
+
+明天：
+
+```text
+Reference Motion
+```
+
+后天：
+
+```text
+Motion Transfer
+```
+
+最后数据库彻底乱了。
+
+所以你先人工定义：
+
+```text
+Generation
+├── Text-to-Video
+├── Image-to-Video
+└── Video-to-Video
+
+Reference
+├── Character Reference
+├── Image Reference
+├── Video Reference
+├── Audio Reference
+└── Multi-reference
+
+Control
+├── First Frame
+├── Last Frame
+├── First/Last Frame
+├── Motion Control
+├── Camera Control
+└── Pose Control
+
+Narrative
+├── Multi-shot
+├── Storyboard
+└── Video Extension
+
+Audio
+├── Native Audio
+├── Dialogue
+├── Music
+└── Lip Sync
+
+Editing
+├── Video Editing
+├── Object Edit
+├── Character Edit
+└── Style Transfer
+```
+
+Agent只能：
+
+> 选择现有 Capability。
+
+发现实在没有：
+
+> `candidate_new_capability`
+
+进入人工审核。
+
+不能自己不断创造标签。
+
+---
+
+# 十四、我还会把“LLM confidence”去掉
+
+不要让模型输出：
+
+> confidence = 0.93
+
+这种数字看起来科学，其实没有多少意义。
+
+真正的 Data Quality Score 应该来自几个可计算条件：
+
+```text
+Source Authority
++
+Evidence Explicitness
++
+Cross-source Agreement
++
+Freshness
++
+Human Verification
+```
+
+例如：
+
+> 官方明确写明 + 今天抓取 + 人工验证
+
+自然高可信。
+
+而不是因为 GPT 说：
+
+> 我有 96% 信心。
+
+---
+
+# 十五、Agent 自动化程度应该逐渐开放
+
+第一阶段：
+
+> **100% 人工批准后 Publish。**
+
+跑 500～1000 条 Claim 后，你会知道 Agent 哪里容易错。
+
+第二阶段可以允许一些非常机械的 Claim 自动发布：
+
+```text
+GitHub release published
+模型新增版本号
+Repo Stars
+发布日期
+官方 Model ID
+某 Provider API 返回该模型
+```
+
+这些高度结构化。
+
+但下面这些我长期都会谨慎：
+
+```text
+“擅长复杂运动”
+“行业领先”
+“适合广告”
+“这是原生能力”
+“XXX 使用了 YYY 模型”
+“这个更新非常重要”
+```
+
+这些都包含语义判断。
+
+---
+
+# 十六、还有一个第四版必须补上的东西：Inclusion Policy
+
+不然 Agent 越厉害，你死得越快。
+
+今天发现：
+
+> 12 个模型。
+
+明天：
+
+> 80 个。
+
+半年：
+
+> 3,000 个 Model Variant。
+
+这又变成 AI Wiki。
+
+Epoch 已经面对这个问题，所以它明确区分 Notable / Frontier / Large-scale / All Models，而不是所有东西等价展示。([Epoch AI][2])
+
+你的 AI Video Atlas 也应该明确：
+
+### Core
+
+> 值得普通用户知道。
+
+### Extended
+
+> 有明显能力特色、产业意义。
+
+### Catalog
+
+> 数据库里存在，但不进入主地图。
+
+例如：
+
+```text
+数据库：280 个模型
+
+AI Video Landscape：
+只显示 15 个
+
+Compare：
+重点支持 30 个
+
+完整搜索：
+280 个
+```
+
+这样 Agent 可以大规模采集，而前端永远保持克制。
+
+---
+
+# 十七、第四版后的完整系统，其实已经很清晰了
+
+现在我会把它看成：
+
+```text
+                AI VIDEO ATLAS
+
+                   FRONTEND
+                      │
+          ┌───────────┼───────────┐
+       Visual       Utility      Freshness
+       Story        Search       Changes
+       Atlas        Compare      So What
+                      │
+────────────────────────────────────
+                  KNOWLEDGE
+                      │
+       Entity — Relation — Capability
+                      │
+          Canonical Fact Layer
+                      │
+────────────────────────────────────
+                 RESEARCH
+                      │
+             Claim + Evidence
+                      │
+             Source Snapshot
+                      │
+────────────────────────────────────
+                INGESTION
+                      │
+    API / RSS / GitHub / HF / Web / Search
+                      │
+               AI Agent Pipeline
+```
+
+这比最开始：
+
+> Postgres + React Flow 做个模型图
+
+已经不是一个层级了。
+
+---
+
+# 十八、我现在反而认为 Agent 是这个产品非常重要的资产
+
+因为以后从：
+
+> AI Video
+
+扩展成：
+
+> AI Image
+
+不需要重新雇人抄资料。
+
+只需要：
+
+```text
+增加 Source Registry
+↓
+复用 Ontology
+↓
+Agent Discover
+↓
+Review
+```
+
+再到：
+
+> Audio / Music / 3D / Agent / Robotics
+
+同样如此。
+
+所以你真正积累的是：
+
+> **一套自动把“混乱的 AI 世界”转换成“有证据的结构化知识”的机器。**
+
+这东西的长期价值，甚至可能高于前端地图本身。
+
+---
+
+# 如果现在开始，我建议开发顺序再调整一次
+
+不要先做全套漂亮前端。
+
+也不要先造大 Agent。
+
+**第一步同时做两个极小原型。**
+
+前端原型：
+
+> 《AI 视频现在发展到哪一步？》
+
+用手工 JSON，先验证视觉体验。
+
+数据原型：
+
+> 只研究 Seedance + Kling。
+
+建立：
+
+```text
+Source Registry
+→ Fetch
+→ Snapshot
+→ Diff
+→ LLM Extract
+→ Claim
+→ Evidence
+→ Human Review
+→ Canonical Fact
+```
+
+如果这两件事情都跑通，再连接起来。
+
+届时第一批再扩到：
+
+> Seedance / Kling / Veo / Wan / Hailuo / Runway / Sora / Luma 等核心模型家族，
+
+再加入 Epoch、Hugging Face、GitHub、Artificial Analysis、AI Wiki 等横向数据源。
+
+---
+
+## 这一轮我的最终判断
+
+第三版**产品形态已经可以开始做了**，我不会再建议继续停留在纯方案讨论阶段。
+
+但真正开始前，我会把它升级为第四版原则：
+
+> **前端不是知识的展示层，而是认知层；Agent 不是作者，而是研究员；数据库不直接储存“真相”，而是储存来源、声明、证据，再解析成当前事实。**
+
+做到这一点以后，你的产品会同时具备三种质量：
+
+> **视觉上值得看。**
+> **实用上值得回来。**
+> **数据上值得相信。**
+
+第三条恰恰是大多数 AI 导航、AI Wiki 式产品最容易在规模扩大以后丢掉的东西。
+
+而且我非常赞成**第一批数据就按照这套 Agent 流程产生**，不要先人工填几百条再补自动化。因为如果第一批 20 个模型的数据就是通过这条流水线生成的，你是在验证产品的同时，也在验证它未来能不能靠一个人长期维护。
+
+[1]: https://kling.ai/quickstart/motion-control-user-guide?utm_source=chatgpt.com "Kling Motion Control User Guide | Kling AI"
+[2]: https://epoch.ai/data/ai-models-documentation?utm_source=chatgpt.com "AI Models Documentation – Overview | Epoch AI"
+[3]: https://huggingface.co/docs/hub/en/api?utm_source=chatgpt.com "Hub API Endpoints · Hugging Face"
+[4]: https://docs.github.com/en/rest/releases?utm_source=chatgpt.com "REST API endpoints for releases and release assets - GitHub Docs"
+[5]: https://artificialanalysis.ai/video/leaderboard/image-to-video?utm_source=chatgpt.com "Image to Video Leaderboard - Top AI Video Models"
+[6]: https://artificialanalysis.ai/pricing?utm_source=chatgpt.com "Pricing | Artificial Analysis"
+[7]: https://aiwiki.ai/about?utm_source=chatgpt.com "About | AI Wiki"
+[8]: https://seed.bytedance.com/blog/seedance-2-0-official-launch?utm_source=chatgpt.com "Seed News - ByteDance Seed Team"
+[9]: https://developer.volcengine.com/articles/7606009619928449070?utm_source=chatgpt.com "Seedance 2.0上线火山方舟体验中心，API即将开放 - 文章 - 开发者社区 - 火山引擎"
+[10]: https://developer.volcengine.com/articles/7628567056649125942?utm_source=chatgpt.com "Seedance 2.0全面开放API服务 - 文章 - 开发者社区 - 火山引擎"
+[11]: https://artificialanalysis.ai/video/leaderboard/image-to-video/?utm_source=chatgpt.com "Image to Video Leaderboard - Top AI Video Models"

@@ -1,0 +1,574 @@
+{
+  "generated_at": "2026-09-11",
+  "n": 0,
+  "n_unclear": 0,
+  "n_missing": 31,
+  "n_skipped": 53,
+  "rows": [
+    {
+      "kind": "牌子摘了",
+      "m": "anysplat",
+      "family": "AnySplat",
+      "cur": "v1",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "hf-anysplat",
+      "src_at": "2026-09-04",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "aurora",
+      "family": "Aurora",
+      "cur": "1",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "sci-aurora-gh",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "cogvideox",
+      "family": "CogVideoX",
+      "cur": "2b/5b",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "hf-cogvideox",
+      "src_at": "2026-09-05",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "cosmos",
+      "family": "NVIDIA Cosmos",
+      "cur": "Cosmos3",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "cosmos3-card",
+      "src_at": "2026-09-05",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "doubao",
+      "family": "Doubao",
+      "zh": "豆包",
+      "cur": "Seed-2.1 Pro",
+      "cur_as_of": "2026-06-23",
+      "found": null,
+      "src": "doubao-force-2026",
+      "src_at": "2026-08-12",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "esm",
+      "family": "ESM-2",
+      "cur": "650M",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "sci-esm2-card",
+      "src_at": "2026-08-15",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "flux-video",
+      "family": "FLUX 3",
+      "zh": "FLUX 3",
+      "cur": "3",
+      "cur_as_of": "2026-08",
+      "found": null,
+      "src": "bfl-flux3",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "gemini-tts",
+      "family": "Gemini TTS",
+      "cur": "3.1 Flash TTS Preview",
+      "cur_as_of": "2026-08-12",
+      "found": null,
+      "src": "gemini-tts",
+      "src_at": "2026-09-09",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "genie",
+      "family": "Google Genie",
+      "cur": "Genie 3",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "genie3-blog",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "glm-voice",
+      "family": "GLM Voice",
+      "zh": "智谱语音",
+      "cur": "glm-4-voice",
+      "cur_as_of": "2026-08-12",
+      "found": null,
+      "src": "glm-voice-doc",
+      "src_at": "2026-09-09",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "gnome",
+      "family": "GNoME",
+      "cur": "1",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "sci-gnome-gh",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "hailuo",
+      "family": "MiniMax Hailuo",
+      "zh": "海螺",
+      "cur": "H3",
+      "cur_as_of": "2026-07-31",
+      "found": null,
+      "src": "minimax-release-notes",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "hunyuan-avatar",
+      "family": "HunyuanVideo-Avatar",
+      "cur": "1.0",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "hf-hunyuan-avatar",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "hunyuan3d",
+      "family": "Hunyuan3D",
+      "zh": "混元3D",
+      "cur": "3.1",
+      "cur_as_of": "2026-08-13",
+      "found": null,
+      "src": "replicate-hunyuan3d-31",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "liveportrait",
+      "family": "LivePortrait",
+      "cur": "1.0",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "hf-liveportrait",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "lucy",
+      "family": "Decart Lucy",
+      "zh": "Lucy",
+      "cur": "Lucy 2.5",
+      "cur_as_of": "2026-08-07",
+      "found": null,
+      "src": "decart-site",
+      "src_at": "2026-09-05",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "magi",
+      "family": "MAGI",
+      "cur": "2 Preview",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "hf-magi",
+      "src_at": "2026-09-05",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "mattergen",
+      "family": "MatterGen",
+      "cur": "1",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "sci-mattergen-gh",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "mm-speech",
+      "family": "MiniMax Speech",
+      "zh": "MiniMax 语音",
+      "cur": "speech-2.8-hd",
+      "cur_as_of": "2026-08-12",
+      "found": null,
+      "src": "minimax-api-overview",
+      "src_at": "2026-09-09",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "musetalk",
+      "family": "MuseTalk",
+      "cur": "1.0",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "hf-musetalk",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "neuralgcm",
+      "family": "NeuralGCM",
+      "cur": "1",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "sci-neuralgcm-gh",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "oasis",
+      "family": "Decart Oasis",
+      "cur": "Oasis 3",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "decart-site",
+      "src_at": "2026-09-05",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "openai-tts",
+      "family": "GPT TTS",
+      "cur": "GPT-4o mini TTS",
+      "cur_as_of": "2026-08-12",
+      "found": null,
+      "src": "openai-models",
+      "src_at": "2026-09-10",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "openvla",
+      "family": "OpenVLA",
+      "cur": "7B",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "openvla-gh",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "qwen-omni",
+      "family": "Qwen Omni",
+      "zh": "通义千问 Omni",
+      "cur": "3.5-omni-plus",
+      "cur_as_of": "2026-08-12",
+      "found": null,
+      "src": "bailian-websearch",
+      "src_at": "2026-09-09",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "qwen3-asr",
+      "family": "Qwen3-ASR",
+      "zh": "通义 Qwen3-ASR",
+      "cur": "1.7B",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "hf-qwen3-asr",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "rodin",
+      "family": "Rodin",
+      "cur": "Gen-2.5",
+      "cur_as_of": "2026-08-13",
+      "found": null,
+      "src": "rodin-api-docs",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "runway",
+      "family": "Runway Gen",
+      "zh": "Runway",
+      "cur": "Gen-4.5",
+      "cur_as_of": "2025-12-11",
+      "found": null,
+      "src": "rw-changelog",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "scribe",
+      "family": "ElevenLabs Scribe",
+      "cur": "v2",
+      "cur_as_of": "2026-08-15",
+      "found": null,
+      "src": "elevenlabs-models",
+      "src_at": "2026-09-09",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "spar3d",
+      "family": "SPAR3D",
+      "cur": "Stable Point Aware 3D",
+      "cur_as_of": "2026-08-13",
+      "found": null,
+      "src": "stability-spar3d",
+      "src_at": "2026-08-29",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "vjepa",
+      "family": "Meta V-JEPA",
+      "cur": "V-JEPA 2",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "vjepa2-blog",
+      "src_at": "2026-08-14",
+      "evidence": ""
+    }
+  ],
+  "skipped": [
+    {
+      "m": "grok-image",
+      "why": "xai-imagine-image 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "grok-video",
+      "why": "xai-imagine-video 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "luma-ray",
+      "why": "luma-ray32 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "muse-spark",
+      "why": "meta-muse 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "lux3d",
+      "why": "lux3d-site 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "locateanything",
+      "why": "hf-locateanything 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "gemini-omni",
+      "why": "版本串「Flash」里没有数字，比不了"
+    },
+    {
+      "m": "wan",
+      "why": "wan3-qbitai / wan-gh-releases 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "sora",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "happyhorse",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "hunyuan-video",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "mochi",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "allegro",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "open-sora",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "flux",
+      "why": "hf-lineage 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "z-image",
+      "why": "hf-lineage 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "hunyuan-image",
+      "why": "hf-lineage 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "sd",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "kolors",
+      "why": "版本串「待核」里没有数字，比不了"
+    },
+    {
+      "m": "midjourney",
+      "why": "版本串「待核」里没有数字，比不了"
+    },
+    {
+      "m": "hidream",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "ernie-image",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "ovis-image",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "lens",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "mage-flow",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "pixeldit",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "anima",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "boogu-image",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "newbie-image",
+      "why": "没署 version_src，这家也没有标 good_for: version 的源"
+    },
+    {
+      "m": "llama",
+      "why": "hf-text-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "glm-tts",
+      "why": "版本串「GLM-TTS」里没有数字，比不了"
+    },
+    {
+      "m": "cosyvoice",
+      "why": "hf-sound-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "fish-speech",
+      "why": "hf-sound-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "apple-sharp",
+      "why": "版本串「Sharp」里没有数字，比不了"
+    },
+    {
+      "m": "i2vgen",
+      "why": "版本串「XL」里没有数字，比不了"
+    },
+    {
+      "m": "longcat-image",
+      "why": "版本串「Edit」里没有数字，比不了"
+    },
+    {
+      "m": "heygen",
+      "why": "版本串「Avatar V」里没有数字，比不了"
+    },
+    {
+      "m": "hallo2",
+      "why": "版本串「Hallo-Live」里没有数字，比不了"
+    },
+    {
+      "m": "molmoact",
+      "why": "hf-robotics 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "pi",
+      "why": "版本串「π₀.₅」里没有数字，比不了"
+    },
+    {
+      "m": "smolvla",
+      "why": "hf-robotics 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "helix",
+      "why": "版本串「Helix」里没有数字，比不了"
+    },
+    {
+      "m": "xvla",
+      "why": "hf-robotics 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "internvla",
+      "why": "modelscope-orgs 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "hy-embodied",
+      "why": "modelscope-orgs 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "xiaomi-robotics",
+      "why": "hf-robotics 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "g0-vla",
+      "why": "modelscope-orgs 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "lingbot-vla",
+      "why": "modelscope-orgs 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "marble",
+      "why": "版本串「Marble」里没有数字，比不了"
+    },
+    {
+      "m": "wham",
+      "why": "版本串「WHAM」里没有数字，比不了"
+    },
+    {
+      "m": "oasis500m",
+      "why": "hf-robotics 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+    },
+    {
+      "m": "sensevoice",
+      "why": "版本串「Small」里没有数字，比不了"
+    },
+    {
+      "m": "mace",
+      "why": "版本串「MP」里没有数字，比不了"
+    }
+  ]
+}

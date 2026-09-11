@@ -1,0 +1,202 @@
+{
+  "$note": "引文回查的人审流水。**accept 是「认了这条引文不是逐字原文」不是「它错了」** —— 记下来是为了别再报，不是为了掩盖。",
+  "rows": [
+    {
+      "id": "vidu-up|vidu-q × flf",
+      "at": "2026-08-15 13:48:38",
+      "who": "冒烟测试",
+      "action": "repoint",
+      "why": "这句「Start end to video」在功能清单页里，vidu-up 是升级说明页，署错了",
+      "src": "vidu-up",
+      "at_label": "vidu-q × flf",
+      "kind": "本页没有·别处有",
+      "from": "vidu-up"
+    },
+    {
+      "id": "ideogram-edit|ideogram × i-edit",
+      "at": "2026-08-16 04:27:03",
+      "who": "admin",
+      "action": "repoint",
+      "why": "",
+      "src": "ideogram-edit",
+      "at_label": "ideogram × i-edit",
+      "kind": "本页没有·别处有",
+      "from": "ideogram-edit"
+    },
+    {
+      "id": "ideogram-v3-reframe|ideogram × i-outpaint",
+      "at": "2026-08-16 04:27:07",
+      "who": "admin",
+      "action": "accept",
+      "why": "",
+      "src": "ideogram-v3-reframe",
+      "at_label": "ideogram × i-outpaint",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "ideogram-v3-generate|ideogram × i-styleref",
+      "at": "2026-08-16 04:27:55",
+      "who": "admin",
+      "action": "repoint",
+      "why": "通用",
+      "src": "ideogram-v3-generate",
+      "at_label": "ideogram × i-styleref",
+      "kind": "本页没有·别处有",
+      "from": "ideogram-v3-generate"
+    },
+    {
+      "id": "ideogram-hf|ideogram × i-openweights",
+      "at": "2026-08-16 04:28:00",
+      "who": "admin",
+      "action": "repoint",
+      "why": "通用",
+      "src": "ideogram-hf",
+      "at_label": "ideogram × i-openweights",
+      "kind": "本页没有·别处有",
+      "from": "ideogram-hf"
+    },
+    {
+      "id": "hf-hunyuan3d-21|hunyuan3d × d-pbr",
+      "at": "2026-08-16 04:28:04",
+      "who": "admin",
+      "action": "repoint",
+      "why": "通用",
+      "src": "hf-hunyuan3d-21",
+      "at_label": "hunyuan3d × d-pbr",
+      "kind": "本页没有·别处有",
+      "from": "hf-hunyuan3d-21"
+    },
+    {
+      "id": "hf-hunyuan3d-21|hunyuan3d × d-openweights",
+      "at": "2026-08-16 04:28:07",
+      "who": "admin",
+      "action": "repoint",
+      "why": "通用",
+      "src": "hf-hunyuan3d-21",
+      "at_label": "hunyuan3d × d-openweights",
+      "kind": "本页没有·别处有",
+      "from": "hf-hunyuan3d-21"
+    },
+    {
+      "id": "hf-trellis2|trellis × d-t23d",
+      "at": "2026-08-16 04:28:16",
+      "who": "admin",
+      "action": "repoint",
+      "why": "",
+      "src": "hf-trellis2",
+      "at_label": "trellis × d-t23d",
+      "kind": "本页没有·别处有",
+      "from": "hf-trellis2"
+    },
+    {
+      "id": "hf-trellis2|trellis × d-multiview",
+      "at": "2026-08-16 04:28:19",
+      "who": "admin",
+      "action": "accept",
+      "why": "通用",
+      "src": "hf-trellis2",
+      "at_label": "trellis × d-multiview",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "hf-trellis2|trellis × d-edit",
+      "at": "2026-08-16 04:28:26",
+      "who": "admin",
+      "action": "accept",
+      "why": "通用",
+      "src": "hf-trellis2",
+      "at_label": "trellis × d-edit",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "arxiv-seed3d-20|seed3d × d-scene",
+      "at": "2026-08-16 04:28:30",
+      "who": "admin",
+      "action": "accept",
+      "why": "通用",
+      "src": "arxiv-seed3d-20",
+      "at_label": "seed3d × d-scene",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "decart-site|模型 lucy 版本",
+      "at": "2026-08-16 04:28:38",
+      "who": "admin",
+      "action": "accept",
+      "why": "通用",
+      "src": "decart-site",
+      "at_label": "模型 lucy 版本",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "seed-blog|模型 seedream 版本",
+      "at": "2026-08-16 04:28:41",
+      "who": "admin",
+      "action": "accept",
+      "why": "通用",
+      "src": "seed-blog",
+      "at_label": "模型 seedream 版本",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "replicate-hunyuan3d-31|模型 hunyuan3d 版本",
+      "at": "2026-08-19 02:21:54",
+      "who": "admin",
+      "action": "accept",
+      "why": "已阅",
+      "src": "replicate-hunyuan3d-31",
+      "at_label": "模型 hunyuan3d 版本",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "seed-blog|发布 seedream-Seedream 5.0 Pro-分层输出 + 圈画标注式改图",
+      "at": "2026-08-19 02:22:00",
+      "who": "admin",
+      "action": "accept",
+      "why": "已阅",
+      "src": "seed-blog",
+      "at_label": "发布 seedream-Seedream 5.0 Pro-分层输出 + 圈画标注式改图",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "claude-deprecations|发布 claude-Claude Fable 5-面向长程智能体；自适",
+      "at": "2026-08-19 02:22:27",
+      "who": "admin",
+      "action": "accept",
+      "why": "已阅",
+      "src": "claude-deprecations",
+      "at_label": "发布 claude-Claude Fable 5-面向长程智能体；自适",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "hf-hunyuan3d-21|发布 hy3d-2.1",
+      "at": "2026-08-19 02:22:34",
+      "who": "admin",
+      "action": "accept",
+      "why": "已阅",
+      "src": "hf-hunyuan3d-21",
+      "at_label": "发布 hy3d-2.1",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "openai-model-realtime|发布 gptrt-2025-08",
+      "at": "2026-08-19 02:22:41",
+      "who": "admin",
+      "action": "accept",
+      "why": "已阅",
+      "src": "openai-model-realtime",
+      "at_label": "发布 gptrt-2025-08",
+      "kind": "本页没有·别处有"
+    },
+    {
+      "id": "openai-model-tts|发布 gpttts-2025-12",
+      "at": "2026-08-19 02:23:54",
+      "who": "admin",
+      "action": "accept",
+      "why": "已阅",
+      "src": "openai-model-tts",
+      "at_label": "发布 gpttts-2025-12",
+      "kind": "本页没有·别处有"
+    }
+  ]
+}

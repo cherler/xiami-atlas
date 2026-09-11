@@ -1,0 +1,52 @@
+{
+  "name": "xiamimate-ai-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3400",
+    "build": "next build",
+    "start": "next start -p 3400",
+    "validate": "node scripts/validate.mjs",
+    "prebuild": "node scripts/validate.mjs && node scripts/alert.mjs",
+    "package": "bash scripts/package.sh",
+    "watch": "node scripts/watch.mjs --due",
+    "gateway": "node scripts/local-gateway.mjs",
+    "gateway:static": "node scripts/local-gateway.mjs --main=static --atlas=static",
+    "modelscope": "node scripts/modelscope.mjs --json",
+    "diagrams": "node scripts/make-diagrams.mjs",
+    "diagrams:check": "node scripts/diagram-contrast.mjs",
+    "topic:tabs": "node scripts/topic-tabs.mjs",
+    "tutorials:check": "node scripts/tutorials-check.mjs",
+    "deepwiki": "node scripts/deepwiki.mjs",
+    "readme": "node scripts/fetch-readme.mjs",
+    "basepath": "node scripts/basepath-check.mjs",
+    "repos": "node scripts/refresh-repos.mjs",
+    "fresh": "node scripts/fresh.mjs",
+    "readme:drift": "node scripts/readme-drift.mjs",
+    "film:capture": "node scripts/film-capture.mjs",
+    "film:audio": "node scripts/film-audio.mjs",
+    "film:cut": "node scripts/film-cut.mjs",
+    "film:mix": "node scripts/film-mix.mjs",
+    "test:rules": "node scripts/test-rules.mjs",
+    "verify": "node scripts/verify.mjs",
+    "station": "node scripts/review-ui.mjs",
+    "todo": "node scripts/todo.mjs",
+    "alert": "node scripts/alert.mjs"
+  },
+  "dependencies": {
+    "geist": "^1.7.2",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "mermaid": "^11.16.1",
+    "playwright": "^1.62.1",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}

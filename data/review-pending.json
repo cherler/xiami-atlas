@@ -1,0 +1,225 @@
+{
+  "$note": "人审认可、但**信息不够落库**的条目。它是采集单，不是数据 —— 不要读进前端。",
+  "rows": [
+    {
+      "id": "2026-08-07::kling-api-updates::kling 3.0 turbo::new-model::Kling 3.0 Turbo 模型正式发布（K",
+      "at": "2026-08-11 09:13:21",
+      "who": "刘振海",
+      "claim": "Kling 3.0 Turbo 模型正式发布（Kling 3.0 Turbo Officially Released）",
+      "quote": "Kling 3.0 Turbo Officially Released",
+      "source": "kling-api-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-08-07::kling-api-updates::kling 3.0 turbo::pricing::Kling 3.0 Turbo 按生成视频时长计",
+      "at": "2026-08-11 12:27:01",
+      "who": "admin",
+      "claim": "Kling 3.0 Turbo 按生成视频时长计费：720P 每秒扣 0.8 单位，1080P 每秒扣 1.0 单位",
+      "quote": "0.8 units are deducted per second for 720P generation, and 1.0 unit is deducted per second for 1080P generation",
+      "source": "kling-api-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-mix::multiref::viduq3-mix 模型支持 referenc",
+      "at": "2026-08-11 12:27:37",
+      "who": "admin",
+      "claim": "viduq3-mix 模型支持 reference2video（多参考/主体参考生视频）",
+      "quote": "Support the addition of viduq3-mix、viduq3-turbo、viduq3 model for reference2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::multiref::viduq3-turbo 模型支持 refere",
+      "at": "2026-08-11 12:27:41",
+      "who": "admin",
+      "claim": "viduq3-turbo 模型支持 reference2video",
+      "quote": "Support the addition of viduq3-mix、viduq3-turbo、viduq3 model for reference2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::t2v::viduq3-turbo 模型支持 text2v",
+      "at": "2026-08-11 12:28:24",
+      "who": "admin",
+      "claim": "viduq3-turbo 模型支持 text2video",
+      "quote": "Support the addition of viduq3-turbo model for both text2video and image2video and start-end2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::i2v::viduq3-turbo 模型支持 image2",
+      "at": "2026-08-11 12:28:30",
+      "who": "admin",
+      "claim": "viduq3-turbo 模型支持 image2video",
+      "quote": "Support the addition of viduq3-turbo model for both text2video and image2video and start-end2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3::multiref::viduq3 模型支持 reference2vi",
+      "at": "2026-08-11 12:28:46",
+      "who": "admin",
+      "claim": "viduq3 模型支持 reference2video",
+      "quote": "Support the addition of viduq3-mix、viduq3-turbo、viduq3 model for reference2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu（action synchronization）::motion::新增动作同步能力：输入动作参考视频+角色图片，生",
+      "at": "2026-08-11 12:29:26",
+      "who": "admin",
+      "claim": "新增动作同步能力：输入动作参考视频+角色图片，生成角色按参考视频动作运动的视频，10 points/秒",
+      "quote": "[Added Action Synchronization Capability] -Input action reference video+character image to generate a video of the character moving according to the reference video -10 points per second",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu one click 解决方案::other::新增一站式解决方案场景：通用影片 One Cli",
+      "at": "2026-08-11 12:29:28",
+      "who": "admin",
+      "claim": "新增一站式解决方案场景：通用影片 One Click For General Films、广告片 One Click For AD-Films、AI MV、热门复刻 One Click For Trending Replicate",
+      "quote": "[Add One stop solution Scenario] -It supports One Click For General Films and is applicable to various Internet scenes such as romantic dramas, live dramas, advertisements, documentaries, etc -Support One Click For AD-Films, helping you quickly create product promotional videos -Support One Click For AI MV, upload audio files+images, and generate beautiful MV videos with composite audio scenes for you -Support One Click For Trending Replicate, upload original videos, product or model images, and quickly replicate popular videos for you",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-pro::t2v::viduq3-pro 模型支持文生视频（Wens",
+      "at": "2026-08-11 12:29:33",
+      "who": "admin",
+      "claim": "viduq3-pro 模型支持文生视频（Wensheng）",
+      "quote": "Support the addition of viduq3-pro models for both Wensheng and Tusheng",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-pro::i2v::viduq3-pro 模型支持图生视频（Tush",
+      "at": "2026-08-11 12:29:34",
+      "who": "admin",
+      "claim": "viduq3-pro 模型支持图生视频（Tusheng）",
+      "quote": "Support the addition of viduq3-pro models for both Wensheng and Tusheng",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3 系列::audio::viduq3 系列模型支持高效生成高质量音视频内",
+      "at": "2026-08-11 12:29:45",
+      "who": "admin",
+      "claim": "viduq3 系列模型支持高效生成高质量音视频内容（原生音频）",
+      "quote": "Efficiently generate high-quality audio and video content, making the video content more vivid, vivid, and three-dimensional",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-pro::flf::viduq3-pro 模型支持 start-en",
+      "at": "2026-08-11 12:29:45",
+      "who": "admin",
+      "claim": "viduq3-pro 模型支持 start-end2video（首尾帧）",
+      "quote": "Support the addition of viduq3-pro model for start-end2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::flf::viduq3-turbo 模型支持 start-",
+      "at": "2026-08-11 12:29:47",
+      "who": "admin",
+      "claim": "viduq3-turbo 模型支持 start-end2video（首尾帧）",
+      "quote": "Support the addition of viduq3-turbo model for both text2video and image2video and start-end2video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2-pro-fast::i2v::viduq2-pro-fast 模型支持 Ima",
+      "at": "2026-08-11 12:30:06",
+      "who": "admin",
+      "claim": "viduq2-pro-fast 模型支持 Image to Video，速度更快、价格更低",
+      "quote": "Added viduq2-pro-fast model - Faster speed, lowest price, stable quality, supporting Image to Video and Start end to Video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2-pro-fast::flf::viduq2-pro-fast 模型支持 Sta",
+      "at": "2026-08-11 12:30:07",
+      "who": "admin",
+      "claim": "viduq2-pro-fast 模型支持 Start end to Video（首尾帧）",
+      "quote": "Added viduq2-pro-fast model - Faster speed, lowest price, stable quality, supporting Image to Video and Start end to Video",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu reference to video / image to video::audio::Reference to Video 和 Ima",
+      "at": "2026-08-11 12:30:15",
+      "who": "admin",
+      "claim": "Reference to Video 和 Image to Video 支持音视频直接输出（原生音频），可通过 subjects 和 audio 参数配置主体与台词",
+      "quote": "Audio&video direct output is now available for Vidu Reference to Video and Image to Video. - You can configure subjects and their spoken lines using the subjects and audio parameters.",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2::capability::viduq2 模型新增能力：Reference ",
+      "at": "2026-08-11 12:30:32",
+      "who": "admin",
+      "claim": "viduq2 模型新增能力：Reference to image、Text to image、image editing（图像生成/编辑，非视频能力）",
+      "quote": "Viduq2 models upgraded new abilities: Reference to image, Text to image and image editing.",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu digital human::lipsync::新增数字人能力：上传数字人图片+文本/语音输入生",
+      "at": "2026-08-11 12:30:34",
+      "who": "admin",
+      "claim": "新增数字人能力：上传数字人图片+文本/语音输入生成 talking-avatar 视频，支持自定义音色（隐含对口型）",
+      "quote": "New Digital Human Capability - Upload a digital human image along with text/voice input to generate a talking-avatar video. - This capability supports selecting a custom voice.",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2-pro::multiref::viduq2-pro 模型支持 Referenc",
+      "at": "2026-08-11 12:31:54",
+      "who": "admin",
+      "claim": "viduq2-pro 模型支持 Reference To Video（原视频编辑、图片参考视频、视频参考视频等）",
+      "quote": "Added viduq2-pro model（Reference To Video） - Support editing and creation of original videos, image reference videos, video reference videos, etc., to achieve repeated creation of video materials",
+      "source": "vidu-changelog",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    }
+  ]
+}

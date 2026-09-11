@@ -1,0 +1,8 @@
+{
+  "url": "https://replicate.com/tencent/hunyuan-3d-3.1",
+  "kind": "spa",
+  "fetched_at": "2026-08-29",
+  "digest": "1c6e2a998dc9f971",
+  "items": [],
+  "text": "Readme Hunyuan 3.1 3D Overview Hunyuan 3.1 3D is part of Tencent’s Hunyuan3D family of generative AI models designed to create high-quality 3D assets from text, images, or other inputs. The model focuses on improving geometry accuracy, texture quality, and generation speed for use in digital content production. Typical use cases include: - Game development - Virtual and augmented reality - Animation and film pre-visualization - Product visualization and e-commerce - 3D printing and rapid prototyping Features Text-to-3D Generation Generate 3D meshes from natural language descriptions. Image-to-3D Conversion Convert reference images into textured 3D models. Improved Geometry Quality Enhanced mesh topology and surface consistency compared to earlier releases. High-Resolution Texturing Produces more realistic materials and lighting effects. Pipeline Integration Designed to integrate with common 3D workflows and tools. Architecture (High-Level) Hunyuan 3.1 3D typically consists of multiple stages: Input Encoding Text encoder or image encoder converts input into latent representations. Shape Generation Diffusion or neural field models generate 3D geometry. Mesh Reconstruction Geometry converted into usable mesh formats. Texture Generation Textures synthesized and mapped to the mesh. Installation Note: Availability depends on Tencent’s official releases and licensing. Example structure for using an API or SDK: ```bash git clone https://github.com/example/hunyuan3d-demo cd hunyuan3d-demo pip install -r requirements.txt Model created 6 months, 2 weeks ago"
+}

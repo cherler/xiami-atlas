@@ -1,0 +1,29 @@
+{
+  "url": "https://huggingface.co/api/models?author=MiniMaxAI&sort=lastModified&direction=-1&limit=40",
+  "kind": "json",
+  "fetched_at": "2026-09-09",
+  "digest": "e65dbafc824f4f2e",
+  "items": [
+    "MiniMaxAI/MiniMax-H3\t2026-08-13T01:46:29.000Z",
+    "MiniMaxAI/MiniMax-M1-40k\t2025-07-07T07:50:30.000Z",
+    "MiniMaxAI/MiniMax-M1-40k-hf\t2025-07-11T02:07:58.000Z",
+    "MiniMaxAI/MiniMax-M1-80k\t2025-07-07T07:51:42.000Z",
+    "MiniMaxAI/MiniMax-M1-80k-hf\t2025-07-09T07:37:23.000Z",
+    "MiniMaxAI/MiniMax-M2\t2025-12-23T08:37:43.000Z",
+    "MiniMaxAI/MiniMax-M2.1\t2026-02-13T09:24:21.000Z",
+    "MiniMaxAI/MiniMax-M2.5\t2026-03-10T13:42:23.000Z",
+    "MiniMaxAI/MiniMax-M2.7\t2026-04-20T04:28:14.000Z",
+    "MiniMaxAI/MiniMax-M3\t2026-07-23T04:25:20.000Z",
+    "MiniMaxAI/MiniMax-M3-MXFP8\t2026-07-11T09:09:23.000Z",
+    "MiniMaxAI/MiniMax-Music3\t2026-08-14T10:51:40.000Z",
+    "MiniMaxAI/MiniMax-Text-01\t2025-07-03T05:13:03.000Z",
+    "MiniMaxAI/MiniMax-Text-01-hf\t2025-07-09T07:38:12.000Z",
+    "MiniMaxAI/MiniMax-VL-01\t2025-07-03T05:11:03.000Z",
+    "MiniMaxAI/SynLogic-32B\t2025-06-10T02:57:20.000Z",
+    "MiniMaxAI/SynLogic-7B\t2025-06-10T02:56:30.000Z",
+    "MiniMaxAI/SynLogic-Mix-3-32B\t2025-06-10T02:53:28.000Z",
+    "MiniMaxAI/VTP-Base-f16d64\t2025-12-16T09:23:12.000Z",
+    "MiniMaxAI/VTP-Large-f16d64\t2025-12-16T09:23:36.000Z",
+    "MiniMaxAI/VTP-Small-f16d64\t2025-12-16T09:22:49.000Z"
+  ]
+}

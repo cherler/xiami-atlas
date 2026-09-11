@@ -1,0 +1,255 @@
+{
+  "$note": "人审流水，**只增不改**。git commit 是 Revision，diff 是 ChangeEvent（§59.4.c）。",
+  "rows": [
+    {
+      "id": "2026-08-07::kling-api-updates::kling 3.0 turbo::new-model::Kling 3.0 Turbo 模型正式发布（K",
+      "at": "2026-08-11 09:13:21",
+      "who": "刘振海",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Kling 3.0 Turbo 模型正式发布（Kling 3.0 Turbo Officially Released）",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-08-07::kling-api-updates::kling 3.0 turbo::pricing::Kling 3.0 Turbo 按生成视频时长计",
+      "at": "2026-08-11 12:27:01",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Kling 3.0 Turbo 按生成视频时长计费：720P 每秒扣 0.8 单位，1080P 每秒扣 1.0 单位",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-mix::multiref::viduq3-mix 模型支持 referenc",
+      "at": "2026-08-11 12:27:37",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-mix 模型支持 reference2video（多参考/主体参考生视频）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::multiref::viduq3-turbo 模型支持 refere",
+      "at": "2026-08-11 12:27:41",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-turbo 模型支持 reference2video",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::t2v::viduq3-turbo 模型支持 text2v",
+      "at": "2026-08-11 12:28:24",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-turbo 模型支持 text2video",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::i2v::viduq3-turbo 模型支持 image2",
+      "at": "2026-08-11 12:28:30",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-turbo 模型支持 image2video",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3::multiref::viduq3 模型支持 reference2vi",
+      "at": "2026-08-11 12:28:46",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3 模型支持 reference2video",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu（action synchronization）::motion::新增动作同步能力：输入动作参考视频+角色图片，生",
+      "at": "2026-08-11 12:29:26",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "新增动作同步能力：输入动作参考视频+角色图片，生成角色按参考视频动作运动的视频，10 points/秒",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu one click 解决方案::other::新增一站式解决方案场景：通用影片 One Cli",
+      "at": "2026-08-11 12:29:28",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "新增一站式解决方案场景：通用影片 One Click For General Films、广告片 One Click For AD-Films、AI MV、热门复刻 One Click For Trending Replicate",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-pro::t2v::viduq3-pro 模型支持文生视频（Wens",
+      "at": "2026-08-11 12:29:33",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-pro 模型支持文生视频（Wensheng）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-pro::i2v::viduq3-pro 模型支持图生视频（Tush",
+      "at": "2026-08-11 12:29:34",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-pro 模型支持图生视频（Tusheng）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3 系列::audio::viduq3 系列模型支持高效生成高质量音视频内",
+      "at": "2026-08-11 12:29:45",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3 系列模型支持高效生成高质量音视频内容（原生音频）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-pro::flf::viduq3-pro 模型支持 start-en",
+      "at": "2026-08-11 12:29:45",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-pro 模型支持 start-end2video（首尾帧）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq3-turbo::flf::viduq3-turbo 模型支持 start-",
+      "at": "2026-08-11 12:29:47",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq3-turbo 模型支持 start-end2video（首尾帧）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2-pro-fast::i2v::viduq2-pro-fast 模型支持 Ima",
+      "at": "2026-08-11 12:30:06",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq2-pro-fast 模型支持 Image to Video，速度更快、价格更低",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2-pro-fast::flf::viduq2-pro-fast 模型支持 Sta",
+      "at": "2026-08-11 12:30:07",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq2-pro-fast 模型支持 Start end to Video（首尾帧）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu reference to video / image to video::audio::Reference to Video 和 Ima",
+      "at": "2026-08-11 12:30:15",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Reference to Video 和 Image to Video 支持音视频直接输出（原生音频），可通过 subjects 和 audio 参数配置主体与台词",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2::capability::viduq2 模型新增能力：Reference ",
+      "at": "2026-08-11 12:30:32",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq2 模型新增能力：Reference to image、Text to image、image editing（图像生成/编辑，非视频能力）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu digital human::lipsync::新增数字人能力：上传数字人图片+文本/语音输入生",
+      "at": "2026-08-11 12:30:34",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "新增数字人能力：上传数字人图片+文本/语音输入生成 talking-avatar 视频，支持自定义音色（隐含对口型）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::viduq2-pro::multiref::viduq2-pro 模型支持 Referenc",
+      "at": "2026-08-11 12:31:54",
+      "who": "admin",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "viduq2-pro 模型支持 Reference To Video（原视频编辑、图片参考视频、视频参考视频等）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-08-07::kling-api-updates::kling 3.0 turbo::t2v::Kling 3.0 Turbo 支持文生视频（7",
+      "at": "2026-08-11 12:34:59",
+      "who": "刘振海",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Kling 3.0 Turbo 支持文生视频（720P 与 1080P）",
+      "cell": "kling×t2v",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-08-07，库里那条是 3.0"
+    },
+    {
+      "id": "2026-08-07::kling-api-updates::kling 3.0 turbo::i2v::Kling 3.0 Turbo 支持图生视频（7",
+      "at": "2026-08-11 12:44:25",
+      "who": "admin",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Kling 3.0 Turbo 支持图生视频（720P 与 1080P）",
+      "cell": "kling×i2v",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-08-07，库里那条是 3.0"
+    },
+    {
+      "id": "2026-08-07::vidu-changelog::vidu q2::t2v::Vidu Q2 模型支持 9 秒和 10 秒时长",
+      "at": "2026-08-11 12:44:26",
+      "who": "admin",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Vidu Q2 模型支持 9 秒和 10 秒时长，覆盖 Text to Video、Reference to Video、Image to Video 接口",
+      "cell": "vidu-q×t2v",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-08-07，库里那条是 Q3"
+    }
+  ]
+}

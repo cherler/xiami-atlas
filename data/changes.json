@@ -1,0 +1,978 @@
+{
+ "$comment": "ChangeEvent（方案 §38）。**两类分开记**：world = 世界变了；ours = 我们记错了又改了。后者照样公开 —— 一个只报别人变化、从不报自己出错的变更页，是营销稿不是变更记录。\n\n⚠️ **变更事件只有这一份。** 我一度在 atlas.json 里另建了 change_events，那是同一个口径的第二份 —— 两份迟早对不上。合并回这里，atlas 那份已删。\n\n**每条必须带 domain。** 这一页是全站公共的（视频、图像，将来 3D、世界模型都往这里放），页面按方向分组呈现 —— 混在一起读者认不出哪条跟自己有关。",
+ "$kinds": {
+  "version": "版本更迭",
+  "status": "生命周期（停服 / 非主力）",
+  "capability": "能力面变化",
+  "availability": "去哪用变化",
+  "scope": "收录范围变化"
+ },
+ "$alert": "站上唯一会主动打断阅读的东西。带 alert 的事件会上首页横幅、RSS 置顶、并推一条飞书。**门槛由 validate.mjs 的 R92–R99 守着**：必须有出处、必须写为什么重要、挂不过一期（7 天，不写 until 就按这个算）、同时在架不超过 3 条。字段叫 alert 不叫 breaking：这一层不是「新闻」，是「知道与不知道，做法会不一样」。",
+ "$alert_label": "快讯",
+ "events": [
+  {
+   "id": "sora-2026-09-24",
+   "date": "2026-09-24",
+   "side": "world",
+   "kind": "生命周期",
+   "subject": "Sora",
+   "before": "Sora 2 API 可用，Replicate 与 APIYI 都在转售",
+   "after": "OpenAI 公告 API 于 2026-09-24 停止",
+   "why": "**上游停了，平台不一定同步下架** —— 现在两家仍挂着，买了会踩空",
+   "impact": [
+    "sora"
+   ],
+   "src": "replicate-t2v",
+   "models": [
+    "sora"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "scope-ltx",
+   "date": "2026-08-08",
+   "side": "ours",
+   "kind": "scope",
+   "subject": "收录名单第一次从数据里筛，不再抄交接文档",
+   "before": "9 个 Family，来自交接文档",
+   "after": "LTX 进 core（HF 下载 178 万，是 MiniMax H3 的 22 倍）；HappyHorse 与 SkyReels 进 extended；Sora 降 extended",
+   "why": "AA 榜第 5、第 6 的 HappyHorse 原名单里一个都没有。**抄来的名单反映的是写文档那个人的视野，不是世界的实际分布。**",
+   "impact": [
+    "开源侧的格局第一次进表（Lightricks / NVIDIA / 智谱在闭源榜上完全隐形）"
+   ],
+   "src": "aa-board",
+   "models": [
+    "ltx",
+    "happyhorse",
+    "skyreels",
+    "sora"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "our-alias-miss",
+   "date": "2026-08-07",
+   "side": "ours",
+   "kind": "capability",
+   "subject": "我们把「找不到」写成了「官方没说」",
+   "before": "Kling 与 Vidu 的角色参考、多参考、首尾帧、动作复刻、视频延长被标为 ⬜「官方没说」",
+   "after": "全部改为  —— 官方都有，只是叫法不同：Kling 叫 Element、Vidu 叫 Motion Sync / Start end to video、LTX 叫 Ingredients",
+   "why": "**这是本项目最严重的一次错。** ⬜ 那一列是我们最得意的东西（「不是我们没查，是查了找不到」），而前两家里接近一半其实是我们自己没找到 —— 把自己的疏忽包装成了对方的不透明。",
+   "impact": [
+    "每项能力加了 aliases，采集用整组别名匹配",
+    "ontology 补规则六"
+   ],
+   "src": null,
+   "models": [
+    "kling",
+    "vidu-q",
+    "ltx"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "our-stale-day-one",
+   "date": "2026-08-07",
+   "side": "ours",
+   "kind": "version",
+   "subject": "首批数据交付当天就有三个模型是过期版本",
+   "before": "Seedance 2.0 / Wan 2.5 / Runway Gen-4",
+   "after": "Seedance 2.5 / Wan 3.0 / Runway Gen-4.5（Wan 一家连错三次：2.5 → 2.7 → 3.0）",
+   "why": "起因是我用即席搜索当采集。**这正是「靠人手工追追不上」的实证** —— 也是后来把 49 个源接进定时管线的直接原因。",
+   "impact": [
+    "建了 Source Registry 与每日监视",
+    "ontology 加规则三之一：版本一升，没重新核验的格子必须退回 ⬜"
+   ],
+   "src": null,
+   "models": [
+    "seedance",
+    "wan",
+    "runway"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "seedance-2026-08-05",
+   "date": "2026-08-05",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "Seedance",
+   "before": "Seedance 2.0 支持四种输入模态",
+   "after": "2.5 主打一镜到底与灵活参考",
+   "why": "一镜到底把「多镜头拼接」这件事从后期挪到了生成阶段",
+   "impact": [
+    "seedance",
+    "skill:extend"
+   ],
+   "src": "seed-blog",
+   "models": [
+    "seedance"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "h3-open",
+   "date": "2026-08-03",
+   "side": "world",
+   "kind": "capability",
+   "subject": "MiniMax H3",
+   "before": "官方博客写的是「plan to open up the model weights in the coming days」",
+   "after": "权重已上 Hugging Face（280 个文件，含 safetensors）",
+   "why": "**「计划开」和「已经开」是两件事**，中间隔了几天。而许可是自定义的 minimax-h3-community-license-agreement，不是标准开源协议 —— 只看「开源」那一格会看错。",
+   "impact": [
+    "想自部署的可以动手了",
+    "商用前必须自己读许可条款"
+   ],
+   "src": "mm-hf-api",
+   "models": [
+    "hailuo"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "seedance-25",
+   "date": "2026-07-31",
+   "side": "world",
+   "kind": "version",
+   "subject": "Seedance",
+   "before": "2.0：单次 9 图 + 3 视频 + 3 音频参考",
+   "after": "2.5：单次最多 50 个参考输入（30 图 + 10 视频 + 10 音频），30 秒一镜到底，支持多轮延长",
+   "why": "参考输入的上限从 15 涨到 50，是这一代最实的一步 —— 而「参考」正是这两年真正在铺开的方向。",
+   "impact": [
+    "多主体、多镜头的活可以少拆几次",
+    "Replicate 上仍标着 coming soon，还用不上"
+   ],
+   "src": "seed-25",
+   "models": [
+    "seedance"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "hailuo-2026-07-31",
+   "date": "2026-07-31",
+   "side": "world",
+   "kind": "生命周期",
+   "subject": "MiniMax Hailuo",
+   "before": "海螺 01 / 02 / 2.3 全部闭源，只能调 API",
+   "after": "H3 放出权重（自定义社区许可），可自部署",
+   "why": "闭源阵营里第一家把主力模型的权重放出来的 —— **和万相正好走了相反的方向**",
+   "impact": [
+    "skill:openweights",
+    "capability:openweights",
+    "hailuo"
+   ],
+   "src": "minimax-release-notes",
+   "models": [
+    "hailuo"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "gemini-omni-2026-06-30",
+   "date": "2026-06-30",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "Gemini Omni",
+   "before": "Google 在视频这块只有 Veo 一条线",
+   "after": "gemini-omni-flash 上线，主打高速生成 + 对话式剪辑",
+   "why": "「对话式剪辑」是新的交互形态：不是给提示词重生成，是接着改",
+   "impact": [
+    "gemini-omni",
+    "capability:extend"
+   ],
+   "src": "gemini-changelog",
+   "models": [
+    "gemini-omni"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "kling-2026-06-17",
+   "date": "2026-06-17",
+   "side": "world",
+   "kind": "价格",
+   "subject": "Kling",
+   "before": "3.0 有声 1080P ¥1.2/秒",
+   "after": "Turbo 档有声 1080P ¥1.0/秒",
+   "why": "Turbo 把「有声」拉进了和无声接近的价位 —— 此前有声要多付 50%",
+   "impact": [
+    "skill:lipsync",
+    "capability:audio"
+   ],
+   "src": "kling-price",
+   "models": [
+    "kling"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "omni-default",
+   "date": "2026-05-19",
+   "side": "world",
+   "kind": "status",
+   "subject": "Google Veo → Gemini Omni Flash",
+   "before": "Veo 3.1 是 Google 的视频主力",
+   "after": "官方文档原话：「Use Gemini Omni Flash as your default model for video generation」；Veo 3.1 留给 scene extension、last-frame control 与老管线",
+   "why": "**厂商自己写明了取舍**。而且这句导购语反过来是 Omni 缺首尾帧与场景延长的官方证据 —— 只在两个模型并排读的时候才看得见。",
+   "impact": [
+    "新项目默认该用 Omni",
+    "需要首尾帧或场景延长的仍得回 Veo"
+   ],
+   "src": "g-video",
+   "models": [
+    "veo",
+    "gemini-omni"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "sora-eol",
+   "date": "2026-04-26",
+   "side": "world",
+   "kind": "status",
+   "subject": "Sora",
+   "before": "OpenAI 的旗舰视频产品，App 与 API 都在售",
+   "after": "App 已关停；API 计划 2026-09-24 停止；未宣布继任产品",
+   "why": "这是本表里唯一一个**能力全对、却不能用**的模型。照着能力表去选它的人，会在 9 月撞墙。",
+   "impact": [
+    "正在用 Sora API 的项目要排迁移",
+    "Replicate 与 APIYI 上仍在售 —— 货架比上游慢"
+   ],
+   "src": "sora-eol-search",
+   "models": [
+    "sora"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "runway-resell",
+   "date": "2026-04-07",
+   "side": "world",
+   "kind": "availability",
+   "subject": "Runway 开始转售别家模型",
+   "before": "Runway 是纯模型厂商，卖自己的 Gen 系列",
+   "after": "自家产品里提供 Seedance 2.0、WAN2.2 Animate、Sora 2 Pro 等；Max 套餐无限用 Seedance 2.5",
+   "why": "**厂商与平台两个身份合一了。** 「Runway 支持什么」和「在 Runway 上能用到什么」从此不是一个问题。",
+   "impact": [
+    "「去哪用」矩阵里 Runway 要占一行",
+    "比较模型时别把平台转售的算进它自己的能力"
+   ],
+   "src": "rw-changelog",
+   "models": [
+    "runway",
+    "seedance"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "ideogram-open-2026-05-30",
+   "date": "2026-05-30",
+   "side": "world",
+   "kind": "capability",
+   "domain": "image",
+   "subject": "Ideogram 4",
+   "before": "Ideogram 只有闭源 API，3.0 是我们记到的最新一代",
+   "after": "官方 HF 组织放出 ideogram-4-fp8 / nf4 权重，可在自己机器上跑",
+   "why": "**一条闭源线转开源** —— 这类换向比版本号更值得盯：它把「只能按次买」变成「可以自己部署」",
+   "impact": [
+    "ideogram"
+   ],
+   "src": "hf-image-org",
+   "models": [
+    "ideogram"
+   ]
+  },
+  {
+   "id": "gpt-image-2-2026-04-21",
+   "date": "2026-04-21",
+   "side": "world",
+   "kind": "version",
+   "domain": "image",
+   "subject": "GPT Image",
+   "before": "gpt-image-1（2025-04 起）",
+   "after": "GPT-image-2：4K，且生成前先想（能自查、能搜网）",
+   "why": "OpenAI 的模型清单里**已经只剩 gpt-image-2** —— 上一代不是并存，是被换掉了",
+   "impact": [
+    "gpt-image"
+   ],
+   "src": "ms-foundry-blog",
+   "models": [
+    "gpt-image"
+   ]
+  },
+  {
+   "id": "nano-banana-2-2026-02-26",
+   "date": "2026-02-26",
+   "side": "world",
+   "kind": "version",
+   "domain": "image",
+   "subject": "Nano Banana",
+   "before": "Nano Banana（2025-08）、Nano Banana Pro（2025-11）",
+   "after": "Nano Banana 2：Pro 的质量按 Flash 的速度和价钱出",
+   "why": "半年三代 —— **这条线的节奏是这一卷里最快的**，记录的版本号很容易过期",
+   "impact": [
+    "gemini-image"
+   ],
+   "src": "google-nb-blog",
+   "models": [
+    "gemini-image"
+   ]
+  },
+  {
+   "id": "seedream-5-2026-07-08",
+   "date": "2026-07-08",
+   "side": "world",
+   "kind": "version",
+   "domain": "image",
+   "subject": "Seedream",
+   "before": "Seedream 4.0：出图与改图并进一个模型",
+   "after": "Seedream 5.0 Pro：分层输出 + 圈画标注式改图",
+   "why": "**分层输出把「改图」从重画整张变成动某一层** —— 这是设计流程里差别最大的一步",
+   "impact": [
+    "seedream"
+   ],
+   "src": "seed-blog",
+   "models": [
+    "seedream"
+   ]
+  },
+  {
+   "id": "image-roster-2026-08-11",
+   "date": "2026-08-11",
+   "side": "ours",
+   "kind": "scope",
+   "domain": "image",
+   "subject": "AI 图像花名册",
+   "before": "13 条产品线，最新一代大多停在半年前",
+   "after": "22 条产品线、53 个谱系节点，补上 gpt-image-2、Nano Banana 2、Ideogram 4 等 14 代",
+   "why": "**我们漏了整整一批。** 负责人一句「是不是少了」才发现 —— 采集没跟上，不是厂商没发",
+   "impact": [],
+   "src": "hf-image-org",
+   "models": []
+  },
+  {
+   "id": "mj-source-2026-08-11",
+   "date": "2026-08-11",
+   "side": "ours",
+   "kind": "scope",
+   "domain": "image",
+   "subject": "Midjourney 的来源等级",
+   "before": "判定「Midjourney 抓不到」，版本年表退到 Wikipedia（B 级）",
+   "after": "改回官方 updates.midjourney.com（S 级），补上 V8 Alpha",
+   "why": "**一个域名被 Cloudflare 挡住，不等于这家抓不到** —— 我们把 docs 的失败推广成了整家的结论",
+   "impact": [
+    "midjourney"
+   ],
+   "src": "mj-updates",
+   "models": [
+    "midjourney"
+   ]
+  },
+  {
+   "id": "qwen-3.8-max-2026-08-11",
+   "date": "2026-08-11",
+   "side": "world",
+   "kind": "version",
+   "subject": "Qwen",
+   "before": "库里记的是 qwen3.7-max（当天早上从英文站取的）",
+   "after": "中文站的模型清单已经是 **qwen3.8-max**",
+   "why": "**两个语言版本不同步**：同一天，help.aliyun.com 中文站列的是 3.8-max，alibabacloud.com 英文站还停在 3.7-max。取英文站就会慢一拍 —— 而慢一拍的版本号，站上看不出来。",
+   "impact": [
+    "qwen-text"
+   ],
+   "src": "bailian-models-zh",
+   "models": [
+    "qwen-text"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "kimi-moonshot-v1-eol-2026-08-31",
+   "date": "2026-08-31",
+   "side": "world",
+   "kind": "status",
+   "subject": "Kimi",
+   "before": "Moonshot V1 系列（8k / 32k / 128k 及其 vision 版）在售",
+   "after": "官方价格页写明「预计 8 月 31 日全平台下线」",
+   "why": "这是这条产品线的第一代，下线之后 Kimi 的可用型号只剩 K2.x / K3。**在用旧接口的要提前迁**。",
+   "impact": [
+    "kimi"
+   ],
+   "src": "kimi-pricing",
+   "models": [
+    "kimi"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "gpt-5.6-2026-07-09",
+   "date": "2026-07-09",
+   "side": "world",
+   "kind": "version",
+   "subject": "GPT",
+   "before": "GPT-5.5 / 5.5-pro",
+   "after": "GPT-5.6 上线，改成 Sol / Terra / Luna 三档命名",
+   "why": "命名从「数字 + mini/nano」换成了代号，**按名字猜档次的做法从这一代起失效**。",
+   "impact": [
+    "gpt"
+   ],
+   "src": "openai-changelog",
+   "models": [
+    "gpt"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "sampling-params-deprecated-2026-07-21",
+   "date": "2026-07-21",
+   "side": "world",
+   "kind": "capability",
+   "subject": "Gemini 与 Claude 同时弃用采样参数",
+   "before": "temperature / top_p / top_k 是通用的输出控制手段",
+   "after": "Gemini 3.6 在发布同一天宣布弃用这三个参数；Claude 从 Opus 4.7 起，这三个参数设成非默认值直接返回 400",
+   "why": "**两家在同一个季度做了同一个决定**，这不是巧合：模型转向自适应思考之后，采样温度这一层控制反而会破坏推理。对使用者是硬变更 —— 老代码里传了 temperature 的，在 Claude 上会直接报错。",
+   "impact": [
+    "gemini-text",
+    "claude"
+   ],
+   "src": "gemini-changelog",
+   "models": [
+    "gemini-text",
+    "claude"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "ours-text-volume-2026-08-11",
+   "date": "2026-08-11",
+   "side": "ours",
+   "kind": "scope",
+   "subject": "AI 文本卷上线",
+   "before": "站上只有 AI 视频与 AI 图像两卷",
+   "after": "加 AI 文本一卷：14 项能力 × 9 个核心模型，谱系 73 个节点（含闭源五家）",
+   "why": "**闭源那五家一开始上不了演进树**，不是它们没发过版本，是我们没找到每一代的日期。后来发现日期藏在弃用表、更新日志和模型 ID 尾部 —— 这条记下来，是因为它会再次发生在下一个方向上。",
+   "impact": [],
+   "src": "claude-deprecations",
+   "models": [],
+   "domain": "text"
+  },
+  {
+   "id": "sound-volume-2026-08-12",
+   "date": "2026-08-12",
+   "side": "ours",
+   "kind": "scope",
+   "subject": "AI 声音卷上线",
+   "before": "站上三卷：视频、图像、文本",
+   "after": "加 AI 声音一卷：三轨（语音合成 / 音乐生成 / 实时语音）、16 项能力、15 个核心模型",
+   "why": "**边界上做了一个会被质疑的决定**：ASR 不收。它产出的是文本，按规则一归文本方向，而文本卷的 `t-audio` 已经记了同一件事。代价是 Whisper、Scribe、GLM-ASR 不会出现在站上。",
+   "impact": [],
+   "src": "glm-tts-doc",
+   "models": [],
+   "domain": "sound"
+  },
+  {
+   "id": "glm-tts-2025-12-10",
+   "date": "2025-12-10",
+   "side": "world",
+   "kind": "version",
+   "subject": "GLM-TTS",
+   "before": "智谱的语音只有端到端的 GLM-4-Voice",
+   "after": "放出独立的 GLM-TTS 与 GLM-TTS-Clone，权重上了 HF",
+   "why": "**「端到端语音」和「TTS」是两件事**，我们一开始也归错了：前者音频进音频出，后者文本进音频出。智谱把两条线分开发布，这个区分在选型时很要紧。",
+   "impact": [
+    "glm-tts"
+   ],
+   "src": "hf-sound-org",
+   "models": [
+    "glm-tts",
+    "glm-voice"
+   ],
+   "domain": "sound"
+  },
+  {
+   "id": "qwen3-tts-2026-01-21",
+   "date": "2026-01-21",
+   "side": "world",
+   "kind": "version",
+   "subject": "Qwen3-TTS",
+   "before": "通义的语音能力都挂在 Omni 那条多模态线上",
+   "after": "分出专门的 Qwen3-TTS，同日放出 Base / CustomVoice / VoiceDesign 三个变体",
+   "why": "**型号名本身就是能力声明** —— CustomVoice 是音色复刻、VoiceDesign 是用描述造音色，不用等文档就能读出这一代加了什么。",
+   "impact": [
+    "qwen-omni"
+   ],
+   "src": "hf-sound-org",
+   "models": [
+    "qwen-omni"
+   ],
+   "domain": "sound"
+  },
+  {
+   "id": "tripo-v2-eol-2026-11-01",
+   "date": "2026-11-01",
+   "side": "world",
+   "kind": "生命周期",
+   "subject": "Tripo API V2",
+   "before": "V2 端点照常服务，且**不传参数时默认调的就是 V2 时代的 v2.5-20250123**",
+   "after": "官方公告：2026-10-01 起不再更新与支持，2026-11-01 起 V2 端点全部停止接收请求",
+   "why": "**默认值踩的正是要停的那一支** —— 没显式指定 model_version 的调用会跟着一起断",
+   "impact": [
+    "tripo"
+   ],
+   "src": "tripo-docs-generation",
+   "models": [
+    "tripo"
+   ],
+   "domain": "threed"
+  },
+  {
+   "id": "hunyuan3d-buffalo-2026-08-05",
+   "date": "2026-08-05",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Hunyuan3D-Buffalo 1.0",
+   "before": "混元 3D 的开源线停在 2.1",
+   "after": "技术报告与项目页发布：统一多模态的生成 / 理解 / 编辑（arXiv 2608.02711）",
+   "why": "**有论文不等于有模型** —— 仓库只有 7 次提交、无代码无权重，现在还不能用",
+   "impact": [
+    "hunyuan3d"
+   ],
+   "src": "gh-hunyuan3d-buffalo",
+   "models": [
+    "hunyuan3d"
+   ],
+   "domain": "threed"
+  },
+  {
+   "id": "hunyuan3d-two-lines-2026-08-13",
+   "date": "2026-08-13",
+   "side": "ours",
+   "kind": "我们记错了",
+   "subject": "混元 3D 的版本",
+   "before": "我们记的是 2.1，并在排除说明里写「Hunyuan3D 3.0 查无此物」",
+   "after": "改记 3.1；那句话说窄了 —— **开源线停在 2.1，托管线已到 3.1**",
+   "why": "**「GitHub 上没有」不等于「不存在」** —— 闭源那半边本来就不在 GitHub 上。发现它是因为 Replicate 合集页上挂着腾讯的官方账号",
+   "impact": [
+    "hunyuan3d"
+   ],
+   "models": [
+    "hunyuan3d"
+   ],
+   "domain": "threed"
+  },
+  {
+   "id": "longcat-avatar-2026-05-21",
+   "date": "2026-05-21",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "LongCat-Video-Avatar 1.5",
+   "before": "开源侧的音频驱动数字人多是研究项目",
+   "after": "美团放出 1.5，自述面向生产可用（MIT，♥714）",
+   "why": "**开源侧关注度最高的一支**，而且是标准 MIT 许可 —— 商用不用先读一份自定义条款",
+   "impact": [
+    "longcat-avatar"
+   ],
+   "src": "hf-longcat-avatar",
+   "models": [
+    "longcat-avatar"
+   ],
+   "domain": "avatar"
+  },
+  {
+   "id": "hunyuan-avatar-2025-05-26",
+   "date": "2025-05-26",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "HunyuanVideo-Avatar",
+   "before": "多人同框的音频驱动几乎没有开源实现",
+   "after": "腾讯放出 HunyuanVideo-Avatar，自述支持多角色与情绪对齐（arXiv 2505.20156）",
+   "why": "**多人同框**这一格此前没人做；⚠️ HF 页面没标准许可字段，商用前要读仓库条款",
+   "impact": [
+    "hunyuan-avatar"
+   ],
+   "src": "hf-hunyuan-avatar",
+   "models": [
+    "hunyuan-avatar"
+   ],
+   "domain": "avatar"
+  },
+  {
+   "id": "musetalk-identity-2026-08-14",
+   "date": "2026-08-14",
+   "side": "world",
+   "kind": "已知限制",
+   "subject": "MuseTalk 的形象保真",
+   "before": "我们把「形象一致」默认当成这一卷各家都在做的事",
+   "after": "MuseTalk 官方在「已知限制」里明写做不到：「Identity preservation: Some details of the original face are not well preserved, such as mustache, lip shape and color」",
+   "why": "**厂商自己承认做不到的，比我们推断出来的可靠得多** —— 这一格因此记 ❌ 而不是 ⬜",
+   "impact": [
+    "musetalk"
+   ],
+   "src": "hf-musetalk",
+   "models": [
+    "musetalk"
+   ],
+   "domain": "avatar"
+  },
+  {
+   "id": "embodied-two-tracks-2026-08-14",
+   "date": "2026-08-14",
+   "side": "ours",
+   "kind": "口径确立",
+   "subject": "具身智能卷分两轨",
+   "before": "按老办法给一个新方向定一根能力轴，问「能不能做某件事」",
+   "after": "分 `er`（具身推理）与 `vla`（动作策略）两轨。`er` 沿用老问法，因为 Google 在官方文档里给五项能力起了名字；`vla` 那一轨的轴改成问「**你能不能拿它跑起来**」—— 本体标签、零样本、微调路径、数据格式、边缘部署、框架",
+   "why": "openpi / GR00T / OpenVLA 三家 README **一句能力命名都没有**，讲的全是怎么微调怎么部署。**硬套「能不能做某件事」会得到一整列 ⬜，而那是我们的问法不对，不是厂商不透明。**",
+   "impact": [
+    "groot",
+    "openvla",
+    "pi",
+    "smolvla"
+   ],
+   "models": [],
+   "domain": "embodied"
+  },
+  {
+   "id": "molmoact-not-ready-2026-08-14",
+   "date": "2026-08-14",
+   "side": "world",
+   "kind": "已知限制",
+   "subject": "MolmoAct2 的零样本可用",
+   "before": "开源基座模型默认可以先拿来直接试试",
+   "after": "Ai2 官方在 `Intended Use` 里明写：「It is intended as a foundation checkpoint for further robot fine-tuning **rather than as a ready-to-run policy for a single deployment setting**」",
+   "why": "**这是这一卷第一个够格判 ❌ 的格子。** 具身智能这一卷最难的就是找到「官方明确说不能」的句子 —— 厂商通常只说自己能做什么。对照 SmolVLA 只说「建议拿去微调」，那句不够判 ❌，仍是 ⬜。",
+   "impact": [
+    "molmoact"
+   ],
+   "src": "molmoact-card",
+   "models": [
+    "molmoact"
+   ],
+   "domain": "embodied"
+  },
+  {
+   "id": "openvla-maintained-2026-08-14",
+   "date": "2026-08-14",
+   "side": "world",
+   "kind": "生命周期",
+   "subject": "OpenVLA 停在 2024-06",
+   "before": "OpenVLA 是这一卷最有名的开源基座，默认它还在迭代",
+   "after": "`openvla/openvla-7b` 建于 2024-06-10，此后该组织只发过 LIBERO 基准微调档，**两年没有新代**；仓库最后一次 push 是 2025-03-23。状态记 `maintained` 而不是 `active`",
+   "why": "**「名气大」和「还在更新」是两件事。** 它至今仍是被第三方微调最多的一支，容易让人以为它是当前主力。",
+   "impact": [
+    "openvla"
+   ],
+   "src": "openvla-gh",
+   "models": [
+    "openvla"
+   ],
+   "domain": "embodied"
+  },
+  {
+   "id": "world-omni-is-definition-2026-08-14",
+   "date": "2026-08-14",
+   "side": "ours",
+   "kind": "口径确立",
+   "subject": "世界模型的「全能」不是跨卷",
+   "before": "按产出物判归属 —— Cosmos 能出视频/图/音频/动作，就要拆到四卷里去",
+   "after": "**判归属看自述在不在「模拟世界」这件事上，不看它输出了几种模态。** Cosmos 整支留在世界模型卷不拆；`Cosmos-Reason` 是 GR00T 的骨干，那是依赖关系，不改归属",
+   "why": "负责人原话：「世界模型做的就是全能模型，是模拟世界的一个方向。」**一个世界模型能出画面出声音出动作，不是越界，是它做到了目标** —— 老判据在这里会把规则三（Family 是一等实体）搞坏。",
+   "impact": [
+    "cosmos"
+   ],
+   "models": [],
+   "domain": "world"
+  },
+  {
+   "id": "oasis-unexcluded-2026-08-14",
+   "date": "2026-08-14",
+   "side": "ours",
+   "kind": "收录变更",
+   "subject": "Oasis 3 从排除清单里收回来",
+   "before": "排除，理由「官网定位是为机器人/自动驾驶做可交互物理环境，**用途不是内容创作**」",
+   "after": "收进世界模型卷。**排除记录留着不删**",
+   "why": "当时那条理由是**视频卷的边界**，在当时是对的。**变的是地图的范围，不是事实。** 同批还有 HunyuanWorld 与 lingbot-world。",
+   "impact": [
+    "oasis"
+   ],
+   "models": [
+    "oasis"
+   ],
+   "domain": "world"
+  },
+  {
+   "id": "vjepa-two-mouths-2026-08-14",
+   "date": "2026-08-14",
+   "side": "world",
+   "kind": "口径不一致",
+   "subject": "V-JEPA 2 官方两处说法不同",
+   "before": "以为「是不是世界模型」看官方一句话就够",
+   "after": "Meta 博客标题写「Introducing the **V-JEPA 2 world model**」，而 HF 上的官方模型卡第一句写「A frontier **video understanding** model」",
+   "why": "**同一家对同一个模型有两种定位，我们得选一个并说明选了哪个。** 按博客收（那是对外定位），但读者该知道模型卡不是这么说的 —— 这正是「每格都带原文」的价值。",
+   "impact": [
+    "vjepa"
+   ],
+   "src": "vjepa2-blog",
+   "models": [
+    "vjepa"
+   ],
+   "domain": "world"
+  },
+  {
+   "id": "science-admitted-2026-08-15",
+   "date": "2026-08-15",
+   "side": "ours",
+   "kind": "收录变更",
+   "subject": "科学 AI 立为第九卷",
+   "before": "规则一补充「面向内容创作」会把它挡在门外",
+   "after": "那条规则同日作废（它已被世界模型卷与具身智能卷推翻），判据只剩「产出物是不是另一类东西」—— 分子结构、气象场、晶体结构和前八卷全不重合，**按判据它一直是成立的**",
+   "why": "负责人拍板「科学 AI？收啊」。**值得记的是顺序**：先发现旧规则自相矛盾、把它作废，这一卷才进得来 —— **一条过期的规则挡住的东西，往往不是它当初想挡的那个**。",
+   "impact": [
+    "alphafold",
+    "boltz",
+    "esm"
+   ],
+   "models": [],
+   "domain": "science"
+  },
+  {
+   "id": "science-license-over-accuracy-2026-08-15",
+   "date": "2026-08-15",
+   "side": "world",
+   "kind": "已知限制",
+   "subject": "这一卷里许可比精度更决定你能不能用",
+   "before": "按前八卷的习惯，先看谁强",
+   "after": "AlphaFold 3 只有服务器、明写「for **academic use**」；Boltz 是 MIT 完全开源；ESM-2 权重公开但它是语言模型不是结构预测器",
+   "why": "**前八卷的模型基本都能买到或下到，这一卷不是。** 最有名的那支恰恰拿不到，所以选型的第一个问题从「哪个准」变成了「哪个我能用」。",
+   "impact": [
+    "alphafold",
+    "boltz"
+   ],
+   "src": "sci-af3-blog",
+   "models": [
+    "alphafold"
+   ],
+   "domain": "science"
+  },
+  {
+   "id": "clay-previz-2026-08-17",
+   "date": "2026-08-17",
+   "side": "world",
+   "kind": "capability",
+   "subject": "白模预演：空间调度成了可交付的控制信号",
+   "before": "镜头路径、人物走位、切点只能写进提示词，由模型自己解释 —— 不合意就重抽",
+   "after": "Seedance 2.5 官方支持 clay render referencing：「users can build a scene's spatial structure, character poses, motion paths, and camera angles using textureless 3D models」；B 站 updream 于 8-17 上线「预演台」，一张参考图自动生成 3D 白模场景，在里面摆人、画相机轨迹、调关键帧，录成白模视频直接送进模型",
+   "why": "**这是一条新的控制轴，不是运镜控制的加强版。** 运镜控制给的是参数（推 / 拉 / 摇 / 移），白模给的是一整段空间信号 —— 多人的相对位置、朝向、动作先后、切在第几拍，一次全给。它把「抽卡」换成「排完再生成」，而抽卡正是多人复杂场景一直做不出来的原因。**限度也要记住**：白模只锁空间调度，出拳打法、防守姿态这类细动作仍归视频模型管。",
+   "impact": [
+    "seedance"
+   ],
+   "src": "seed-25",
+   "models": [
+    "seedance"
+   ],
+   "domain": "video",
+   "alert": {
+    "headline": "白模预演成了新的控制轴：排完再生成，不再抽卡"
+   }
+  },
+  {
+   "id": "lux3d-2026-08-27",
+   "date": "2026-08-27",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Lux3D",
+   "before": "3D 卷里没有群核科技这条线",
+   "after": "群核放出自研 3D 生成模型 Lux3D（图生 3D，带几何 + PBR 材质，可导 GLB / API / ComfyUI），作 LuxReal 内容创作产品的底座",
+   "why": "**发布日期存疑**：用户口径 08-27，但核到的公开亮相是 2025-12 群核战略发布会；当天官方消息未核到。收进 extended，能力未逐格核。",
+   "impact": [
+    "lux3d"
+   ],
+   "src": "lux3d-site",
+   "models": [
+    "lux3d"
+   ],
+   "domain": "threed"
+  },
+  {
+   "id": "locateanything-2026-08-27",
+   "date": "2026-08-27",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "LocateAnything-3B",
+   "before": "具身推理轨（er）只有 gemini-robotics-er 与 rynnbrain",
+   "after": "英伟达放出 LocateAnything-3B：3B 视觉-语言 grounding 模型，出框 / 点 / OCR / GUI 定位，Parallel Box Decoding 一步并行出框（官方称对既有方法 up to 2.5× 吞吐）",
+   "why": "按产出物归 er 轨，但它是**通用视觉 grounding 非机器人专用**。⚠️「英伟达开源」要打折：权重可下，许可 NVIDIA non-commercial 仅限学术/非营利研究，商用不允许 —— 不是可商用开源。",
+   "impact": [
+    "locateanything"
+   ],
+   "src": "hf-locateanything",
+   "models": [
+    "locateanything"
+   ],
+   "domain": "embodied"
+  },
+  {
+   "id": "grok-image-2026-08-07",
+   "date": "2026-08-07",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Grok Imagine Image 2.0",
+   "before": "图像卷没有 xAI 的出图模型",
+   "after": "xAI 放出 Grok Imagine Image 2.0（模型 id grok-imagine-image-2.0）：先规划版式再画，海报/信息图/标题屏这类密集视觉稳结构、小字清晰；API 已开放",
+   "why": "「先排版再画」是出图模型少见的能力轴 —— 密集小字一直是弱项。收进 extended，未逐格核。",
+   "impact": [
+    "grok-image"
+   ],
+   "src": "xai-imagine-image",
+   "models": [
+    "grok-image"
+   ],
+   "domain": "image"
+  },
+  {
+   "id": "grok-video-2026-06-16",
+   "date": "2026-06-16",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Grok Imagine Video 1.5",
+   "before": "视频卷没有 xAI 的出片模型",
+   "after": "xAI 的图生视频 Grok Imagine Video 1.5：720p、约 6–10 秒，声音与画面同一遍出，主打速度（约 25 秒出 6 秒片）；API / 网页 / 移动端全可用",
+   "why": "⚠️ 顺带纠了聚合站的错：不是「1080p / 5-31」，官方页是 720p / 06-16 —— 一手源对上才收。extended，未逐格核。",
+   "impact": [
+    "grok-video"
+   ],
+   "src": "xai-imagine-video",
+   "models": [
+    "grok-video"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "luma-ray32-2026-08-27",
+   "date": "2026-08-27",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Luma Ray3.2",
+   "before": "视频卷没收 Luma 这家",
+   "after": "Luma 的 Ray3.2（2026-06 发）：单条 clip 内最多 16 个关键帧逐帧控运动，20 秒@1080p，原生 HDR + 16-bit EXR 导出，追踪最多 8 张脸表情；首次开放 API",
+   "why": "逐帧关键帧控制是这卷少见的控制轴。新建 org luma。收 extended，未逐格核。",
+   "impact": [
+    "luma-ray"
+   ],
+   "src": "luma-ray32",
+   "models": [
+    "luma-ray"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "muse-spark-2026-08-05",
+   "date": "2026-08-05",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Muse Spark 1.2",
+   "before": "文本卷没有 Meta 的代码向模型",
+   "after": "Meta（MSL）放出 Muse Spark 1.2，代码向大模型；配套 Muse Code 是它驱动的终端编码 agent（对标 Claude Code / Codex）",
+   "why": "只收模型本体（Muse Spark 1.2），Muse Code 是应用层不进模型表。无开源权重、API/产品可用。extended，未逐格核。",
+   "impact": [
+    "muse-spark"
+   ],
+   "src": "meta-muse",
+   "models": [
+    "muse-spark"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "glm-5.3-2026-08-26",
+   "date": "2026-08-26",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "GLM-5.3（atlas 暂不改版本号）",
+   "before": "atlas 的 glm 记 GLM-5.2（HF 开源旗舰，200 万下载）",
+   "after": "Z.ai 发 GLM-5.3：旗舰 GLM-5.3 **API-only**（HF 上没有开源权重），开源的只有变体 **GLM-5.3-Flash**（zai-org/GLM-5.3-Flash，320B-A18B，MIT，刚发 34 次下载）",
+   "why": "**没有直接把版本号更到 5.3**：这条记的是开源旗舰口径，而 5.3 旗舰不开源、HF 上只有 Flash 变体，硬改会和 weights:open + HF 来源打架。要不要改成追真旗舰（API-only）是口径决定，待拍板；14 个能力格若升版要走 recheck 重核。",
+   "impact": [
+    "glm"
+   ],
+   "src": "hf-glm53flash",
+   "models": [
+    "glm"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "gemini-3.7-2026-08-13",
+   "date": "2026-08-13",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "Gemini 3.7 Flash",
+   "before": "atlas 记 Gemini 3.6 Flash",
+   "after": "Google 发 3.7 Flash:「most intelligent workhorse」,coding 明显提升,上下文 1,048,576",
+   "why": "核心模型升版,14 个能力格标 recheck 进待重核。",
+   "impact": [
+    "gemini-text"
+   ],
+   "src": "gemini-37-blog",
+   "models": [
+    "gemini-text"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "grok-4.6-2026-08-12",
+   "date": "2026-08-12",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "Grok 4.6",
+   "before": "atlas 记 Grok 4.5",
+   "after": "xAI 发 4.6(API id grok-4.6),承接 4.5,500K 上下文,可配 reasoning effort",
+   "why": "扩展层,免能力格重核,直接升。",
+   "impact": [
+    "grok"
+   ],
+   "src": "xai-docs",
+   "models": [
+    "grok"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "glm-5.3-flagship-2026-08-25",
+   "date": "2026-08-25",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "GLM-5.3(旗舰权重开放,口径了结)",
+   "before": "atlas 记 GLM-5.2(上次 08-27 因 5.3 旗舰 API-only 未升)",
+   "after": "zai-org 放出完整开源权重 GLM-5.3 / GLM-5.3-BF16(HF,08-25)——旗舰不再是 API-only,升到 5.3",
+   "why": "上次那个「追开源旗舰 vs 追真旗舰」的待拍板口径,随旗舰权重开放自然了结。14 个能力格标 recheck。",
+   "impact": [
+    "glm"
+   ],
+   "src": "hf-text-org",
+   "models": [
+    "glm"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "claude-opus5-2026-07-24",
+   "date": "2026-07-24",
+   "side": "world",
+   "kind": "新模型",
+   "subject": "Claude Opus 5",
+   "before": "Claude 5 家族顶配是 Fable 5",
+   "after": "Anthropic 发 Opus 5:「comes close to the frontier intelligence of Fable 5 at half the price」,$5/$25,Claude Max 新默认款",
+   "why": "**atlas 仍记 Fable 5(frontier)**;Opus 5 是更便宜的默认款不是能力升级,故只加 note+事件、不翻版本号。",
+   "impact": [
+    "claude"
+   ],
+   "src": "claude-opus5",
+   "models": [
+    "claude"
+   ],
+   "domain": "text"
+  }
+ ]
+}

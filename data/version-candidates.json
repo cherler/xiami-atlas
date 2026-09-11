@@ -1,0 +1,366 @@
+{
+  "generated": "2026-08-07",
+  "note": "候选，未经人工核。★own=这家自己的产品线",
+  "rows": [
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2026-06-29",
+      "version": "1.0",
+      "own": false,
+      "quote": "Paid plans Seed Audio 1.0 Generate up to 120 seconds of dynamic speech, sound design and music with simple text prompts."
+    },
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2026-06-25",
+      "version": "2.0",
+      "own": true,
+      "quote": "All Plans Agent 2.0 Make marketing that drives revenue. Runway Agent creates entire campaigns, analyzes data to improve your creative and scales your "
+    },
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2026-05-21",
+      "version": "2.0",
+      "own": true,
+      "quote": "Paid Plans Aleph 2.0 & Edit Studio Get the video you need from the video you already have. Edit a frame the way you want, and Aleph 2.0 — our upgraded"
+    },
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2026-04-07",
+      "version": "2.0",
+      "own": false,
+      "quote": "Paid Plans Seedance 2.0 Use anything—text, image, video or audio—to generate or edit videos with Seedance 2.0. Now available on Unlimited and Enterpri"
+    },
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2026-02-20",
+      "version": "3.0",
+      "own": false,
+      "quote": "Paid Plans New third party models All of the world’s best models, are now all available right inside of Runway. Including Kling 3.0, Kling 2.6 Pro, Kl"
+    },
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2026-01-21",
+      "version": "4.5",
+      "own": true,
+      "quote": "Paid Plans Gen-4.5 Image to Video You can now supply a first frame image alongside your text prompt with Gen-4.5."
+    },
+    {
+      "m": "runway",
+      "src": "rw-changelog",
+      "date": "2025-12-11",
+      "version": "4.5",
+      "own": true,
+      "quote": "Paid Plans Gen-4.5 Introducing Gen-4.5, the world's best video model. Now available for all paid plans."
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-07-15",
+      "version": "3.0",
+      "own": true,
+      "quote": "General | Feature Upgrade: More video models support the new API (same as Kling 3.0 Turbo API) The new API features a simpler structure and lower para"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-06-17",
+      "version": "3.0",
+      "own": true,
+      "quote": "Video Generation | Kling 3.0 Turbo Officially Released Supports both text-to-video and image-to-video generation in 720P and 1080P Billing policy: Cha"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-04-01",
+      "version": "3.0",
+      "own": true,
+      "quote": "Video Generation | 3.0 Omni: Elaborate on the impact of reference videos on video character element, multi-image element, and the number of reference "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-03-11",
+      "version": "3.0",
+      "own": true,
+      "quote": "Video Generation | 3.0 Omni supports intelligence shot type When the value of the shot_type parameter is set to intelligence, intelligent storyboardin"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-03-04",
+      "version": "3.0",
+      "own": true,
+      "quote": "Video Generation | V3.0 Motion Control Launched You can enhance element consistency by binding the element, and when binding the element, you can only"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-02-25",
+      "version": "3.0",
+      "own": true,
+      "quote": "Video Generation | 3.0 Omni and V3 model launched Image Generation | 3.0 Omni and V3 model launched General | The elements features have been fully up"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2026-01-23",
+      "version": "0.5",
+      "own": true,
+      "quote": "General | New Capability: Supports intelligent completion of images from different angles of the element Through the front view of the element, other "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-12-22",
+      "version": "0.5",
+      "own": true,
+      "quote": "Video Generation | Motion Control Launched Based on the new API path, both reference images and reference videos need to be uploaded simultaneously. S"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-12-16",
+      "version": "2.6",
+      "own": true,
+      "quote": "Video Generation | V2.6 model upgraded By using prompt and voice_list, a specified voice can be used to generate videos: 6 units will be deducted for "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-12-15",
+      "version": "2.6",
+      "own": true,
+      "quote": "Video Generation | V2.6 model launched Supports Text-To-Video and Image-To-Video. Control whether to include audio when generating videos through the "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-11-19",
+      "version": "2.1",
+      "own": true,
+      "quote": "Video Generation | Video Effects | New Feature Launch of “Single Image Effects”:luminous_elf, guardian_spirit, snowboarding, etc.​​ For video effects "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-11-17",
+      "version": "2.5",
+      "own": true,
+      "quote": "Image-To-Video | V2.5-Turbo PRO supports First/Last Frame Passing in the image parameter value and image_tail parameter value can achieve this Deduct "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-11-11",
+      "version": "2.5",
+      "own": true,
+      "quote": "Video Generation | V2.5-Turbo supports STD Mode Including “Text-To-Video” and “Image-To-Video” Deduct 1.5 units when generate a 5-second video,and ded"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-10-20",
+      "version": "2.5",
+      "own": true,
+      "quote": "Video Generation | Text-To-Video and Image-To-Video support V2.5-turbo Support PRO mode, generate 5-second video with as low as 2.5 units General ｜ Ne"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-09-05",
+      "version": "2.1",
+      "own": true,
+      "quote": "Video Generation | New Feature: V2.1 supports start/end frame Supports generating 5s or 10s video, Only supports PRO mode. Video Generation | Feature "
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-08-15",
+      "version": "2.0",
+      "own": true,
+      "quote": "Video Generation | Feature Update: Video-to-Audio Video-to-Audio feature supports full-resolution video uploads Multi-Image to Video | Feature Update:"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-08-12",
+      "version": "1.6",
+      "own": true,
+      "quote": "Video Generation | Feature Update: T2V V1.6 supports PRO Supports generating 5s and 10s video Parameter example: “mode”: “pro”"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-07-30",
+      "version": "2.1",
+      "own": true,
+      "quote": "Image Generation | Support V2.1 model Update image-to-image kling-v2-1 model Multi-Image to Image | Newly launched Support subject reference, scene re"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-06-19",
+      "version": "2.1",
+      "own": true,
+      "quote": "Video Generation | Support V2.1 model Update image2video kling-v2-1 model, supports STD mode and PRO mode Update image2video kling-v2-1-master model U"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-05-13",
+      "version": "2.0",
+      "own": true,
+      "quote": "Image Generation | Support V2.0 model Support kling-v2 text-to-image Video Generation | Support V2.0 Master model Support kling-v2-master text-to-vide"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-03-31",
+      "version": "1.6",
+      "own": true,
+      "quote": "Video Generation | V1.6 model supports generating videos from end frame V1.6 model PRO mode can be used to generate video footage of the first few sec"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-03-25",
+      "version": "1.5",
+      "own": true,
+      "quote": "Image Generation | V1.5 model supports character feature reference and character appearance reference Selecting Face as reference: you can keep the fa"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-03-12",
+      "version": "1.5",
+      "own": true,
+      "quote": "Video Generation - Video Effects | New Feature: Single Image Effect Launch of “Single Image Effects”: 2 types available, squish, expansion Includes cr"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2025-01-07",
+      "version": "1.6",
+      "own": true,
+      "quote": "Video Generation | V1.6 Model Officially Launched Supports text-to-video STD mode, image-to-video STD mode, and image-to-video PRO mode Currently does"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2024-12-30",
+      "version": "1.5",
+      "own": true,
+      "quote": "Virtual Try-On | New V1.5 model V1.5 model is a comprehensive upgrade of V1.0 model V1.5 model supports single clothing (upper, lower, and dress dress"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2024-12-23",
+      "version": "1.0",
+      "own": true,
+      "quote": "Video Generation | New Feature: Lip-Sync Videos generated by the Video V1.0 model and Video V1.5 model support lip-sync as long as the video meets the"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2024-12-09",
+      "version": "1.5",
+      "own": true,
+      "quote": "Video Generation | Video V1.5 Std Model Now Open for Video Generation: Image-to-Video Functionality Enabled, Text-to-Video Unsupported Supports standa"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2024-12-02",
+      "version": "1.5",
+      "own": true,
+      "quote": "Video Generation | Capability Map With multiple versions of the video generation model (V1, V1.5) and various plugin capabilities (e.g., camera contro"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2024-11-29",
+      "version": "1.0",
+      "own": true,
+      "quote": "Video Generation - ImageToVideo | New Feature: Motion Brush This feature is only supported in Standard Mode 5s and Professional Mode 5s for the V1.0 m"
+    },
+    {
+      "m": "kling",
+      "src": "kling-api-updates",
+      "date": "2024-11-15",
+      "version": "1.5",
+      "own": true,
+      "quote": "Video Generation | Video V1.5 Pro Model Now Open for Video Generation: Image-to-Video Functionality Enabled, Text-to-Video Unsupported Only supports p"
+    },
+    {
+      "m": "vidu-q",
+      "src": "vidu-changelog",
+      "date": "2025-11-13",
+      "version": "Q2",
+      "own": true,
+      "quote": "New Audio&Video Direct Output Capability - Audio&video direct output is now available for Vidu Reference to Video and Image to Video. - You can config"
+    },
+    {
+      "m": "vidu-q",
+      "src": "vidu-changelog",
+      "date": "2025-09-11",
+      "version": "Q1",
+      "own": true,
+      "quote": "New Templates - Scenario Example Center added 7 templates - \"Pokémon Transformation\", \"Mini Clone Pickup\", \"Werewolf Transformation\", \"Monster Hunter\""
+    },
+    {
+      "m": "seedance",
+      "src": "seed-blog",
+      "date": "2026-08-05",
+      "version": "2.5",
+      "own": true,
+      "quote": "Models One-take Creation, Flexible Referencing: Introducing Seedance 2.5"
+    },
+    {
+      "m": "seedance",
+      "src": "seed-blog",
+      "date": "2026-07-31",
+      "version": "1.0",
+      "own": false,
+      "quote": "Models From Speech to Audio Creation | Introducing the Seed Audio 1.0 Audio Creation Model"
+    },
+    {
+      "m": "seedance",
+      "src": "seed-blog",
+      "date": "2026-07-20",
+      "version": "5.0",
+      "own": false,
+      "quote": "Models Beyond Generation, It Understands Design | Introducing Seedream 5.0 Pro"
+    },
+    {
+      "m": "seedance",
+      "src": "seed-blog",
+      "date": "2026-06-23",
+      "version": "2.1",
+      "own": false,
+      "quote": "Models Seed-2.1-Preview Model Release on Arena"
+    },
+    {
+      "m": "seedance",
+      "src": "seed-blog",
+      "date": "2026-06-19",
+      "version": "2.0",
+      "own": false,
+      "quote": "Models Seed3D 2.0 Released: Higher Precision and Greater Usability"
+    },
+    {
+      "m": "seedance",
+      "src": "seed-blog",
+      "date": "2026-04-09",
+      "version": "2.5",
+      "own": false,
+      "quote": "Models Models Seed2.1 Seedance 2.5 Seedream 5.0 Pro SeedRealtime Seed Audio 1.0 Seed GR-RL Teams LLM Infrastructures Vision Speech Multimodal Interact"
+    }
+  ]
+}

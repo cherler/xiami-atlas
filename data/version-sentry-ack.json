@@ -1,0 +1,12 @@
+{
+  "$comment": "看过并否掉的哨兵发现。记「模型 + 发现的那个号」，所以下次真出新版还会再报。否掉必须写理由和当天的证据 —— 否则这份文件就成了静音键。",
+  "rows": [
+    {
+      "m": "grok",
+      "found": "grok-4.20",
+      "decided_at": "2026-09-10",
+      "by": "人工核（用户提出、本机复核 docs.x.ai）",
+      "why": "**`4.20` 读作 4.2，比 4.6 老。** docs.x.ai/docs/models（页面自标 Last updated: August 21, 2026，本机 2026-09-10 重抓）通篇把 4.6 当在售旗舰：「Meet grok-4.6」「Grok 4.6 Latest」，用途表 Code / Chat 两栏都填 Grok 4.6，并写「The knowledge cut-off date of Grok 4.6 is February 1, 2026」。而 grok-4.20 全页只出现一次，在一句注意事项里：「logprobs and top_logprobs are not supported by models grok-4.20 and newer」—— **这句话只有在 4.20 比 4.6 老的时候才讲得通**。所以库里记 4.6 是对的，不改。"
+    }
+  ]
+}

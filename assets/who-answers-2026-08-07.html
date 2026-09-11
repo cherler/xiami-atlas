@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>谁在回答「哪个 AI 视频模型最好」</title>
+<style>
+  :root {
+    --paper: #EFF0EC;
+    --ink: #171B18;
+    --muted: #6B716C;
+    --rule: #D3D6CE;
+    --sells: #B03A2C;
+    --traffic: #AD8324;
+    --neutral: #2C6B5A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: var(--paper); color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+    padding: 60px 72px 48px;
+    display: flex; flex-direction: column; gap: 30px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .eyebrow {
+    font-size: 19px; letter-spacing: .16em; color: var(--muted);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  h1 { font-size: 62px; line-height: 1.18; font-weight: 600; text-wrap: balance; letter-spacing: -.01em; }
+  h1 em { font-style: normal; color: var(--sells); }
+  .method { font-size: 21px; color: var(--muted); line-height: 1.6; }
+  .method b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .legend { display: flex; flex-direction: column; gap: 9px; }
+  .legend div { display: flex; align-items: baseline; gap: 10px; font-size: 19px; color: var(--muted); }
+  .legend b { display: inline-block; min-width: 106px; }
+  .dot { width: 13px; height: 13px; border-radius: 3px; flex: none; transform: translateY(1px); }
+  .legend b { color: var(--ink); font-weight: 600; }
+
+  .bars { display: flex; flex-direction: column; gap: 30px; }
+  .row { display: flex; flex-direction: column; gap: 11px; }
+  .rowhead { display: flex; align-items: baseline; justify-content: space-between; }
+  .rowhead .name { font-size: 30px; font-weight: 600; }
+  .rowhead .n { font-size: 20px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .bar { display: flex; height: 76px; border-radius: 6px; overflow: hidden; }
+  .seg {
+    display: flex; align-items: center; justify-content: center;
+    color: #F4F5F1; font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  .seg.zero { display: none; }
+  .rowfoot { display: flex; font-size: 18px; color: var(--muted); gap: 26px; }
+
+  .quote {
+    border-left: 5px solid var(--sells); padding: 4px 0 4px 24px;
+    font-size: 30px; line-height: 1.5; font-weight: 500;
+  }
+  .quote span { color: var(--sells); font-weight: 600; }
+
+  .verdict { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+  .verdict p { font-size: 34px; line-height: 1.4; font-weight: 600; }
+  .verdict p .k { color: var(--sells); }
+  .verdict p .k2 { color: var(--traffic); }
+  .verdict .last { font-size: 27px; font-weight: 500; color: var(--ink); padding-top: 6px; }
+  .verdict .last b { color: var(--neutral); font-weight: 700; }
+
+  .stale { font-size: 21px; line-height: 1.6; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 20px; }
+  .stale b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: auto; border-top: 1px solid var(--rule); padding-top: 18px;
+    font-size: 16px; line-height: 1.65; color: var(--muted);
+    display: flex; justify-content: space-between; gap: 30px;
+  }
+  footer .who { text-align: right; flex: none; color: var(--ink); font-weight: 600; }
+  footer .who span { display: block; color: var(--muted); font-weight: 400; margin-top: 3px; }
+</style>
+</head>
+<body>
+
+  <div class="eyebrow">AI 视频能力地图 · 第 0 号图</div>
+
+  <h1>谁在回答<br />「哪个 AI 视频模型<em>最好</em>」?</h1>
+
+  <p class="method">
+    4 个搜索问题（中英各 2）· 返回结果 <b>26</b> 条 · 全部计入，不做取舍 · 采集于 <b>2026-08-07</b>
+  </p>
+
+  <div class="legend">
+    <div><i class="dot" style="background:var(--sells)"></i><span><b>卖你模型的</b>　厂商 / API 市场 / 内置生成功能的工具</span></div>
+    <div><i class="dot" style="background:var(--traffic)"></i><span><b>赚你点击的</b>　自媒体 / 内容农场 / 别家产品的内容营销</span></div>
+    <div><i class="dot" style="background:var(--neutral)"></i><span><b>中立第三方</b>　独立榜单 / 独立媒体 / 百科</span></div>
+  </div>
+
+  <div class="bars">
+    <div class="row">
+      <div class="rowhead"><span class="name">英文搜索</span><span class="n">13 条</span></div>
+      <div class="bar">
+        <div class="seg" style="background:var(--sells); flex:10">10</div>
+        <div class="seg" style="background:var(--traffic); flex:2">2</div>
+        <div class="seg" style="background:var(--neutral); flex:1">1</div>
+      </div>
+      <div class="rowfoot"><span>invideo · SiliconFlow · Atlas Cloud · Higgsfield · fal · Picsart · Artlist · Filmora · each labs · Magic Hour</span></div>
+    </div>
+
+    <div class="row">
+      <div class="rowhead"><span class="name">中文搜索</span><span class="n">13 条</span></div>
+      <div class="bar">
+        <div class="seg zero" style="background:var(--sells); flex:0"></div>
+        <div class="seg" style="background:var(--traffic); flex:10">10</div>
+        <div class="seg" style="background:var(--neutral); flex:3">3</div>
+      </div>
+      <div class="rowfoot"><span>搜狐 ×3 · 知乎 ×3 · CSDN · 抖音 · 平头哥科技网 · 号卡百科</span></div>
+    </div>
+  </div>
+
+  <p class="quote">
+    英文搜「Kling vs Seedance」，前 6 条结果 ——<br /><span>6 条全部是卖模型访问的平台自己写的。</span>
+  </p>
+
+  <div class="verdict">
+    <p>英文世界，回答这个问题的是<span class="k">卖你模型的人</span>。</p>
+    <p>中文世界，回答这个问题的是<span class="k2">赚你点击的人</span>。</p>
+    <p class="last">26 条里，既不卖模型、也不图点击的，只有 <b>4 条</b>。</p>
+  </div>
+
+  <p class="stale">
+    而中文侧唯一一篇多模型实测对比，发表于 <b>2024 年 12 月</b> —— 测的是可灵 1.x 时代。
+    今天它依然排在搜索结果里，<b>页面上不会告诉你它已经过期了。</b>
+  </p>
+
+  <footer>
+    <div>
+      方法、每一条结果的归类理由与原始 URL 全部公开，可复核。<br />
+      局限：检索工具限定美国区，中文侧（尤其公众号生态）覆盖不完整，中文样本可能偏移。
+    </div>
+    <div class="who">
+      AI 视频能力地图
+      <span>xiamimate.com/atlas（建设中）</span>
+    </div>
+  </footer>
+
+</body>
+</html>

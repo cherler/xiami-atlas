@@ -1,0 +1,67 @@
+{
+  "id": "who-answers-2026-08-07",
+  "title": "谁在回答「哪个 AI 视频模型最好」",
+  "observed_at": "2026-08-07",
+  "by": "human",
+  "method": {
+    "queries": [
+      { "id": "Q1", "lang": "en", "text": "best AI video generation model 2026 which one should I use" },
+      { "id": "Q2", "lang": "en", "text": "Kling vs Seedance which is better comparison" },
+      { "id": "Q3", "lang": "zh", "text": "哪个AI视频模型最好 2026 推荐" },
+      { "id": "Q4", "lang": "zh", "text": "可灵 即梦 海螺 哪个好 选哪个 对比" }
+    ],
+    "rule": "取每个查询返回的全部结果，按作者身份分三类，不做取舍",
+    "buckets": {
+      "sells": "卖模型访问的一方：模型厂商、API 市场、集成了视频生成功能的工具",
+      "traffic": "不卖模型但有引流/变现动机：内容农场、自媒体、导航站、其他产品的内容营销",
+      "neutral": "中立第三方：独立榜单、独立媒体、百科，与被评对象无商业关联"
+    },
+    "limits": [
+      "检索工具限定美国区，中文侧（尤其微信公众号生态）覆盖不完整，zh 样本可能偏移",
+      "bucket 判定依据是站点主营业务，非逐篇审读，存在边界模糊的条目（已在 note 标出）"
+    ]
+  },
+  "results": [
+    { "q": "Q1", "domain": "invideo.io", "bucket": "sells", "note": "InVideo，AI 视频生成产品" },
+    { "q": "Q1", "domain": "siliconflow.com", "bucket": "sells", "note": "模型推理平台" },
+    { "q": "Q1", "domain": "pinggy.io", "bucket": "traffic", "note": "内网穿透工具，博客做内容营销" },
+    { "q": "Q1", "domain": "atlascloud.ai", "bucket": "sells", "note": "统一 API，自称 300+ 模型" },
+    { "q": "Q1", "domain": "zapier.com", "bucket": "traffic", "note": "自动化 SaaS，工具测评式内容营销" },
+    { "q": "Q1", "domain": "higgsfield.ai", "bucket": "sells", "note": "AI 视频平台，转售多家模型" },
+    { "q": "Q1", "domain": "llm-stats.com", "bucket": "neutral", "note": "盲测投票榜单" },
+
+    { "q": "Q2", "domain": "artlist.io", "bucket": "sells", "note": "素材平台，已内置 AI 视频生成" },
+    { "q": "Q2", "domain": "filmora.wondershare.com", "bucket": "sells", "note": "剪辑软件，已内置 AI 视频" },
+    { "q": "Q2", "domain": "picsart.com", "bucket": "sells", "note": "有 AI 视频生成功能" },
+    { "q": "Q2", "domain": "eachlabs.ai", "bucket": "sells", "note": "AI 模型 API 平台" },
+    { "q": "Q2", "domain": "magichour.ai", "bucket": "sells", "note": "AI 视频生成平台" },
+    { "q": "Q2", "domain": "fal.ai", "bucket": "sells", "note": "模型 API 市场" },
+
+    { "q": "Q3", "domain": "sohu.com", "bucket": "traffic", "note": "自媒体号「12款顶级工具全面对比」" },
+    { "q": "Q3", "domain": "zhuanlan.zhihu.com", "bucket": "traffic", "note": "知乎专栏「19款工具（持续更新）」" },
+    { "q": "Q3", "domain": "gitcode.csdn.net", "bucket": "traffic", "note": "CSDN / AtomGit 社区文章" },
+    { "q": "Q3", "domain": "ptgkj.com", "bucket": "traffic", "note": "平头哥科技网" },
+    { "q": "Q3", "domain": "en.wikipedia.org", "bucket": "neutral", "note": "2026 in artificial intelligence" },
+
+    { "q": "Q4", "domain": "douyin.com", "bucket": "traffic", "note": "短视频内容" },
+    { "q": "Q4", "domain": "m.sohu.com", "bucket": "traffic", "note": "自媒体号" },
+    { "q": "Q4", "domain": "sohu.com", "bucket": "traffic", "note": "自媒体号" },
+    { "q": "Q4", "domain": "qbitai.com", "bucket": "neutral", "note": "量子位，多场景对比实测。**发表于 2024-12**" },
+    { "q": "Q4", "domain": "36kr.com", "bucket": "neutral", "note": "36氪，行业评论（非测评）" },
+    { "q": "Q4", "domain": "zhuanlan.zhihu.com", "bucket": "traffic", "note": "知乎专栏（2025 年工具对比）" },
+    { "q": "Q4", "domain": "zhuanlan.zhihu.com", "bucket": "traffic", "note": "知乎专栏「4大AI视频神器深度测评」" },
+    { "q": "Q4", "domain": "jdcxx.cn", "bucket": "traffic", "note": "号卡百科，主营业务与 AI 无关" }
+  ],
+  "tally": {
+    "en": { "sells": 10, "traffic": 2, "neutral": 1, "total": 13 },
+    "zh": { "sells": 0, "traffic": 10, "neutral": 3, "total": 13 },
+    "all": { "sells": 10, "traffic": 12, "neutral": 4, "total": 26 }
+  },
+  "findings": [
+    "英文侧 13 条里 10 条是卖模型访问的一方写的（77%）。",
+    "Q2「Kling vs Seedance」前 6 条结果，6 条全部是卖模型访问的平台自营内容。",
+    "中文侧这批查询里没有出现厂商自营对比内容（0/13），但 10/13 是自媒体与内容农场。",
+    "中文侧仅有的一篇多模型实测对比（量子位）发表于 2024-12，测的是可灵 1.x 时代，页面上没有过期提示。",
+    "两侧合计 26 条，明确中立且与被评对象无商业关联的只有 4 条。"
+  ]
+}

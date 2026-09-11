@@ -1,0 +1,715 @@
+{
+ "note": "本地跑模型时会撞见的词。每条都要有出处 —— 这一页是科普，而科普最容易凭记忆写，写错了读者还没处对。sources 里的 id 指向 atlas.json 的 sources 表。",
+ "generated_at": "2026-08-13",
+ "groups": [
+  {
+   "id": "precision",
+   "zh": "精度：同一个模型，为什么有好几个体积",
+   "intro": "一个模型的「参数」就是一大堆数字。**用几个字节存一个数字，就是精度。** 存得越省，文件越小、显存要得越少，代价是数字变粗、画质与遵循度可能下降。厂商发权重时常常一次发好几档，让你按自己的显卡挑。"
+  },
+  {
+   "id": "quant",
+   "zh": "量化：把精度降下来的几种做法",
+   "intro": "直接把数字截短最简单，但会掉效果。所以有一批方法专门研究「**怎么降得聪明**」—— 哪些数字必须保住、哪些可以粗一点。名字（GPTQ / AWQ / GGUF）指的是**做法或文件格式**，不是模型本身。"
+  },
+  {
+   "id": "adapt",
+   "zh": "改模型：不重训也能让它学新东西",
+   "intro": "从头训一个模型要几百上千万，但让已有模型学一种画风、一个人的脸，有便宜得多的办法。"
+  },
+  {
+   "id": "run",
+   "zh": "跑起来要多少显存",
+   "intro": "这是决定「我这张卡行不行」的唯一硬指标。**算法很简单，但有两个坑**：一是要按精度算不是按参数量算，二是权重只是一部分。"
+  }
+ ],
+ "terms": [
+  {
+   "id": "fp16",
+   "term": "FP16 / BF16",
+   "group": "precision",
+   "aliases": [
+    "fp16",
+    "bf16",
+    "float16",
+    "bfloat16",
+    "半精度"
+   ],
+   "bytes": 2,
+   "one_line": "**大多数模型发布时的原始精度**，一个数字占 2 个字节。你看到的「原版权重」基本都是这一档。",
+   "why": "它是所有其它档位的**基准**：说「量化到一半大小」，指的就是从这里往下降。BF16 和 FP16 都是 2 字节，区别在于把这 16 位怎么分给指数与尾数 —— BF16 表示范围更大、精度更粗，训练时更不容易溢出。",
+   "src": "arxiv-fp8",
+   "quote": "FP8 论文开篇即以此为参照：「FP8 is a natural progression for accelerating deep learning training inference beyond the **16-bit formats common in modern processors**.」"
+  },
+  {
+   "id": "fp8",
+   "term": "FP8",
+   "group": "precision",
+   "aliases": [
+    "fp8",
+    "float8",
+    "E4M3",
+    "E5M2"
+   ],
+   "bytes": 1,
+   "one_line": "一个数字占 **1 个字节**，体积与显存约为 FP16 的一半。仍然是「浮点数」，所以动态范围比 INT8 好。",
+   "why": "**它有两种编码，不是一个东西**：E4M3（4 位指数 3 位尾数）和 E5M2（5 位指数 2 位尾数）。前者精度细、范围小，后者反过来。仓库名里通常不写是哪一种，要看模型卡。",
+   "src": "arxiv-fp8",
+   "quote": "「we propose an 8-bit floating point (FP8) binary interchange format consisting of **two encodings - E4M3 (4-bit exponent and 3-bit mantissa) and E5M2 (5-bit exponent and 2-bit mantissa)**」（arXiv:2209.05433，2022-09-12）"
+  },
+  {
+   "id": "int8",
+   "term": "INT8",
+   "group": "precision",
+   "aliases": [
+    "int8",
+    "8-bit",
+    "8bit"
+   ],
+   "bytes": 1,
+   "one_line": "同样 **1 个字节**，但存的是整数不是浮点数。体积和 FP8 一样，实现方式与硬件支持不同。",
+   "why": "整数没有指数位，遇到特别大或特别小的数会更吃亏 —— 所以 INT8 的做法里通常要额外记一组「缩放系数」把数值拉回可表示的范围。这也是为什么同样叫 8-bit，不同仓库效果能差不少。",
+   "src": "arxiv-int8",
+   "quote": "「We develop a procedure for Int8 matrix multiplication for feed-forward and attention projection layers in transformers, which **cut the memory needed for inference by half while retaining full precision performance**.」（arXiv:2208.07339，2022-08-15）"
+  },
+  {
+   "id": "int4",
+   "term": "INT4 / NF4",
+   "group": "precision",
+   "aliases": [
+    "int4",
+    "nf4",
+    "4-bit",
+    "4bit",
+    "q4"
+   ],
+   "bytes": 0.5,
+   "one_line": "一个数字只占 **半个字节**，体积约为 FP16 的四分之一。这是消费级显卡能跑大模型的主要原因。",
+   "why": "NF4（NormalFloat4）不是简单截断，而是**按参数的实际分布**设计的 4 位格式。它出自 QLoRA 那篇论文 —— 那篇的重点是「在 4 位模型上微调」，NF4 是其中的一项发明。",
+   "src": "arxiv-qlora",
+   "quote": "「QLoRA backpropagates gradients through a **frozen, 4-bit quantized** pretrained language model into Low Rank Adapters」，论文自述可「finetune a 65B parameter model on a single 48GB GPU」（arXiv:2305.14314，2023-05-23）"
+  },
+  {
+   "id": "gptq",
+   "term": "GPTQ",
+   "group": "quant",
+   "aliases": [
+    "gptq"
+   ],
+   "one_line": "一种**训练完之后再压**的量化方法（post-training），压的时候会用少量样本数据校准，尽量让压完的输出和原来接近。",
+   "why": "仓库名里带 GPTQ，说明作者用的是这套方法，**不代表位宽** —— 还要看是 4bit 还是 8bit、group size 多少。",
+   "src": "arxiv-gptq",
+   "quote": "标题即「GPTQ: **Accurate Post-Training Quantization** for Generative Pre-trained Transformers」（arXiv:2210.17323，2022-10-31）"
+  },
+  {
+   "id": "awq",
+   "term": "AWQ",
+   "group": "quant",
+   "aliases": [
+    "awq"
+   ],
+   "one_line": "另一套量化方法，思路是「**不是所有参数一样重要**」，把那一小撮关键参数保护起来，其余压狠一点。",
+   "why": "它的出发点就是本地/端侧部署，论文开篇讲的就是「跑在自己设备上省云费用、保护隐私」。",
+   "src": "arxiv-awq",
+   "quote": "「AWQ finds that **not all weights in an LLM are equally important. Protecting only 1% salient weights can greatly reduce quantization error.**」；同篇开篇：「running LLMs locally on edge devices can reduce the cloud computing cost and protect users privacy」（arXiv:2306.00978，2023-06-01）"
+  },
+  {
+   "id": "gguf",
+   "term": "GGUF",
+   "group": "quant",
+   "aliases": [
+    "gguf",
+    "ggml"
+   ],
+   "one_line": "**一种文件格式，不是一种精度。** 一个 .gguf 文件把模型权重和跑它需要的元信息打包在一起，llama.cpp 那一系工具直接读它。",
+   "why": "所以「GGUF 版」这三个字**没说清楚它是几位的** —— 同一个模型的 GGUF 仓库里通常并排放着 Q4_K_M、Q5_K_S、Q8_0 十几个文件，位宽写在文件名里。挑错了，要么跑不动，要么白白牺牲效果。",
+   "src": "hf-gguf-doc",
+   "quote": "Hugging Face 官方文档把它列为一种模型文件格式，配套说明如何在 Hub 上浏览 GGUF 文件的元信息"
+  },
+  {
+   "id": "lora",
+   "term": "LoRA",
+   "group": "adapt",
+   "aliases": [
+    "lora",
+    "低秩"
+   ],
+   "one_line": "**不动原模型**，另外训一小块「补丁」挂上去。补丁通常只有几十 MB，而效果是让模型学会一种画风、一个角色、一种版式。",
+   "why": "这是本地玩法里最实用的一条：原模型下一次就够了，之后想要什么风格就换补丁。**它也解释了为什么很多仓库叫「XX-LoRA」而体积特别小** —— 那不是完整模型，单独下下来跑不起来。",
+   "src": "arxiv-lora",
+   "quote": "「LoRA, which **freezes the pre-trained model weights** and injects trainable rank decomposition matrices into each layer」（arXiv:2106.09685，2021-06-17）"
+  },
+  {
+   "id": "distill",
+   "term": "蒸馏 / Turbo / Fast / Flash 档",
+   "group": "adapt",
+   "aliases": [
+    "distill",
+    "蒸馏",
+    "turbo",
+    "schnell",
+    "flash",
+    "步数"
+   ],
+   "one_line": "让一个模型去**模仿**另一个更慢更好的模型，换来大幅提速。出图模型上常见的表现是「原来要 50 步，现在 4 步甚至 1 步」。",
+   "why": "厂商名字里的 Turbo / Fast / Flash / schnell（德语「快」）大多是这一类。**它们是速度与价格档，不是新一代能力** —— 我们给谱系节点判能力时，这类一律记 `cap_skip`，因为它没有新增能力轴上的东西。",
+   "src": null,
+   "quote": null,
+   "note": "这一条**没有单一权威出处**，它是一类做法的统称。站上能对上的实例：Z-Image-Turbo（官方自述 8 步出图）、SDXL Turbo（「少步数蒸馏，一步出图」）、FLUX.1-schnell（首发的快档）。"
+  },
+  {
+   "id": "vram",
+   "term": "显存怎么估",
+   "group": "run",
+   "aliases": [
+    "显存",
+    "vram",
+    "显卡"
+   ],
+   "one_line": "**权重占用 ≈ 参数量 × 每个参数的字节数。** 20B 的模型：FP16 要约 40GB，FP8/INT8 约 20GB，INT4/NF4 约 10GB。",
+   "why": "两个坑。**一是别拿参数量当显存**：「20B」说的是参数个数，不是 GB。**二是权重只是一部分** —— 推理时还要放中间结果（出图模型是特征图，文本模型是 KV 缓存），分辨率越高、上下文越长，这一块越大。所以「刚好等于显存」的配置通常跑不起来，留 20~30% 余量比较稳。",
+   "src": "hf-diffusers-memory",
+   "quote": "Hugging Face diffusers 官方有一整页讲显存优化手段（分块、卸载到内存、注意力切片等）—— **这些手段的存在本身就说明「权重装得下」不等于「跑得动」**"
+  }
+ ],
+ "tutorials_note": "这一页**不自己写教程**。下面每一条都是别人做的公开教程，我们只负责：核实它还活着、说清它的许可、并诚实标出它适合谁。星标只用于排序兜底，不作推荐结论。⚠️ **许可这一栏最值得看**：中文社区的教程仓库很多**根本没有 LICENSE 文件**，还有几个是「不许商用」——自己学都没问题，做成公司内训材料或付费课就不是了。",
+ "tutorials": [
+  {
+   "group": "从零开始搞懂「大模型是什么」",
+   "items": [
+    {
+     "name": "生成式 AI 入门 21 讲（微软官方）",
+     "repo": "microsoft/generative-ai-for-beginners",
+     "stars": 117592,
+     "license": "MIT",
+     "pushed": "2026-08-06",
+     "lang": "英文（有中文翻译分支）",
+     "why": "**从「什么是生成式 AI」讲起**，21 课，每课带可运行代码。微软官方维护、更新到本月 —— 完全没有基础时先看这个。",
+     "caveat": "内容偏向微软自家的 Azure OpenAI，学概念没问题，照着搭生产环境要注意它默认的是哪家云。",
+     "domains": []
+    },
+    {
+     "name": "大模型基础（so-large-lm）",
+     "repo": "datawhalechina/so-large-lm",
+     "stars": 7570,
+     "license": null,
+     "pushed": "2026-06-22",
+     "lang": "中文",
+     "why": "Datawhale 出的中文教材，**专讲基础概念**：什么是大模型、能力从哪来、有哪些局限。你说的「解释什么是大模型」正是它的定位。",
+     "caveat": "⚠️ **仓库里没有 LICENSE 文件** —— 能读能学，但拿它的内容去做二次分发或商用课件，得先联系作者。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "动手学深度学习（中文版）",
+     "repo": "d2l-ai/d2l-zh",
+     "stars": 79628,
+     "license": "Apache-2.0",
+     "pushed": "2024-07-30",
+     "lang": "中文",
+     "why": "**比大模型更底层的那一层**：神经网络到底在算什么。中英文版被 70 多个国家 500 多所大学用于教学，是这一类里最经得起推敲的。",
+     "caveat": "⚠️ **最后推送停在 2024-07**，讲的是深度学习基础而不是 2026 年的大模型工程。当基础课看，别当最新实践看。",
+     "domains": []
+    }
+   ]
+  },
+  {
+   "group": "想用它做点什么（应用与场景，中文为主）",
+   "items": [
+    {
+     "name": "动手学大模型应用开发（llm-universe）",
+     "repo": "datawhalechina/llm-universe",
+     "stars": 13767,
+     "license": null,
+     "pushed": "2026-07-28",
+     "lang": "中文",
+     "why": "**面向小白开发者的大模型应用开发教程** —— 从调 API 到搭一个能跑的知识库问答，是中文侧「拿来做事」这一类里最完整的一本。",
+     "caveat": "⚠️ **仓库里没有 LICENSE 文件**。能读能学，二次分发或做成商用课件前要先联系作者。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "ChatGPT 中文调教指南（awesome-chatgpt-prompts-zh）",
+     "repo": "PlexPt/awesome-chatgpt-prompts-zh",
+     "stars": 61485,
+     "license": "MIT",
+     "pushed": "2026-04-28",
+     "lang": "中文",
+     "why": "**按场景组织的提示词合集**：写文案、做翻译、当面试官、扮演角色……不讲原理，直接给你能抄的句子。MIT，随便用。",
+     "caveat": "⚠️ 名字里是 ChatGPT，但提示词本身跨模型通用。**它是词库不是教程** —— 想搞懂为什么这么写，得配上面那几本。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "ChatGPT 中文指南（awesome-chatgpt-zh）",
+     "repo": "EmbraceAGI/awesome-chatgpt-zh",
+     "stars": 11644,
+     "license": "MIT",
+     "pushed": "2026-07-03",
+     "lang": "中文",
+     "why": "比上一条更宽：指令指南 + 应用开发指南 + 精选资源。MIT，2026-07 还在更新。",
+     "caveat": "是**索引型**资源，链接多、自有内容少 —— 适合按图索骥，不适合从头读。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "LangChain 中文入门教程",
+     "repo": "liaokongVFX/LangChain-Chinese-Getting-Started-Guide",
+     "stars": 9095,
+     "license": null,
+     "pushed": "2026-04-22",
+     "lang": "中文",
+     "why": "把 LangChain 的核心概念用中文讲一遍，是中文侧这条链路上被引用最多的入门材料。",
+     "caveat": "⚠️ **没有 LICENSE 文件**；且 LangChain 本身版本变动快，跟着敲之前先对一下你装的版本。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "HuggingLLM（动手学 ChatGPT 应用）",
+     "repo": "datawhalechina/hugging-llm",
+     "stars": 3065,
+     "license": "CC BY-NC-SA 4.0",
+     "pushed": "2026-06-16",
+     "lang": "中文",
+     "why": "Datawhale 出的应用向教程，讲怎么把大模型接进真实业务场景。",
+     "caveat": "⚠️ **CC BY-NC-SA 4.0，不许商用** —— 和 happy-llm 同一条限制。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "AI Agent 入门 18 讲（微软官方）",
+     "repo": "microsoft/ai-agents-for-beginners",
+     "stars": 72024,
+     "license": "MIT",
+     "pushed": "2026-07-29",
+     "lang": "英文（有中文翻译）",
+     "why": "**专讲 Agent 这一类**：规划、工具调用、多智能体协作，18 课带代码。微软官方，MIT。",
+     "caveat": "英文原版；中文是社区翻译，更新可能滞后。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "全世界最好的 LLM 资料总结（awesome-LLM-resources）",
+     "repo": "WangRongsheng/awesome-LLM-resources",
+     "stars": 8834,
+     "license": "Apache-2.0",
+     "pushed": "2026-08-13",
+     "lang": "中文",
+     "why": "多模态生成、Agent、辅助编程、数据合成……**按用途分类的资源总表**，今天还在更新。找某一类工具时从这儿起步比搜索快。",
+     "caveat": "是**索引不是教程**：它告诉你有什么，不告诉你怎么做。",
+     "domains": [
+      "text"
+     ]
+    }
+   ]
+  },
+  {
+   "group": "想自己把模型跑起来 / 微调",
+   "items": [
+    {
+     "name": "开源大模型食用指南（self-llm）",
+     "repo": "datawhalechina/self-llm",
+     "stars": 31689,
+     "license": "Apache-2.0",
+     "pushed": "2026-07-30",
+     "lang": "中文",
+     "why": "**这一条最贴你的问题**：基于 Linux 环境，讲国内外开源模型怎么部署、怎么全参数/LoRA 微调。Apache-2.0，本月还在更新。",
+     "caveat": "以 Linux + N 卡为前提。Mac 或 Windows 上要自己换等价步骤。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "大模型技术原理与实战（llm-action）",
+     "repo": "liguodongiot/llm-action",
+     "stars": 24890,
+     "license": "Apache-2.0",
+     "pushed": "2026-07-19",
+     "lang": "中文",
+     "why": "**量化、推理加速、显存优化这些词的中文出处**大多能在这里找到成篇的讲解 —— 正好接上你看不懂 FP8/INT8 的那个问题。",
+     "caveat": "偏工程、密度大，适合已经知道自己要解决什么问题时来查，不适合从头顺读。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "LLM Course",
+     "repo": "mlabonne/llm-course",
+     "stars": 81630,
+     "license": "Apache-2.0",
+     "pushed": "2026-02-05",
+     "lang": "英文",
+     "why": "分三条路线（基础 / 科学家 / 工程师），**量化与部署单独成章**，配 Colab 笔记本可以直接跑。",
+     "caveat": "英文；最后推送 2026-02，比上面两条旧半年。",
+     "domains": [
+      "text"
+     ]
+    }
+   ]
+  },
+  {
+   "group": "想弄明白它内部怎么运作",
+   "items": [
+    {
+     "name": "从零构建大模型（LLMs-from-scratch）",
+     "repo": "rasbt/LLMs-from-scratch",
+     "stars": 102494,
+     "license": "Apache-2.0（GitHub 判为 Other，实为 Apache 2.0 正文）",
+     "pushed": "2026-08-10",
+     "lang": "英文",
+     "why": "用 PyTorch **一行一行手写一个 ChatGPT 式模型**。这一类里星标最高、且本月仍在更新。想真正理解而不是会调 API，是这条。",
+     "caveat": "要求会 Python 与基本的深度学习概念，不是入门第一站。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "Neural Networks: Zero to Hero",
+     "repo": "karpathy/nn-zero-to-hero",
+     "stars": 23957,
+     "license": "MIT",
+     "pushed": "2024-08-18",
+     "lang": "英文（视频课）",
+     "why": "Karpathy 的视频课，**从反向传播一路手搓到 GPT**。讲解质量公认极高。",
+     "caveat": "⚠️ 最后推送 2024-08，内容停在 GPT-2 那个尺度。学原理够用，别指望覆盖今天的工程实践。",
+     "domains": []
+    },
+    {
+     "name": "大模型白盒子构建指南（tiny-universe）",
+     "repo": "datawhalechina/tiny-universe",
+     "stars": 5010,
+     "license": null,
+     "pushed": "2026-02-12",
+     "lang": "中文",
+     "why": "中文版的「全手搓」，把 RAG、Agent、模型结构都做成能跑的最小实现。",
+     "caveat": "⚠️ **仓库里没有 LICENSE 文件**，同 so-large-lm。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "从零开始构建大模型（happy-llm）",
+     "repo": "datawhalechina/happy-llm",
+     "stars": 32903,
+     "license": "CC BY-NC-SA 4.0",
+     "pushed": "2026-08-08",
+     "lang": "中文",
+     "why": "Datawhale 系里更新最勤的一本（本月还在推），中文，从零讲到能跑。",
+     "caveat": "⚠️ **许可是 CC BY-NC-SA 4.0 —— 不许商用**。自己学没问题，做成公司内训材料或付费课要先看清这一条。",
+     "domains": [
+      "text"
+     ]
+    }
+   ]
+  },
+  {
+   "group": "厂商官方课",
+   "items": [
+    {
+     "name": "Hugging Face Transformers 课程",
+     "repo": "huggingface/course",
+     "stars": 4120,
+     "license": "Apache-2.0",
+     "pushed": "2026-07-06",
+     "lang": "英文（社区有中文翻译）",
+     "why": "**你在 HF 上看到的那些概念的官方解释出处**：模型卡怎么读、pipeline 怎么用、数据集怎么处理。站上大量证据链接指向 HF，看懂这门课等于看懂那些页面。",
+     "caveat": "围绕 HF 生态展开，不覆盖别家工具链。",
+     "domains": [
+      "text"
+     ]
+    },
+    {
+     "name": "smol-course（小模型对齐）",
+     "repo": "huggingface/smol-course",
+     "stars": 6724,
+     "license": "Apache-2.0",
+     "pushed": "2026-05-26",
+     "lang": "英文",
+     "why": "HF 官方，**专讲在消费级硬件上做对齐/微调** —— 和「本地部署」这条线直接相关。",
+     "caveat": "进阶内容，默认你已经跑通过一次推理。",
+     "domains": [
+      "text"
+     ]
+    }
+   ]
+  },
+  {
+   "group": "中文侧的组织入口",
+   "items": [
+    {
+     "name": "Datawhale 官网 / GitHub 组织",
+     "repo": null,
+     "url": "https://www.datawhale.cn/",
+     "stars": null,
+     "license": null,
+     "pushed": null,
+     "lang": "中文",
+     "why": "上面五条里有四条出自这家。**负责人自己点名的一家**（2026-08-11：「它们家的质量还是 ok 的」）。组织地址 github.com/datawhalechina，教程还在持续出。",
+     "caveat": "是社区组织不是厂商，**各仓库许可不统一** —— 上面已经逐个标了，别默认都能商用。",
+     "domains": []
+    },
+    {
+     "name": "通往 AGI 之路 / WaytoAGI（知识库社区）",
+     "repo": null,
+     "url": "https://waytoagi.feishu.cn/wiki/QPe5w5g7UisbEkkow8XcDmOpn8e",
+     "stars": null,
+     "license": null,
+     "pushed": "2026-08-11",
+     "lang": "中文",
+     "why": "**负责人 2026-08-13 点名的一家。** 2023-04-26 创建的中文 AI 学习知识库，自述「覆盖近 900 万学习者，知识库访问量超亿次，联动 180 所高校及 100+ 企业，举办 500+ 场活动」。**它的覆盖面比 GitHub 上那些教程宽得多** —— 收的是从工具用法到行业案例的整片内容，不只是代码。",
+     "caveat": "⚠️ **它最大的问题是「太多，读不下去」** —— 首页目录有 36 个板块，从「1.1 入门」一路排到「4.6 社区孵化栏目」。**别从头读，按编号直接跳。** 和这个站四个方向对得上的是这几块：「**1.4 AI 绘画**」「**1.5 AI 视频**」「**1.6 AI 音乐**」「**1.7 AI 数字人+语音合成**」「**1.9 ComfyUI 工作流**」；想找提示词看「1.2 Prompts」，想找 Agent 看「1.3 AI Agents」。另外三件事：① 它是**飞书文档不是代码仓库，没有许可证**，引用转载要另问；② 页面纯前端渲染，我们抓裸 HTML 得到 0 字符 —— **它进不了自动监视**，不像别的条目会被 watch 盯着；③ 社区共建，质量不均匀。",
+     "sections": [
+      {
+       "name": "1.1 入门：AI 学习路径与课程",
+       "url": "https://waytoagi.feishu.cn/wiki/RJofwtPcci6YMJkzBP2cRFFOnIR"
+      },
+      {
+       "name": "1.2 Prompts（提示词）",
+       "url": "https://waytoagi.feishu.cn/wiki/Q5mXww4rriujFFkFQOzc8uIsnah"
+      },
+      {
+       "name": "1.3 AI Agents（智能体）",
+       "url": "https://waytoagi.feishu.cn/wiki/GFS0wJB78izVBmk3LVgcCn2MnCh"
+      },
+      {
+       "name": "1.4 AI 绘画",
+       "url": "https://waytoagi.feishu.cn/wiki/Q5ddwxfkMiVUZBkQXN7cgXf4nOb"
+      },
+      {
+       "name": "1.5 AI 视频",
+       "url": "https://waytoagi.feishu.cn/wiki/SPXQwl5TXiau0mkKb1zcqHxVnEm"
+      },
+      {
+       "name": "1.6 AI 音乐",
+       "url": "https://waytoagi.feishu.cn/wiki/P7N8wwy0tirs79klAgJc6FlCn0d"
+      },
+      {
+       "name": "1.7 AI 数字人+语音合成",
+       "url": "https://waytoagi.feishu.cn/wiki/IOO6wQKDKiMrmzk1oDxcGFpFnFh"
+      },
+      {
+       "name": "1.8 AI 3D",
+       "url": "https://waytoagi.feishu.cn/wiki/TRJEwdbQEiJjvykq8nJc6juvn6g"
+      },
+      {
+       "name": "1.9 ComfyUI 工作流",
+       "url": "https://waytoagi.feishu.cn/wiki/AxZPwElC6iZ0aqk2hjOcI3Y9nFg"
+      },
+      {
+       "name": "2.0 AI 编程",
+       "url": "https://waytoagi.feishu.cn/wiki/Pxj8wsMmOii7ZSkN0mYc8xdtnHb"
+      }
+     ],
+     "domains": [
+      "video",
+      "image",
+      "text",
+      "sound",
+      "threed",
+      "avatar"
+     ]
+    }
+   ]
+  },
+  {
+   "group": "按方向的公开资料合集",
+   "items": [
+    {
+     "name": "AI 绘画资料合集（awesome-ai-painting）",
+     "repo": "hua1995116/awesome-ai-painting",
+     "url": null,
+     "stars": 11790,
+     "license": null,
+     "pushed": "2024-08-14",
+     "lang": "中文",
+     "domains": [
+      "image"
+     ],
+     "why": "**中文侧星标最高的一份出图资料合集**（★11,790）：可用平台、使用教程、参数教程、部署教程一路收齐，Stable Diffusion 那一支尤其全。",
+     "caveat": "⚠️ **仓库里没有 LICENSE 文件** —— 能看能学，转载或做成课件要先问作者。⚠️ **最后推送停在 2024-08**：平台名单与价格早就变了，当**入门地图**看，别当现价目表。"
+    },
+    {
+     "name": "视频扩散模型综述（Awesome-Video-Diffusion-Models）",
+     "repo": "ChenHsing/Awesome-Video-Diffusion-Models",
+     "url": null,
+     "stars": 2309,
+     "license": null,
+     "pushed": "2026-08-12",
+     "lang": "英文",
+     "domains": [
+      "video"
+     ],
+     "why": "CSUR 综述配套的论文与模型清单，**一直在更新**（最近推送 2026-08-12）—— 想知道某条技术路线是从哪篇论文来的，从这里查最快。",
+     "caveat": "⚠️ **它是论文清单不是上手教程**：给的是「谁先做出来的」，不是「我怎么做出来」。⚠️ 没有 LICENSE 文件。"
+    },
+    {
+     "name": "数字人资源合集（awesome-digital-human）",
+     "repo": "weihaox/awesome-digital-human",
+     "url": null,
+     "stars": 1974,
+     "license": "MIT",
+     "pushed": "2026-04-18",
+     "lang": "英文",
+     "domains": [
+      "avatar"
+     ],
+     "why": "2D/3D/4D 人体建模与形象生成的资源汇总，**许可是 MIT**（这类合集里少见）。数字人这一卷唯一一份成体系的公开资料。",
+     "caveat": "⚠️ 偏学术：论文与数据集为主，**商用产品那一侧几乎不覆盖**（HeyGen/Synthesia 那类要去厂商文档看）。"
+    },
+    {
+     "name": "说话人头合成资源合集（Awesome-Talking-Head-Synthesis）",
+     "repo": "Kedreamix/Awesome-Talking-Head-Synthesis",
+     "url": null,
+     "stars": 1543,
+     "license": "MIT",
+     "pushed": "2026-05-20",
+     "lang": "中英",
+     "domains": [
+      "avatar"
+     ],
+     "why": "专收「让一张脸开口说话」这条线的论文、代码与数据集，**MIT 许可**，作者是中文开发者、README 中英混排。",
+     "caveat": "⚠️ 同样以论文为主；**能跑的项目要自己一个个点进去看**是否还维护。"
+    },
+    {
+     "name": "3D 内容生成统一框架（threestudio）",
+     "repo": "threestudio-project/threestudio",
+     "url": null,
+     "stars": 7046,
+     "license": "Apache-2.0",
+     "pushed": "2024-12-16",
+     "lang": "英文",
+     "domains": [
+      "threed"
+     ],
+     "why": "把文生 3D 那一批方法收进同一套框架里跑，**Apache-2.0**。想搞懂「这些方法差在哪」，读它的配置比读六篇论文快。",
+     "caveat": "⚠️ **最后推送停在 2024-12**：那之后的一代（TRELLIS、Hunyuan3D 2.x/3.x）不在里面。当**方法入门**看，不是当前实践。"
+    },
+    {
+     "name": "GPT-SoVITS（少量语音就能训音色）",
+     "repo": "RVC-Boss/GPT-SoVITS",
+     "url": null,
+     "stars": 60841,
+     "license": "MIT",
+     "pushed": "2026-07-22",
+     "lang": "中文",
+     "domains": [
+      "sound"
+     ],
+     "why": "**★60,841、MIT 许可**，自述「1 分钟语音也能训出一个不错的 TTS 模型」。中文社区里教程与整合包最多的一支。",
+     "caveat": "⚠️ 它是**项目不是教程** —— 放在这里是因为中文侧围绕它的上手材料最厚。⚠️ 音色克隆涉及他人声音，**发布前先想清楚授权**。"
+    },
+    {
+     "name": "LeRobot（Hugging Face 官方，具身入门的公共底座）",
+     "repo": "huggingface/lerobot",
+     "stars": 26649,
+     "license": "Apache-2.0",
+     "pushed": "2026-08-14",
+     "lang": "英文（文档有中文）",
+     "why": "**这一卷唯一一个「装上就能一路走到真机」的入口**：从数据采集、格式转换、训练到在真机上跑通，一条链都在里面。π₀ 与 SmolVLA 的权重就托管在它名下，GR00T 与 openpi 都要求先把数据转成 LeRobot 格式。想入门具身，先装它，别从某一家厂商的仓库开始。",
+     "caveat": "**它是框架不是模型**，装完还是没有能干活的策略，得再去下一个基座权重。而且 OpenVLA 走 RLDS 格式、不走 LeRobot，两边数据不通用。",
+     "domains": [
+      "embodied"
+     ]
+    },
+    {
+     "name": "VLA 研究资料合集（Awesome-VLA-Robotics）",
+     "repo": "Jiaaqiliu/Awesome-VLA-Robotics",
+     "stars": 490,
+     "license": "MIT",
+     "pushed": "2026-03-23",
+     "lang": "英文",
+     "why": "把这一卷的论文、模型、数据集、仿真环境按类目串起来。这一卷**没有 Artificial Analysis 那种第三方盲测榜**，想建立全局印象只能靠这类人工整理的合集。",
+     "caveat": "⚠️ **最后更新停在 2026-03-23**，而这一卷半年内换了好几代（GR00T N1.7 是 2026-02、InternVLA A1.5 是 2026-07、混元具身是 2026-06）—— **拿它当地图可以，拿它当「现在有什么」会漏掉最近半年**。",
+     "domains": [
+      "embodied"
+     ]
+    },
+    {
+     "name": "扩散策略与 VLA 资料合集（VLA-Diffusion-Policy-Robotics）",
+     "repo": "iLearn-Lab/VLA-Diffusion-Policy-Robotics",
+     "stars": 821,
+     "license": "Apache-2.0",
+     "pushed": "2026-07-13",
+     "lang": "英文",
+     "why": "这一卷星数最高的一份资料合集，更新到 2026-07，比上一条新四个月。侧重扩散策略与流匹配那条技术线 —— **而这一卷的当前主流恰好就是它**（SmolVLA、X-VLA、MolmoAct2 的动作头都是 flow matching）。",
+     "caveat": "**是论文清单不是教程**，没有一步步的实操路径；想动手还是要回到 LeRobot。另外它按技术流派组织，**不覆盖闭源那几家**（Helix、Gemini Robotics 都不在里面）。",
+     "domains": [
+      "embodied"
+     ]
+    },
+    {
+     "name": "NVIDIA Cosmos（世界模型平台，含代码与文档）",
+     "repo": "nvidia/cosmos",
+     "stars": null,
+     "license": "OpenMDW1.1",
+     "pushed": "2026-08-14",
+     "lang": "英文",
+     "why": "这一卷**唯一一份能照着做的官方材料**：模型卡把输入输出规格、各本体的动作维度（相机 9D / 双臂 Franka 20D / Agibot 29D…）、长度上限都列了表。想动手先读它，别从论文开始。",
+     "caveat": "⚠️ 许可是 **OpenMDW1.1**（模型卡 `License` 一节写的），**不是** GR00T 那份 NVIDIA Open Model License —— 我们一度照抄错了。**同一家的不同产品线许可可以不一样。**。另外同族下载量最高的 `Cosmos-Reason2` 与 `Cosmos-Predict2` **模型卡要登录才能看**，而且 Reason 其实是个 VLM 不是世界模型。",
+     "domains": [
+      "world"
+     ]
+    },
+    {
+     "name": "Matrix-Game 3.0（中文侧，标题就把轴写全了）",
+     "repo": "Skywork/Matrix-Game-3.0",
+     "stars": null,
+     "license": "见仓库",
+     "pushed": "2026-03-27",
+     "lang": "英文（昆仑万维）",
+     "why": "标题「Real-Time and Streaming Interactive World Model with Long-Horizon Memory」一行写全了三根轴，模型卡还讲了三段流水线（数据引擎 / 训练 / 推理）。**中文侧唯一一支既开源又把话说清楚的。**",
+     "caveat": "模型卡只有 5k，**除了这三根轴，其余能力一概没提**（世界理解、未来预测、多智能体都空着）。想知道它能不能做别的，只能自己试。",
+     "domains": [
+      "world"
+     ]
+    },
+    {
+     "name": "Genie 3 官方博客（读指标用，不是教程）",
+     "repo": null,
+     "stars": null,
+     "license": null,
+     "pushed": "2026-08-14",
+     "lang": "英文",
+     "why": "**这一卷唯一给了硬指标的官方材料**：24fps、一致性 a few minutes。想理解「实时」和「持久」在这一卷到底意味着什么，从这两个数字开始。",
+     "caveat": "⚠️ **没有权重也没有公开 API**，读完用不上。而且抓 `deepmind.google/models/genie/` 会拿回站点导航壳 —— 要看正文得走 `/discover/blog/genie-3-...` 那条。",
+     "domains": [
+      "world"
+     ]
+    },
+    {
+     "name": "Boltz（生物分子预测，MIT，能跑起来的那一支）",
+     "repo": "jwohlwend/boltz",
+     "stars": null,
+     "license": "MIT",
+     "pushed": "2026-08-15",
+     "lang": "英文",
+     "why": "**这一卷唯一一份能照着做的材料**：装法、命令、输入 YAML 格式、输出字段含义（`affinity_probability_binary` 用于筛 binder，`affinity_pred_value` 是 `log10(IC50)` 用于优化）全在 README 里。",
+     "caveat": "⚠️ 官方自述「approach the accuracy of physics-based FEP methods, while running **1000x faster**」—— **那是它自己说的**，没有第三方复核；这一轨也**没有第三方评测榜**可对照。",
+     "domains": [
+      "science"
+     ]
+    },
+    {
+     "name": "ESM-2（蛋白质语言模型，别按名气当结构预测器用）",
+     "repo": "facebookresearch/esm",
+     "stars": null,
+     "license": "见仓库",
+     "pushed": "2022-09-27",
+     "lang": "英文",
+     "why": "HF 上这一卷下载量最高的一支（`esm2_t33_650M_UR50D` 235 万次），五档检查点从 8M 到 15B，常被当作下游任务的骨干。",
+     "caveat": "⚠️ **它不是 AlphaFold 那种端到端结构预测器**，是蛋白质语言模型（模型卡的示例是一个带 `<mask>` 的氨基酸序列填空）。⚠️ 检查点建于 **2022-09，之后没有新代**。",
+     "domains": [
+      "science"
+     ]
+    }
+   ]
+  }
+ ]
+}
