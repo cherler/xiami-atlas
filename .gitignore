@@ -37,6 +37,23 @@ data/watch-report.partial.md
 # 构建前自动生成（package.json 的 prebuild）。
 public/diagrams/
 
+# 能力矩阵海报的 HTML（scripts/make-matrix.mjs 从 data/atlas.json 确定性生成）。
+# 和上面两条同一个判据：**它是产物，不是源码。**
+#
+# 2026-09-19 数过这个系列的账：11 份里有 3 份跟上一份**只差一个日期**，
+# 其余九成内容是同一套 CSS；拿 08-15 当天的 atlas.json 重跑，产物与工作区那份
+# **逐字节一致** —— 单输入、单脚本、可重算。
+# 更要命的是它已经造出一条假记录：08-17 那次提交的说明写着「这一版的实际变化：
+# 来源 377 → 413」，而那个变化其实发生在 08-15（那天的产物没提交）。
+# **一个有空档的产物序列，产生的不是历史，是错位的历史。**
+# 同一张图的渲染版（public/og/domain-video-*.png）本来就在忽略之列 —— 两套待遇不该并存。
+#
+# ⚠️ 08-07 ~ 08-17 那 6 份**仍然是被跟踪的**（.gitignore 不影响已跟踪文件），
+# 有意留着当建库那两周的脚印；这条规则只管住「从今往后不再新增」。
+# 想回看某天发的是哪一版，该给 make-matrix.mjs 加 `--at <git-ref>`（version-sentry 已有这个开关），
+# 按需重算，而不是天天往库里塞一份九成相同的 CSS。
+assets/matrix-*.html
+
 # 宣传片的中间帧（840 张 PNG，由 scripts/film.mjs 重新生成）
 assets/film-frames/
 assets/film-shots/
