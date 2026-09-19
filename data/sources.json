@@ -61,7 +61,7 @@
     "2026",
     "更新"
    ],
-   "note": "**实测只抓到 43 字的空壳（'KlingAI Open Platform'×2）。而 atlas.json 里有 5 格 Kling 的能力署了这个 URL 当来源** —— 那些结论其实来自搜索摘要。这是本项目最不能犯的错：署了一个自己没读过、且根本没内容的官方链接。已改 spa 重抓"
+   "note": "**实测只抓到 43 字的空壳（'KlingAI Open Platform'×2）。而 atlas.json 里有 5 格 Kling 的能力署了这个 URL 当来源** —— 那些结论其实来自搜索摘要。这是本项目最不能犯的错：署了一个自己没读过、且根本没内容的官方链接。已改 spa 重抓\n\n🔀 **2026-09-19 合并了同 URL 的 `kling-api`（原 tier A，名「Kling AI · API 更新日志（171 条，需 JS 渲染）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "kling-site",
@@ -87,7 +87,8 @@
     "capability",
     "api",
     "version"
-   ]
+   ],
+   "note": "🔀 **2026-09-19 合并了同 URL 的 `g-video`（原 tier A，名「Google · 视频生成总览（两个模型如何取舍）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "deepmind-veo",
@@ -124,7 +125,7 @@
    "good_for": [
     "status"
    ],
-   "note": "盯停服日期是否变化、是否宣布继任。2026-08-12 由 html 改为 spa⚠️ **2026-08-12 查清：这两页在 Cloudflare 人机验证后面**（失败现场的页面标题是「Just a moment...」）。裸 fetch 回 403、浏览器有时能过有时被挡 —— **换抓法救不了，也不该去绕**（那是反爬在正常工作）。这条源标为人工核：Sora 的停服状态本来就低频变化，人隔阵子打开看一眼即可",
+   "note": "盯停服日期是否变化、是否宣布继任。2026-08-12 由 html 改为 spa⚠️ **2026-08-12 查清：这两页在 Cloudflare 人机验证后面**（失败现场的页面标题是「Just a moment...」）。裸 fetch 回 403、浏览器有时能过有时被挡 —— **换抓法救不了，也不该去绕**（那是反爬在正常工作）。这条源标为人工核：Sora 的停服状态本来就低频变化，人隔阵子打开看一眼即可\n\n🔀 **2026-09-19 合并了同 URL 的 `sora-eol-search`（原 tier B，名「OpenAI Sora 停服说明（⚠️ 页面反爬，我们抓不到，内容来自搜索摘要转述）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。",
    "manual": true
   },
   {
@@ -138,7 +139,7 @@
    "good_for": [
     "capability"
    ],
-   "note": "2026-08-12 由 html 改为 spa⚠️ **2026-08-12 查清：这两页在 Cloudflare 人机验证后面**（失败现场的页面标题是「Just a moment...」）。裸 fetch 回 403、浏览器有时能过有时被挡 —— **换抓法救不了，也不该去绕**（那是反爬在正常工作）。这条源标为人工核：Sora 的停服状态本来就低频变化，人隔阵子打开看一眼即可",
+   "note": "2026-08-12 由 html 改为 spa⚠️ **2026-08-12 查清：这两页在 Cloudflare 人机验证后面**（失败现场的页面标题是「Just a moment...」）。裸 fetch 回 403、浏览器有时能过有时被挡 —— **换抓法救不了，也不该去绕**（那是反爬在正常工作）。这条源标为人工核：Sora 的停服状态本来就低频变化，人隔阵子打开看一眼即可\n\n🔀 **2026-09-19 合并了同 URL 的 `sora-2`（原 tier A，名「OpenAI · Sora 2 发布页（⚠️ 对我们的采集器返回 403，本轮未能一手复核）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。",
    "manual": true
   },
   {
@@ -230,7 +231,7 @@
     "version",
     "api"
    ],
-   "note": "项目负责人手工找到 2026-04-13「新增 viduq3 / mix / turbo」，我漏了。漏的两个机械原因：① 站点是 SPA，纯 HTTP 只拿到壳；② 路径是猜的（/docs/changelog 不存在），真实路径 /docs/update —— **导航上的文字是「Api Reference」，href 却是 update**，按标签猜必然猜不到。教训：路径要从页面里读出来，不能凭常识拼"
+   "note": "项目负责人手工找到 2026-04-13「新增 viduq3 / mix / turbo」，我漏了。漏的两个机械原因：① 站点是 SPA，纯 HTTP 只拿到壳；② 路径是猜的（/docs/changelog 不存在），真实路径 /docs/update —— **导航上的文字是「Api Reference」，href 却是 update**，按标签猜必然猜不到。教训：路径要从页面里读出来，不能凭常识拼\n\n🔀 **2026-09-19 合并了同 URL 的 `vidu-up`（原 tier A，名「Vidu 平台 · Update Notice（官方更新日志）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "vidu-model-map",
@@ -243,7 +244,8 @@
    "good_for": [
     "version",
     "availability"
-   ]
+   ],
+   "note": "🔀 **2026-09-19 合并了同 URL 的 `vidu-mm`（原 tier A，名「Vidu 平台 · Model Map（官方模型清单）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "vidu-function-list",
@@ -256,7 +258,7 @@
    "good_for": [
     "capability"
    ],
-   "note": "**厂商自己发布的能力矩阵。** 比我们手工拼的那张可靠得多 —— 该找的是这类页面，而不是去搜第三方评测。其它家有没有对应物，值得逐个翻一遍导航",
+   "note": "**厂商自己发布的能力矩阵。** 比我们手工拼的那张可靠得多 —— 该找的是这类页面，而不是去搜第三方评测。其它家有没有对应物，值得逐个翻一遍导航\n\n🔀 **2026-09-19 合并了同 URL 的 `vidu-fl`（原 tier A，名「Vidu 平台 · Function List（官方功能清单）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 8 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。",
    "expect": [
     "Image to Video",
     "Reference to Video"
@@ -369,7 +371,7 @@
    "not_for": [
     "capability"
    ],
-   "note": "只答「谁生成得更好看」，不答「谁支持首尾帧」。榜上出现没见过的名字＝发现信号",
+   "note": "只答「谁生成得更好看」，不答「谁支持首尾帧」。榜上出现没见过的名字＝发现信号\n\n🔀 **2026-09-19 合并了同 URL 的 `aa-board`（原 tier B，名「Artificial Analysis 榜（只证明「存在且有人用」，不证明能力）」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。",
    "expect": [
     "Elo",
     "Kling",
@@ -567,7 +569,7 @@
     "Act-One",
     "Aleph"
    ],
-   "note": "**我原先在 $missing 里断言「Runway 没有可 diff 的公开更新页」—— 那是错的，我只是没看。** 沿导航一扫就在。断言「没有」之前必须先扫一遍导航"
+   "note": "**我原先在 $missing 里断言「Runway 没有可 diff 的公开更新页」—— 那是错的，我只是没看。** 沿导航一扫就在。断言「没有」之前必须先扫一遍导航\n\n🔀 **2026-09-19 合并了同 URL 的 `rw-changelog`（原 tier A，名「Runway · 官方 Changelog」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 14 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "runway-models",
@@ -604,23 +606,6 @@
    ],
    "note": "实测：条目最新是「1 year ago」的 Photon（图像），视频侧久未更新 —— 这条源的价值有限，别指望它报 Ray 的新版本 ⚠️ **2026-08-14 转人工核**：渲染后正文只有 273 字符，是个壳。连着多轮抓不到 —— **这不是失败，是信息**：Luma 没有可 diff 的公开更新入口，版本要靠人隔阵子打开看。",
    "manual": true
-  },
-  {
-   "id": "google-models",
-   "tier": "S",
-   "kind": "html",
-   "vendor": "veo,gemini-omni",
-   "name": "Google · 全部模型清单",
-   "url": "https://ai.google.dev/gemini-api/docs/models",
-   "refresh_days": 7,
-   "good_for": [
-    "version",
-    "availability"
-   ],
-   "expect": [
-    "Veo",
-    "Gemini"
-   ]
   },
   {
    "id": "seed-models-hub",
@@ -686,23 +671,6 @@
     "discovery"
    ],
    "note": "Decart Lucy 2 是 Forbes/TechCrunch 这类媒体先报的，榜单与 HF 都没有 —— 科技媒体是 realtime 与闭源新品类的主要曝光渠道"
-  },
-  {
-   "id": "decart-blog",
-   "tier": "S",
-   "kind": "spa",
-   "vendor": "lucy",
-   "name": "Decart · Publications 索引",
-   "url": "https://decart.ai/",
-   "refresh_days": 7,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "expect": [
-    "Lucy",
-    "real-time"
-   ]
   },
   {
    "id": "ltx-gh",
@@ -1184,7 +1152,7 @@
     "workflow",
     "openweights"
    ],
-   "note": "应用页公开资源。收录时 ★18,636，许可 GPL-3.0。星标只用于排序兜底，不作可信度"
+   "note": "应用页公开资源。收录时 ★18,636，许可 GPL-3.0。星标只用于排序兜底，不作可信度\n\n🔀 **2026-09-19 合并了同 URL 的 `s-pvt-gh`（原 tier C，名「GitHub · jianchang512/pyvideotrans」）。** 它原来的备注：声音卷场景页公开资源。2026-08-12 收录时 ★18,655，许可 GPL-3.0，最后推送 2026-08-10。星标只用于排序兜底，不作可信度\n\n🔀 **2026-09-19 合并了同 URL 的 `gh-pyvideotrans-doc`（原 tier C，名「pyvideotrans 官方仓库（中文）」）。** 它原来的备注：场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
   },
   {
    "id": "duix-gh",
@@ -1240,7 +1208,7 @@
     "workflow",
     "openweights"
    ],
-   "note": "应用页公开资源。收录时 ★7,724，许可 GPL-3.0。星标只用于排序兜底，不作可信度"
+   "note": "应用页公开资源。收录时 ★7,724，许可 GPL-3.0。星标只用于排序兜底，不作可信度\n\n🔀 **2026-09-19 合并了同 URL 的 `gh-comfy-zho`（原 tier C，名「GitHub · ZHO 的 ComfyUI 中文工作流合集」）。** 它原来的备注：场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
   },
   {
    "id": "echomimic-gh",
@@ -1386,7 +1354,8 @@
    "good_for": [
     "version",
     "capability"
-   ]
+   ],
+   "note": "🔀 **2026-09-19 合并了同 URL 的 `recraft-blog-b`（原 tier A，名「Recraft 官方博客」）。** 它原来的备注：⚠️ 融资公告只在博客列表页的摘要里，没有单独的新闻页 —— 抓列表页本身"
   },
   {
    "id": "kolors-gh",
@@ -1935,19 +1904,6 @@
    "note": "**不是模型厂商自己的页**。openai.com 与 help.openai.com 都是 403（见 $blocked），gpt-image 这条线的发布日只能从同日上线的微软一侧取。"
   },
   {
-   "id": "hf-image-org",
-   "tier": "S",
-   "kind": "json",
-   "vendor": "多家",
-   "name": "Hugging Face 官方组织 · 出图模型",
-   "url": "https://huggingface.co/api/models",
-   "refresh_days": 7,
-   "good_for": [
-    "version",
-    "opensource"
-   ]
-  },
-  {
    "id": "mj-updates",
    "tier": "S",
    "kind": "html",
@@ -2085,19 +2041,6 @@
     "version"
    ],
    "note": "**降级取源**：火山方舟的模型清单页是 SPA，抓到的是导航壳（docs.volcengine.com/docs/82379/1330310）。豆包的当前版本只能退到媒体报道。"
-  },
-  {
-   "id": "hf-text-org",
-   "tier": "S",
-   "kind": "json",
-   "vendor": "多家",
-   "name": "Hugging Face 官方组织 · 文本模型",
-   "url": "https://huggingface.co/api/models",
-   "refresh_days": 3,
-   "good_for": [
-    "version",
-    "opensource"
-   ]
   },
   {
    "id": "wan3-qbitai",
@@ -2589,18 +2532,6 @@
    ]
   },
   {
-   "id": "kimi-chat-api",
-   "tier": "S",
-   "kind": "html",
-   "vendor": "kimi",
-   "name": "Kimi 开放平台 · Chat Completions",
-   "url": "https://platform.kimi.com/docs/api/chat",
-   "refresh_days": 14,
-   "good_for": [
-    "capability"
-   ]
-  },
-  {
    "id": "bailian-websearch",
    "tier": "S",
    "kind": "html",
@@ -2663,19 +2594,6 @@
     "version"
    ],
    "lang": "zh-CN"
-  },
-  {
-   "id": "claude-models",
-   "tier": "S",
-   "kind": "html",
-   "vendor": "claude",
-   "name": "Anthropic · Models overview",
-   "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
-   "refresh_days": 7,
-   "good_for": [
-    "capability",
-    "version"
-   ]
   },
   {
    "id": "openai-caching",
@@ -3100,37 +3018,12 @@
    ]
   },
   {
-   "id": "hf-sound-org",
-   "tier": "S",
-   "kind": "json",
-   "name": "Hugging Face · 官方组织（声音）",
-   "url": "https://huggingface.co/api/models",
-   "refresh_days": 7,
-   "good_for": [
-    "version",
-    "lineage"
-   ]
-  },
-  {
    "id": "kokoro-card",
    "tier": "S",
    "kind": "html",
    "vendor": "kokoro",
    "name": "Hugging Face · hexgrad/Kokoro-82M 模型卡",
    "url": "https://huggingface.co/hexgrad/Kokoro-82M",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ]
-  },
-  {
-   "id": "xai-models",
-   "tier": "S",
-   "kind": "html",
-   "vendor": "grok",
-   "name": "xAI · Models",
-   "url": "https://docs.x.ai/docs/models",
    "refresh_days": 14,
    "good_for": [
     "capability",
@@ -3305,20 +3198,6 @@
    "note": "声音卷场景页公开资源。2026-08-12 收录时 ★521，许可 GPL-3.0，最后推送 2025-11-17。星标只用于排序兜底，不作可信度"
   },
   {
-   "id": "s-pvt-gh",
-   "tier": "C",
-   "kind": "json",
-   "vendor": "",
-   "name": "GitHub · jianchang512/pyvideotrans",
-   "url": "https://api.github.com/repos/jianchang512/pyvideotrans",
-   "refresh_days": 7,
-   "good_for": [
-    "workflow",
-    "openweights"
-   ],
-   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★18,655，许可 GPL-3.0，最后推送 2026-08-10。星标只用于排序兜底，不作可信度"
-  },
-  {
    "id": "s-smartsub-gh",
    "tier": "C",
    "kind": "json",
@@ -3470,7 +3349,7 @@
     "workflow",
     "openweights"
    ],
-   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★60,756，许可 MIT，最后推送 2026-07-22。星标只用于排序兜底，不作可信度"
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★60,756，许可 MIT，最后推送 2026-07-22。星标只用于排序兜底，不作可信度\n\n🔀 **2026-09-19 合并了同 URL 的 `gh-gptsovits-cn`（原 tier C，名「GPT-SoVITS 官方中文文档」）。** 它原来的备注：场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
   },
   {
    "id": "s-rvc-gh",
@@ -3526,7 +3405,7 @@
     "workflow",
     "openweights"
    ],
-   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★22,710，许可 Apache-2.0，最后推送 2026-05-25。星标只用于排序兜底，不作可信度"
+   "note": "声音卷场景页公开资源。2026-08-12 收录时 ★22,710，许可 Apache-2.0，最后推送 2026-05-25。星标只用于排序兜底，不作可信度\n\n🔀 **2026-09-19 合并了同 URL 的 `gh-cosyvoice-doc`（原 tier C，名「CosyVoice 官方仓库文档」）。** 它原来的备注：场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
   },
   {
    "id": "s-f5tts-gh",
@@ -4179,19 +4058,6 @@
    "note": "法务页面，地址变动极少 —— 半年看一次即可"
   },
   {
-   "id": "recraft-blog-b",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "recraft",
-   "name": "Recraft 官方博客",
-   "url": "https://www.recraft.ai/blog",
-   "refresh_days": 30,
-   "good_for": [
-    "investment"
-   ],
-   "note": "⚠️ 融资公告只在博客列表页的摘要里，没有单独的新闻页 —— 抓列表页本身"
-  },
-  {
    "id": "gh-llm-universe",
    "tier": "C",
    "kind": "json",
@@ -4283,64 +4149,12 @@
    "note": "场景页的中文教程。⚠️ 抓 API 端点（R72）；星标只用于排序兜底，不作推荐结论"
   },
   {
-   "id": "gh-gptsovits-cn",
-   "tier": "C",
-   "kind": "json",
-   "vendor": "",
-   "name": "GPT-SoVITS 官方中文文档",
-   "url": "https://api.github.com/repos/RVC-Boss/GPT-SoVITS",
-   "refresh_days": 30,
-   "good_for": [
-    "workflow"
-   ],
-   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
-  },
-  {
-   "id": "gh-cosyvoice-doc",
-   "tier": "C",
-   "kind": "json",
-   "vendor": "",
-   "name": "CosyVoice 官方仓库文档",
-   "url": "https://api.github.com/repos/QwenAudio/CosyVoice",
-   "refresh_days": 30,
-   "good_for": [
-    "workflow"
-   ],
-   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
-  },
-  {
    "id": "gh-chattts-cn",
    "tier": "C",
    "kind": "json",
    "vendor": "",
    "name": "ChatTTS 官方中文文档",
    "url": "https://api.github.com/repos/2noise/ChatTTS",
-   "refresh_days": 30,
-   "good_for": [
-    "workflow"
-   ],
-   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
-  },
-  {
-   "id": "gh-pyvideotrans-doc",
-   "tier": "C",
-   "kind": "json",
-   "vendor": "",
-   "name": "pyvideotrans 官方仓库（中文）",
-   "url": "https://api.github.com/repos/jianchang512/pyvideotrans",
-   "refresh_days": 30,
-   "good_for": [
-    "workflow"
-   ],
-   "note": "场景页的中文教程/文档。⚠️ 抓 API 端点（R72）"
-  },
-  {
-   "id": "gh-comfy-zho",
-   "tier": "C",
-   "kind": "json",
-   "vendor": "",
-   "name": "GitHub · ZHO 的 ComfyUI 中文工作流合集",
-   "url": "https://api.github.com/repos/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO",
    "refresh_days": 30,
    "good_for": [
     "workflow"
@@ -5762,20 +5576,6 @@
    "note": "⚠️ **它放的是数据集与凸包，不是模型权重** —— 和这一轨别家不是一类东西。"
   },
   {
-   "id": "kling-api",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "Kling AI · API 更新日志（171 条，需 JS 渲染）",
-   "url": "https://kling.ai/document-api/updates/api",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
    "id": "seed-25",
    "tier": "A",
    "kind": "html",
@@ -5804,20 +5604,6 @@
    "note": "🔧 **2026-08-15 补登记。** 它被 10 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
-   "id": "sora-eol-search",
-   "tier": "B",
-   "kind": "html",
-   "vendor": "",
-   "name": "OpenAI Sora 停服说明（⚠️ 页面反爬，我们抓不到，内容来自搜索摘要转述）",
-   "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
    "id": "sora-api",
    "tier": "A",
    "kind": "html",
@@ -5830,20 +5616,6 @@
     "version"
    ],
    "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
-   "id": "sora-2",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "OpenAI · Sora 2 发布页（⚠️ 对我们的采集器返回 403，本轮未能一手复核）",
-   "url": "https://openai.com/index/sora-2/",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "wan-site",
@@ -5874,62 +5646,6 @@
    "note": "🔧 **2026-08-15 补登记。** 它被 3 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
-   "id": "vidu-fl",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "Vidu 平台 · Function List（官方功能清单）",
-   "url": "https://platform.vidu.com/docs/function-list",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 8 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
-   "id": "vidu-up",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "Vidu 平台 · Update Notice（官方更新日志）",
-   "url": "https://platform.vidu.com/docs/update",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
-   "id": "vidu-mm",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "Vidu 平台 · Model Map（官方模型清单）",
-   "url": "https://platform.vidu.com/docs/model-map",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
-   "id": "rw-changelog",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "Runway · 官方 Changelog",
-   "url": "https://runway.com/changelog",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 14 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
    "id": "vidu-s1-paper",
    "tier": "A",
    "kind": "html",
@@ -5958,20 +5674,6 @@
    "note": "🔧 **2026-08-15 补登记。** 它被 8 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
-   "id": "g-video",
-   "tier": "A",
-   "kind": "html",
-   "vendor": "",
-   "name": "Google · 视频生成总览（两个模型如何取舍）",
-   "url": "https://ai.google.dev/gemini-api/docs/video",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
    "id": "ltx-hf-23",
    "tier": "A",
    "kind": "html",
@@ -5984,20 +5686,6 @@
     "version"
    ],
    "note": "🔧 **2026-08-15 补登记。** 它被 3 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
-  },
-  {
-   "id": "aa-board",
-   "tier": "B",
-   "kind": "html",
-   "vendor": "",
-   "name": "Artificial Analysis 榜（只证明「存在且有人用」，不证明能力）",
-   "url": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
-   "refresh_days": 14,
-   "good_for": [
-    "capability",
-    "version"
-   ],
-   "note": "🔧 **2026-08-15 补登记。** 它被 2 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
   },
   {
    "id": "gemini-image-docs",
@@ -6208,6 +5896,49 @@
     "version"
    ],
    "note": "🔧 **2026-08-15 补登记。** 它被 1 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+  },
+  {
+   "id": "hf-funcineforge",
+   "tier": "S",
+   "kind": "html",
+   "vendor": "阿里巴巴",
+   "name": "阿里 FunAudioLLM 官方 · Fun-CineForge 模型卡",
+   "url": "https://huggingface.co/FunAudioLLM/Fun-CineForge",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version",
+    "opensource"
+   ],
+   "note": "收录 `funcineforge` 时一并登记 —— **引了它当证据就要盯着它**，不然它改了口径我们也不知道。魔搭上有同一份（modelscope.cn/models/FunAudioLLM/Fun-CineForge），两边内容一致，只登记 HF 这一份避免同页重复登记（那个毛病站上已经有 20 组）。"
+  },
+  {
+   "id": "hf-org",
+   "tier": "S",
+   "kind": "json",
+   "vendor": "多家",
+   "name": "Hugging Face 官方组织目录（模型接口）",
+   "url": "https://huggingface.co/api/models",
+   "refresh_days": 3,
+   "good_for": [
+    "version",
+    "opensource"
+   ],
+   "note": "**原来是 `hf-text-org` / `hf-image-org` / `hf-sound-org` 三个 id，2026-09-19 合成一个。** 三个的 `url` 完全相同（`https://huggingface.co/api/models`，没有任何 query 参数），实测三份快照内容一致 —— 名字里的「文本 / 出图 / 声音」是假的，同一个接口一天抓三遍，还让引文按引了哪个 id 显示出不同的出处名。合并后引用一律指到这里。"
+  },
+  {
+   "id": "gh-gptsovits-cn",
+   "tier": "C",
+   "kind": "json",
+   "vendor": "",
+   "name": "GPT-SoVITS 官方中文文档",
+   "url": "https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/cn/README.md",
+   "refresh_days": 7,
+   "good_for": [
+    "workflow",
+    "openweights"
+   ],
+   "note": "🔀 **2026-09-19：它原来登记的 URL 是仓库 API，和 `s-gptsovits-gh` 撞成同一页** —— 而引用簿上它指的一直是中文文档页。按引用簿改回来，两条从此是两页。"
   }
  ],
  "$missing": [

@@ -250,6 +250,1457 @@
       "claim": "Vidu Q2 模型支持 9 秒和 10 秒时长，覆盖 Text to Video、Reference to Video、Image to Video 接口",
       "cell": "vidu-q×t2v",
       "note": "已有结论一致（yes）。这条的核验版本是 2026-08-07，库里那条是 Q3"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2 [pro]::i-multiref::FLUX.2 [pro] 支持多图参考编辑，可将",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 [pro] 支持多图参考编辑，可将多张输入图片组合为单一生成输出",
+      "cell": "flux×i-multiref",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2 [pro]::i-multiref::FLUX.2 [pro] API 输入+输出总限",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 [pro] API 输入+输出总限 9MP；1MP 输出时最多 8 张参考图，2MP 输出时最多 7 张",
+      "cell": "flux×i-multiref",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2 [klein]::i-multiref::FLUX.2 [klein] 最多支持 4 张参",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 [klein] 最多支持 4 张参考图",
+      "cell": "flux×i-multiref",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2::i-styleref::FLUX.2 多图参考编辑支持风格与材质迁移，可",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 多图参考编辑支持风格与材质迁移，可将一张图的视觉风格/纹理/材质应用到另一张图内容上",
+      "cell": "flux×i-styleref",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2::i-edit::FLUX.2 多图参考编辑支持自然语言指令编辑（",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 多图参考编辑支持自然语言指令编辑（如\"Add dramatic storm clouds to the sky\"、\"Change her dress from blue to deep burgundy\"、\"Age this portrait by 30 years\"、\"Change image 1 to match the style of image 2\"）",
+      "cell": "flux×i-edit",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2::i-multiref::FLUX.2 多图参考编辑可用于场景合成（将多张",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 多图参考编辑可用于场景合成（将多张源图元素合成为单一连贯场景）",
+      "cell": "flux×i-multiref",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::bfl-flux2-multiref::flux.2::i-edit::FLUX.2 多图参考编辑支持对象替换（用另一张",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "FLUX.2 多图参考编辑支持对象替换（用另一张参考图中的元素替换或填充对象）",
+      "cell": "flux×i-edit",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 2-dev"
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::new-model::NVIDIA 发布 Cosmos3-Nano 世",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "NVIDIA 发布 Cosmos3-Nano 世界基础模型，16B 参数，发布日期 2026-05-31",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::t2v::Generator 支持文生视频（Text-to",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Generator 支持文生视频（Text-to-Video）",
+      "missing": [
+        "cosmos 身上没有「t2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::i2v::Generator 支持图生视频（Image-t",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Generator 支持图生视频（Image-to-Video）",
+      "missing": [
+        "cosmos 身上没有「i2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::i-t2i::Generator 支持文生图（Text-to-",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Generator 支持文生图（Text-to-Image）",
+      "missing": [
+        "cosmos 身上没有「i-t2i」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::v2v::Generator 支持视频转视频（Video-",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Generator 支持视频转视频（Video-to-Video），可直接以视频为输入、视频为输出",
+      "missing": [
+        "cosmos 身上没有「v2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::audio::Generator 原生输出音频（AAC 立体声",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Generator 原生输出音频（AAC 立体声 48kHz，muxed 进 MP4）",
+      "missing": [
+        "cosmos 身上没有「audio」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::w-sim::Cosmos3 是 Omnimodal 世界基础",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Cosmos3 是 Omnimodal 世界基础模型，支持世界模拟",
+      "cell": "cosmos×w-sim",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Cosmos3"
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::w-predict::模型支持未来预测（future predicti",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "模型支持未来预测（future prediction）",
+      "cell": "cosmos×w-predict",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Cosmos3"
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::w-understand::模型覆盖世界理解（world understan",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "模型覆盖世界理解（world understanding）能力",
+      "cell": "cosmos×w-understand",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Cosmos3"
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::w-actionin::Generator 接受动作轨迹（action ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Generator 接受动作轨迹（action trajectory）作为输入条件",
+      "cell": "cosmos×w-actionin",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Cosmos3"
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::w-actionout::Generator 输出动作指令（action ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Generator 输出动作指令（action commands，json 1D list）",
+      "cell": "cosmos×w-actionout",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Cosmos3"
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::e-embodiment::支持多种跨本体维度输入：通用相机运动 9D、自动",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持多种跨本体维度输入：通用相机运动 9D、自动驾驶 9D、自我运动 57D、Franka 单臂 10D、Franka 双臂 20D、Agibot 29D、UR 10D、Google robot 10D、WidowX 250 10D、UMI 9D",
+      "missing": [
+        "cosmos 身上没有「e-embodiment」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (reasoner)::e-spatial::Reasoner 支持空间推理：2D/3D 点定",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Reasoner 支持空间推理：2D/3D 点定位与边界框坐标输出",
+      "missing": [
+        "cosmos 身上没有「e-spatial」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (reasoner)::t-long::Reasoner 支持 256K tokens ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Reasoner 支持 256K tokens 长上下文",
+      "missing": [
+        "cosmos 身上没有「t-long」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (reasoner)::t-maxout::Reasoner 默认 max_tokens 4",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Reasoner 默认 max_tokens 4096+，可请求更长输出",
+      "missing": [
+        "cosmos 身上没有「t-maxout」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator & reasoner)::t-vision::Generator 与 Reasoner 均支持",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Generator 与 Reasoner 均支持图像/视频作为视觉输入",
+      "missing": [
+        "cosmos 身上没有「t-vision」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::openweights::模型在 Hugging Face 以 OpenM",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "模型在 Hugging Face 以 OpenMDW1.1 许可证发布，可商用与非商用，权重公开可下载",
+      "missing": [
+        "cosmos 身上没有「openweights」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::other::模型架构为 Mixture-of-Transfo",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "模型架构为 Mixture-of-Transformers (MoT)，包含自回归 transformer 与扩散 transformer 双塔",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis 3::w-sim::推出 Oasis 3：旗舰交互式世界模型，面向物",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "推出 Oasis 3：旗舰交互式世界模型，面向物理 AI",
+      "cell": "oasis×w-sim",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Oasis 3"
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy 2.5::new-version::发布 Lucy 2.5，定位为「Live AI」",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "发布 Lucy 2.5，定位为「Live AI」新版本",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::dos 2.0::new-version::宣布 Decart Optimization S",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "宣布 Decart Optimization Stack (DOS) 2.0，并预告 Lucy 与 Oasis 新版本将在数周内上线",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy 2.5::v2v::Lucy 提供实时视频变换（world edit",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Lucy 提供实时视频变换（world editing），用于虚拟试穿、直播广告、社交、游戏等",
+      "missing": [
+        "lucy 身上没有「v2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy 2.5::rt-fps::Lucy 2.5 实时生成达 30 FPS",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Lucy 2.5 实时生成达 30 FPS",
+      "cell": "lucy×rt-fps",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Lucy 2.5"
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy::rt-endless::Decart Live AI 支持实时、无限长度",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Decart Live AI 支持实时、无限长度视频",
+      "cell": "lucy×rt-endless",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Lucy 2.5"
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy::rt-stream::Lucy 可对实时视频流进行变换",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Lucy 可对实时视频流进行变换",
+      "cell": "lucy×rt-stream",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Lucy 2.5"
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis 3::rt-interact::Oasis 是交互式、实时响应的世界模型",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Oasis 是交互式、实时响应的世界模型",
+      "missing": [
+        "oasis 身上没有「rt-interact」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis::w-realtime::Oasis 被描述为首个实时、交互式生成式 AI",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Oasis 被描述为首个实时、交互式生成式 AI 视频模型",
+      "cell": "oasis×w-realtime",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Oasis 3"
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis::w-actionin::Oasis 接收键盘输入作为动作条件来驱动生成",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Oasis 接收键盘输入作为动作条件来驱动生成",
+      "cell": "oasis×w-actionin",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Oasis 3"
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis::w-3d::Oasis 是可玩、可漫游的开放世界",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass",
+      "why": "",
+      "claim": "Oasis 是可玩、可漫游的开放世界",
+      "wrote": "oasis×w-3d"
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis::w-sim::Oasis 定位为面向物理 AI 的世界模型，可",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "Oasis 定位为面向物理 AI 的世界模型，可模拟物理精确的环境",
+      "cell": "oasis×w-sim",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 Oasis 3"
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy::v2v::推出 AdaOr（Adaptive-Origin",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "推出 AdaOr（Adaptive-Origin Guidance），为文本驱动视频编辑提供连续强度滑块",
+      "missing": [
+        "lucy 身上没有「v2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::decart（与 elevenlabs 合作）::p-lipsync::Decart 提供对口型能力，与 ElevenL",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "reject",
+      "why": "这句说的是 **Decart 的对口型**，不是 ElevenLabs 的能力 —— 命中 ElevenLabs 只因为合作方的名字出现在同一句里（原句：「Decart syncs the lips. ElevenLabs gives them soul.」）。",
+      "claim": "Decart 提供对口型能力，与 ElevenLabs 合作构建数字人"
+    },
+    {
+      "id": "2026-09-19::decart-site::decart::other::Decart 完成 3 亿美元融资，由 Radi",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Decart 完成 3 亿美元融资，由 Radical Ventures 领投",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::decart::other::与 Comcast 合作在 NVIDIA GPU",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "与 Comcast 合作在 NVIDIA GPU 边缘侧实现 <35ms 的生成式 AI 体验",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash::new-version::deepseek-flash 对应的模型版本为 ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-flash 对应的模型版本为 DeepSeek-V4.1-Flash",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro::new-version::deepseek-v4-pro 对应的模型版本为",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-v4-pro 对应的模型版本为 DeepSeek-V4-Pro-0813",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-json::两个模型均支持 JSON Output",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型均支持 JSON Output",
+      "cell": "deepseek×t-json",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-tools::两个模型均支持 Tool Calls（函数调用）",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型均支持 Tool Calls（函数调用）",
+      "cell": "deepseek×t-tools",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-fim::两个模型均支持 FIM Completion（B",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型均支持 FIM Completion（Beta），但仅在非思考模式下可用",
+      "cell": "deepseek×t-fim",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash::t-vision::deepseek-flash 支持 Vision",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "deepseek-flash 支持 Vision（图像输入）",
+      "cell": "deepseek×t-vision",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro::t-vision::deepseek-v4-pro 不支持 Visi",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "reject",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "deepseek-v4-pro 不支持 Vision（图像输入）"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-think::两个模型均支持非思考与思考（默认）两种模式",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型均支持非思考与思考（默认）两种模式",
+      "cell": "deepseek×t-think",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-long::两个模型的上下文长度均为 1M tokens",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型的上下文长度均为 1M tokens",
+      "cell": "deepseek×t-long",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-maxout::两个模型的最大输出均为 384K tokens",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型的最大输出均为 384K tokens",
+      "cell": "deepseek×t-maxout",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::t-cache::两个模型均支持提示词缓存（按 CACHE HIT",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "两个模型均支持提示词缓存（按 CACHE HIT / CACHE MISS 分级计费，且导航栏列有 Context Caching 页面）",
+      "cell": "deepseek×t-cache",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash::status::旧名 deepseek-v4-flash 与 d",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "旧名 deepseek-v4-flash 与 deepseek-v4-flash-vision-exp 仍可作为模型名使用，但原模型已退役，由 DeepSeek-V4.1-Flash 承接并按 Flash 价格计费",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro::status::DeepSeek V4 Pro 在 2026 年",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek V4 Pro 在 2026 年 9 月 14 日之后继续提供 API 服务，计费方式不变",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash (deepseek-v4.1-flash)::pricing::deepseek-flash 定价：缓存命中输入",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-flash 定价：缓存命中输入 $0.003/$0.006（off-peak/peak）、缓存未命中输入 $0.15/$0.30、输出 $0.6/$1.2（每 1M tokens，off-peak/peak）",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro (deepseek-v4-pro-0813)::pricing::deepseek-v4-pro 定价：缓存命中输",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-v4-pro 定价：缓存命中输入 $0.022/$0.044、缓存未命中输入 $0.66/$1.32、输出 $1.98/$3.96（每 1M tokens，off-peak/peak）",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::other::Off-peak 价格为 peak 价格的一半；",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Off-peak 价格为 peak 价格的一半；peak 时段为 UTC 周一至周五 01:00–04:00 与 06:00–10:00",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::other::deepseek-flash 并发限制 2500",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-flash 并发限制 2500，deepseek-v4-pro 并发限制 500",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4.1-flash::new-model::DeepSeek-V4.1-Flash 正式发布",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V4.1-Flash 正式发布，是新架构家族中最小模型，具原生多模态视觉理解能力。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash-vision-exp::new-model::发布实验性多模态视觉理解模型 DeepSeek-",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "发布实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro::new-version::DeepSeek-V4-Pro GA 版本发布。",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V4-Pro GA 版本发布。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash::new-version::DeepSeek-V4-Flash 公开测试版 ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V4-Flash 公开测试版 API 正式发布。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro / deepseek-v4-flash::new-model::DeepSeek API 支持 V4-Pro 与",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek API 支持 V4-Pro 与 V4-Flash，可通过 OpenAI ChatCompletions 接口和 Anthropic 接口调用。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2 / deepseek-v3.2-speciale::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.2；并新增 V3.2-Speciale（不支持工具调用、临时端点、至 2025-12-15）。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2-exp::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.2-Exp。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1-terminus::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.1-Terminus；改善中英混杂与异常字符问题，并优化 Code Agent 和 Search Agent。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.1；引入混合推理架构（同一模型支持 thinking 与 non-thinking 模式）。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-r1-0528 (deepseek-reasoner)::new-version::deepseek-reasoner 升级到 De",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-reasoner 升级到 DeepSeek-R1-0528，推理能力增强。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3-0324 (deepseek-chat)::new-version::deepseek-chat 升级到 DeepSe",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 升级到 DeepSeek-V3-0324。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3 (deepseek-chat)::new-version::deepseek-chat 升级到 DeepSe",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 升级到 DeepSeek-V3。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v2.5-1210 (deepseek-chat)::new-version::deepseek-chat 升级到 DeepSe",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "deepseek-chat 升级到 DeepSeek-V2.5-1210；并优化了文件上传与网页摘要功能的体验。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4.1-flash::t-vision::DeepSeek-V4.1-Flash 原生支持",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "DeepSeek-V4.1-Flash 原生支持多模态视觉理解。",
+      "cell": "deepseek×t-vision",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash-vision-exp::t-vision::DeepSeek-V4-Flash-Vision",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "DeepSeek-V4-Flash-Vision-Exp 为多模态视觉理解模型。",
+      "cell": "deepseek×t-vision",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro / deepseek-v4-flash::t-think::V4-Pro 与 V4-Flash 的 thin",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "V4-Pro 与 V4-Flash 的 thinking 模式支持三档思考强度：low / high / max。",
+      "cell": "deepseek×t-think",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro::other::DeepSeek API 原生支持 OpenAI",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek API 原生支持 OpenAI Responses API 格式，并针对 Codex 做了适配。",
+      "missing": [
+        "能力 id 「other」不在本体里"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash::other::DeepSeek-V4-Flash 原生支持 R",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V4-Flash 原生支持 Responses API 格式，并针对 Codex 做了适配。",
+      "missing": [
+        "能力 id 「other」不在本体里"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4::other::DeepSeek-V4 模型可通过 Anthro",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V4 模型可通过 Anthropic API 接口调用。",
+      "missing": [
+        "能力 id 「other」不在本体里"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1::t-think::DeepSeek-V3.1 采用混合推理架构，单",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "DeepSeek-V3.1 采用混合推理架构，单一模型同时支持 thinking 模式与 non-thinking 模式。",
+      "cell": "deepseek×t-think",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-r1-0528 (deepseek-reasoner)::t-tools::DeepSeek-R1-0528 支持 Func",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "DeepSeek-R1-0528 支持 Function Calling（Function call performance: Tau-bench 53.5 Airline / 63.9 Retail）。",
+      "cell": "deepseek×t-tools",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-r1-0528 (deepseek-reasoner)::t-json::DeepSeek-R1-0528 的更新日志中将",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "DeepSeek-R1-0528 的更新日志中将 \"JSON Output\" 与 \"Function Calling Support\" 并列为支持项。",
+      "cell": "deepseek×t-json",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3-0324 (deepseek-chat)::t-tools::DeepSeek-V3-0324 改进 Func",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "DeepSeek-V3-0324 改进 Function Calling 准确度，修复此前 V3 版本的问题。",
+      "cell": "deepseek×t-tools",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 V4.1"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3-0324 (deepseek-chat)::i-multiturn::DeepSeek-V3-0324 改进了多轮交互",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V3-0324 改进了多轮交互式重写能力。",
+      "missing": [
+        "deepseek 身上没有「i-multiturn」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2-speciale::t-tools::DeepSeek-V3.2-Speciale 不",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "reject",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "DeepSeek-V3.2-Speciale 不支持工具调用（no tool calls）。"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4.1-flash::pricing::随 DeepSeek-V4.1-Flash 发布",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "随 DeepSeek-V4.1-Flash 发布，API 价格相应下调。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek v4 family::pricing::DeepSeek V4 系列采用峰时/谷时定价，",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek V4 系列采用峰时/谷时定价，谷时价格为峰时一半，自 2026-08-16 16:00 UTC 生效。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash / deepseek-v4-flash-vision-exp::status::上一代模型 V4 Flash 与 V4 Flas",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "上一代模型 V4 Flash 与 V4 Flash Vision Exp 已退役；为兼容，deepseek-v4-flash 与 deepseek-v4-flash-vision-exp 暂时路由到 V4.1 Flash。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro::status::DeepSeek V4 Pro 将在 2026-",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek V4 Pro 将在 2026-09-14 后继续提供 API 服务，计费方式不变。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-chat / deepseek-reasoner::status::旧版模型名 deepseek-chat 与 de",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "旧版模型名 deepseek-chat 与 deepseek-reasoner 将于 2026-07-24 停止使用，期间分别指向 deepseek-v4-flash 的 non-thinking 与 thinking 模式。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2-speciale::status::DeepSeek-V3.2-Speciale 通",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V3.2-Speciale 通过临时端点提供，至 2025-12-15 15:59 UTC 截止。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1-terminus::other::DeepSeek-V3.1-Terminus 改",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "DeepSeek-V3.1-Terminus 改善了中英混杂与偶发异常字符的语言一致性问题，并优化 Code Agent 与 Search Agent 表现。",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::new-model::Google 发布 Gemini Robotic",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Google 发布 Gemini Robotics ER 2 最新模型，含两个端点 gemini-robotics-er-2-preview 和 gemini-robotics-er-2-streaming-preview",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 1.6::status::Gemini Robotics ER 1.6 模",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Gemini Robotics ER 1.6 模型将在 end of August 关停",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::status::Gemini Robotics ER 模型处于 ",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "Gemini Robotics ER 模型处于 preview 状态",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::e-spatial::支持空间推理：定位物体、视频中跟踪、边界框检测、",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持空间推理：定位物体、视频中跟踪、边界框检测、轨迹规划",
+      "cell": "gemini-robotics-er×e-spatial",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::e-agentvision::支持智能体视觉：通过代码执行结合图像操控工具增强",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持智能体视觉：通过代码执行结合图像操控工具增强其他能力",
+      "cell": "gemini-robotics-er×e-agentvision",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::e-orchestrate::支持任务编排：结合空间推理与自定义机器人 API",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持任务编排：结合空间推理与自定义机器人 API 完成长程任务",
+      "cell": "gemini-robotics-er×e-orchestrate",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2 streaming::e-streaming::支持流式（仅 ER 2 Streaming 端点",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持流式（仅 ER 2 Streaming 端点）：双向流式 + 低延迟函数调用，面向实时机器人代理",
+      "cell": "gemini-robotics-er×e-streaming",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Streaming Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::e-vprogress::支持视频进度理解（仅 ER 2）：从连续视频流中",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持视频进度理解（仅 ER 2）：从连续视频流中做 moment finding 和 progress classification",
+      "cell": "gemini-robotics-er×e-vprogress",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-vision::支持图像输入（属于 Supported data",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持图像输入（属于 Supported data types 中的 inputs）",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-vision」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-audio::支持音频输入（属于 Supported data",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持音频输入（属于 Supported data types 中的 inputs）",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-audio」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-cache::支持 Caching（提示词/上下文缓存）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持 Caching（提示词/上下文缓存）",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-cache」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-code::支持 Code execution（代码执行）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持 Code execution（代码执行）",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-code」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-computer::支持 Computer use（计算机操作）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持 Computer use（计算机操作）",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-computer」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-tools::支持 Function calling / to",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持 Function calling / tool use，文中多处提及",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-tools」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-think::支持 Thinking（扩展推理），代码示例中显",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持 Thinking（扩展推理），代码示例中显式设置 thinking_level: high",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-think」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2 streaming::e-streaming::流式端点经由 Live API 优化，支持实时处",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "流式端点经由 Live API 优化，支持实时处理连续音视频输入",
+      "cell": "gemini-robotics-er×e-streaming",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Streaming Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::e-orchestrate::支持多机器人编排（multi-robot orc",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持多机器人编排（multi-robot orchestration），作为 embodied reasoning 核心能力",
+      "cell": "gemini-robotics-er×e-orchestrate",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Preview"
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::e-vprogress::支持视频进度理解与成功检测（progress u",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持视频进度理解与成功检测（progress understanding and success detection）",
+      "cell": "gemini-robotics-er×e-vprogress",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 ER 2 Preview"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00t-n1.7-3b / gr00tpolicy::e-embodiment::GR00T Policy 通过 embodime",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "GR00T Policy 通过 embodiment_tag 显式支持多种本体（机器人形态）并在同一 API 中提供 NEW_EMBODIMENT 用于自定义机器人",
+      "cell": "groot×e-embodiment",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00t-n1.7-3b::e-zeroshot::GR00T-N1.7-3B 基础模型对一组预训练",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "GR00T-N1.7-3B 基础模型对一组预训练本体标签开箱即用，可直接做零样本推理",
+      "cell": "groot×e-zeroshot",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00tpolicy / new_embodiment::e-finetune::支持对自定义本体（NEW_EMBODIMENT）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持对自定义本体（NEW_EMBODIMENT）通过 --modality-config-path 进行微调，微调后配置随 checkpoint 保存并由推理自动加载",
+      "cell": "groot×e-finetune",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00tpolicy inference scripts::e-dataformat::数据集以 meta/episodes.jsonl",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "数据集以 meta/episodes.jsonl 索引 episode，观测以 video / state / language 三种模态的嵌套字典组织",
+      "cell": "groot×e-dataformat",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00tpolicy --inference-mode::e-edge::提供 TensorRT 推理模式，需先做 ONN",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "提供 TensorRT 推理模式，需先做 ONNX 导出与 engine 构建以获得加速推理",
+      "cell": "groot×e-edge",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00tpolicy --inference-mode::e-framework::提供 pytorch 与 tensorrt 两种",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass",
+      "why": "",
+      "claim": "提供 pytorch 与 tensorrt 两种推理模式，默认使用 PyTorch",
+      "wrote": "groot×e-framework"
+    },
+    {
+      "id": "2026-09-19::groot-policy-doc::gr00t-n1.7-3b / gr00t-n1.7-droid / gr00t-n1.7-libero / gr00t-n1.7-simplerenv-fractal / gr00t-n1.7-simplerenv-bridge::e-openweights::基础模型与各后训练 checkpoint 以 H",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "基础模型与各后训练 checkpoint 以 HuggingFace model ID 形式发布（如 nvidia/GR00T-N1.7-3B、nvidia/GR00T-N1.7-DROID、nvidia/GR00T-N1.7-LIBERO 等），可直接通过 model_path 加载",
+      "cell": "groot×e-openweights",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::new-version::发布 GR00T N1.7 通用可用（GA）版本",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "发布 GR00T N1.7 通用可用（GA）版本，采用新的 VLM backbone（Cosmos-Reason2-2B / Qwen3-VL）并提升性能",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::status::GR00T N1.7 是通用可用（General",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "GR00T N1.7 是通用可用（General Availability, GA）发布，提供完整支持与稳定性保证",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::status::GR00T N1.7 在 Apache 2.0 ",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "GR00T N1.7 在 Apache 2.0 下完全可商用授权",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-openweights::提供预训练 GR00T N1.7 模型权重与参考",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "提供预训练 GR00T N1.7 模型权重与参考代码，并可在 Apache 2.0 下商用",
+      "cell": "groot×e-openweights",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-embodiment::GR00T N1.7 是跨本体（cross-em",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "GR00T N1.7 是跨本体（cross-embodiment）模型，支持多类机器人本体，并通过后训练适配具体本体",
+      "cell": "groot×e-embodiment",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-embodiment::提供 Embodiment Tags 体系，区分",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "提供 Embodiment Tags 体系，区分预训练本体与下游微调本体",
+      "cell": "groot×e-embodiment",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-zeroshot::支持在预训练本体上用基础模型进行零样本推理",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "支持在预训练本体上用基础模型进行零样本推理",
+      "cell": "groot×e-zeroshot",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-finetune::提供 launch_finetune.py 微调",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "提供 launch_finetune.py 微调流程，并支持多数据集路径与 ds_weights_alpha 混合权重",
+      "cell": "groot×e-finetune",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-dataformat::数据需转换为 GR00T LeRobot 格式，",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "数据需转换为 GR00T LeRobot 格式，并原生支持 LeRobot 集成",
+      "cell": "groot×e-dataformat",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 N1.7"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-edge::",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "reject",
+      "why": "抽取器给了空 claim，没有可核的内容 —— 不是事实，是一条空记录。"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::::undefined::提供完整 ONNX 与 TensorRT 导出能",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "提供完整 ONNX 与 TensorRT 导出能力，覆盖桌面 GPU 与边缘平台（Jetson AGX Thor/Orin、DGX Spark）",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::采用新的 VLM backbone nvidia",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "采用新的 VLM backbone nvidia/Cosmos-Reason2-2B（Qwen3-VL 架构），替代 N1.6 的 Eagle",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::动作头采用 flow-matching DiT（",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "动作头采用 flow-matching DiT（扩散 Transformer）去噪连续动作",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::预训练中加入 20K 小时 EgoScale 人",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "预训练中加入 20K 小时 EgoScale 人体视频数据，与机器人数据共享相对 EEF 动作表示",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::采用相对末端执行器（Relative EEF）动",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "采用相对末端执行器（Relative EEF）动作空间，跨机器人与人体本体统一",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::π₀.₅ (pi05)::new-model::2025年9月发布π₀.₅模型，是π₀的升级版本",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "2025年9月发布π₀.₅模型，是π₀的升级版本，具有更好的开放世界泛化能力，使用knowledge insulation训练",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi::e-framework::2025年9月为openpi增加了PyTorch",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "2025年9月为openpi增加了PyTorch框架支持",
+      "cell": "pi×e-framework",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 π₀.₅"
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi (π₀, π₀-fast, π₀.₅)::e-openweights::openpi公开提供多个VLA基础模型与微调模型",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "openpi公开提供多个VLA基础模型与微调模型检查点（预训练数据超1万小时），可通过gs://openpi-assets公开下载",
+      "cell": "pi×e-openweights",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 π₀.₅"
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi::e-finetune::openpi同时支持LoRA微调（>22.5GB",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "openpi同时支持LoRA微调（>22.5GB显存）和全参数微调（>70GB显存），并支持FSDP多GPU模型并行",
+      "cell": "pi×e-finetune",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 π₀.₅"
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::π₀-fast-droid, π₀-aloha-towel::e-zeroshot::部分DROID和ALOHA微调模型支持在新场景中",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "部分DROID和ALOHA微调模型支持在新场景中0-shot执行桌面操作与叠毛巾等任务",
+      "cell": "pi×e-zeroshot",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 π₀.₅"
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi::e-dataformat::训练统一使用LeRobot数据集格式，提供数据转",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "duplicate",
+      "why": "",
+      "claim": "训练统一使用LeRobot数据集格式，提供数据转换脚本",
+      "cell": "pi×e-dataformat",
+      "note": "已有结论一致（yes）。这条的核验版本是 2026-09-19，库里那条是 π₀.₅"
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::π₀-fast-droid, π₀-droid, π₀-aloha-towel, π₀-aloha-tupperware, π₀-aloha-pen-uncap, π₀.₅-libero, π₀.₅-droid::e-embodiment::openpi为多种机器人平台（DROID Fra",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass",
+      "why": "",
+      "claim": "openpi为多种机器人平台（DROID Franka、ALOHA双臂、LIBERO）分别提供专家检查点，支持跨本体迁移",
+      "wrote": "pi×e-embodiment"
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi models::w-actionout::模型推理直接输出动作块（action_chunk",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "模型推理直接输出动作块（action_chunk），供机器人执行",
+      "missing": [
+        "pi 身上没有「w-actionout」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi::e-streaming::支持模型在远端服务器运行，通过websocket",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "verdict": "pass-pending",
+      "why": "",
+      "claim": "支持模型在远端服务器运行，通过websocket连接将动作流式传输到机器人",
+      "missing": [
+        "pi 身上没有「e-streaming」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
     }
   ]
 }

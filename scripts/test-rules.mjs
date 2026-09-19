@@ -24,6 +24,17 @@ const BAK = join(ROOT, "data/.atlas.test-backup.json");
 
 /** 每条：改坏一处 → 期望这些规则号被报出来。 */
 const CASES = [
+  /**
+   * 2026-09-19 加。当天查出 20 组「同一个 URL 登记了两三次」，
+   * 而**没有任何检查会说这件事** —— 20 组在库里躺着，是人一条条数出来的。
+   */
+  { name: "同一页登记两次 / 同一页标两种出处等级",
+    want: ["R92", "R92b"],
+    mut: (a, flows, changes, sources) => {
+      sources.sources.push({ ...sources.sources.find((s) => s.id === "vidu-changelog"), id: "__dup__" });
+      a.sources["__dup_cite__"] = { ...a.sources["vidu-changelog"], tier: "third-party" };
+    } },
+
   { name: "Skill：cap 不存在 / 原生实现是假模型 / 没写限制 / 没核验日期",
     want: ["R43", "R44", "R45", "R45a"],
     mut: (a) => { a.skills = [{ id: "bad", zh: "坏", en: "bad", cap: "不存在", native: ["查无此模型"],
@@ -143,16 +154,23 @@ copyFileSync(FLOWS, FBAK);
 const CH = join(ROOT, "data/changes.json");
 const CBAK = join(ROOT, "data/.changes.test-backup.json");
 copyFileSync(CH, CBAK);
+// **采集簿也要能改坏。** R92 查的是 data/sources.json 里的同 URL 重复，
+// 而这支自测原来只会改 atlas / flows / changes —— 规则考不到的地方，等于没考。
+const SRC = join(ROOT, "data/sources.json");
+const SBAK = join(ROOT, "data/.sources.test-backup.json");
+copyFileSync(SRC, SBAK);
 
 let bad = 0;
 for (const c of CASES) {
   const a = JSON.parse(readFileSync(BAK, "utf8"));
   const f = JSON.parse(readFileSync(FBAK, "utf8"));
   const ch = JSON.parse(readFileSync(CBAK, "utf8"));
-  c.mut(a, f, ch);
+  const sr = JSON.parse(readFileSync(SBAK, "utf8"));
+  c.mut(a, f, ch, sr);
   writeFileSync(LIVE, JSON.stringify(a, null, 2));
   writeFileSync(FLOWS, JSON.stringify(f, null, 2));
   writeFileSync(CH, JSON.stringify(ch, null, 2));
+  writeFileSync(SRC, JSON.stringify(sr, null, 2));
 
   let out = "";
   try { out = execFileSync("node", [join(ROOT, "scripts/validate.mjs")], { encoding: "utf8" }); }
@@ -166,6 +184,7 @@ for (const c of CASES) {
 copyFileSync(BAK, LIVE); unlinkSync(BAK);
 copyFileSync(FBAK, FLOWS); unlinkSync(FBAK);
 copyFileSync(CBAK, CH); unlinkSync(CBAK);
+copyFileSync(SBAK, SRC); unlinkSync(SBAK);
 
 console.log(bad ? `\n${bad} 条规则是摆设 —— 它存在，但拦不住它该拦的东西。` : `\n${CASES.length} 条规则全部会响。`);
 process.exit(bad ? 1 : 0);

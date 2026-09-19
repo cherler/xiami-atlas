@@ -1021,6 +1021,35 @@ for (const e of CHANGES) {
   if (!e.src && e.side !== "ours") errs.push(`R48 变化事件缺来源：${at}`);
 }
 
+/**
+ * R92 —— **同一个页面不许在采集簿里登记两次，也不许在引用簿里标两种等级。**
+ *
+ * 2026-09-19 查出 20 组「同一个 URL 登记了两三次」，根因是 2026-08-15 那一轮
+ * 批量补登记**没有按 URL 查重**。后果不是浪费抓取：
+ * `kling-api-updates` 是 S、`kling-api` 是 A，**同一份证据的权威度取决于格子恰好引了哪个 id**。
+ * 最离谱的是 `hf-image-org` / `hf-text-org` / `hf-sound-org` —— url 完全相同、
+ * 没有任何 query 参数，名字里的「文本 / 出图 / 声音」是假的，同一个接口一天抓三遍。
+ *
+ * 引用簿（atlas.sources）允许同一页有两个 id —— 一个盯 HTML 正文、一个盯 JSON 元数据
+ * 是有用的分工；**但它们必须标同一个等级**，否则页面上的出处等级就成了掷骰子。
+ */
+{
+  const byUrl = {};
+  for (const s of watchRegistry.sources ?? []) (byUrl[s.url] ??= []).push(s);
+  for (const [url, v] of Object.entries(byUrl))
+    if (v.length > 1)
+      errs.push(`R92 同一个 URL 在采集簿里登记了 ${v.length} 次：${url} —— ` +
+        `${v.map((s) => `${s.id}(${s.tier})`).join(" / ")}。合成一个，引用一起改`);
+  const cite = {};
+  for (const [id, s] of Object.entries(a.sources ?? {})) (cite[s.url] ??= []).push({ id, tier: s.tier });
+  for (const [url, v] of Object.entries(cite)) {
+    const tiers = [...new Set(v.map((x) => x.tier))];
+    if (tiers.length > 1)
+      errs.push(`R92b 引用簿里同一页标了 ${tiers.length} 种出处等级：${url} —— ` +
+        `${v.map((x) => `${x.id}=${x.tier}`).join(" / ")}。读者看到的等级不该取决于引了哪个 id`);
+  }
+}
+
 for (const t of a.toolkit ?? []) {
   // **只有链接没有判断的就是 hao123**（§16 原话：不要做一排 Logo 的 hao123）。
   if (!t.verdict) errs.push(`R49 工具箱条目没有我们的判断：${t.site}`);

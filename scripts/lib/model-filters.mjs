@@ -91,6 +91,16 @@ const NOISE = new RegExp([
   //    推测解码的草稿模型（eagle / dspark / dflash）**是给某一代提速的配件**，
   //    和 vae、controlnet 同一类：它不是新的一代，没有它那一代照样存在。
   "eagle", "dspark", "dflash",
+  /**
+   * ── ComfyUI 的工作流与端口（2026-09-19 补）。**同一个判据：它是不是「这一代的发布本体」。**
+   *
+   * 起因：`joeygambino` 与 `drbaph` 两个号被报成「没收录的新组织」，逐条看完全是再分发 ——
+   * MiniMax-H3 / LTX / Z-Image / HiDream / FLUX 的量化档、LoRA、ComfyUI 工作流与原生端口。
+   * 上面那几行已经挡住了它们的 gguf / int8 / Lora 档，**漏的正是 `-ComfyUI` / `-Workflow` /
+   * `-native` 这三类** —— 于是 80% 的比例卡在 0.5 左右，整个号被放进了候选表。
+   * 一个工作流不是新模型，和 `-diffusers`、`controlnet` 是同一类东西。
+   */
+  "comfyui", "comfy-native", "workflow", "-native$",
 ].join("|"), "i");
 
 /**

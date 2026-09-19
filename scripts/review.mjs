@@ -50,6 +50,50 @@ const idOf = (f, day) =>
    */
   `${day}::${f.source}::${(f.model_hint || "").toLowerCase()}::${f.capability || f.kind}::${(f.claim || "").slice(0, 24)}`;
 
+/**
+ * **按模型名匹配要挑最具体的那个，不能是「第一个沾边的」。**
+ *
+ * 上一版用 `.find()` 做子串匹配，数组里谁在前谁赢：`Gemini Robotics ER 2` 的
+ * 15 条断言全落到了 `gemini-text` 头上（家族名「Gemini」是它的前缀）。
+ * 反过来也会漏：`GR00T N1.7` 比家族名「NVIDIA Isaac GR00T N」短，
+ * 子串方向反了就匹配不上，22 条 GR00T 断言被报成「库里没有这条产品线」。
+ *
+ * 现在：候选名取 family / id / zh / aliases，**双向子串都认，按命中的名字长度取最长**。
+ * 太短的名字（<4 字符）必须整词相等才算，否则 `pi` 会吃掉 `pixverse`。
+ * 真需要短名对上的（openpi → pi）**写进 `aliases` 数据里，不靠启发式猜** ——
+ * 这条纪律 atlas 自己在 `$aliases_why` 里写过。
+ */
+const norm = (s) => String(s ?? "").toLowerCase().replace(/[\s_·（）()]+/g, " ").trim();
+export function matchModel(atlas, hint) {
+  const h = norm(hint);
+  if (!h) return null;
+  let best = null;  // {m, dir, len}
+  for (const x of atlas.models ?? []) {
+    for (const raw of [x.family, x.id, x.zh, ...(x.aliases ?? [])]) {
+      const n = norm(raw);
+      if (!n) continue;
+      /**
+       * **两个方向不是一回事，不能混在一起比长度。**
+       * · 正向（线索里含这个名字）：名字越长越具体，`Cosmos3-Nano` ⊃ `cosmos`。
+       * · 反向（名字里含这个线索）：那是线索太短、只对上了一截 ——
+       *   线索「Oasis」既落在 Decart 的 `oasis` 上，也落在「Etched Oasis-500M」里，
+       *   按名字长度比的话赢的是后者，**而那是另一家的另一个模型**。
+       * 所以正向一律压过反向，同向之间才比长度。
+       */
+      let dir = 0, len = 0;
+      if (n.length < 4) {
+        if (new RegExp(`(?:^|[^a-z0-9])${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:[^a-z0-9]|$)`).test(h)) { dir = 2; len = n.length; }
+      } else if (h.includes(n)) { dir = 2; len = n.length; }
+      else if (n.includes(h)) { dir = 1; len = h.length; }
+      if (dir && (!best || dir > best.dir || (dir === best.dir && len > best.len))) best = { m: x, dir, len };
+    }
+  }
+  return best?.m ?? null;
+}
+
+/** 收件箱里混着否定型断言（「不支持 Vision」「no tool calls」）。**它们不能按 yes 落格。** */
+const NEGATIVE = /不支持|未支持|没有支持|不可用|已退役|已下线|Not supported|no tool calls|does not support|not available/i;
+
 export function queue() {
   const rejected = new Set((readJSON("data/review-rejected.json", { rows: [] }).rows ?? []).map((r) => r.id));
   const pending = new Set((readJSON("data/review-pending.json", { rows: [] }).rows ?? []).map((r) => r.id));
@@ -74,21 +118,30 @@ export function queue() {
       const id = idOf(f, day.replace(".json", ""));
       if (rejected.has(id) || pending.has(id) || done.has(id)) continue;
       // 能不能落到一个具体格子 —— 这决定「通过」之后走哪一路
-      const m = (atlas.models ?? []).find(
-        (x) =>
-          (f.model_hint ?? "").toLowerCase().includes(x.family.toLowerCase()) ||
-          (f.model_hint ?? "").toLowerCase().includes(x.id),
-      );
-      const landable = !!m && !!f.capability && capIds.has(f.capability);
+      const m = matchModel(atlas, f.model_hint);
+      /**
+       * **「这条能力轴存在」不等于「这个模型上有这一格」。**
+       *
+       * 上一版 landable 只查 `capIds.has(...)`，于是 `Cosmos3-Nano 支持文生视频`
+       * 这种跨卷的断言也算「能落格」—— 而 cosmos 是世界卷，它身上压根没有 t2v 这一格
+       * （R26 按方向隔离能力轴）。按「通过」下去 `decide()` 抛「找不到这一格」，
+       * **抛异常既不写库也不出队**，这条就永远卡在待审里。
+       * 判据要钉在真正的落点上：**那一格在不在**。
+       */
+      const cell = m && f.capability ? (atlas.support ?? []).find((c) => c.m === m.id && c.c === f.capability) : null;
+      const landable = !!cell;
       out.push({
         id, day: day.replace(".json", ""), source: f.source, tier: tierOf(f.source),
         kind: f.kind, model_hint: f.model_hint, model: m?.id ?? null,
         capability: f.capability ?? null, claim: f.claim, quote: f.quote,
         confidence: f.confidence, landable,
+        negated: NEGATIVE.test(`${f.claim ?? ""} ${f.quote ?? ""}`),
         missing: landable ? [] : [
           !m && "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）",
           m && !f.capability && "没落到具体能力上",
           m && f.capability && !capIds.has(f.capability) && `能力 id 「${f.capability}」不在本体里`,
+          m && f.capability && capIds.has(f.capability) && !cell &&
+            `${m.id} 身上没有「${f.capability}」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言`,
         ].filter(Boolean),
       });
       }
@@ -106,7 +159,33 @@ function log(row) {
   writeJSON("data/review-log.json", l);
 }
 
+/**
+ * **成批处理时只提交一次。**
+ *
+ * 一条一提交是原来的设计（commit 当 Revision），一次十来条时很好用。
+ * 但 2026-09-19 收件箱一口气恢复供货 139 条，一条一提交就是 139 个 commit
+ * 外加 139 次 validate —— **把 git log 冲成噪音，而 git log 正是这套的 ChangeEvent 表**。
+ *
+ * 账本没有变松：每一条照样单独写进 `review-log.json` / `-rejected` / `-pending` /
+ * `-conflicts`，**一条不少**；变的只是「什么时候落 commit」。
+ * 审计看的是那几本账的 diff，不是 commit 的条数。
+ */
+let DEFER = null;   // 非 null 时：{ files:Set, lines:[] }
+export function beginBatch() { DEFER = { files: new Set(), lines: [] }; }
+export function endBatch(msg, who = "batch") {
+  const d = DEFER;
+  DEFER = null;
+  if (!d || !d.files.size) return { ok: true, committed: false };
+  commit(`${msg}\n\n${d.lines.join("\n")}`, [...d.files]);
+  return { ok: true, committed: true, n: d.lines.length };
+}
+
 function commit(msg, files) {
+  if (DEFER) {
+    for (const f of files) DEFER.files.add(f);
+    DEFER.lines.push(msg.split("\n")[0]);
+    return;
+  }
   try {
     execFileSync("node", [P("scripts/validate.mjs")], { stdio: "pipe" });
   } catch (e) {
@@ -173,7 +252,15 @@ export function decide({ id, verdict, why = "", who = "unknown" }) {
    *     进冲突台账，必须人定 —— 但也要出队，否则它会一直占着「待审」的位置，
    *     让人以为还没看过。**「看过了、结论是有冲突」和「还没看」不是一回事。**
    */
-  const claimsYes = true;   // 收件箱里的 claim 都是「支持」型断言；将来有否定型再分
+  /**
+   * ⚠️ **上一版这里写死 `true`，注释还说「收件箱里的 claim 都是支持型断言」——
+   * 那句话是错的。** 2026-09-19 这一批里就有「deepseek-v4-pro 不支持 Vision」
+   * 和「V3.2-Speciale no tool calls」，按支持型落下去会把否定当肯定写进库。
+   * 现在否定型直接拒绝自动落格，交回人手（走 pending 或 reject）。
+   */
+  if (item.negated)
+    throw new Error(`这是否定型断言（「${(item.claim ?? "").slice(0, 40)}」），不能按「支持」落格 —— 要么驳回，要么人工改格子`);
+  const claimsYes = true;
   if (cell.state === "yes" && claimsYes) {
     log({ id, at, who, verdict: "duplicate", why, claim: item.claim,
           cell: `${item.model}×${item.capability}`,

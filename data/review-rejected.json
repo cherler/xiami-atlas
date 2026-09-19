@@ -1,0 +1,36 @@
+{
+  "$note": "人审否决的 claim。**是记下来不是删掉** —— 同一条再被抓到时要能认出「看过、否了」。",
+  "rows": [
+    {
+      "id": "2026-09-19::decart-site::decart（与 elevenlabs 合作）::p-lipsync::Decart 提供对口型能力，与 ElevenL",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "这句说的是 **Decart 的对口型**，不是 ElevenLabs 的能力 —— 命中 ElevenLabs 只因为合作方的名字出现在同一句里（原句：「Decart syncs the lips. ElevenLabs gives them soul.」）。",
+      "claim": "Decart 提供对口型能力，与 ElevenLabs 合作构建数字人",
+      "source": "decart-site"
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro::t-vision::deepseek-v4-pro 不支持 Visi",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "deepseek-v4-pro 不支持 Vision（图像输入）",
+      "source": "deepseek-pricing"
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2-speciale::t-tools::DeepSeek-V3.2-Speciale 不",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "DeepSeek-V3.2-Speciale 不支持工具调用（no tool calls）。",
+      "source": "deepseek-updates"
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::e-edge::",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "抽取器给了空 claim，没有可核的内容 —— 不是事实，是一条空记录。",
+      "source": "nvidia-groot-gh"
+    }
+  ]
+}

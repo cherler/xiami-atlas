@@ -236,14 +236,32 @@ for (const r of aaNew.slice(0, 6)) console.log(`  [AA ${r.elo}] ${r.vendor} · $
 const manual = existsSync(`${ROOT}/data/candidates-manual.json`)
   ? JSON.parse(readFileSync(`${ROOT}/data/candidates-manual.json`, "utf8")).rows ?? []
   : [];
-const manualMd = manual.length
+/**
+ * **已处置的不再当候选催。**
+ *
+ * 这一摞原来只进不出：定了也照样每天在「收录候选 N 行」里占一行，
+ * 人看第三遍就不会再看第四遍了。带 `resolved` 的移到下面「已处置」一节，
+ * **仍然列出来**（当初为什么收、收去哪了要查得回来），但不再算作待办。
+ */
+const openManual = manual.filter((r) => !r.resolved);
+const doneManual = manual.filter((r) => r.resolved);
+const doneMd = doneManual.length
+  ? [
+      ``,
+      `## 已处置的人工候选（${doneManual.length}）—— 不用再看`,
+      ``,
+      ...doneManual.map((r) => `- \`${r.domain}\` ${r.org} · ${r.family} —— ${r.resolved}`),
+      ``,
+    ].join("\n")
+  : "";
+const manualMd = openManual.length
   ? [
       `## 人工发现的（自动那两路看不见的）`,
       ``,
       `> 两条自动路各有盲区：AA 榜只收上了竞技场的闭源模型，HF 那一路只看开源权重。`,
       `> **落在两边之外的，只能人看见** —— 写在 \`data/candidates-manual.json\` 里，不会被重跑冲掉。`,
       ``,
-      ...manual.flatMap((r) => [
+      ...openManual.flatMap((r) => [
         `### \`${r.domain}\` ${r.org} · ${r.family}（${r.found_at} 发现）`,
         ``,
         `**为什么两路都捞不到**：${r.why}`,
@@ -258,8 +276,8 @@ const manualMd = manual.length
         ...(r.note ? ["", `> ${r.note}`] : []),
         ``,
       ]),
-    ].join("\n")
-  : "";
+    ].join("\n") + doneMd
+  : doneMd;
 
 const md = [
   `# 收录候选 · ${atlas.generated_at}`,

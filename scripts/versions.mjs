@@ -55,7 +55,7 @@ const OTHERS = /\b(seedance|seedream|gemini|nano banana|veo|kling|hailuo|minimax
  */
 const SRC = [
   // ── AI 视频
-  { snap: "runway-changelog", m: "runway", d: "video", resells: true, own: /\b(Gen-\d|Aleph|Act-One|Frames|Runway)\b/i, src: "rw-changelog" },
+  { snap: "runway-changelog", m: "runway", d: "video", resells: true, own: /\b(Gen-\d|Aleph|Act-One|Frames|Runway)\b/i, src: "runway-changelog" },
   { snap: "kling-api-updates", m: "kling", d: "video", resells: false, src: "kling-api-updates" },
   { snap: "vidu-changelog", m: "vidu-q", d: "video", resells: false, src: "vidu-changelog" },
   { snap: "minimax-blog", m: "hailuo", d: "video", resells: false, src: "minimax-blog" },

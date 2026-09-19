@@ -167,7 +167,27 @@ const probes = (m) => {
    * 侧栏那句「Using GPT-6 Astra」就会被当成 TTS 出了新版。
    * 家族名（GPT TTS）比它多一个词，那就只用家族名。
    */
-  if (own && !(m.family && words(m.family) > words(own))) out.push({ prefix: own, cur });
+  /**
+   * ⚠️ **2026-09-19 补：短前缀不能直接丢掉，只能降级。**
+   *
+   * 上一版在家族名更长时**整个跳过**自带前缀，于是官网上不写全名的那些模型
+   * 对这支哨兵是全盲的：Decart 的页上写「LUCY 2.5 IS LIVE」，而我们只拿
+   * 「Decart Lucy」去扫，一个都匹配不到 —— 结果不是「没新版」，是
+   * **每天报一条「牌子摘了」，而真出了 Lucy 3 也照样看不见**。
+   * 这正是 Fable 5.1 那次的形状：噪音把真换代盖住了。
+   *
+   * 所以短前缀带着 `guard` 进来：命中时**要求自家名字就在附近**才算数。
+   * 这条守卫本来就有（前缀短到 V / v 那种时才开），这里把它的适用面扩大 ——
+   * 「GPT TTS 的版本串只拆得出 GPT」那个老毛病照样拦得住：
+   * 侧栏那句「Using GPT-6 Astra」附近没有 tts / gpt tts / openai-tts，过不了守卫。
+   */
+  const ownKey = own.replace(/[\s_-]/g, "");
+  // 只有**像名字**的短前缀才降级保留（Lucy / Oasis / Cosmos3）。
+  // 「v2」拆出来的 own 是 `v`，那不是名字，是记法 —— 放它进来会把同一页上
+  // 别家的型号算成自己的新版（实测：Scribe 的版本串是 `v2`，而 elevenlabs-models
+  // 页上紧挨着 `scribe_v2` 就印着 **Eleven v3**，那是合成模型不是转写模型）。
+  if (ownKey.length >= 3) out.push({ prefix: own, cur, guard: !!(m.family && words(m.family) > words(own)) });
+  else if (own && !(m.family && words(m.family) > words(own))) out.push({ prefix: own, cur });
   if (m.family && m.family.toLowerCase() !== own.toLowerCase()) out.push({ prefix: m.family, cur });
   return out;
 };
@@ -239,14 +259,13 @@ for (const m of atlas.models ?? []) {
         const found = hit[1];
         const before = sn.text.slice(Math.max(0, hit.index - 60), hit.index);
         // **只有署名的那个源才算「见过当前版本」** —— 牌子摘没摘是对它一个源的判断
-        if (sid === m.version_src && cmp(found, p.cur) === 0) seenCur = true;
+        const 近旁 = (before + hit[0]).toLowerCase();
+        const 过守卫 = !(p.guard || p.prefix.replace(/[\s_-]/g, "").length < 3) || 自家名字.some((n) => 近旁.includes(n));
+        if (sid === m.version_src && cmp(found, p.cur) === 0 && 过守卫) seenCur = true;
         if (cmp(found, p.cur) <= 0) continue;
         if (!像版本号(found, p.cur, before, m)) continue;
         // 前缀短到没有区分度（V / v）时，要求自家名字就在附近 —— 否则那是别家的型号
-        if (p.prefix.replace(/[\s_-]/g, "").length < 3) {
-          const 近旁 = (before + hit[0]).toLowerCase();
-          if (!自家名字.some((n) => 近旁.includes(n))) continue;
-        }
+        if (!过守卫) continue;
         if (!best || cmp(found, best.found) > 0)
           best = { found, prefix: p.prefix, cur: p.cur, idx: hit.index, raw: hit[0],
             存疑: 口径存疑(found, p.cur), src: sid, src_at: sn.at,

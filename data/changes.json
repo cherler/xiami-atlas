@@ -40,7 +40,7 @@
    "impact": [
     "开源侧的格局第一次进表（Lightricks / NVIDIA / 智谱在闭源榜上完全隐形）"
    ],
-   "src": "aa-board",
+   "src": "aa-t2v",
    "models": [
     "ltx",
     "happyhorse",
@@ -219,7 +219,7 @@
     "新项目默认该用 Omni",
     "需要首尾帧或场景延长的仍得回 Veo"
    ],
-   "src": "g-video",
+   "src": "google-video-docs",
    "models": [
     "veo",
     "gemini-omni"
@@ -239,7 +239,7 @@
     "正在用 Sora API 的项目要排迁移",
     "Replicate 与 APIYI 上仍在售 —— 货架比上游慢"
    ],
-   "src": "sora-eol-search",
+   "src": "openai-sora-eol",
    "models": [
     "sora"
    ],
@@ -258,7 +258,7 @@
     "「去哪用」矩阵里 Runway 要占一行",
     "比较模型时别把平台转售的算进它自己的能力"
    ],
-   "src": "rw-changelog",
+   "src": "runway-changelog",
    "models": [
     "runway",
     "seedance"
@@ -278,7 +278,7 @@
    "impact": [
     "ideogram"
    ],
-   "src": "hf-image-org",
+   "src": "hf-org",
    "models": [
     "ideogram"
    ]
@@ -348,7 +348,7 @@
    "after": "22 条产品线、53 个谱系节点，补上 gpt-image-2、Nano Banana 2、Ideogram 4 等 14 代",
    "why": "**我们漏了整整一批。** 负责人一句「是不是少了」才发现 —— 采集没跟上，不是厂商没发",
    "impact": [],
-   "src": "hf-image-org",
+   "src": "hf-org",
    "models": []
   },
   {
@@ -483,7 +483,7 @@
    "impact": [
     "glm-tts"
    ],
-   "src": "hf-sound-org",
+   "src": "hf-org",
    "models": [
     "glm-tts",
     "glm-voice"
@@ -502,7 +502,7 @@
    "impact": [
     "qwen-omni"
    ],
-   "src": "hf-sound-org",
+   "src": "hf-org",
    "models": [
     "qwen-omni"
    ],
@@ -950,7 +950,7 @@
    "impact": [
     "glm"
    ],
-   "src": "hf-text-org",
+   "src": "hf-org",
    "models": [
     "glm"
    ],
@@ -973,6 +973,60 @@
     "claude"
    ],
    "domain": "text"
+  },
+  {
+   "id": "deepseek-v4.1-flash-2026-09-10",
+   "date": "2026-09-10",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "DeepSeek V4.1（新架构家族，先出 Flash 档）",
+   "before": "atlas 记 V4；官方在售两档是 V4-Flash-0731 与 V4-Pro-0813",
+   "after": "官方更新日志正式发布 DeepSeek-V4.1-Flash，称其为「the smallest model in our new architecture family」，原生多模态视觉理解；V4 Flash / V4 Flash Vision Exp 下线并路由到 V4.1 Flash；**Pro 档仍是 V4-Pro-0813 且继续提供服务**",
+   "why": "这一格记的是谱系最新一代，所以升 V4.1。**但别把它当成旗舰换代** —— 新一代目前只有最小档，Pro 还在上一代。权重口径没变，V4.1-Flash 在官方 HF 组织上可下载。",
+   "impact": [
+    "deepseek"
+   ],
+   "src": "deepseek-updates",
+   "models": [
+    "deepseek"
+   ],
+   "domain": "text"
+  },
+  {
+   "id": "vidu-s2-2026-09-15",
+   "date": "2026-09-15",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "Vidu S2（实时线换代，兼修一处来源错配）",
+   "before": "atlas 记 S1，且这一格署的是 arXiv 上的 S1 论文",
+   "after": "官方 API 更新日志 09-15 上新 Vidu S2-Avatar（实时语音交互 + 复杂动作控制）与 Vidu S2-Editing（拿参考图实时改进来的视频流）；版本来源改署官方更新日志",
+   "why": "生数的实时线换代了。**顺带修的那处更要紧**：换代只在更新日志上宣布，论文页永远停在 S1 —— 署在论文上等于这条线以后换代我们也看不见。",
+   "impact": [
+    "vidu-s"
+   ],
+   "src": "vidu-changelog",
+   "models": [
+    "vidu-s"
+   ],
+   "domain": "video"
+  },
+  {
+   "id": "gemini-robotics-er16-eol-2026-08-31",
+   "date": "2026-08-31",
+   "side": "world",
+   "kind": "生命周期",
+   "subject": "Gemini Robotics ER 1.6 关停",
+   "before": "具身推理这条线在 Gemini API 上有 ER 1.6 与 ER 2 两代并存",
+   "after": "官方文档写明「the Gemini Robotics ER 1.6 model will be shut down at the end of August」——只剩 ER 2 的两个端点（gemini-robotics-er-2-preview / -2-streaming-preview），且仍是 preview",
+   "why": "**在用 ER 1.6 的要迁。** 这一卷只有这一支有公开 API 和定价，关停一代等于这条线上唯一能调的接口换了签名；而它整支还挂着 preview，随时可能再动。",
+   "impact": [
+    "gemini-robotics-er"
+   ],
+   "src": "gemini-robotics-er",
+   "models": [
+    "gemini-robotics-er"
+   ],
+   "domain": "embodied"
   }
  ]
 }

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-11",
+  "generated_at": "2026-09-19",
   "n": 0,
   "n_unclear": 0,
-  "n_missing": 31,
-  "n_skipped": 53,
+  "n_missing": 29,
+  "n_skipped": 54,
   "rows": [
     {
       "kind": "牌子摘了",
@@ -24,7 +24,7 @@
       "cur_as_of": "2026-08-15",
       "found": null,
       "src": "sci-aurora-gh",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -35,17 +35,6 @@
       "cur_as_of": "2026-08-14",
       "found": null,
       "src": "hf-cogvideox",
-      "src_at": "2026-09-05",
-      "evidence": ""
-    },
-    {
-      "kind": "牌子摘了",
-      "m": "cosmos",
-      "family": "NVIDIA Cosmos",
-      "cur": "Cosmos3",
-      "cur_as_of": "2026-08-14",
-      "found": null,
-      "src": "cosmos3-card",
       "src_at": "2026-09-05",
       "evidence": ""
     },
@@ -69,7 +58,7 @@
       "cur_as_of": "2026-08-15",
       "found": null,
       "src": "sci-esm2-card",
-      "src_at": "2026-08-15",
+      "src_at": "2026-09-14",
       "evidence": ""
     },
     {
@@ -81,7 +70,7 @@
       "cur_as_of": "2026-08",
       "found": null,
       "src": "bfl-flux3",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -93,17 +82,6 @@
       "found": null,
       "src": "gemini-tts",
       "src_at": "2026-09-09",
-      "evidence": ""
-    },
-    {
-      "kind": "牌子摘了",
-      "m": "genie",
-      "family": "Google Genie",
-      "cur": "Genie 3",
-      "cur_as_of": "2026-08-14",
-      "found": null,
-      "src": "genie3-blog",
-      "src_at": "2026-08-29",
       "evidence": ""
     },
     {
@@ -126,7 +104,7 @@
       "cur_as_of": "2026-08-15",
       "found": null,
       "src": "sci-gnome-gh",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -138,7 +116,7 @@
       "cur_as_of": "2026-07-31",
       "found": null,
       "src": "minimax-release-notes",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -149,7 +127,7 @@
       "cur_as_of": "2026-08-14",
       "found": null,
       "src": "hf-hunyuan-avatar",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -161,7 +139,7 @@
       "cur_as_of": "2026-08-13",
       "found": null,
       "src": "replicate-hunyuan3d-31",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -172,19 +150,7 @@
       "cur_as_of": "2026-08-14",
       "found": null,
       "src": "hf-liveportrait",
-      "src_at": "2026-08-29",
-      "evidence": ""
-    },
-    {
-      "kind": "牌子摘了",
-      "m": "lucy",
-      "family": "Decart Lucy",
-      "zh": "Lucy",
-      "cur": "Lucy 2.5",
-      "cur_as_of": "2026-08-07",
-      "found": null,
-      "src": "decart-site",
-      "src_at": "2026-09-05",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -206,7 +172,7 @@
       "cur_as_of": "2026-08-15",
       "found": null,
       "src": "sci-mattergen-gh",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -218,7 +184,7 @@
       "cur_as_of": "2026-08-12",
       "found": null,
       "src": "minimax-api-overview",
-      "src_at": "2026-09-09",
+      "src_at": "2026-09-16",
       "evidence": ""
     },
     {
@@ -229,7 +195,7 @@
       "cur_as_of": "2026-08-14",
       "found": null,
       "src": "hf-musetalk",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -240,18 +206,7 @@
       "cur_as_of": "2026-08-15",
       "found": null,
       "src": "sci-neuralgcm-gh",
-      "src_at": "2026-08-29",
-      "evidence": ""
-    },
-    {
-      "kind": "牌子摘了",
-      "m": "oasis",
-      "family": "Decart Oasis",
-      "cur": "Oasis 3",
-      "cur_as_of": "2026-08-14",
-      "found": null,
-      "src": "decart-site",
-      "src_at": "2026-09-05",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -262,7 +217,7 @@
       "cur_as_of": "2026-08-12",
       "found": null,
       "src": "openai-models",
-      "src_at": "2026-09-10",
+      "src_at": "2026-09-17",
       "evidence": ""
     },
     {
@@ -273,7 +228,18 @@
       "cur_as_of": "2026-08-14",
       "found": null,
       "src": "openvla-gh",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "pixverse",
+      "family": "PixVerse",
+      "cur": "V6",
+      "cur_as_of": "2026-08-14",
+      "found": null,
+      "src": "pixverse-v6",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -297,7 +263,7 @@
       "cur_as_of": "2026-08-15",
       "found": null,
       "src": "hf-qwen3-asr",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -308,7 +274,7 @@
       "cur_as_of": "2026-08-13",
       "found": null,
       "src": "rodin-api-docs",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -319,8 +285,8 @@
       "cur": "Gen-4.5",
       "cur_as_of": "2025-12-11",
       "found": null,
-      "src": "rw-changelog",
-      "src_at": "2026-08-29",
+      "src": "runway-changelog",
+      "src_at": "2026-09-16",
       "evidence": ""
     },
     {
@@ -342,7 +308,18 @@
       "cur_as_of": "2026-08-13",
       "found": null,
       "src": "stability-spar3d",
-      "src_at": "2026-08-29",
+      "src_at": "2026-09-12",
+      "evidence": ""
+    },
+    {
+      "kind": "牌子摘了",
+      "m": "tripo",
+      "family": "Tripo",
+      "cur": "P1-20260311",
+      "cur_as_of": "2026-08-13",
+      "found": null,
+      "src": "tripo-docs-generation",
+      "src_at": "2026-09-12",
       "evidence": ""
     },
     {
@@ -353,7 +330,7 @@
       "cur_as_of": "2026-08-14",
       "found": null,
       "src": "vjepa2-blog",
-      "src_at": "2026-08-14",
+      "src_at": "2026-09-13",
       "evidence": ""
     }
   ],
@@ -476,7 +453,7 @@
     },
     {
       "m": "llama",
-      "why": "hf-text-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+      "why": "hf-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
     },
     {
       "m": "glm-tts",
@@ -484,11 +461,11 @@
     },
     {
       "m": "cosyvoice",
-      "why": "hf-sound-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+      "why": "hf-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
     },
     {
       "m": "fish-speech",
-      "why": "hf-sound-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
+      "why": "hf-org 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
     },
     {
       "m": "apple-sharp",
@@ -569,6 +546,10 @@
     {
       "m": "mace",
       "why": "版本串「MP」里没有数字，比不了"
+    },
+    {
+      "m": "funcineforge",
+      "why": "hf-funcineforge 都没有可比对的正文（没快照，或只有 json/atom 的 items）"
     }
   ]
 }

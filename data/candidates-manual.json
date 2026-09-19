@@ -20,7 +20,8 @@
     "⚠️ 官方自述「FLUX 3 is a **preview** model. **Video editing** and **Omni Reference with images and videos** will be available soon.」—— 视频编辑还没有"
    ],
    "decision": "**待人工定。** 按规则四，clip 轨已经 9/10（见 candidates.md 末尾那句「只剩 1 个空位」），进它就要先安排一个出去。证据够厚（t2v/i2v/首尾帧/原生音频/对口型/视频续写全有官方原文），但**收不收是范围决定，不是采集决定**。",
-   "note": "⚠️ 我在 2026-08-12 的提交里把这条写成了「BFL 已经出到 FLUX 3，我们库里最新还是 FLUX 2-dev」，**那句话是错的**：FLUX 3 不是 FLUX 2 的新版本，它是另一个模态。图像卷的 flux 停在 FLUX 2-dev 是对的，不该跟着改版本号。"
+   "note": "⚠️ 我在 2026-08-12 的提交里把这条写成了「BFL 已经出到 FLUX 3，我们库里最新还是 FLUX 2-dev」，**那句话是错的**：FLUX 3 不是 FLUX 2 的新版本，它是另一个模态。图像卷的 flux 停在 FLUX 2-dev 是对的，不该跟着改版本号。",
+   "resolved": "2026-08-13 收进**扩展层** `flux-video`（clip 轨 10/10，不为收新的踢老的）。轨满就进折叠列表，是负责人定的做法。"
   },
   {
    "domain": "sound",
@@ -35,7 +36,8 @@
     "任务标签 Text-to-Speech；许可 Apache License 2.0；13.61GB；更新于 2026-03-24",
     "⚠️ 魔搭页面上没看到 HF 对应仓库 —— FunAudioLLM 在 HF 有组织，但这一支没在那边出现"
    ],
-   "decision": "**待人工定**：按规则四要看声音卷还收不收新产品线；它填的是「配音」这个应用的空。**收不收是范围决定，不是采集决定。**"
+   "decision": "**待人工定**：按规则四要看声音卷还收不收新产品线；它填的是「配音」这个应用的空。**收不收是范围决定，不是采集决定。**",
+   "resolved": "2026-09-19 收进**扩展层** `funcineforge`（声音卷 tts 轨 9/10，有位置，但进 Core 要先把 27 条声音能力轴逐格核一遍 —— 那是另一件事）。同日核实：**HF 上有同一份** `FunAudioLLM/Fun-CineForge`（apache-2.0），此前「魔搭页面上没看到 HF 对应仓库」那句不成立了。"
   }
  ]
 }

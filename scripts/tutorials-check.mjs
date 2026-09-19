@@ -84,14 +84,42 @@ const ghAlive = (url) => {
   catch (e) { return /404|Not Found/i.test(String(e.stderr ?? e)) ? false : null; }
 };
 const dead = [], drift = [], throttled = [];
+
+/**
+ * 拉一次页面。**超时不等于死链。**
+ *
+ * 上面那段 `ghAlive` 已经把「够不着」和「不存在」分开了 —— 但只分了**有状态码**的那一半。
+ * curl 这个进程本身失败（连不上、超时、代理抽风）走的是 catch，原来直接判死链，
+ * 于是 2026-09-19 那天 `docs.ollama.com/quickstart` 与 DiffSynth-Studio 的中文文档目录
+ * 双双被报成「打不开」，而两条手工复核都是 200。
+ * 照着报告「要么换链接、要么删掉」做下去，删的是两条活着的出处。
+ *
+ * 所以：**失败先重试一次（放宽超时），再失败才交给 gh api 复核，两关都过不去才算够不着。**
+ * 而且够不着归 throttled 那一摞（不判失败、不催人改数据），只有真 404 才进 dead。
+ */
+const pull = (url, maxTime) => execFileSync("curl", [
+  "-sL", "--max-time", String(maxTime), "-w", "\n__STATUS__%{http_code}",
+  "-A", "Mozilla/5.0 (compatible; xiamimate-ai-atlas)", url,
+], { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
+
 for (const r of rows) {
   let out = "";
   try {
-    out = execFileSync("curl", [
-      "-sL", "--max-time", "25", "-w", "\n__STATUS__%{http_code}",
-      "-A", "Mozilla/5.0 (compatible; xiamimate-ai-atlas)", r.url,
-    ], { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
-  } catch { dead.push({ ...r, why: "curl 起不来 / 超时" }); console.log(`  ✗ ${r.project} · ${r.title}`); continue; }
+    out = pull(r.url, 25);
+  } catch {
+    try { out = pull(r.url, 45); }            // 一次抖动不定案
+    catch {
+      const alive = ghAlive(r.url);
+      if (alive === false) {
+        dead.push({ ...r, why: "curl 起不来 / 超时（gh api 也说没了）" });
+        console.log(`  ✗ ${r.project} · ${r.title}`);
+      } else {
+        throttled.push({ ...r, why: "curl 两次都起不来 —— 够不着，不等于死链" });
+        console.log(`  ⏳ ${r.project} · ${r.title}（两次都没拉到，算够不着）`);
+      }
+      continue;
+    }
+  }
 
   const code = out.match(/__STATUS__(\d+)\s*$/)?.[1] ?? "?";
   const title = (out.match(/<title[^>]*>([\s\S]{0,200}?)<\/title>/i)?.[1] ?? "").replace(/\s+/g, " ").trim();
@@ -111,6 +139,19 @@ for (const r of rows) {
     dead.push({ ...r, why: `HTTP ${code}${alive === false ? "（gh api 也说没了）" : ""}` });
     console.log(`  ✗ ${code} ${r.project} · ${r.title}`); continue;
   }
+  /**
+   * **人机验证页也会回 200，还带一个像模像样的 <title>。**
+   * 2026-09-19：gameprogrammingpatterns.com 回的是「One moment, please...」，
+   * 被报成「标题变了」—— 照报告去更新 `page_title`，等于把一堵机器人墙的标题
+   * 当成这本书的书名写进库里。和上面「超时不等于死链」同一类错：
+   * **够不着的证据不许拿来改结论。**
+   */
+  const WALL = /^(one moment|just a moment|checking your browser|attention required|please wait|verifying you are human|security check)\b/i;
+  if (WALL.test(title)) {
+    throttled.push({ ...r, why: `人机验证页（标题「${title}」）—— 够不着，不是标题变了` });
+    console.log(`  ⏳ ${r.project} · ${r.title}（人机验证页，不判漂移）`);
+    continue;
+  }
   /** 标题拿不到多半是前端渲染的页面（飞书这类），不算变 —— 只在两边都有标题时才比。 */
   if (r.page_title && title && title !== r.page_title) {
     drift.push({ ...r, now: title });
@@ -121,11 +162,11 @@ for (const r of rows) {
 }
 
 console.log(`\n${rows.length} 条：通过 ${rows.length - dead.length - drift.length - throttled.length}` +
-  ` · 打不开 ${dead.length} · 标题变了 ${drift.length} · 被限流 ${throttled.length}`);
+  ` · 打不开 ${dead.length} · 标题变了 ${drift.length} · 限流或够不着 ${throttled.length}`);
 if (dead.length) console.log("打不开的要么换链接、要么删掉，别留着：\n  " + dead.map((d) => `${d.why} ${d.url}`).join("\n  "));
 if (drift.length) console.log("标题变了的要人看一眼内容还对不对，对就更新 page_title 与 verified_at。");
 if (throttled.length) {
-  console.log("被限流的**不是死链**，隔一会儿单独再跑一次就行：\n  " +
+  console.log("被限流 / 够不着的**不是死链**，隔一会儿单独再跑一次就行：\n  " +
     throttled.map((d) => `${d.why} ${d.url}`).join("\n  "));
 }
 /** 只有真死链才判失败 —— 限流判失败会逼人去改本来好好的数据。 */

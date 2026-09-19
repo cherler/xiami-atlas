@@ -1,18 +1,16 @@
 {
   "$comment": "管线每一步的执行状态，由 scripts/stamp.mjs 写、todo.mjs 读。「跳过」在这里留痕，不然它只活在日志里，而人不看日志。",
-  "generated_at": "2026-09-11",
+  "generated_at": "2026-09-19",
   "steps": {
     "extract": {
-      "status": "skip",
-      "at": "2026-09-11",
-      "why": "没有 MINIMAX_API_KEY —— 密钥要写进仓库根的 .env",
-      "last_ok": "2026-08-07",
-      "skipped_since": "2026-08-08"
+      "status": "ok",
+      "at": "2026-09-19",
+      "last_ok": "2026-09-19"
     },
     "sentry": {
       "status": "ok",
-      "at": "2026-09-11",
-      "last_ok": "2026-09-11"
+      "at": "2026-09-19",
+      "last_ok": "2026-09-19"
     }
   }
 }

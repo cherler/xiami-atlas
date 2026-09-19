@@ -81,6 +81,31 @@ const anchor = (s) => {
   return m.sort((x, y) => y.length - x.length)[0] ?? null;
 };
 
+/**
+ * **人审已经「认了」的那些，不许每天再报一遍。**
+ *
+ * 2026-09-19 查出来的：`data/requote-decisions.json` 里躺着 12 条 `accept`
+ * （「认了这条引文不是逐字原文」），最早的记于 2026-08-16 —— 而这支脚本
+ * **从来没读过那个文件**。于是当天报告里「本页没有·别处有」12 条里有 11 条
+ * 是一个月前就判过的，每天照报。
+ *
+ * 这正是这个仓库一直在防的那件事：**一摞永远不变小的待办，会把人训练成不看它。**
+ * 审阅台上点了「认了」，人就有理由相信它不会再来；它还来，那一页的按钮就等于没用。
+ *
+ * `repoint` 与 `refetch` 不用在这里过滤 —— 它们当场改了 atlas.json / sources.json，
+ * 下一次回查自然就对得上了。只有 `accept` 是「不改数据、只改结论」，得靠这份流水记着。
+ */
+const decided = new Map();
+{
+  const f = `${ROOT}/data/requote-decisions.json`;
+  if (existsSync(f)) {
+    for (const r of JSON.parse(readFileSync(f, "utf8")).rows ?? []) {
+      if (r.action === "accept") decided.set(r.id, r);   // 后写的覆盖先写的
+      else decided.delete(r.id);                          // 改过署名/抓法的重新回到检查里
+    }
+  }
+}
+
 const rows = [];
 const push = (src, quote, at) => {
   if (!src || (only && src !== only)) return;
@@ -106,6 +131,9 @@ const push = (src, quote, at) => {
    */
   if (truncated.get(src)) return rows.push({ at, src, kind: "快照被截断·判不了", anchor: k });
   const elsewhere = ALL.filter((id) => id !== src && (textOf(id) ?? "").includes(k));
+  const d = decided.get(`${src}|${at}`);
+  if (d)
+    return rows.push({ at, src, kind: "人审认过·非逐字", anchor: k, elsewhere, since: d.at?.slice(0, 10), why: d.why });
   rows.push({ at, src, kind: elsewhere.length ? "本页没有·别处有" : "找不到", anchor: k, elsewhere });
 };
 
@@ -143,18 +171,19 @@ if (process.argv.includes("--report")) {
   const md = [`# 引文回查 · ${new Date().toISOString().slice(0, 10)}`, "",
     head, "",
     "> 这份报告回答一件事：**一格引文里的原句，在它署名的那份快照里还在不在。**",
-    "> ⚠️ **失败不等于引文错。** 三种成因要分开：真署错了页 / 这一页的快照是残的（抓回来的是导航不是正文）/ 当初记的就不是逐字原文。**脚本不猜。**", "",
+    "> ⚠️ **失败不等于引文错。** 三种成因要分开：真署错了页 / 这一页的快照是残的（抓回来的是导航不是正文）/ 当初记的就不是逐字原文。**脚本不猜。**",
+    "> 「人审认过·非逐字」那一摞是**审阅台上已经判过的**，列在这里只为不假装它们消失了 —— 不用再看。", "",
     `## 失败 ≥3 条的源（${hot.length} 个）—— 这几个大概率是抓法不对`, "",
     ...hot.map(([src, v]) => `- **${src}**（${v.length} 条）：${v.slice(0, 3).map((r) => r.at).join("、")}${v.length > 3 ? " …" : ""}`),
     "", "## 全部", "",
-    ...["本页没有·别处有", "找不到", "快照被截断·判不了", "快照无正文", "无快照"].flatMap((k) =>
+    ...["本页没有·别处有", "找不到", "快照被截断·判不了", "快照无正文", "无快照", "人审认过·非逐字"].flatMap((k) =>
       (by[k] ?? []).length ? [`### ${k}（${(by[k] ?? []).length}）`, "",
         ...(by[k] ?? []).map((r) => `- \`${r.src}\` ${r.at}${r.anchor ? ` —— 锚「${r.anchor.slice(0, 70)}」` : ""}${r.elsewhere?.length ? `（这句在 ${r.elsewhere.slice(0, 2).join("、")}）` : ""}`), ""] : []),
   ].join("\n");
   writeFileSync(`${ROOT}/data/requote-report.md`, md);
   console.log(`\n报告写在 data/requote-report.md · 失败 ≥3 条的源 ${hot.length} 个`);
 }
-for (const kind of ["本页没有·别处有", "找不到", "快照被截断·判不了", "快照无正文", "无快照"]) {
+for (const kind of ["本页没有·别处有", "找不到", "快照被截断·判不了", "快照无正文", "无快照", "人审认过·非逐字"]) {
   const list = by[kind] ?? [];
   if (!list.length) continue;
   console.log(`\n## ${kind}（${list.length}）`);

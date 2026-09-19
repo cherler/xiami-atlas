@@ -220,6 +220,809 @@
       "missing": [
         "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
       ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::new-model::NVIDIA 发布 Cosmos3-Nano 世",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "NVIDIA 发布 Cosmos3-Nano 世界基础模型，16B 参数，发布日期 2026-05-31",
+      "quote": "Cosmos3-Nano: 16B ... Hugging Face 05/31/2026 via https://huggingface.co/collections/nvidia/cosmos3 ... GitHub 05/31/2026 via https://github.com/nvidia/cosmos",
+      "source": "cosmos3-card",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::t2v::Generator 支持文生视频（Text-to",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Generator 支持文生视频（Text-to-Video）",
+      "quote": "Input Type(s): Text, Image, Video (with audio or without audio), Action Trajectory ... Output Type(s): Image, video, audio, action, text",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「t2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::i2v::Generator 支持图生视频（Image-t",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Generator 支持图生视频（Image-to-Video）",
+      "quote": "Input Type(s): Text, Image, Video (with audio or without audio), Action Trajectory ... Output Type(s): Image, video, audio, action, text",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「i2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::i-t2i::Generator 支持文生图（Text-to-",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Generator 支持文生图（Text-to-Image）",
+      "quote": "Input Type(s): Text, Image, Video (with audio or without audio), Action Trajectory ... Output Type(s): Image, video, audio, action, text",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「i-t2i」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::v2v::Generator 支持视频转视频（Video-",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Generator 支持视频转视频（Video-to-Video），可直接以视频为输入、视频为输出",
+      "quote": "Input Type(s): Text, Image, Video (with audio or without audio), Action Trajectory ... Output Type(s): Image, video, audio, action, text",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「v2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator)::audio::Generator 原生输出音频（AAC 立体声",
+      "at": "2026-09-19 03:51:31",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Generator 原生输出音频（AAC 立体声 48kHz，muxed 进 MP4）",
+      "quote": "Audio: Advanced Audio Coding (AAC) stream (muxed within the MP4) ... Audio: 48 kHz stereo AAC stream muxed into video mp4",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「audio」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::e-embodiment::支持多种跨本体维度输入：通用相机运动 9D、自动",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持多种跨本体维度输入：通用相机运动 9D、自动驾驶 9D、自我运动 57D、Franka 单臂 10D、Franka 双臂 20D、Agibot 29D、UR 10D、Google robot 10D、WidowX 250 10D、UMI 9D",
+      "quote": "Input action is only supported for compatible embodiments, including general camera motion (9D), autonomous vehicle (9D), egocentric motion (57D), single Franka Panda arm with Robotiq gripper (10D), dual Franka Panda arm with Robotiq gripper (20D), Agibot (29D), UR (10D), Google robot (10D), WidowX 250 (10D), UMI (9D)",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「e-embodiment」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (reasoner)::e-spatial::Reasoner 支持空间推理：2D/3D 点定",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Reasoner 支持空间推理：2D/3D 点定位与边界框坐标输出",
+      "quote": "Reasoning outputs may include structured chain-of-thought, 2D/3D point localization, and bounding-box coordinates for vision-based tasks",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「e-spatial」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (reasoner)::t-long::Reasoner 支持 256K tokens ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Reasoner 支持 256K tokens 长上下文",
+      "quote": "Long-context inputs supported up to 256K tokens ... Text: Up to 256K tokens (context window)",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「t-long」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (reasoner)::t-maxout::Reasoner 默认 max_tokens 4",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Reasoner 默认 max_tokens 4096+，可请求更长输出",
+      "quote": "Default max_tokens=4096+ is recommended for reasoning outputs; longer outputs may be requested",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「t-maxout」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano (generator & reasoner)::t-vision::Generator 与 Reasoner 均支持",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Generator 与 Reasoner 均支持图像/视频作为视觉输入",
+      "quote": "Input Type(s): Text, Image, Video (with audio or without audio), Action Trajectory ... Input Type(s): Text, Text+Image, Text+Video",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「t-vision」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::openweights::模型在 Hugging Face 以 OpenM",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "模型在 Hugging Face 以 OpenMDW1.1 许可证发布，可商用与非商用，权重公开可下载",
+      "quote": "This model is released under the OpenMDW1.1 ... This model is ready for commercial and non-commercial use.",
+      "source": "cosmos3-card",
+      "missing": [
+        "cosmos 身上没有「openweights」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::cosmos3-card::cosmos3-nano::other::模型架构为 Mixture-of-Transfo",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "模型架构为 Mixture-of-Transformers (MoT)，包含自回归 transformer 与扩散 transformer 双塔",
+      "quote": "Architecture Type: Transformer ... Network Architecture: Mixture-of-Transformers (MoT) ... an autoregressive transformer for discrete token generation and a diffusion transformer for continuous multimodal generation",
+      "source": "cosmos3-card",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy 2.5::new-version::发布 Lucy 2.5，定位为「Live AI」",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "发布 Lucy 2.5，定位为「Live AI」新版本",
+      "quote": "Lucy 2.5: Raising the Bar for Live AI Higher-quality edits, physically-aware VFX, stronger temporal consistency, and even lower latency, all generated live at 30 FPS.",
+      "source": "decart-site",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::dos 2.0::new-version::宣布 Decart Optimization S",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "宣布 Decart Optimization Stack (DOS) 2.0，并预告 Lucy 与 Oasis 新版本将在数周内上线",
+      "quote": "we're also announcing DOS 2.0, with new versions of Lucy and Oasis launching in the coming weeks.",
+      "source": "decart-site",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy 2.5::v2v::Lucy 提供实时视频变换（world edit",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Lucy 提供实时视频变换（world editing），用于虚拟试穿、直播广告、社交、游戏等",
+      "quote": "WORLD EDITING THE ONLY WORLD EDITING MODEL AT PRODUCTION SCALE. Realtime video transformation deployed across virtual try-on, live advertising, social platforms, and gaming.",
+      "source": "decart-site",
+      "missing": [
+        "lucy 身上没有「v2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::oasis 3::rt-interact::Oasis 是交互式、实时响应的世界模型",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Oasis 是交互式、实时响应的世界模型",
+      "quote": "Interactive, physically accurate environments that respond in real-time; designed for robotics, autonomous vehicles, manufacturing, and drones.",
+      "source": "decart-site",
+      "missing": [
+        "oasis 身上没有「rt-interact」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::lucy::v2v::推出 AdaOr（Adaptive-Origin",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "推出 AdaOr（Adaptive-Origin Guidance），为文本驱动视频编辑提供连续强度滑块",
+      "quote": "Text-driven video editing lets you describe what to change. But what about how much? We introduce Adaptive-Origin Guidance (AdaOr), a method that turns edit intensity into a smooth, continuous slider.",
+      "source": "decart-site",
+      "missing": [
+        "lucy 身上没有「v2v」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::decart::other::Decart 完成 3 亿美元融资，由 Radi",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Decart 完成 3 亿美元融资，由 Radical Ventures 领投",
+      "quote": "Decart Raises $300M: Tech Leaders Back the Company as Both Customers and Investors With funding led by Radical Ventures",
+      "source": "decart-site",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::decart-site::decart::other::与 Comcast 合作在 NVIDIA GPU",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "与 Comcast 合作在 NVIDIA GPU 边缘侧实现 <35ms 的生成式 AI 体验",
+      "quote": "Decart is collaborating with Comcast to move high-performance inference to the edge powered by Nvidia GPUs – enabling sub-35ms generative AI experiences.",
+      "source": "decart-site",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash::new-version::deepseek-flash 对应的模型版本为 ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-flash 对应的模型版本为 DeepSeek-V4.1-Flash",
+      "quote": "deepseek-flash (1) ... MODEL VERSION DeepSeek-V4.1-Flash",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro::new-version::deepseek-v4-pro 对应的模型版本为",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-v4-pro 对应的模型版本为 DeepSeek-V4-Pro-0813",
+      "quote": "deepseek-v4-pro (2) ... MODEL VERSION DeepSeek-V4-Pro-0813",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash::status::旧名 deepseek-v4-flash 与 d",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "旧名 deepseek-v4-flash 与 deepseek-v4-flash-vision-exp 仍可作为模型名使用，但原模型已退役，由 DeepSeek-V4.1-Flash 承接并按 Flash 价格计费",
+      "quote": "The legacy names deepseek-v4-flash and deepseek-v4-flash-vision-exp are still accepted, but the corresponding models have been retired, their requests are served by the DeepSeek-V4.1-Flash model and billed at the Flash price.",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro::status::DeepSeek V4 Pro 在 2026 年",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek V4 Pro 在 2026 年 9 月 14 日之后继续提供 API 服务，计费方式不变",
+      "quote": "In response to user demand, we have decided to continue providing API services for DeepSeek V4 Pro after September 14, 2026, with the billing method remaining unchanged.",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash (deepseek-v4.1-flash)::pricing::deepseek-flash 定价：缓存命中输入",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-flash 定价：缓存命中输入 $0.003/$0.006（off-peak/peak）、缓存未命中输入 $0.15/$0.30、输出 $0.6/$1.2（每 1M tokens，off-peak/peak）",
+      "quote": "1M INPUT TOKENS (CACHE HIT) OFF-PEAK $0.003 PEAK $0.006 1M INPUT TOKENS (CACHE MISS) OFF-PEAK $0.15 PEAK $0.3 1M OUTPUT TOKENS OFF-PEAK $0.6 PEAK $1.2",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-v4-pro (deepseek-v4-pro-0813)::pricing::deepseek-v4-pro 定价：缓存命中输",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-v4-pro 定价：缓存命中输入 $0.022/$0.044、缓存未命中输入 $0.66/$1.32、输出 $1.98/$3.96（每 1M tokens，off-peak/peak）",
+      "quote": "1M INPUT TOKENS (CACHE HIT) OFF-PEAK $0.022 PEAK $0.044 1M INPUT TOKENS (CACHE MISS) OFF-PEAK $0.66 PEAK $1.32 1M OUTPUT TOKENS OFF-PEAK $1.98 PEAK $3.96",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::other::Off-peak 价格为 peak 价格的一半；",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Off-peak 价格为 peak 价格的一半；peak 时段为 UTC 周一至周五 01:00–04:00 与 06:00–10:00",
+      "quote": "Off-peak rates are half of the peak rates. Peak hours are 01:00 - 04:00 and 06:00 - 10:00 UTC, Monday through Friday (all other hours are off-peak).",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-pricing::deepseek-flash / deepseek-v4-pro::other::deepseek-flash 并发限制 2500",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-flash 并发限制 2500，deepseek-v4-pro 并发限制 500",
+      "quote": "Concurrency Limit (4) 2500 500",
+      "source": "deepseek-pricing",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4.1-flash::new-model::DeepSeek-V4.1-Flash 正式发布",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V4.1-Flash 正式发布，是新架构家族中最小模型，具原生多模态视觉理解能力。",
+      "quote": "Today, we officially release the DeepSeek-V4.1-Flash model. It is the smallest model in our new architecture family, with native multimodal visual understanding.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash-vision-exp::new-model::发布实验性多模态视觉理解模型 DeepSeek-",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "发布实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp。",
+      "quote": "Today, the new multimodal vision understanding model DeepSeek-V4-Flash-Vision-Exp is now available on the DeepSeek API platform. This is an experimental model that can be accessed by setting model= deepseek-v4-flash-vision-exp .",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro::new-version::DeepSeek-V4-Pro GA 版本发布。",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V4-Pro GA 版本发布。",
+      "quote": "The GA release of DeepSeek-V4-Pro has been rolled out on the APP, Web, and API. The API calling method remains unchanged — simply set the model name to deepseek-v4-pro to use the latest version.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash::new-version::DeepSeek-V4-Flash 公开测试版 ",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V4-Flash 公开测试版 API 正式发布。",
+      "quote": "The official release of the DeepSeek-V4-Flash API is now in public beta. The API calling method remains unchanged — simply set the model name to deepseek-v4-flash to use the latest version.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro / deepseek-v4-flash::new-model::DeepSeek API 支持 V4-Pro 与",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek API 支持 V4-Pro 与 V4-Flash，可通过 OpenAI ChatCompletions 接口和 Anthropic 接口调用。",
+      "quote": "The DeepSeek API now supports V4-Pro and V4-Flash, available via both the OpenAI ChatCompletions interface and the Anthropic interface. To access the new models, the base_url remains unchanged, and the model parameter should be set to deepseek-v4-pro or deepseek-v4-flash .",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2 / deepseek-v3.2-speciale::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.2；并新增 V3.2-Speciale（不支持工具调用、临时端点、至 2025-12-15）。",
+      "quote": "Both deepseek-chat and deepseek-reasoner have been upgraded to DeepSeek-V3.2. ... DeepSeek-V3.2-Speciale is served via a temporary endpoint: base_url= https://api.deepseek.com/v3.2_speciale_expires_on_20251215 . Same pricing as V3.2, no tool calls, available until Dec 15th, 2025, 15:59 (UTC Time).",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2-exp::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.2-Exp。",
+      "quote": "Both deepseek-chat and deepseek-reasoner have been upgraded to DeepSeek-V3.2-Exp.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1-terminus::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.1-Terminus；改善中英混杂与异常字符问题，并优化 Code Agent 和 Search Agent。",
+      "quote": "Both deepseek-chat and deepseek-reasoner have been upgraded to DeepSeek-V3.1-Terminus. ... Language consistency: Reduced occurrences of Chinese-English mixing and occasional abnormal characters; Agent capabilities: Further optimized the performance of the Code Agent and Search Agent.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1::new-version::deepseek-chat 与 deepseek",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 与 deepseek-reasoner 升级到 DeepSeek-V3.1；引入混合推理架构（同一模型支持 thinking 与 non-thinking 模式）。",
+      "quote": "Both deepseek-chat and deepseek-reasoner have been upgraded to DeepSeek-V3.1. ... Hybrid reasoning architecture : A single model supports both thinking mode and non-thinking mode",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-r1-0528 (deepseek-reasoner)::new-version::deepseek-reasoner 升级到 De",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-reasoner 升级到 DeepSeek-R1-0528，推理能力增强。",
+      "quote": "deepseek-reasoner Model Upgraded to DeepSeek-R1-0528: Enhanced Reasoning Capabilities",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3-0324 (deepseek-chat)::new-version::deepseek-chat 升级到 DeepSe",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 升级到 DeepSeek-V3-0324。",
+      "quote": "The deepseek-chat model has been upgraded to DeepSeek-V3-0324.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3 (deepseek-chat)::new-version::deepseek-chat 升级到 DeepSe",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 升级到 DeepSeek-V3。",
+      "quote": "The deepseek-chat model has been upgraded to DeepSeek-V3. The API remains unchanged. You can invoke DeepSeek-V3 by specifying model= deepseek-chat .",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v2.5-1210 (deepseek-chat)::new-version::deepseek-chat 升级到 DeepSe",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "deepseek-chat 升级到 DeepSeek-V2.5-1210；并优化了文件上传与网页摘要功能的体验。",
+      "quote": "The deepseek-chat model has been upgraded to DeepSeek-V2.5-1210 ... Additionally, the new version of the model has optimized the user experience for file upload and webpage summarization functionalities.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro::other::DeepSeek API 原生支持 OpenAI",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek API 原生支持 OpenAI Responses API 格式，并针对 Codex 做了适配。",
+      "quote": "The DeepSeek API now natively supports the OpenAI Responses API format and is specifically adapted for Codex.",
+      "source": "deepseek-updates",
+      "missing": [
+        "能力 id 「other」不在本体里"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash::other::DeepSeek-V4-Flash 原生支持 R",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V4-Flash 原生支持 Responses API 格式，并针对 Codex 做了适配。",
+      "quote": "The official V4-Flash natively supports the Responses API format and is specifically adapted for Codex.",
+      "source": "deepseek-updates",
+      "missing": [
+        "能力 id 「other」不在本体里"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4::other::DeepSeek-V4 模型可通过 Anthro",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V4 模型可通过 Anthropic API 接口调用。",
+      "quote": "available via both the OpenAI ChatCompletions interface and the Anthropic interface",
+      "source": "deepseek-updates",
+      "missing": [
+        "能力 id 「other」不在本体里"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3-0324 (deepseek-chat)::i-multiturn::DeepSeek-V3-0324 改进了多轮交互",
+      "at": "2026-09-19 03:51:32",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V3-0324 改进了多轮交互式重写能力。",
+      "quote": "Improved multi-turn interactive rewriting",
+      "source": "deepseek-updates",
+      "missing": [
+        "deepseek 身上没有「i-multiturn」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4.1-flash::pricing::随 DeepSeek-V4.1-Flash 发布",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "随 DeepSeek-V4.1-Flash 发布，API 价格相应下调。",
+      "quote": "With the release of DeepSeek-V4.1-Flash, API prices have been reduced accordingly. For details, please refer to Models Pricing .",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek v4 family::pricing::DeepSeek V4 系列采用峰时/谷时定价，",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek V4 系列采用峰时/谷时定价，谷时价格为峰时一半，自 2026-08-16 16:00 UTC 生效。",
+      "quote": "we will adopt peak/off-peak pricing, with off-peak prices set at half of the peak-hour prices, encouraging users to schedule their tasks based on actual usage. The new prices will take effect at 16:00 (UTC Time) on August 16, 2026.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-flash / deepseek-v4-flash-vision-exp::status::上一代模型 V4 Flash 与 V4 Flas",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "上一代模型 V4 Flash 与 V4 Flash Vision Exp 已退役；为兼容，deepseek-v4-flash 与 deepseek-v4-flash-vision-exp 暂时路由到 V4.1 Flash。",
+      "quote": "The previous-generation models V4 Flash and V4 Flash Vision Exp have been retired; for compatibility, the model names deepseek-v4-flash and deepseek-v4-flash-vision-exp are temporarily routed to V4.1 Flash.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v4-pro::status::DeepSeek V4 Pro 将在 2026-",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek V4 Pro 将在 2026-09-14 后继续提供 API 服务，计费方式不变。",
+      "quote": "we have decided to continue providing API services for DeepSeek V4 Pro after September 14, 2026, with the billing method remaining unchanged.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-chat / deepseek-reasoner::status::旧版模型名 deepseek-chat 与 de",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "旧版模型名 deepseek-chat 与 deepseek-reasoner 将于 2026-07-24 停止使用，期间分别指向 deepseek-v4-flash 的 non-thinking 与 thinking 模式。",
+      "quote": "The two legacy API model names, deepseek-chat and deepseek-reasoner , will be discontinued in three months (2026-07-24). During the current period, these two model names point to the non-thinking mode and thinking mode of deepseek-v4-flash , respectively.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.2-speciale::status::DeepSeek-V3.2-Speciale 通",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V3.2-Speciale 通过临时端点提供，至 2025-12-15 15:59 UTC 截止。",
+      "quote": "DeepSeek-V3.2-Speciale is served via a temporary endpoint: base_url= https://api.deepseek.com/v3.2_speciale_expires_on_20251215 ... available until Dec 15th, 2025, 15:59 (UTC Time).",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::deepseek-updates::deepseek-v3.1-terminus::other::DeepSeek-V3.1-Terminus 改",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "DeepSeek-V3.1-Terminus 改善了中英混杂与偶发异常字符的语言一致性问题，并优化 Code Agent 与 Search Agent 表现。",
+      "quote": "Language consistency: Reduced occurrences of Chinese-English mixing and occasional abnormal characters; Agent capabilities: Further optimized the performance of the Code Agent and Search Agent.",
+      "source": "deepseek-updates",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::new-model::Google 发布 Gemini Robotic",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Google 发布 Gemini Robotics ER 2 最新模型，含两个端点 gemini-robotics-er-2-preview 和 gemini-robotics-er-2-streaming-preview",
+      "quote": "The Gemini Robotics ER 2 model is the latest model in Gemini Robotics. ... The Gemini Robotics ER 2 model introduces two model endpoints: gemini-robotics-er-2-preview: The standard ER 2 model. ... gemini-robotics-er-2-streaming-preview: Optimized for real-time streaming via the Live API.",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 1.6::status::Gemini Robotics ER 1.6 模",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Gemini Robotics ER 1.6 模型将在 end of August 关停",
+      "quote": "Note that the Gemini Robotics ER 1.6 model will be shut down at the end of August.",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::status::Gemini Robotics ER 模型处于 ",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "Gemini Robotics ER 模型处于 preview 状态",
+      "quote": "Preview: The Gemini Robotics ER model is currently in preview.",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-vision::支持图像输入（属于 Supported data",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持图像输入（属于 Supported data types 中的 inputs）",
+      "quote": "Supported data types: Inputs: Text, images, video, audio. Output: Text",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-vision」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-audio::支持音频输入（属于 Supported data",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持音频输入（属于 Supported data types 中的 inputs）",
+      "quote": "Supported data types: Inputs: Text, images, video, audio. Output: Text",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-audio」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-cache::支持 Caching（提示词/上下文缓存）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持 Caching（提示词/上下文缓存）",
+      "quote": "Caching: Supported",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-cache」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-code::支持 Code execution（代码执行）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持 Code execution（代码执行）",
+      "quote": "Code execution: Supported",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-code」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-computer::支持 Computer use（计算机操作）",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持 Computer use（计算机操作）",
+      "quote": "Computer use: Supported",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-computer」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-tools::支持 Function calling / to",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持 Function calling / tool use，文中多处提及",
+      "quote": "See Function calling for details on how Gemini executes tool calls. ... multi-step tool use. ... low-latency function calling.",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-tools」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::gemini-robotics-er::gemini robotics er 2::t-think::支持 Thinking（扩展推理），代码示例中显",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持 Thinking（扩展推理），代码示例中显式设置 thinking_level: high",
+      "quote": "\"generation_config\": { \"thinking_config\": { \"thinking_level\": \"high\" } }",
+      "source": "gemini-robotics-er",
+      "missing": [
+        "gemini-robotics-er 身上没有「t-think」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::new-version::发布 GR00T N1.7 通用可用（GA）版本",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "发布 GR00T N1.7 通用可用（GA）版本，采用新的 VLM backbone（Cosmos-Reason2-2B / Qwen3-VL）并提升性能",
+      "quote": "We just released GR00T N1.7 General Availability, the latest version of GR00T N1 with a new VLM backbone (Cosmos-Reason2-2B / Qwen3-VL) and improved performance.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::status::GR00T N1.7 是通用可用（General",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "GR00T N1.7 是通用可用（General Availability, GA）发布，提供完整支持与稳定性保证",
+      "quote": "This is a General Availability (GA) release. You are welcome to download the model, explore the codebase, and build on the stack, with full support and stability guarantees.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::status::GR00T N1.7 在 Apache 2.0 ",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "GR00T N1.7 在 Apache 2.0 下完全可商用授权",
+      "quote": "GR00T N1.7 is fully commercially licensable under Apache 2.0.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::::undefined::提供完整 ONNX 与 TensorRT 导出能",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "提供完整 ONNX 与 TensorRT 导出能力，覆盖桌面 GPU 与边缘平台（Jetson AGX Thor/Orin、DGX Spark）",
+      "quote": "More complete deployment path: N1.7 adds full-pipeline ONNX and TensorRT export support and improves deployment consistency across desktop GPUs and edge platforms. ... Jetson AGX Thor/Orin, DGX Spark",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::采用新的 VLM backbone nvidia",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "采用新的 VLM backbone nvidia/Cosmos-Reason2-2B（Qwen3-VL 架构），替代 N1.6 的 Eagle",
+      "quote": "New VLM backbone: Cosmos-Reason2-2B (Qwen3-VL architecture), replacing the Eagle backbone used in N1.6. Supports flexible resolution and encodes images in their native aspect ratio without padding.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::动作头采用 flow-matching DiT（",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "动作头采用 flow-matching DiT（扩散 Transformer）去噪连续动作",
+      "quote": "The neural network architecture of GR00T N1.7 is a combination of vision-language foundation model and diffusion transformer head that denoises continuous actions.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::预训练中加入 20K 小时 EgoScale 人",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "预训练中加入 20K 小时 EgoScale 人体视频数据，与机器人数据共享相对 EEF 动作表示",
+      "quote": "N1.7 is pretrained on 20K hours of EgoScale human video data alongside diverse robot demonstrations. Because the relative EEF action representation is consistent across both human and robot data, the model can transfer manipulation priors learned from human video directly to robot control.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::nvidia-groot-gh::gr00t n1.7::other::采用相对末端执行器（Relative EEF）动",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "采用相对末端执行器（Relative EEF）动作空间，跨机器人与人体本体统一",
+      "quote": "Relative EEF Action Space — N1.7 adopts a relative end-effector action space shared across robot and human embodiments.",
+      "source": "nvidia-groot-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::π₀.₅ (pi05)::new-model::2025年9月发布π₀.₅模型，是π₀的升级版本",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "2025年9月发布π₀.₅模型，是π₀的升级版本，具有更好的开放世界泛化能力，使用knowledge insulation训练",
+      "quote": "We released pi05, an upgraded version of pi0 with better open-world generalization.",
+      "source": "pi-openpi-gh",
+      "missing": [
+        "没落到具体能力上"
+      ]
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi models::w-actionout::模型推理直接输出动作块（action_chunk",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "模型推理直接输出动作块（action_chunk），供机器人执行",
+      "quote": "action_chunk = policy.infer(example)[\"actions\"]",
+      "source": "pi-openpi-gh",
+      "missing": [
+        "pi 身上没有「w-actionout」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
+    },
+    {
+      "id": "2026-09-19::pi-openpi-gh::openpi::e-streaming::支持模型在远端服务器运行，通过websocket",
+      "at": "2026-09-19 03:51:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "claim": "支持模型在远端服务器运行，通过websocket连接将动作流式传输到机器人",
+      "quote": "the model can run on a different server and stream actions to the robot via a websocket connection.",
+      "source": "pi-openpi-gh",
+      "missing": [
+        "pi 身上没有「e-streaming」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言"
+      ]
     }
   ]
 }
