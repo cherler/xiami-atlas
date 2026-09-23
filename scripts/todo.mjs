@@ -201,13 +201,31 @@ try {
     });
 } catch { /* atlas 坏了会被 validate 拦 */ }
 
-/** ⑤ 收录候选（新面孔）。 */
+/**
+ * ⑤ 收录候选（新面孔）。
+ *
+ * ⚠️ **只数表格行会把人工那摞整个漏掉。** 原来这里数的是 candidates.md 里的
+ * `^| ` —— 那只命中两条自动路（AA 榜表格 + HF 组织表格）。而
+ * `data/candidates-manual.json` 那一摞**在 md 里渲染成 `###` 小节，不是表格行**，
+ * 于是 2026-09-23 加进去的四条（字节 Seed Audio / SeedRealtime / GR-3 / Protenix）
+ * 一条都没进待办 —— **写进了指定的地方，却没有任何一处会把它拿出来**。
+ * 这个仓库同一天里已经撞到第三个「只写不读」的账了（见 review-conflicts / requote-decisions）。
+ */
 const cm = read("data/candidates.md");
-const newFaces = (cm.match(/^\| /gm) ?? []).length;
+const autoFaces = (cm.match(/^\| /gm) ?? []).length;
+let manualFaces = 0, manualNames = [];
+try {
+  const rows = (JSON.parse(read("data/candidates-manual.json") || "{}").rows ?? []).filter((r) => !r.resolved);
+  manualFaces = rows.length;
+  manualNames = rows.map((r) => r.family);
+} catch { /* 没有这个文件就是没有人工候选 */ }
+const newFaces = autoFaces + manualFaces;
 if (newFaces) groups.push({
   n: newFaces,
-  t: `收录候选 ${newFaces} 行（AA 榜新面孔 + HF 新组织）`,
-  how: "`node scripts/candidates.mjs` 重算；清单在 data/candidates.md",
+  t: `收录候选 ${newFaces} 条` +
+    (manualFaces ? `（人工发现 ${manualFaces}：${manualNames.slice(0, 4).join("、")}${manualFaces > 4 ? " …" : ""}` : "（") +
+    (autoFaces ? `${manualFaces ? "；" : ""}自动两路 ${autoFaces} 行` : "") + "）",
+  how: "`node scripts/candidates.mjs` 重算；清单在 data/candidates.md，人工那摞的真源是 data/candidates-manual.json（定了就在那一行加 `resolved`）",
   why: "两路都只是**发现**，不是收录。收不收按 ontology 规则一与规则四人工定。",
 });
 
@@ -222,6 +240,29 @@ if (newFaces) groups.push({
  * **同一个源连挂三条，问题就在源不在格** —— 十有八九是抓法不对
  * （抓回来的是侧边导航不是正文），改一次 URL 能一次性解决一片。
  */
+/**
+ * ⑥之前 —— **冲突台账：同一格上两个方向相反的官方说法。**
+ *
+ * `decide()` 从一开始就会把这类写进 `data/review-conflicts.json`，注释里也写着
+ * 「必须人定」。但 2026-09-23 才发现：**除了审阅台在落库那一刻闪一行标签，
+ * 没有任何一处会再把它拿出来** —— 那个文件是只写不读的。
+ * 和 8 天前 requote 那次一模一样（`requote-decisions.json` 也是写了没人读）。
+ * **一个只进不出的台账，等于没有台账。**
+ *
+ * 这一摞**永远不标 machine**：它不是机器够不着，是两边都有官方原文、必须人去看
+ * 哪句说的是哪一代。带 `resolved` 的行不再计入（裁决完在行上记一笔就行）。
+ */
+try {
+  const cf = JSON.parse(read("data/review-conflicts.json") || "{}").rows ?? [];
+  const open = cf.filter((r) => !r.resolved);
+  if (open.length) groups.push({
+    n: open.length,
+    t: `同一格上两个相反的官方说法 ${open.length} 处（${[...new Set(open.map((r) => r.cell))].slice(0, 3).join("、")}${open.length > 3 ? " …" : ""}）`,
+    how: "明细在 data/review-conflicts.json；裁决完在那一行加 `resolved`，这条就不再报",
+    why: "**这不是待审，是待裁决。** 两边都带官方原文 —— 要么是我们记的那条过期了，要么新证据说的是同门另一个型号。**改格子之前先分清这两件事。**",
+  });
+} catch { /* 没有台账文件就是没冲突 */ }
+
 const rq = read("data/requote-report.md");
 const hotN = (rq.match(/^## 失败 ≥3 条的源（(\d+) 个）/m) ?? [])[1];
 if (hotN && Number(hotN) > 0) groups.push({

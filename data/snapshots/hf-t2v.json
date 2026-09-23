@@ -1,8 +1,8 @@
 {
   "url": "https://huggingface.co/api/models?filter=text-to-video&sort=downloads&direction=-1&limit=60",
   "kind": "json",
-  "fetched_at": "2026-09-17",
-  "digest": "c4c5b24dbe162c58",
+  "fetched_at": "2026-09-23",
+  "digest": "0189cb4a6567828c",
   "items": [
     "Abiray/LTX-2.5-Distilled-GGUF\t",
     "Abiray/MiniMax-H3-GGUF\t",
@@ -10,6 +10,7 @@
     "Abiray/Minimax-H3-nvfp4-INT4-INT8-Convrot\t",
     "Abiray/Sulphur-2-base-GGUF\t",
     "ChrisColeTech/LTX-2.3-uncensored-v1.4-FP8\t",
+    "ChrisColeTech/LTX-2.5-uncensored-v1.1-FP8\t",
     "FastVideo/FastVideo-FastH3-4-step-Preview-v1-VSA-DataFree\t",
     "FastVideo/FastWan2.2-TI2V-5B-FullAttn-Diffusers\t",
     "Hearmeman/minimax-h3-loras\t",
@@ -26,7 +27,6 @@
     "QuantStack/Wan2.1_14B_VACE-GGUF\t",
     "QuantStack/Wan2.2-T2V-A14B-GGUF\t",
     "QuantStack/Wan2.2-TI2V-5B-GGUF\t",
-    "Rabinovich/LongLive-2.0-5B-Diffusers\t",
     "SulphurAI/Sulphur-2-base\t",
     "Wan-AI/Wan2.1-T2V-1.3B\t",
     "Wan-AI/Wan2.1-T2V-1.3B-Diffusers\t",
@@ -43,6 +43,7 @@
     "calcuis/wan-gguf\t",
     "city96/Wan2.1-T2V-14B-gguf\t",
     "comfyicu/LTX-2.5\t",
+    "coolthor/MiniMax-H3-pruned-NVFP4\t",
     "drbaph/MiniMax-H3-Turbo-Lora-ComfyUI\t",
     "fal/MiniMax-H3-Realism-People-LoRA\t",
     "ibyteohdear/Lightricks-LTX-2\t",
@@ -62,7 +63,6 @@
     "unsloth/LTX-2.3-GGUF\t",
     "unsloth/MiniMax-H3-GGUF\t",
     "unsloth/Wan2.2-TI2V-5B-GGUF\t",
-    "wangfuyun/AnimateLCM\t",
-    "zai-org/CogVideoX-2b\t"
+    "wangfuyun/AnimateLCM\t"
   ]
 }

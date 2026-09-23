@@ -204,7 +204,9 @@
    "refresh_days": 14,
    "good_for": [
     "version"
-   ]
+   ],
+   "resells": true,
+   "own_org": "runway"
   },
   {
    "id": "luma-site",
@@ -312,7 +314,9 @@
    "good_for": [
     "platform",
     "skill"
-   ]
+   ],
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "decart-research",
@@ -376,7 +380,9 @@
     "Elo",
     "Kling",
     "Seedance"
-   ]
+   ],
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "aa-i2v",
@@ -394,7 +400,9 @@
     "Elo",
     "Kling",
     "Seedance"
-   ]
+   ],
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "hf-t2v",
@@ -470,7 +478,9 @@
    "good_for": [
     "availability"
    ],
-   "note": "「去哪用」矩阵的直接来源。API 需 token，先抓页面。⚠️ **裸 fetch 会拿到 403/429，走浏览器就是 200** —— 那不是封禁，是缺浏览器指纹。2026-08-12 由 html 改为 spa"
+   "note": "「去哪用」矩阵的直接来源。API 需 token，先抓页面。⚠️ **裸 fetch 会拿到 403/429，走浏览器就是 200** —— 那不是封禁，是缺浏览器指纹。2026-08-12 由 html 改为 spa",
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "replicate-t2v",
@@ -482,7 +492,9 @@
    "refresh_days": 7,
    "good_for": [
     "availability"
-   ]
+   ],
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "aiwiki",
@@ -569,7 +581,9 @@
     "Act-One",
     "Aleph"
    ],
-   "note": "**我原先在 $missing 里断言「Runway 没有可 diff 的公开更新页」—— 那是错的，我只是没看。** 沿导航一扫就在。断言「没有」之前必须先扫一遍导航\n\n🔀 **2026-09-19 合并了同 URL 的 `rw-changelog`（原 tier A，名「Runway · 官方 Changelog」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 14 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。"
+   "note": "**我原先在 $missing 里断言「Runway 没有可 diff 的公开更新页」—— 那是错的，我只是没看。** 沿导航一扫就在。断言「没有」之前必须先扫一遍导航\n\n🔀 **2026-09-19 合并了同 URL 的 `rw-changelog`（原 tier A，名「Runway · 官方 Changelog」）。** 它原来的备注：🔧 **2026-08-15 补登记。** 它被 14 处引用当证据，**却一直不在监视清单里** —— 也就是说这一年里它变了也没人会发现，「这个站会自己发现自己错了」在它身上是假的。是 `requote.mjs` 的「无快照」那一摞照出来的（162 条里绝大多数都出自这类源）。⚠️ 补登记只解决「以后会盯着」，**不代表已有引文核过了** —— 那要等首轮快照落地后由 requote 回查。",
+   "resells": true,
+   "own_org": "runway"
   },
   {
    "id": "runway-models",
@@ -586,7 +600,9 @@
    "expect": [
     "Gen-4",
     "model"
-   ]
+   ],
+   "resells": true,
+   "own_org": "runway"
   },
   {
    "id": "luma-changelog",
@@ -641,7 +657,9 @@
     "新增",
     "API"
    ],
-   "note": "项目负责人补充并给了正确 URL。国内 API 聚合商的更新日志 —— 「哪个模型在国内能用上了」这条信号，fal / Replicate 覆盖不到"
+   "note": "项目负责人补充并给了正确 URL。国内 API 聚合商的更新日志 —— 「哪个模型在国内能用上了」这条信号，fal / Replicate 覆盖不到",
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "arxiv-worldmodel",
@@ -828,7 +846,9 @@
    "good_for": [
     "pricing"
    ],
-   "note": "我猜的 /models 是模型清单不是价格页；价格在 /model-pricing。"
+   "note": "我猜的 /models 是模型清单不是价格页；价格在 /model-pricing。",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "runway-price",
@@ -841,7 +861,9 @@
    "good_for": [
     "pricing"
    ],
-   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**"
+   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**",
+   "resells": true,
+   "own_org": "runway"
   },
   {
    "id": "kling-price",
@@ -880,7 +902,9 @@
    "good_for": [
     "pricing"
    ],
-   "note": "改成平台价格总页 —— 单个模型页上没有价，价在 pricing 页。"
+   "note": "改成平台价格总页 —— 单个模型页上没有价，价在 pricing 页。",
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "replicate-price",
@@ -893,7 +917,9 @@
    "good_for": [
     "pricing"
    ],
-   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**"
+   "note": "G5 候选：先实测能不能读到，再谈能不能录。**读不到就是读不到，不许拿第三方估的价顶上。**",
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "hf-course",
@@ -1381,7 +1407,9 @@
    "good_for": [
     "version",
     "capability"
-   ]
+   ],
+   "resells": true,
+   "own_org": "krea"
   },
   {
    "id": "wiki-midjourney",
@@ -1937,7 +1965,9 @@
     "Elo",
     "FLUX",
     "Imagen"
-   ]
+   ],
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "hf-t2i",
@@ -2487,7 +2517,9 @@
    ],
    "expect": [
     "qwen3"
-   ]
+   ],
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "kimi-pricing",
@@ -2541,7 +2573,9 @@
    "refresh_days": 14,
    "good_for": [
     "capability"
-   ]
+   ],
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "glm-websearch",
@@ -2565,7 +2599,9 @@
    "refresh_days": 14,
    "good_for": [
     "capability"
-   ]
+   ],
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "ark-models",
@@ -2579,7 +2615,9 @@
     "capability",
     "version"
    ],
-   "lang": "zh-CN"
+   "lang": "zh-CN",
+   "resells": true,
+   "own_org": "bytedance"
   },
   {
    "id": "minimax-api-overview",
@@ -2744,7 +2782,9 @@
     "capability",
     "pricing"
    ],
-   "lang": "zh-CN"
+   "lang": "zh-CN",
+   "resells": true,
+   "own_org": "bytedance"
   },
   {
    "id": "bailian-models-zh",
@@ -2758,7 +2798,9 @@
     "capability",
     "version"
    ],
-   "lang": "zh-CN"
+   "lang": "zh-CN",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "glm-batch",
@@ -2848,7 +2890,9 @@
    "refresh_days": 14,
    "good_for": [
     "effect"
-   ]
+   ],
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "ideogram-api",
@@ -2924,7 +2968,9 @@
    "refresh_days": 14,
    "good_for": [
     "capability"
-   ]
+   ],
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "elevenlabs-remix",
@@ -3041,7 +3087,9 @@
    "good_for": [
     "capability",
     "version"
-   ]
+   ],
+   "resells": true,
+   "own_org": "mistral"
   },
   {
    "id": "mistral-tools",
@@ -3576,7 +3624,9 @@
    "good_for": [
     "capability"
    ],
-   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "bailian-thinking-zh",
@@ -3589,7 +3639,9 @@
    "good_for": [
     "capability"
    ],
-   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "bailian-cache-zh",
@@ -3602,7 +3654,9 @@
    "good_for": [
     "capability"
    ],
-   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "bailian-batch-zh",
@@ -3615,7 +3669,9 @@
    "good_for": [
     "capability"
    ],
-   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "bailian-websearch-zh",
@@ -3628,7 +3684,9 @@
    "good_for": [
     "capability"
    ],
-   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可"
+   "note": "⚠️ **和 alibabacloud.com 的英文站不同步，以中文站为准**（版本号那一栏已经栽过一次）。静态 HTML，直接 curl 即可",
+   "resells": true,
+   "own_org": "alibaba"
   },
   {
    "id": "hf-kokoro",
@@ -4391,7 +4449,9 @@
    "good_for": [
     "resource"
    ],
-   "note": "盯 3D 这一侧有哪些模型能按次调用；⚠️ 合集页带「Our pick」编辑推荐，那是平台的判断不是测评"
+   "note": "盯 3D 这一侧有哪些模型能按次调用；⚠️ 合集页带「Our pick」编辑推荐，那是平台的判断不是测评",
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "hf-image-to-3d",
@@ -4850,7 +4910,9 @@
    "good_for": [
     "resource"
    ],
-   "note": "按次调用的对口型模型集中在这儿；⚠️ 搜索页会变，引的是当天看到的条目"
+   "note": "按次调用的对口型模型集中在这儿；⚠️ 搜索页会变，引的是当天看到的条目",
+   "resells": true,
+   "own_org": null
   },
   {
    "id": "comfy-s2v",

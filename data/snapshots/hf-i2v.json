@@ -1,14 +1,15 @@
 {
   "url": "https://huggingface.co/api/models?filter=image-to-video&sort=downloads&direction=-1&limit=60",
   "kind": "json",
-  "fetched_at": "2026-09-17",
-  "digest": "86b6098e46d73597",
+  "fetched_at": "2026-09-23",
+  "digest": "5385046e64ce82a9",
   "items": [
     "Abiray/LTX-2.5-Distilled-GGUF\t",
     "Abiray/MiniMax-H3-GGUF\t",
     "Abiray/MiniMax-H3-Pruned-GGUF\t",
     "Abiray/Minimax-H3-nvfp4-INT4-INT8-Convrot\t",
     "ChrisColeTech/LTX-2.3-uncensored-v1.4-FP8\t",
+    "ChrisColeTech/LTX-2.5-uncensored-v1.1-FP8\t",
     "Comfy-Org/Wan_2.2_ComfyUI_Repackaged\t",
     "Hearmeman/minimax-h3-loras\t",
     "Lightricks/LTX-2\t",
@@ -21,7 +22,6 @@
     "Lightricks/LTX-Video-ICLoRA-detailer-13b-0.9.8\t",
     "MiniMaxAI/MiniMax-H3\t",
     "OpenMOSS-Team/MOVA-360p\t",
-    "Patarapoom/h3-vbvr\t",
     "QuantStack/LTX-2.3-GGUF\t",
     "QuantStack/Wan2.2-I2V-A14B-GGUF\t",
     "TenStrip/LTX2.3-10Eros\t",
@@ -39,12 +39,12 @@
     "city96/Wan2.1-I2V-14B-480P-gguf\t",
     "city96/Wan2.1-I2V-14B-720P-gguf\t",
     "comfyicu/LTX-2.5\t",
+    "coolthor/MiniMax-H3-pruned-NVFP4\t",
     "ibyteohdear/Lightricks-LTX-2\t",
     "ibyteohdear/Lightricks-LTX-2-DISTILLED-10-Eros\t",
     "jayn7/WAN2.2-I2V_A14B-DISTILL-LIGHTX2V-4STEP-GGUF\t",
     "joeygambino/MiniMax-H3-curve-GGUF\t",
     "joeygambino/MiniMax-H3-encoder-GGUF\t",
-    "joyfox/LTX-2.3-Transition-LORA\t",
     "leejet/MiniMax-H3-GGUF\t",
     "lightx2v/Minimax-h3-Turbo\t",
     "lightx2v/Wan2.2-Distill-Loras\t",
@@ -63,6 +63,6 @@
     "unsloth/LTX-2.3-GGUF\t",
     "unsloth/MiniMax-H3-GGUF\t",
     "vantagewithai/SCAIL-2-GGUF-ComfyUI\t",
-    "zai-org/CogVideoX-5b-I2V\t"
+    "yuvraj108c/LTX-2.5\t"
   ]
 }

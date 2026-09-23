@@ -18,6 +18,7 @@
  *   node scripts/watch.mjs --due    # 只抓到期的（按 refresh_days）
  *   node scripts/watch.mjs --only hf-t2v,vidu-changelog
  */
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname } from "node:path";
@@ -234,8 +235,35 @@ async function fetchSpa(s) {
   }
 }
 
+/**
+ * **GitHub API 走 `gh`（已登录，5000 次/小时），匿名只做兜底。**
+ *
+ * 2026-09-23 的「抓不到 30 个」里有 **27 个是 GitHub API 的 403** ——
+ * 不是 27 家同时关门，是匿名接口 60 次/小时的额度撞满了。
+ * 而报告把它写成「长期抓不到本身是信息：那家没有可 diff 的公开入口」，
+ * **对这 27 个这句话是假的**：它们好好的，只是我们被限流了。
+ *
+ * `refresh-repos.mjs`（上个月）和 `fetch-readme.mjs`（2026-08-17）
+ * 早就为同一个原因换成了 `gh api`，**这支天天在跑的却漏了**。同一个坑第三次。
+ */
+const HAS_GH = (() => {
+  try { execFileSync("gh", ["auth", "status"], { stdio: "ignore" }); return true; } catch { return false; }
+})();
+const ghApi = (url) => {
+  const m = url.match(/^https:\/\/api\.github\.com\/(.+)$/);
+  if (!m || !HAS_GH) return null;
+  try {
+    return execFileSync("gh", ["api", m[1]], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], maxBuffer: 64 * 1024 * 1024 });
+  } catch (e) {
+    // gh 也不行就交回匿名那条路，让它照常把真实状态码报出来 —— 不许静默吞掉
+    return null;
+  }
+};
+
 async function fetchOne(s) {
   if (s.kind === "spa") return await fetchSpa(s);
+  const viaGh = ghApi(s.url);
+  if (viaGh !== null) return viaGh;
   const ctl = AbortSignal.timeout(30000);
   const res = await fetch(s.url, {
     signal: ctl,

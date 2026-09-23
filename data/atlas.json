@@ -1,8 +1,9 @@
 {
-  "version": "1.8.1",
-  "generated_at": "2026-09-19",
+  "version": "1.8.2",
+  "generated_at": "2026-09-23",
   "note": "第九版。clip 轨九个 Family 已全部用厂商官方源逐格重核（86% 的格子挂官方来源）。全部由 Agent 录入，未经人工核验（§59.3 转述层）。模型按 version_as_of 降序；status 标生命周期。",
   "changelog": [
+    "v1.8.2 Eleven Music v2 → v2.5。**官方自己写了「same workflows and support」**，所以只有提示词作曲 / 作曲方案 / 分段改写三格能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，不拿那句话替它们背书。",
     "v1.8.1 版本哨兵报的两条写回：DeepSeek V4→V4.1（**只有 Flash 档跟到新一代，Pro 仍是 V4-Pro-0813**）、Vidu S 实时线 S1→S2；顺手把 vidu-s 的版本来源从 arXiv 论文改成官方更新日志 —— 换代只在日志上宣布，署在论文上等于以后换代也看不见",
     "v1.8 三个当家版本补上：GPT-5.6→GPT-6 Astra（官方 09-03 发布）、Claude Fable 5→Fable 5.1、GPT Image 2→2.5（Sunburst / Flare）；DeepSeek 补录 V4-Pro-0813 与 V4-Flash-Vision-Exp 两次发布，多模态按同门别支挂在实验档上",
     "v1.8 这三条都不是「新查到的」—— 快照里 09-02 就有 Fable 5.1、09-09 就有 gpt-6-astra，**是抓到了没人写回**。根因与补救见 scripts/version-sentry.mjs 的开头注释",
@@ -4449,18 +4450,19 @@
       "class": "music",
       "family": "Eleven Music",
       "org": "elevenlabs",
-      "version": "v2",
-      "version_as_of": "2026-08-12",
+      "version": "v2.5",
+      "version_as_of": "2026-09-23",
       "status": "active",
       "tier": "core",
       "domain": "sound",
       "weights": "closed",
       "version_src": "elevenlabs-models",
-      "version_quote": "模型页 Music Generation：「Eleven Music v2 —— Studio-grade music with natural language prompts in any style」",
+      "version_quote": "官方模型页 Music 一节：「Eleven Music v2.5 —— Our most advanced music model / Improved quality and prompt adherence / Richer melodies, deeper arrangements, and more layered instruments / **Same workflows and support: composition plans, audio reference, and inpainting**」；v2 仍在页上并列。",
       "lineage_note": "**谱系空着是因为拿不到日期，不是它没有历史**：官方模型页把 Flash v2 / Multilingual v2 / Flash v2.5 / Eleven v3 四代并列，但**不标发布日**；elevenlabs.io/docs/changelog 当天 404。宁可树上少一条，也不要一条编出来的时间线（2026-08-12 我一度用占位日期建过，随即撤掉）。",
       "reach_cn": "ok",
       "reach_note": "elevenlabs.io 直连 200（同一平台）（本机实测 08-12）",
-      "zh_none": true
+      "zh_none": true,
+      "note": "**换代说明里官方自己写了「同一套工作流与支持」** —— v2.5 的卖点是质量与提示词跟随，并明说 composition plans / audio reference / inpainting 照旧。所以这一批格子里，**原文在 v2.5 名下重申过的按 v2.5 重核，只在 v2 名下印着的（纯器乐、多语种）标待重核**，不拿「同一套工作流」这句去替它们背书。"
     },
     {
       "id": "lyria",
@@ -7686,6 +7688,11 @@
       "name": "Hugging Face 官方组织目录（模型接口）",
       "url": "https://huggingface.co/api/models",
       "tier": "official"
+    },
+    "dreamina": {
+      "name": "即梦 Dreamina（字节自有产品）",
+      "url": "https://dreamina.capcut.com/",
+      "tier": "official"
     }
   },
   "support": [
@@ -7840,10 +7847,13 @@
     {
       "m": "seedance",
       "c": "camera",
-      "state": "unknown",
+      "state": "yes",
       "verified_for": "2.5",
-      "src": "seed-25",
-      "note": "官方提到 camera perspective，但它出现在**高级编辑功能**里（与绿幕、参考式编辑并列），不是生成时的运镜控制参数 —— 不拿编辑能力冒充生成控制"
+      "src": "dreamina",
+      "note": "Seedance 2.5 支持精细的镜头/运镜控制｜原文：「smooth, precisely controlled camera movement … FPV camera move to circle the building and push in toward the four performers … smooth camera control」",
+      "by": "human",
+      "reviewed_by": "liuzhenhai（经 Claude 代办）",
+      "reviewed_at": "2026-09-23 05:05:47"
     },
     {
       "m": "seedance",
@@ -7857,10 +7867,13 @@
     {
       "m": "seedance",
       "c": "lipsync",
-      "state": "unknown",
+      "state": "yes",
       "verified_for": "2.5",
-      "src": "seed-25",
-      "note": "在 2.5 官方发布全文里检索「lip sync / 口型 / mouth」—— **零命中**"
+      "src": "dreamina",
+      "note": "Seedance 2.5 支持精准对口型（lip sync to audio）｜原文：「precise lip sync to Audio 1」",
+      "by": "human",
+      "reviewed_by": "liuzhenhai（经 Claude 代办）",
+      "reviewed_at": "2026-09-23 05:05:47"
     },
     {
       "m": "seedance",
@@ -10662,8 +10675,13 @@
     {
       "m": "kimi",
       "c": "t-batch",
-      "state": "unknown",
-      "verified_for": "K3"
+      "state": "yes",
+      "verified_for": "K3",
+      "src": "kimi-pricing",
+      "note": "平台提供批量推理接口，并设有独立定价页｜原文：「批量推理定价」",
+      "by": "human",
+      "reviewed_by": "liuzhenhai（经 Claude 代办）",
+      "reviewed_at": "2026-09-23 05:06:00"
     },
     {
       "m": "kimi",
@@ -11656,8 +11674,13 @@
     {
       "m": "gemini-tts",
       "c": "s-format",
-      "state": "unknown",
-      "verified_for": "3.1 Flash TTS Preview"
+      "state": "yes",
+      "verified_for": "3.1 Flash TTS Preview",
+      "src": "gemini-tts",
+      "note": "默认输出 24kHz、16-bit、单声道 WAV 文件｜原文：「def wave_file ( filename , pcm , channels = 1 , rate = 24000 , sample_width = 2 ): ... wave_file ( 'out.wav' , ... )」",
+      "by": "human",
+      "reviewed_by": "liuzhenhai（经 Claude 代办）",
+      "reviewed_at": "2026-09-23 05:05:51"
     },
     {
       "m": "openai-tts",
@@ -11843,17 +11866,19 @@
       "m": "eleven-music",
       "c": "s-m-prompt",
       "state": "yes",
-      "verified_for": "v2",
+      "verified_for": "v2.5",
       "src": "elevenlabs-models",
-      "note": "「Eleven Music v2 —— Studio-grade music with natural language prompts in any style」",
+      "note": "官方模型页（2026-09-23）Music 一节 v2.5 名下：「Our most advanced music model / Improved quality and **prompt adherence**」；文档页同条写「Studio-grade generation from text prompts」",
       "via": "native",
-      "as_of": "2026-08-12"
+      "as_of": "2026-09-23"
     },
     {
       "m": "eleven-music",
       "c": "s-m-lyrics",
       "state": "unknown",
-      "verified_for": "v2"
+      "verified_for": "v2",
+      "recheck": "v2.5",
+      "note": "旧结论核在 v2；v2.5 待重核。"
     },
     {
       "m": "lyria",
@@ -12085,8 +12110,13 @@
     {
       "m": "cosyvoice",
       "c": "s-style",
-      "state": "unknown",
-      "verified_for": "Fun-CosyVoice3-0.5B-2512"
+      "state": "yes",
+      "verified_for": "Fun-CosyVoice3-0.5B-2512",
+      "src": "cosyvoice-card",
+      "note": "支持通过 instruct 控制语种、方言、情绪、语速、音量等｜原文：「Instruct Support: Supports various instructions such as languages, dialects, emotions, speed, volume, etc.」",
+      "by": "human",
+      "reviewed_by": "liuzhenhai（经 Claude 代办）",
+      "reviewed_at": "2026-09-23 05:05:45"
     },
     {
       "m": "cosyvoice",
@@ -12410,9 +12440,10 @@
       "state": "no",
       "verified_for": "v2",
       "as_of": "2026-08-12",
-      "note": "和语音那格同一条依据。",
+      "note": "和语音那格同一条依据。　旧结论核在 v2。⚠️ 它的依据是官方 HF 组织目录，而那份快照**抓回来是空的**（0 字）—— 空壳不能当「确认没有权重」的新证据，所以不在这一轮重核。",
       "src": "hf-org-elevenlabs",
-      "quote": "同上：elevenlabs 组织下没有任何模型权重"
+      "quote": "同上：elevenlabs 组织下没有任何模型权重",
+      "recheck": "v2.5"
     },
     {
       "m": "openai-tts",
@@ -12568,10 +12599,14 @@
     {
       "m": "seedance",
       "c": "v2v",
-      "state": "unknown",
+      "state": "yes",
       "verified_for": "2.5",
       "as_of": "2026-08-13",
-      "note": "官方文档里没有「拿一段视频进去、改完再出来」这一路的端点或参数。⚠️ **别和图生视频（i2v）混**：那是给一张静态图；也别和「视频延长」混：那是接着往后长，不是改已有的内容。—— 读完没找到，不是没读。"
+      "note": "Seedance 2.5 支持视频编辑/绿幕替换（video editing / green-screen edit）｜原文：「[Sound Edit] … Use Seedance 2.5 to perform a green-screen edit: keep the girl and the moss-covered stairs from the original video, and replace the green screen with a cinematic fairy-tale fantasy world.」",
+      "src": "dreamina",
+      "by": "human",
+      "reviewed_by": "liuzhenhai（经 Claude 代办）",
+      "reviewed_at": "2026-09-23 05:05:47"
     },
     {
       "m": "hailuo",
@@ -15991,26 +16026,28 @@
       "src": "elevenlabs-models",
       "quote": "官方模型页 Eleven Music v2 的能力清单：「Studio-grade music with natural language prompts in any style / Complete control over **genre, style, and structure** / **Vocals or just instrumental** / **Multilingual**, including English, Spanish, German, Japanese and more / **Edit the sound and lyrics of individual sections** or the whole song」",
       "as_of": "2026-08-15",
-      "note": "官方把「要不要人声」当成一个明确的开关来讲，而不是让你在提示词里碰运气。"
+      "note": "官方把「要不要人声」当成一个明确的开关来讲，而不是让你在提示词里碰运气。　「Vocals or just instrumental」这句只印在 **v2** 名下，v2.5 那段没有重申 —— 不拿「同一套工作流」替它背书。",
+      "recheck": "v2.5"
     },
     {
       "m": "eleven-music",
       "c": "s-m-structure",
       "state": "yes",
-      "verified_for": "v2",
+      "verified_for": "v2.5",
       "src": "elevenlabs-models",
       "quote": "官方模型页 Eleven Music v2 的能力清单：「Studio-grade music with natural language prompts in any style / Complete control over **genre, style, and structure** / **Vocals or just instrumental** / **Multilingual**, including English, Spanish, German, Japanese and more / **Edit the sound and lyrics of individual sections** or the whole song」",
-      "as_of": "2026-08-15"
+      "as_of": "2026-09-23",
+      "note": "官方模型页（2026-09-23）Music 一节 v2.5 名下：「Same workflows and support: **composition plans**, audio reference, and inpainting」—— 作曲方案（结构）在 v2.5 名下被明确重申"
     },
     {
       "m": "eleven-music",
       "c": "s-m-section",
       "state": "yes",
-      "verified_for": "v2",
+      "verified_for": "v2.5",
       "src": "elevenlabs-models",
       "quote": "官方模型页 Eleven Music v2 的能力清单：「Studio-grade music with natural language prompts in any style / Complete control over **genre, style, and structure** / **Vocals or just instrumental** / **Multilingual**, including English, Spanish, German, Japanese and more / **Edit the sound and lyrics of individual sections** or the whole song」",
-      "as_of": "2026-08-15",
-      "note": "🎯 **这一格全卷只有它一家。** 别家是「重新生成一首」，它是「只改第二段的词和声音」—— 做配乐时这个差别很实际。"
+      "as_of": "2026-09-23",
+      "note": "官方模型页（2026-09-23）Music 一节 v2.5 名下：「Same workflows and support: composition plans, audio reference, and **inpainting**」—— 分段改写（inpainting）在 v2.5 名下被明确重申"
     },
     {
       "m": "eleven-music",
@@ -16019,7 +16056,9 @@
       "verified_for": "v2",
       "src": "elevenlabs-models",
       "quote": "官方模型页 Eleven Music v2 的能力清单：「Studio-grade music with natural language prompts in any style / Complete control over **genre, style, and structure** / **Vocals or just instrumental** / **Multilingual**, including English, Spanish, German, Japanese and more / **Edit the sound and lyrics of individual sections** or the whole song」",
-      "as_of": "2026-08-15"
+      "as_of": "2026-08-15",
+      "recheck": "v2.5",
+      "note": "「Multilingual, including English, Spanish, German, Japanese and more」只印在 **v2** 名下，v2.5 那段没有重申。"
     },
     {
       "m": "eleven-music",
@@ -16027,7 +16066,8 @@
       "state": "unknown",
       "verified_for": "v2",
       "as_of": "2026-08-15",
-      "note": "模型页那份能力清单里没有歌词时间轴 / 逐句时间戳的说法。⚠️ 它有「编辑各段歌词」，**但「能改某一段的词」不等于「返回每句词的时间」** —— 后者是做卡拉 OK 字幕才需要的东西。读完没找到，不是没读。"
+      "note": "模型页那份能力清单里没有歌词时间轴 / 逐句时间戳的说法。⚠️ 它有「编辑各段歌词」，**但「能改某一段的词」不等于「返回每句词的时间」** —— 后者是做卡拉 OK 字幕才需要的东西。读完没找到，不是没读。　旧结论核在 v2；v2.5 待重核。",
+      "recheck": "v2.5"
     },
     {
       "m": "lyria",
@@ -23524,6 +23564,18 @@
       "parent": "vidu-s-S1-S1",
       "cap": "rt-stream",
       "note": "挂 `rt-stream`（流式输入）的依据是 Editing 档那句「edit an incoming video stream in real time」—— 原文明说进来的是一路视频流，不是我们推的。S1 那一代只声明了实时交互生成（rt-interact）。"
+    },
+    {
+      "id": "eleven-music-v2.5-同一套工作流下提质",
+      "m": "eleven-music",
+      "version": "v2.5",
+      "date": "2026-09-23",
+      "added": "提质版 v2.5：质量与提示词跟随改善，旋律更丰富、编排更厚、乐器分层更多；工作流不变",
+      "src": "elevenlabs-models",
+      "quote": "Eleven Music v2.5 Our most advanced music model Improved quality and prompt adherence Richer melodies, deeper arrangements, and more layered instruments. Same workflows and support: composition plans, audio reference, and inpainting",
+      "note": "⚠️ **日期是我们核到它的那天，不是发布日** —— 同 v2 那条的老毛病：官方模型页把各代并列但**不标发布日**，changelog 也拿不到。宁可标明口径，也不编一个发布日。",
+      "parent": "eleven-music-v2",
+      "cap_skip": "提质记录：官方原文写的是「same workflows and support」，没有声明能力轴上的新增项"
     }
   ],
   "$versions": "版本谱系（演进图的数据）。**演进的主体是模型，不是能力。**\n\n原来那张演进图每行是一项能力、横轴是「我们能证明的最早时间」、粗细是几家支持。\n读者看完只得到「动作复刻 2025-12 出现、6/9 支持」—— 那是一次数据库查询的可视化，不涨知识。\n而且它得靠图注免责（「不是业界首次出现」）：**一张需要图注免责的图，说明它量错了东西。**\n\n这份数据画的是**厂商自己发布的版本和日期**，所以不需要免责。每条必须回答：\n**这一代新增了什么。** 只有版本号没有 added 的节点没有价值，不收。\n\n两个最好的来源，都不是「新闻」：\n  · **官方 Hugging Face 组织** —— 模型名本身就编码了能力与代际\n    （Wan2.1-FLF2V＝首尾帧、Wan2.2-S2V＝语音驱动、LTX 的 IC-LoRA-Ingredients＝角色参考），\n    发布时间由 HF API 给出，比任何新闻稿都准。\n  · **官方 API 更新日志** —— 可灵那份 31k 字符里有 170 条带日期的条目。\n\n覆盖不全是事实：万相和可灵能画出完整谱系，Runway/Vidu/Seedance 只有近期几个点，\nVeo/Sora/海螺/LTX 还没有。**图上要标出哪几条线是完整的、哪几条只是片段** ——\n画一条只有两个点的线却不说明，读者会以为这家两年只更新过两次。\n\n`cap` 把版本节点挂到能力 id 上，图上「点一项能力，看各家谁先谁后」靠它。\n**对不上的一律留空并写明理由（cap_skip），不硬凑** —— 硬凑一个 id，纵向那一刀就切错了。\n典型：Wan 的 S2V 是「语音驱动」，不等于我们轴上的「对口型」，两件事不合并；\n「换代」节点本身也不是新增单项能力。\n\n`id` + `parent` 把平铺记录变成**真的树**。分叉是真实存在的：\nWan2.1 底座上同时长出 FLF2V（首尾帧）和 VACE（统一编辑）两个变体，\nWan2.2 是换代接在 2.1 后面，Animate-2 又接在 Animate 后面。\n\n**没有父节点的就让它当根，不许为了让树好看硬接一条边** ——\nRunway 的 Aleph 是编辑线，不是 Gen 的后代，它自己是一棵树。\n\n⚠️ **日期必须取 HF 的 `createdAt`，不能取 `lastModified`。**\n第一版取错了字段，把「最后修改」当成了发布日期：Wan2.2 记成 2025-08-07（实际 2025-07-18）、\nAnimate 记成 2025-11-05（实际 2025-09-11）——**差了两个月**。\n仓库发布后还会被反复更新，两个字段根本不是一回事。\n这类错最阴：日期看着合理、图也画得出来，但整条时间线是歪的。\n\n覆盖不足要**写在数据里**，不是靠图上一句话糊过去：\n模型的 `lineage_note` 解释为什么它的节点少（太新 / 官方记录只回溯到某时）。\n校验 R58 强制：**核心模型少于 3 个节点却没写理由，就是错**。\n「我们没采到」和「它本来就没有」是两回事，读者有权知道是哪一种。",

@@ -1,8 +1,8 @@
 {
   "url": "https://huggingface.co/api/models?author=Lightricks&sort=downloads&direction=-1&limit=40",
   "kind": "json",
-  "fetched_at": "2026-09-17",
-  "digest": "682411092035c30e",
+  "fetched_at": "2026-09-23",
+  "digest": "0426cdcc6a6f3210",
   "items": [
     "Lightricks/LTX-2\t",
     "Lightricks/LTX-2.3\t",
@@ -21,17 +21,19 @@
     "Lightricks/LTX-2.3-22b-IC-LoRA-Relight\t",
     "Lightricks/LTX-2.3-22b-IC-LoRA-Water-Simulation\t",
     "Lightricks/LTX-2.3-22b-LoRA-Cinemagraph\t",
-    "Lightricks/LTX-2.3-22b-LoRA-Foley-V2A\t",
     "Lightricks/LTX-2.3-fp8\t",
     "Lightricks/LTX-2.3-nvfp4\t",
     "Lightricks/LTX-2.5\t",
+    "Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate\t",
     "Lightricks/LTX-2.5-22b-IC-LoRA-Colorization\t",
+    "Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night\t",
     "Lightricks/LTX-2.5-22b-IC-LoRA-Deblur\t",
     "Lightricks/LTX-2.5-22b-IC-LoRA-Decompression\t",
     "Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients\t",
     "Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler\t",
+    "Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation\t",
+    "Lightricks/LTX-2.5-22b-LoRA-Cinemagraph\t",
     "Lightricks/LTX-2.5-Diffusers\t",
-    "Lightricks/LTX-2.5-Pre-Trained\t",
     "Lightricks/LTX-Video\t",
     "Lightricks/LTX-Video-0.9.5\t",
     "Lightricks/LTX-Video-0.9.7-dev\t",
@@ -41,8 +43,6 @@
     "Lightricks/LTX-Video-ICLoRA-depth-13b-0.9.7\t",
     "Lightricks/LTX-Video-ICLoRA-detailer-13b-0.9.8\t",
     "Lightricks/LTX-Video-ICLoRA-pose-13b-0.9.7\t",
-    "Lightricks/T5-XXL-8bit\t",
-    "Lightricks/gemma-3-12b-it-qat-q4_0-unquantized\t",
-    "Lightricks/ltxv-spatial-upscaler-0.9.7\t"
+    "Lightricks/gemma-3-12b-it-qat-q4_0-unquantized\t"
   ]
 }

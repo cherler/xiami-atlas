@@ -1,16 +1,16 @@
 {
   "$comment": "管线每一步的执行状态，由 scripts/stamp.mjs 写、todo.mjs 读。「跳过」在这里留痕，不然它只活在日志里，而人不看日志。",
-  "generated_at": "2026-09-19",
+  "generated_at": "2026-09-23",
   "steps": {
     "extract": {
       "status": "ok",
-      "at": "2026-09-19",
-      "last_ok": "2026-09-19"
+      "at": "2026-09-23",
+      "last_ok": "2026-09-23"
     },
     "sentry": {
       "status": "ok",
-      "at": "2026-09-19",
-      "last_ok": "2026-09-19"
+      "at": "2026-09-23",
+      "last_ok": "2026-09-23"
     }
   }
 }

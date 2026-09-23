@@ -6,7 +6,7 @@
     <atom:link href="https://xiamimate.com/atlas/changes.xml" rel="self" type="application/rss+xml"/>
     <description>AI 视频模型的版本、停服、价格与能力变化。每条带 Before / After / 为什么重要，以及厂商官方来源。</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>【快讯】白模预演：空间调度成了可交付的控制信号：Seedance 2.5 官方支持 clay render referencing：「users can build a scene's spatial structure, character poses, motion paths, and camera angles using textureless 3D models」；B 站 updream 于 8-17 上线「预演台」，一张参考图自动生成 3D 白模场景，在里面摆人、画相机轨迹、调关键帧，录成白模视频直接送进模型</title>
       <link>https://xiamimate.com/atlas/changes#clay-previz-2026-08-17</link>
@@ -31,6 +31,14 @@
       <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
       <category>sora</category>
       <description>&lt;p&gt;&lt;b&gt;Sora&lt;/b&gt; · 生命周期&lt;/p&gt;&lt;p&gt;此前：Sora 2 API 可用，Replicate 与 APIYI 都在转售&lt;/p&gt;&lt;p&gt;现在：OpenAI 公告 API 于 2026-09-24 停止&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;上游停了，平台不一定同步下架&lt;/b&gt; —— 现在两家仍挂着，买了会踩空&lt;/p&gt;&lt;p&gt;影响：sora&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://replicate.com/collections/text-to-video&quot;&gt;Replicate · text-to-video 集合页&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Eleven Music v2.5：官方模型页 Music 一节上新 v2.5：「Our most advanced music model」，质量与提示词跟随改善；**并明写「Same workflows and support: composition plans, audio reference, and inpainting」**，v2 仍并列在页上</title>
+      <link>https://xiamimate.com/atlas/changes#eleven-music-v2.5-2026-09-23</link>
+      <guid isPermaLink="false">eleven-music-v2.5-2026-09-23</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <category>eleven-music</category>
+      <description>&lt;p&gt;&lt;b&gt;Eleven Music v2.5&lt;/b&gt; · 版本更迭&lt;/p&gt;&lt;p&gt;此前：atlas 记 Eleven Music v2（核于 2026-08-12）&lt;/p&gt;&lt;p&gt;现在：官方模型页 Music 一节上新 v2.5：「Our most advanced music model」，质量与提示词跟随改善；&lt;b&gt;并明写「Same workflows and support: composition plans, audio reference, and inpainting」&lt;/b&gt;，v2 仍并列在页上&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;这是提质不是加能力&lt;/b&gt; —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。&lt;/p&gt;&lt;p&gt;影响：eleven-music&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://elevenlabs.io/docs/models&quot;&gt;ElevenLabs · Models&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vidu S2（实时线换代，兼修一处来源错配）：官方 API 更新日志 09-15 上新 Vidu S2-Avatar（实时语音交互 + 复杂动作控制）与 Vidu S2-Editing（拿参考图实时改进来的视频流）；版本来源改署官方更新日志</title>
@@ -408,14 +416,6 @@
       <category>veo</category>
       <category>gemini-omni</category>
       <description>&lt;p&gt;&lt;b&gt;Google Veo → Gemini Omni Flash&lt;/b&gt; · status&lt;/p&gt;&lt;p&gt;此前：Veo 3.1 是 Google 的视频主力&lt;/p&gt;&lt;p&gt;现在：官方文档原话：「Use Gemini Omni Flash as your default model for video generation」；Veo 3.1 留给 scene extension、last-frame control 与老管线&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;厂商自己写明了取舍&lt;/b&gt;。而且这句导购语反过来是 Omni 缺首尾帧与场景延长的官方证据 —— 只在两个模型并排读的时候才看得见。&lt;/p&gt;&lt;p&gt;影响：新项目默认该用 Omni；需要首尾帧或场景延长的仍得回 Veo&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://ai.google.dev/gemini-api/docs/video&quot;&gt;Google · 视频生成总览（两个模型如何取舍）&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Sora：App 已关停；API 计划 2026-09-24 停止；未宣布继任产品</title>
-      <link>https://xiamimate.com/atlas/changes#sora-eol</link>
-      <guid isPermaLink="false">sora-eol</guid>
-      <pubDate>Sun, 26 Apr 2026 00:00:00 GMT</pubDate>
-      <category>sora</category>
-      <description>&lt;p&gt;&lt;b&gt;Sora&lt;/b&gt; · status&lt;/p&gt;&lt;p&gt;此前：OpenAI 的旗舰视频产品，App 与 API 都在售&lt;/p&gt;&lt;p&gt;现在：App 已关停；API 计划 2026-09-24 停止；未宣布继任产品&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;这是本表里唯一一个&lt;b&gt;能力全对、却不能用&lt;/b&gt;的模型。照着能力表去选它的人，会在 9 月撞墙。&lt;/p&gt;&lt;p&gt;影响：正在用 Sora API 的项目要排迁移；Replicate 与 APIYI 上仍在售 —— 货架比上游慢&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation&quot;&gt;OpenAI 帮助中心 · Sora 停服说明（⚠️ 页面反爬抓不到，我们记的内容来自搜索摘要转述）&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

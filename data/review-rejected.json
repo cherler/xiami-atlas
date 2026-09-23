@@ -31,6 +31,241 @@
       "who": "liuzhenhai（经 Claude 代办）",
       "why": "抽取器给了空 claim，没有可核的内容 —— 不是事实，是一条空记录。",
       "source": "nvidia-groot-gh"
+    },
+    {
+      "id": "2026-09-22::deepseek-pricing::deepseek-flash::t-vision::deepseek-flash 支持 Vision",
+      "at": "2026-09-23 05:05:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "deepseek-flash 支持 Vision（图像输入）",
+      "source": "deepseek-pricing"
+    },
+    {
+      "id": "2026-09-22::deepseek-pricing::deepseek-v4-pro::t-vision::deepseek-v4-pro 不支持 Visi",
+      "at": "2026-09-23 05:05:33",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "deepseek-v4-pro 不支持 Vision",
+      "source": "deepseek-pricing"
+    },
+    {
+      "id": "2026-09-22::deepseek-updates::deepseek-v3.2-speciale::t-tools::V3.2-Speciale 不支持工具调用，仅服",
+      "at": "2026-09-23 05:05:34",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "V3.2-Speciale 不支持工具调用，仅服务至 2025-12-15 15:59 UTC",
+      "source": "deepseek-updates"
+    },
+    {
+      "id": "2026-09-23::ark-models::doubao-seed-2-1-pro-260915 / doubao-seed-2-1-lite-260915 等豆包系列::t-tools::工具调用能力下，豆包系列支持函数调用、知识库、M",
+      "at": "2026-09-23 05:05:38",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "工具调用能力下，豆包系列支持函数调用、知识库、MCP、联网内容插件、图像处理、豆包助手；glm 和 deepseek 模型不支持知识库、联网内容插件、图像处理、豆包助手（标 ✗）",
+      "source": "ark-models"
+    },
+    {
+      "id": "2026-09-23::bailian-qimg::qwen-image 全系列（当前页面 api）::i-multiturn::当前 API 仅支持单轮对话，messages ",
+      "at": "2026-09-23 05:05:43",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "当前 API 仅支持单轮对话，messages 数组内有且只有一个元素，不支持多轮编辑",
+      "source": "bailian-qimg"
+    },
+    {
+      "id": "2026-09-23::bailian-websearch::qwen3.8 series (qwen3.8-max, qwen3.8-max-0902, qwen3.8-flash, qwen3.8-2.4t-a95b, qwen3.8-27b)::t-search::Qwen3.8 系列在多模态 API 下不支持 ",
+      "at": "2026-09-23 05:05:45",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "Qwen3.8 系列在多模态 API 下不支持 search_strategy=agent，需用 Responses API 的 web_search 工具走 agent 风格检索",
+      "source": "bailian-websearch"
+    },
+    {
+      "id": "2026-09-23::bailian-websearch::qwen multimodal models (web search)::t-search::多模态 Qwen 模型启用联网检索必须使用流式调",
+      "at": "2026-09-23 05:05:45",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "多模态 Qwen 模型启用联网检索必须使用流式调用（stream=True / streamCall），否则报 Non-streaming mode does not support Web Search",
+      "source": "bailian-websearch"
+    },
+    {
+      "id": "2026-09-23::h3-card::minimax h3::v2v::",
+      "at": "2026-09-23 05:05:55",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "claim 为空，没有可核的内容 —— 不是事实，是模型这次没吐出东西。已在 extract.mjs 源头拦掉，这批是存量。",
+      "source": "h3-card"
+    },
+    {
+      "id": "2026-09-23::h3-card::::undefined::",
+      "at": "2026-09-23 05:05:55",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "claim 为空，没有可核的内容 —— 不是事实，是模型这次没吐出东西。已在 extract.mjs 源头拦掉，这批是存量。",
+      "source": "h3-card"
+    },
+    {
+      "id": "2026-09-23::hf-i2v::wan-ai/wan2.1-vace-14b::v2v::Wan-AI 官方仓库名包含 \"VACE\"，为视",
+      "at": "2026-09-23 05:05:56",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan-AI 官方仓库名包含 \"VACE\"，为视频编辑/视频转视频相关模型（命名内含，但页面无描述文本佐证具体能力范围）",
+      "source": "hf-i2v"
+    },
+    {
+      "id": "2026-09-23::hf-i2v::wan-ai/wan-dancer-14b::motion::Wan-AI 官方仓库名含 \"Dancer\"，按",
+      "at": "2026-09-23 05:05:56",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan-AI 官方仓库名含 \"Dancer\"，按命名推断与动作/舞蹈复刻相关（无描述文本佐证）",
+      "source": "hf-i2v"
+    },
+    {
+      "id": "2026-09-23::hf-i2v::realrebelai/wan-animate-2_ggufs::v2v::社区仓库名含 \"Animate\"，按命名推断与角",
+      "at": "2026-09-23 05:05:56",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "社区仓库名含 \"Animate\"，按命名推断与角色动画/视频重演相关（无描述文本佐证）",
+      "source": "hf-i2v"
+    },
+    {
+      "id": "2026-09-23::hf-i2v::robbyant/lingbot-world-fast::w-sim::社区仓库名含 \"world\"，按命名推断为世界模",
+      "at": "2026-09-23 05:05:56",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "社区仓库名含 \"world\"，按命名推断为世界模拟相关模型（无描述文本佐证）",
+      "source": "hf-i2v"
+    },
+    {
+      "id": "2026-09-23::ideogram-v3-generate::ideogram 3.0::i-t2i::Ideogram 3.0 文生图支持 color",
+      "at": "2026-09-23 05:05:58",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "Ideogram 3.0 文生图支持 color_palette：可通过预设名称或带权重的十六进制颜色列表指定调色板（V_1/V_1_TURBO/V_2A/V_2A_TURBO 不支持）。",
+      "source": "ideogram-v3-generate"
+    },
+    {
+      "id": "2026-09-23::ideogram-v3-generate::ideogram 3.0::i-multiturn::页面导航中 Prompts 区列有 Descri",
+      "at": "2026-09-23 05:05:59",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "证据是**页面导航栏的菜单项**（Describe / Magic Prompt），不是能力说明；而且 Describe 与 Magic Prompt 都不是「多轮改图」。",
+      "claim": "页面导航中 Prompts 区列有 Describe with Ideogram 4.0 与 Generate a Magic Prompt with Ideogram 4.0 端点。",
+      "source": "ideogram-v3-generate"
+    },
+    {
+      "id": "2026-09-23::minimax-openai-api::minimax-m3::t-audio::MiniMax-M3 当前不支持音频输入",
+      "at": "2026-09-23 05:06:06",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "否定型断言，不能按「支持」落格。",
+      "claim": "MiniMax-M3 当前不支持音频输入",
+      "source": "minimax-openai-api"
+    },
+    {
+      "id": "2026-09-23::minimax-platform::minimax h3 / minimax h3 max::multiref::",
+      "at": "2026-09-23 05:06:06",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "claim 为空，没有可核的内容 —— 不是事实，是模型这次没吐出东西。已在 extract.mjs 源头拦掉，这批是存量。",
+      "source": "minimax-platform"
+    },
+    {
+      "id": "2026-09-23::minimax-platform::::undefined::",
+      "at": "2026-09-23 05:06:06",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "claim 为空，没有可核的内容 —— 不是事实，是模型这次没吐出东西。已在 extract.mjs 源头拦掉，这批是存量。",
+      "source": "minimax-platform"
+    },
+    {
+      "id": "2026-09-23::mistral-models::mistral small 4::t-think::Mistral Small 4（v 26.03，",
+      "at": "2026-09-23 05:06:08",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "这句说的是 **Mistral Small 4**，而库里 `mistral-text` 记的是 Mistral Medium 3.5 —— 同门不同型号，张冠李戴。",
+      "claim": "Mistral Small 4（v 26.03，Apache 2.0）混合了 instruct、reasoning 和 coding 三种能力。",
+      "source": "mistral-models"
+    },
+    {
+      "id": "2026-09-23::mistral-models::mistral moderation 2::t-long::Mistral Moderation 2（v 2",
+      "at": "2026-09-23 05:06:08",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "这句说的是 **Mistral Moderation 2**（内容审核模型），不是文本旗舰。",
+      "claim": "Mistral Moderation 2（v 26.03）支持 128k 上下文窗口并具备越狱检测能力。",
+      "source": "mistral-models"
+    },
+    {
+      "id": "2026-09-23::mistral-models::mistral small 3.2::other::Mistral Small 3.2 进入 dep",
+      "at": "2026-09-23 05:06:09",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "这句说的是 **Mistral Small 4**，而库里 `mistral-text` 记的是 Mistral Medium 3.5 —— 同门不同型号，张冠李戴。",
+      "claim": "Mistral Small 3.2 进入 deprecated，API 弃用日 4/30/2026，退休日 7/31/2026，替代为 Mistral Small 4。",
+      "source": "mistral-models"
+    },
+    {
+      "id": "2026-09-23::mistral-models::mistral moderation::other::Mistral Moderation（24.11",
+      "at": "2026-09-23 05:06:09",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "这句说的是 **Mistral Moderation 2**（内容审核模型），不是文本旗舰。",
+      "claim": "Mistral Moderation（24.11）进入 deprecated，API 弃用日 3/31/2026，退休日 6/30/2026，替代为 Mistral Moderation 2。",
+      "source": "mistral-models"
+    },
+    {
+      "id": "2026-09-23::mistral-models::mistral saba::other::Mistral Saba 进入 deprecat",
+      "at": "2026-09-23 05:06:09",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "这句说的是 **Mistral Small 4**，而库里 `mistral-text` 记的是 Mistral Medium 3.5 —— 同门不同型号，张冠李戴。",
+      "claim": "Mistral Saba 进入 deprecated，API 弃用日 6/10/2025，退休日 9/30/2025，替代为 Mistral Small 4。",
+      "source": "mistral-models"
+    },
+    {
+      "id": "2026-09-23::vidu-changelog::vidu s2-avatar::multiref::",
+      "at": "2026-09-23 05:06:14",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "claim 为空，没有可核的内容 —— 不是事实，是模型这次没吐出东西。已在 extract.mjs 源头拦掉，这批是存量。",
+      "source": "vidu-changelog"
+    },
+    {
+      "id": "2026-09-23::vidu-function-list::vidu::v2v::Vidu 提供流式视频编辑：连续接收视频流并实时",
+      "at": "2026-09-23 05:06:15",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "「连续接收视频流、实时换脸换场景」说的是生数的**实时线 Vidu S**，不是离线出片的 Vidu Q —— 功能清单页覆盖整个平台，落到哪一条产品线上要自己分。",
+      "claim": "Vidu 提供流式视频编辑：连续接收视频流并实时换脸/换场景",
+      "source": "vidu-function-list"
+    },
+    {
+      "id": "2026-09-23::wan-hf::wan2.1-vace-1.3b::v2v::Wan2.1 系列发布 1.3B 参数 VACE",
+      "at": "2026-09-23 05:06:16",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan2.1 系列发布 1.3B 参数 VACE 视频处理模型；VACE 框架为视频生成/编辑统一框架（由名称推断含视频编辑能力）",
+      "source": "wan-hf"
+    },
+    {
+      "id": "2026-09-23::wan-hf::wan2.1-vace-14b::v2v::Wan2.1 系列发布 14B 参数 VACE ",
+      "at": "2026-09-23 05:06:16",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan2.1 系列发布 14B 参数 VACE 视频处理模型（由名称推断含视频编辑能力）",
+      "source": "wan-hf"
+    },
+    {
+      "id": "2026-09-23::wan-hf::wan2.2-animate-14b::motion::Wan2.2 系列发布 14B 参数 Anima",
+      "at": "2026-09-23 05:06:16",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan2.2 系列发布 14B 参数 Animate 角色动画模型（由名称推断含动作/角色驱动能力）",
+      "source": "wan-hf"
+    },
+    {
+      "id": "2026-09-23::wan-hf::wan-dancer-14b::motion::Wan 系列发布 14B 参数 Dancer 舞",
+      "at": "2026-09-23 05:06:16",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan 系列发布 14B 参数 Dancer 舞蹈动作模型（由名称推断含动作复刻/迁移能力）",
+      "source": "wan-hf"
+    },
+    {
+      "id": "2026-09-23::wan-hf::wan2.2-animate-2-14b::motion::Wan2.2 系列发布第二代 14B 参数 An",
+      "at": "2026-09-23 05:06:16",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "why": "**「由名称推断」不是证据。** 仓库名里有 Dancer 就断定它会动作复刻，正是这个站不做的那种事。",
+      "claim": "Wan2.2 系列发布第二代 14B 参数 Animate 角色动画模型（由名称推断含动作/角色驱动能力）",
+      "source": "wan-hf"
     }
   ]
 }

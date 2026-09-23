@@ -1,4 +1,4 @@
-# 收录候选 · 2026-09-19
+# 收录候选 · 2026-09-23
 
 
 
@@ -100,7 +100,7 @@
 - `voice-rt` GLM Voice glm-4-voice（2026-08-12）
 - `tts` Qwen Omni 3.5-omni-plus（2026-08-12）
 - `music` MiniMax Music music-3.0（2026-08-12）
-- `music` Eleven Music v2（2026-08-12）
+- `music` Eleven Music v2.5（2026-09-23）
 - `music` Lyria 3.5（2026-09-10）
 - `voice-rt` GPT Realtime 2.1（2026-08-12）
 - `voice-rt` Grok Voice think-fast-2.0（2026-08-12）
@@ -257,7 +257,7 @@
 - `voice-rt` GLM Voice glm-4-voice（2026-08-12）
 - `tts` Qwen Omni 3.5-omni-plus（2026-08-12）
 - `music` MiniMax Music music-3.0（2026-08-12）
-- `music` Eleven Music v2（2026-08-12）
+- `music` Eleven Music v2.5（2026-09-23）
 - `music` Lyria 3.5（2026-09-10）
 - `voice-rt` GPT Realtime 2.1（2026-08-12）
 - `voice-rt` Grok Voice think-fast-2.0（2026-08-12）
@@ -330,6 +330,62 @@
 > 最该出去的是 **Sora 2**（已公告停服）。但**停服的模型不该从库里删**：
 > 「它没了」本身是有用的信息，应降到 Extended 层，而不是消失。
 
+## 人工发现的（自动那两路看不见的）
+
+> 两条自动路各有盲区：AA 榜只收上了竞技场的闭源模型，HF 那一路只看开源权重。
+> **落在两边之外的，只能人看见** —— 写在 `data/candidates-manual.json` 里，不会被重跑冲掉。
+
+### `sound` 字节跳动 Seed · Seed Audio 1.0（2026-09-23 发现）
+
+**为什么两路都捞不到**：**两条自动路都看不见**：AA 榜不收音频创作模型，HF 那一路只看开源权重而它是闭源。声音卷里字节一家都没有。
+
+**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
+
+- 官方中文页：「Seed Audio 1.0 —— 面向完整声音场景的音频创作模型，端到端完成影视级音频创作」
+- 官方英文页：「Seed Audio 1.0 Designed for full-scene audio generation, it enables end-to-end film-grade audio creation.」
+
+来源：https://seed.bytedance.com/
+
+****待人工定。** music 轨 3/10 有位置。⚠️ 但它自述的是「影视级音频创作 / full-scene audio」—— 比 music 这条轨宽（含音效、环境声），**归 music 还是另立一类是本体问题，不是采集问题**。**
+
+### `sound` 字节跳动 Seed · SeedRealtime（2026-09-23 发现）
+
+**为什么两路都捞不到**：同上：闭源 + 不上榜。而 voice-rt 轨只有 3 个，正缺一个中国厂商的全双工模型。
+
+**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
+
+- 官方中文页：「SeedRealtime —— 原生音视频全双工大模型，联合理解声音、画面与时序信息，带来边看、边听、边说的自然交互体验」
+- 官方英文页：「SeedRealtime jointly understands sound, vision, and temporal cues for natural, full-duplex interaction as you watch, listen, and speak.」
+
+来源：https://seed.bytedance.com/
+
+****待人工定。** voice-rt 轨 3/10，位置很宽。能力轴上直接对得上 `s-rt-duplex`（全双工语音对话）。**
+
+### `embodied` 字节跳动 Seed · Seed GR-3（2026-09-23 发现）
+
+**为什么两路都捞不到**：具身卷的 vla 轨 9/10，九个里没有字节。两条自动路对闭源 VLA 都是盲的。
+
+**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
+
+- 官方英文页：「Seed GR-3 A robust vision-language-action model designed to be generalizable and capable of executing long-horizon and dexterous tasks.」
+- 官方中文页：「Seed GR-3 —— 一个可泛化、支持长序列复杂操作任务的机器人操作大模型」
+- ⚠️ 同页另有 **Seed GR-RL**，自述是「强化学习框架」——**框架不是模型**，按 ontology 规则一不收
+
+来源：https://seed.bytedance.com/
+
+****待人工定。** 进 Core 就是 vla 轨第 10 个（刚好满），按负责人 2026-09-19 定的做法，**轨满就进折叠列表、不要为它重做能力矩阵**。**
+
+### `science` 字节跳动 Seed · Protenix（2026-09-23 发现）
+
+**为什么两路都捞不到**：科学卷生物那一档现在是 alphafold / boltz / esm 三家，没有中国厂商。
+
+**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
+
+- 官方中文页：「Protenix —— 生物分子基础模型，支持高精度复合物结构预测和高成功率的蛋白质生成式设计」
+
+来源：https://seed.bytedance.com/
+
+****待人工定。** 科学卷 bio 档有位置。⚠️ 它同时做「结构预测」与「生成式设计」两件事，落哪条能力轴要先看本体。**
 
 ## 已处置的人工候选（2）—— 不用再看
 

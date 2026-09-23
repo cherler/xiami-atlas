@@ -129,7 +129,25 @@ export function queue() {
        * 判据要钉在真正的落点上：**那一格在不在**。
        */
       const cell = m && f.capability ? (atlas.support ?? []).find((c) => c.m === m.id && c.c === f.capability) : null;
-      const landable = !!cell;
+      /**
+       * **转售目录不是厂商自述。**
+       *
+       * 这个站卖的就是「每一个『支持』都能点开看到**厂商自己写的那句话**」。
+       * 而 Runway 的 changelog 里写着 Seedance / 海螺 / 万相怎么样，Replicate 的集合页
+       * 描述所有人的模型，百炼的能力表列着 DeepSeek 与 Kimi —— 那些是**转售方的商品说明**，
+       * 不是字节、MiniMax、深度求索自己的声明。
+       *
+       * 2026-09-23 量过：当天 474 条「可落格」里有近百条是这种，
+       * 照落下去等于把二手转述挂成一手原话，**正好砸在这个项目唯一的卖点上**。
+       * `versions.mjs` 早就有同一张 `resells` 表（还栽过一次：从
+       * 「Recraft V4 Pro vs GPT Image 1.5」里把 v1.5 记成了 Recraft 的版本），
+       * 只是收件箱这条路一直没有。
+       *
+       * 不是丢掉 —— 转成采集单（人可以按它去找厂商自己那一页）。
+       */
+      const srcMeta = (reg.sources ?? []).find((s) => s.id === f.source);
+      const resold = !!(srcMeta?.resells && m && srcMeta.own_org !== m.org);
+      const landable = !!cell && !resold;
       out.push({
         id, day: day.replace(".json", ""), source: f.source, tier: tierOf(f.source),
         kind: f.kind, model_hint: f.model_hint, model: m?.id ?? null,
@@ -142,6 +160,9 @@ export function queue() {
           m && f.capability && !capIds.has(f.capability) && `能力 id 「${f.capability}」不在本体里`,
           m && f.capability && capIds.has(f.capability) && !cell &&
             `${m.id} 身上没有「${f.capability}」这一格 —— 能力轴按方向隔离（R26），这是跨卷的断言`,
+          resold &&
+            `\`${f.source}\` 不是 ${m.org} 自己的页（转售目录 / 聚合商 / 第三方榜单）—— ` +
+            `**别人对这个模型的描述不算厂商自述**，要落格得找到 ${m.org} 自己写的那一句`,
         ].filter(Boolean),
       });
       }

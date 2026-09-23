@@ -155,8 +155,21 @@ for (const id of targets) {
   }
   try {
     const r = await ask(text, src);
+    /**
+     * **空壳 finding 不进收件箱。**
+     *
+     * schema 里 `claim` 是 required，但 required 只管「这个键在」，管不住它是空串 ——
+     * 2026-09-23 队列里就有 12 条 claim 为空的记录。它们到了审阅台上是一行空白，
+     * 人既没法通过也没法驳回，**占着「待审」的位置却不含任何信息**。
+     * 一句话都摘不出来的记录不是候选，是模型这次没吐出东西。
+     *
+     * ⚠️ 丢掉要报数（失败不静默）—— 一个源如果老在产空壳，那说明这一页的抽取有问题。
+     */
+    const kept = r.findings.filter((f) => String(f.claim ?? "").trim() && String(f.quote ?? "").trim());
+    const junk = r.findings.length - kept.length;
+    r.findings = kept;
     const explicit = r.findings.filter((f) => f.confidence === "explicit").length;
-    console.log(`${id.padEnd(22)} ${r.findings.length} 条（明说 ${explicit} / 需推断 ${r.findings.length - explicit}）`);
+    console.log(`${id.padEnd(22)} ${r.findings.length} 条（明说 ${explicit} / 需推断 ${r.findings.length - explicit}）${junk ? ` ⚠️ 丢掉 ${junk} 条空壳（claim 或 quote 为空）` : ""}`);
     out.push({ source: id, tier: src.tier, url: src.url, ...r });
   } catch (e) {
     console.log(`${id.padEnd(22)} 失败：${String(e.message).slice(0, 90)}`);

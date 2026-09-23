@@ -1,0 +1,77 @@
+{
+  "$note": "**同一格上，新证据与已有结论相反。** 这不是待审，是待裁决 —— 两边都带官方原文，得人去看哪边说的是哪一代。",
+  "rows": [
+    {
+      "id": "2026-09-23::minimax-blog::minimax h3::t-audio::H3 支持音频作为输入模态",
+      "at": "2026-09-23 05:06:05",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "cell": "minimax-text×t-audio",
+      "existing": {
+        "state": "no",
+        "note": "注意事项原文：「MiniMax-M3 可通过 OpenAI 兼容消息内容块输入图片和视频；**当前不支持音频输入**」",
+        "src": "minimax-openai-api",
+        "verified_for": "M3"
+      },
+      "incoming": {
+        "claim": "H3 支持音频作为输入模态",
+        "quote": "H3 can jointly understand multimodal contexts spanning text, images, video, and audio.",
+        "src": "minimax-blog",
+        "tier": "S"
+      },
+      "resolved": {
+        "at": "2026-09-23",
+        "who": "liuzhenhai（经 Claude 代办）",
+        "verdict": "维持已有结论 no",
+        "why": "**张冠李戴。** 新证据那句「H3 can jointly understand … text, images, video, and audio」说的是 **H3（海螺，视频线）**，而这一格是 M3（文本线）。M3 自己的 API 文档写着「当前不支持音频输入」，没有被推翻。"
+      }
+    },
+    {
+      "id": "2026-09-23::minimax-release::minimax-m3::t-code::面向代码任务",
+      "at": "2026-09-23 05:06:06",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "cell": "minimax-text×t-code",
+      "existing": {
+        "state": "no",
+        "note": "「支持范围」表把服务端托管的工具列全了：**可用工具只有 `web_search`（联网搜索）**，没有代码执行环境。⚠️ 这是从枚举读出来的；只覆盖服务端工具这一条路径，自己在客户端 `tools` 里接沙箱不在此列",
+        "src": "minimax-server-tools",
+        "verified_for": "M3"
+      },
+      "incoming": {
+        "claim": "面向代码任务",
+        "quote": "面向 Agent 推理、工具调用、代码、多模态 Chat 输入和长上下文任务",
+        "src": "minimax-release",
+        "tier": "S"
+      },
+      "resolved": {
+        "at": "2026-09-23",
+        "who": "liuzhenhai（经 Claude 代办）",
+        "verdict": "维持已有结论 no",
+        "why": "**「会写代码」和「有代码执行工具」不是一回事。** 这条轴按本体定义是 Code execution / Code Interpreter（服务端托管的执行环境，group=工具），而新证据说的是编程能力达 SOTA —— 那是模型水平，不是这一格。M3 的服务端工具表仍然只有 web_search。"
+      }
+    },
+    {
+      "id": "2026-09-23::minimax-release::minimax-m2.5::t-code::编程能力达 SOTA",
+      "at": "2026-09-23 05:06:07",
+      "who": "liuzhenhai（经 Claude 代办）",
+      "cell": "minimax-text×t-code",
+      "existing": {
+        "state": "no",
+        "note": "「支持范围」表把服务端托管的工具列全了：**可用工具只有 `web_search`（联网搜索）**，没有代码执行环境。⚠️ 这是从枚举读出来的；只覆盖服务端工具这一条路径，自己在客户端 `tools` 里接沙箱不在此列",
+        "src": "minimax-server-tools",
+        "verified_for": "M3"
+      },
+      "incoming": {
+        "claim": "编程能力达 SOTA",
+        "quote": "在编程、工具调用和搜索、办公等生产力场景都达到或刷新了行业的 SOTA",
+        "src": "minimax-release",
+        "tier": "S"
+      },
+      "resolved": {
+        "at": "2026-09-23",
+        "who": "liuzhenhai（经 Claude 代办）",
+        "verdict": "维持已有结论 no",
+        "why": "**「会写代码」和「有代码执行工具」不是一回事。** 这条轴按本体定义是 Code execution / Code Interpreter（服务端托管的执行环境，group=工具），而新证据说的是编程能力达 SOTA —— 那是模型水平，不是这一格。M3 的服务端工具表仍然只有 web_search。"
+      }
+    }
+  ]
+}

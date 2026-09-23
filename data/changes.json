@@ -1027,6 +1027,24 @@
     "gemini-robotics-er"
    ],
    "domain": "embodied"
+  },
+  {
+   "id": "eleven-music-v2.5-2026-09-23",
+   "date": "2026-09-23",
+   "side": "world",
+   "kind": "版本更迭",
+   "subject": "Eleven Music v2.5",
+   "before": "atlas 记 Eleven Music v2（核于 2026-08-12）",
+   "after": "官方模型页 Music 一节上新 v2.5：「Our most advanced music model」，质量与提示词跟随改善；**并明写「Same workflows and support: composition plans, audio reference, and inpainting」**，v2 仍并列在页上",
+   "why": "**这是提质不是加能力** —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。",
+   "impact": [
+    "eleven-music"
+   ],
+   "src": "elevenlabs-models",
+   "models": [
+    "eleven-music"
+   ],
+   "domain": "sound"
   }
  ]
 }

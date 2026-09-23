@@ -1,6 +1,6 @@
-# 引文回查 · 2026-09-19
+# 引文回查 · 2026-09-23
 
-回查 1227 条：无英文锚 726 · 对得上 340 · 找不到 94 · 无快照 20 · 快照无正文 33 · 人审认过·非逐字 12 · 快照被截断·判不了 2
+回查 1232 条：无英文锚 725 · 对得上 343 · 找不到 94 · 无快照 19 · 快照无正文 39 · 人审认过·非逐字 10 · 快照被截断·判不了 2
 
 > 这份报告回答一件事：**一格引文里的原句，在它署名的那份快照里还在不在。**
 > ⚠️ **失败不等于引文错。** 三种成因要分开：真署错了页 / 这一页的快照是残的（抓回来的是导航不是正文）/ 当初记的就不是逐字原文。**脚本不猜。**
@@ -38,6 +38,8 @@
 - `hunyuan-image-card` hunyuan-image × i-i2i —— 锚「instruction reasoning and image-to-image generation including editing 」
 - `hunyuan-image-card` hunyuan-image × i-edit —— 锚「image-to-image generation including editing」
 - `minimax-api-overview` mm-speech × s-format —— 锚「mp3, pcm, flac, wav」
+- `openai-realtime` gpt-realtime × s-rt-transport —— 锚「Choose a connection method」
+- `cosyvoice-card` cosyvoice × s-style —— 锚「Instruct Support: Supports various instructions such as languages, dia」
 - `hf-fishspeech15` fish-speech × s-openweights —— 锚「Any Commercial use of the Materials requires a separate license from F」
 - `hf-qwen-layered` qwen-image × i-layered —— 锚「We are excited to introduce Qwen-Image-Layered, a model capable of dec」
 - `gh-hunyuan3d-api` hunyuan3d × d-remesh —— 锚「Maximum number of faces for texture generation」
@@ -76,8 +78,6 @@
 - `decart-site` 发布 lucy-Lucy2.5-Lucy2.5 —— 锚「LUCY 2.5 IS LIVE Decart」
 - `azure-foundry-blog` 发布 gpt-image-gpt-image-1-API 首次开放出图 —— 锚「the launch of GPT-image-1, the latest and most advanced image generati」
 - `google-gemini-blog` 发布 gemini-image-Nano Banana-对话式改图（多轮指令改同一张） —— 锚「Today in the Gemini app, we're unveiling a new image editing model fro」
-- `seed-blog` 发布 seedream-Seedream 3.0-原生 2K 直出 + 小字排版变准 —— 锚「improved small text accuracy and typography」
-- `seed-blog` 发布 seedream-Seedream 4.0-出图与改图并进一个模型 —— 锚「a new-gen image creation model developed by the ByteDance Seed team」
 - `recraft-blog` 发布 recraft-Recraft V3-长段文字 + 文字位置和大小可指定 —— 锚「Recraft V3 is the only model in the world that can generate images wit」
 - `kolors-gh` 发布 kolors-Kolors-中英双语出图的开放权重底座 —— 锚「We release Kolors, a large text-to-image model trained on billions of 」
 - `wiki-midjourney` 发布 midjourney-V6-这一代起大幅改善提示词跟随 —— 锚「V6 ... December 21, 2023」
@@ -124,7 +124,7 @@
 - `elevenlabs-docs` elevenlabs × s-design —— 锚「a guide on how to craft voices」
 - `elevenlabs-docs` elevenlabs × s-long —— 锚「a guide on how to create long-form content」
 
-### 快照无正文（33）
+### 快照无正文（39）
 
 - `mm-hf-api` hailuo × openweights —— 锚「plan to open up the model weights in the coming days」
 - `llama-card` llama × t-long —— 锚「Maximum Context Length: 10M tokens」
@@ -133,7 +133,13 @@
 - `hf-lineage` kokoro × s-clone —— 锚「No synthetic audio from open TTS models or custom voice clones」
 - `hf-lineage` hunyuan3d × d-edit —— 锚「Hunyuan 3D Part Segmentation and Generation Pipeline」
 - `hf-lineage` hunyuan3d × d-scene —— 锚「immersive 3D world generation」
+- `seed-blog` 模型 seedance 版本 —— 锚「One-take Creation, Flexible Referencing: Introducing Seedance 2.5」
+- `seed-blog` 模型 seedream 版本 —— 锚「Seedream 5.0 Pro is a multimodal image generation model that features 」
+- `seed-blog` 发布 seedance2.5 —— 锚「One-take Creation, Flexible Referencing: Introducing Seedance 2.5」
+- `seed-blog` 发布 seedream-Seedream 3.0-原生 2K 直出 + 小字排版变准 —— 锚「improved small text accuracy and typography」
+- `seed-blog` 发布 seedream-Seedream 4.0-出图与改图并进一个模型 —— 锚「a new-gen image creation model developed by the ByteDance Seed team」
 - `ms-foundry-blog` 发布 gpt-image-GPT-image-2-4K + 生成前先想（能自查、能搜网） —— 锚「GPT-image-2 brings real world intelligence, multilingual understanding」
+- `seed-blog` 发布 seedream-Seedream 5.0 Pro-分层输出 + 圈画标注式改图 —— 锚「Seedream 5.0 Pro is a multimodal image generation model that features 」
 - `hf-org` 发布 ideogram-Ideogram 4-这一代把权重放了出来 —— 锚「released as an open-source model that runs entirely on your own hardwa」
 - `hf-org` 发布 deepseek-V3.2-把算力效率和推理/Agent 表现放到一起 —— 锚「We introduce DeepSeek-V3.2, a model that harmonizes high computational」
 - `hf-org` 发布 deepseek-V4-换代：Pro 1.6T（激活 49B）与 Flash 两档 MoE —— 锚「We present a preview version of DeepSeek-V4 series, including two stro」
@@ -160,7 +166,7 @@
 - `hf-lineage` 发布 trellis-text —— 锚「takes in text or image prompts」
 - `hf-robotics` 发布 cosmos-reason2 —— 锚「replacing the Eagle backbone used in N1.6」
 
-### 无快照（20）
+### 无快照（19）
 
 - `openai-sora-2` sora × charref
 - `openai-sora-2` sora × audio
@@ -176,23 +182,20 @@
 - `modelscope-orgs` 模型 hy-embodied 版本
 - `modelscope-orgs` 模型 g0-vla 版本
 - `modelscope-orgs` 模型 lingbot-vla 版本
-- `hf-funcineforge` 模型 funcineforge 版本
 - `seed3d-page` 发布 seed3d-1.0
 - `modelscope-orgs` 发布 internvla-n1
 - `modelscope-orgs` 发布 internvla-a15
 - `modelscope-orgs` 发布 hy-embodied-05
 - `gemini-37-blog` 发布 gemini-text-Gemini 3.7-编码与智能体提升
 
-### 人审认过·非逐字（12）
+### 人审认过·非逐字（10）
 
 - `ideogram-v3-reframe` ideogram × i-outpaint —— 锚「Take a starting image and extend it to match your desired resolution.」（这句在 ideogram-overview）
 - `hf-trellis2` trellis × d-multiview —— 锚「Implementation of multi-image conditioning」（这句在 gh-trellis）
 - `hf-trellis2` trellis × d-edit —— 锚「local 3D editing capabilities」（这句在 gh-trellis）
 - `arxiv-seed3d-20` seed3d × d-scene —— 锚「the system scales to complete scene generation through assembling obje」（这句在 arxiv-seed3d-10）
 - `decart-site` 模型 lucy 版本 —— 锚「LUCY 2.5 IS LIVE」（这句在 decart-research）
-- `seed-blog` 模型 seedream 版本 —— 锚「Seedream 5.0 Pro is a multimodal image generation model that features 」（这句在 seedream-page）
 - `replicate-hunyuan3d-31` 模型 hunyuan3d 版本 —— 锚「D models with texture fidelity and geometry precision」（这句在 replicate-3d）
-- `seed-blog` 发布 seedream-Seedream 5.0 Pro-分层输出 + 圈画标注式改图 —— 锚「Seedream 5.0 Pro is a multimodal image generation model that features 」（这句在 seedream-page）
 - `claude-deprecations` 发布 claude-Claude Fable 5-面向长程智能体；自适 —— 锚「Claude Fable 5 is generally available on the Claude API」
 - `hf-hunyuan3d-21` 发布 hy3d-2.1 —— 锚「We release the first production-ready 3D asset generation model, Hunyu」（这句在 gh-hunyuan3d-21）
 - `openai-model-tts` 发布 gpttts-2025-12 —— 锚「slugs to point to the 2025-12-15 snapshots」（这句在 openai-changelog）

@@ -1,11 +1,11 @@
-# 版本哨兵 · 2026-09-19
+# 版本哨兵 · 2026-09-23
 
-扫 133 个模型：**有更新的一代 0** · 口径存疑 0 · 牌子摘了 29 · 比不了 54
+扫 133 个模型：**有更新的一代 0** · 口径存疑 0 · 牌子摘了 31 · 比不了 54
 
 > 这份只回答一件事：**一格署的那个源上，今天有没有出现比我们记的更新的版本号？**
 > 报出来的不是「世界变了」，是「**我们抓到了但没写回**」—— 这两件事的严重程度不一样。
 
-## 机器自查 · 牌子摘了（29）—— **不用你拍板**
+## 机器自查 · 牌子摘了（31）—— **不用你拍板**
 
 > 「在这个源上找不到我们记的版本号」有两种成因，脚本分不开：
 > **版本串本来就不是数字型号**（`650M` / `7B` / `2b/5b` / `glm-4-voice` 这类，占绝大多数），
@@ -18,8 +18,8 @@
 - **Doubao**（doubao）记的是 `Seed-2.1 Pro`，`doubao-force-2026`（2026-08-12）上没有这个号
 - **ESM-2**（esm）记的是 `650M`，`sci-esm2-card`（2026-09-14）上没有这个号
 - **FLUX 3**（flux-video）记的是 `3`，`bfl-flux3`（2026-09-12）上没有这个号
-- **Gemini TTS**（gemini-tts）记的是 `3.1 Flash TTS Preview`，`gemini-tts`（2026-09-09）上没有这个号
-- **GLM Voice**（glm-voice）记的是 `glm-4-voice`，`glm-voice-doc`（2026-09-09）上没有这个号
+- **Gemini TTS**（gemini-tts）记的是 `3.1 Flash TTS Preview`，`gemini-tts`（2026-09-23）上没有这个号
+- **GLM Voice**（glm-voice）记的是 `glm-4-voice`，`glm-voice-doc`（2026-09-23）上没有这个号
 - **GNoME**（gnome）记的是 `1`，`sci-gnome-gh`（2026-09-12）上没有这个号
 - **MiniMax Hailuo**（hailuo）记的是 `H3`，`minimax-release-notes`（2026-09-12）上没有这个号
 - **HunyuanVideo-Avatar**（hunyuan-avatar）记的是 `1.0`，`hf-hunyuan-avatar`（2026-09-12）上没有这个号
@@ -27,17 +27,19 @@
 - **LivePortrait**（liveportrait）记的是 `1.0`，`hf-liveportrait`（2026-09-12）上没有这个号
 - **MAGI**（magi）记的是 `2 Preview`，`hf-magi`（2026-09-05）上没有这个号
 - **MatterGen**（mattergen）记的是 `1`，`sci-mattergen-gh`（2026-09-12）上没有这个号
-- **MiniMax Speech**（mm-speech）记的是 `speech-2.8-hd`，`minimax-api-overview`（2026-09-16）上没有这个号
+- **MiniMax Speech**（mm-speech）记的是 `speech-2.8-hd`，`minimax-api-overview`（2026-09-23）上没有这个号
 - **MuseTalk**（musetalk）记的是 `1.0`，`hf-musetalk`（2026-09-12）上没有这个号
 - **NeuralGCM**（neuralgcm）记的是 `1`，`sci-neuralgcm-gh`（2026-09-12）上没有这个号
 - **GPT TTS**（openai-tts）记的是 `GPT-4o mini TTS`，`openai-models`（2026-09-17）上没有这个号
 - **OpenVLA**（openvla）记的是 `7B`，`openvla-gh`（2026-09-12）上没有这个号
 - **PixVerse**（pixverse）记的是 `V6`，`pixverse-v6`（2026-09-12）上没有这个号
-- **Qwen Omni**（qwen-omni）记的是 `3.5-omni-plus`，`bailian-websearch`（2026-09-09）上没有这个号
+- **Qwen Omni**（qwen-omni）记的是 `3.5-omni-plus`，`bailian-websearch`（2026-09-23）上没有这个号
 - **Qwen3-ASR**（qwen3-asr）记的是 `1.7B`，`hf-qwen3-asr`（2026-09-12）上没有这个号
 - **Rodin**（rodin）记的是 `Gen-2.5`，`rodin-api-docs`（2026-09-12）上没有这个号
-- **Runway Gen**（runway）记的是 `Gen-4.5`，`runway-changelog`（2026-09-16）上没有这个号
-- **ElevenLabs Scribe**（scribe）记的是 `v2`，`elevenlabs-models`（2026-09-09）上没有这个号
+- **Runway Gen**（runway）记的是 `Gen-4.5`，`runway-changelog`（2026-09-23）上没有这个号
+- **ElevenLabs Scribe**（scribe）记的是 `v2`，`elevenlabs-models`（2026-09-23）上没有这个号
+- **Seedance**（seedance）记的是 `2.5`，`seed-blog`（2026-09-23）上没有这个号
+- **Seedream**（seedream）记的是 `5.0 Pro`，`seed-blog`（2026-09-23）上没有这个号
 - **SPAR3D**（spar3d）记的是 `Stable Point Aware 3D`，`stability-spar3d`（2026-09-12）上没有这个号
 - **Tripo**（tripo）记的是 `P1-20260311`，`tripo-docs-generation`（2026-09-12）上没有这个号
 - **Meta V-JEPA**（vjepa）记的是 `V-JEPA 2`，`vjepa2-blog`（2026-09-13）上没有这个号
@@ -99,4 +101,4 @@
 - oasis500m —— hf-robotics 都没有可比对的正文（没快照，或只有 json/atom 的 items）
 - sensevoice —— 版本串「Small」里没有数字，比不了
 - mace —— 版本串「MP」里没有数字，比不了
-- funcineforge —— hf-funcineforge 都没有可比对的正文（没快照，或只有 json/atom 的 items）
+- funcineforge —— 版本串「Fun-CineForge」里没有数字，比不了

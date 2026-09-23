@@ -1,8 +1,10 @@
 {
   "url": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama4/",
   "kind": "html",
-  "fetched_at": "2026-09-09",
-  "digest": "ae88fdff5fcb371b",
+  "fetched_at": "2026-09-23",
+  "digest": "aa2e231c01ad911e",
   "items": [],
-  "text": "Llama 4 | Model Cards and Prompt formats"
+  "text": "Please confirm your identity For added security, you need to confirm your identity. You will be taken to your single sign-on provider, where you can enter your password. Cancel Continue Model API",
+  "full_len": 195,
+  "truncated": false
 }
