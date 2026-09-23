@@ -37,7 +37,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 /** 挂多久的口径**只有一份**，validate 也读它 —— 见 scripts/lib/alert-window.mjs 文件头。 */
-import { untilOf, isLive } from "./lib/alert-window.mjs";
+import { untilOf, isLive, liveAlerts, headlineOf } from "./lib/alert-window.mjs";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -65,9 +65,13 @@ const changes = JSON.parse(readFileSync(join(ROOT, "data/changes.json"), "utf8")
 const LABEL = changes.$alert_label ?? "快讯";
 const atlas = JSON.parse(readFileSync(join(ROOT, "data/atlas.json"), "utf8"));
 
-const live = changes.events
-  .filter((e) => isLive(e, TODAY))
-  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+/**
+ * **在架的那几条由 `liveAlerts` 算** —— 手写的 `alert` 在前，
+ * 「新模型 / 版本更迭」一期之内自动上架兜底（负责人 2026-09-23：
+ * 「新增或者新更新的内容，要保持头条展示新增」）。
+ * 算法只有这一份，validate 用的是同一个函数 —— 两处各算各的后果见 lib/alert-window.mjs 开头。
+ */
+const { items: live, more } = liveAlerts(changes.events, TODAY);
 
 /** 过期的也数出来 —— 「今天下架了一条」是要能看见的，静静消失等于没有台账。 */
 const expired = changes.events.filter((e) => e.alert && !isLive(e, TODAY));
@@ -80,13 +84,17 @@ const alerts = {
   at: TODAY,
   /** 标签一起带给前端 —— 组件里不再出现中文常量。 */
   label: LABEL,
+  /** 被 3 条上限截掉的条数。**不许悄悄少一条** —— 前端据此给一条「还有 N 条」。 */
+  more,
   items: live.map((e) => {
     const src = e.src ? atlas.sources[e.src] : null;
     return {
       id: e.id,
       date: e.date,
       until: untilOf(e),
-      headline: e.alert.headline,
+      headline: headlineOf(e),
+      /** 自动上架的标一下 —— 横幅上不显示，但排查时要分得清是编辑挑的还是兜底上的。 */
+      auto: e.alert ? undefined : true,
       why: e.why,
       domain: e.domain ?? null,
       /** 出处直接带上：横幅上没有出处，就成了广告条。 */
@@ -97,9 +105,9 @@ const alerts = {
 
 if (!DRY) writeFileSync(join(ROOT, "data/alerts.json"), `${JSON.stringify(alerts, null, 1)}\n`);
 
-console.log(`${LABEL}：在架 ${live.length} 条${expired.length ? `，已下架 ${expired.length} 条` : ""}`);
-for (const e of live) console.log(`  · ${e.date} → ${untilOf(e)}　${e.alert.headline}`);
-for (const e of expired) console.log(`  （已下架）${e.date} → ${untilOf(e)}　${e.alert.headline}`);
+console.log(`${LABEL}：在架 ${live.length} 条${more ? `（另有 ${more} 条被 3 条上限截掉）` : ""}${expired.length ? `，已下架 ${expired.length} 条` : ""}`);
+for (const e of live) console.log(`  · ${e.date} → ${untilOf(e)}　${headlineOf(e)}${e.alert ? "" : "　[自动]"}`);
+for (const e of expired) console.log(`  （已下架）${e.date} → ${untilOf(e)}　${headlineOf(e)}`);
 
 /* ── 飞书：只推没推过的 ─────────────────────────────────────────── */
 /**

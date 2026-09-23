@@ -168,6 +168,9 @@
 - `material` MACE MP（2026-08-15）
 - `material` GNoME 1（2026-08-15） — **maintained**
 - `tts` Fun-CineForge Fun-CineForge（2026-09-19）
+- `voice-rt` SeedRealtime SeedRealtime（2026-09-23）
+- `vla` Seed GR-3 GR-3（2026-09-23）
+- `bio` Protenix Protenix（2026-09-23）
 
 > clip 轨只剩 1 个空位。按规则四，再进新的就必须先踢一个 ——
 > 最该出去的是 **Sora 2**（已公告停服）。但**停服的模型不该从库里删**：
@@ -325,6 +328,9 @@
 - `material` MACE MP（2026-08-15）
 - `material` GNoME 1（2026-08-15） — **maintained**
 - `tts` Fun-CineForge Fun-CineForge（2026-09-19）
+- `voice-rt` SeedRealtime SeedRealtime（2026-09-23）
+- `vla` Seed GR-3 GR-3（2026-09-23）
+- `bio` Protenix Protenix（2026-09-23）
 
 > clip 轨只剩 1 个空位。按规则四，再进新的就必须先踢一个 ——
 > 最该出去的是 **Sora 2**（已公告停服）。但**停服的模型不该从库里删**：
@@ -346,48 +352,12 @@
 
 来源：https://seed.bytedance.com/
 
-****待人工定。** music 轨 3/10 有位置。⚠️ 但它自述的是「影视级音频创作 / full-scene audio」—— 比 music 这条轨宽（含音效、环境声），**归 music 还是另立一类是本体问题，不是采集问题**。**
+****留在清单上等口径，不是没看。** 它自述「面向完整声音场景的音频创作模型，端到端完成影视级音频创作」——而音乐生成轨的定义是「给定描述或歌词，产出一段音乐」。**硬塞进 music 是错档**（音效、环境声不在这条轨的能力轴上）；**另开一条轨又会造出一整列假的 ⬜**（新轨零条能力轴，正是 $domains 那段警告的事）。两条路都属于「大改内容」，按负责人 2026-09-19 那条不该顺手做。**要动先定轨的口径，那是范围决定。****
 
-### `sound` 字节跳动 Seed · SeedRealtime（2026-09-23 发现）
-
-**为什么两路都捞不到**：同上：闭源 + 不上榜。而 voice-rt 轨只有 3 个，正缺一个中国厂商的全双工模型。
-
-**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
-
-- 官方中文页：「SeedRealtime —— 原生音视频全双工大模型，联合理解声音、画面与时序信息，带来边看、边听、边说的自然交互体验」
-- 官方英文页：「SeedRealtime jointly understands sound, vision, and temporal cues for natural, full-duplex interaction as you watch, listen, and speak.」
-
-来源：https://seed.bytedance.com/
-
-****待人工定。** voice-rt 轨 3/10，位置很宽。能力轴上直接对得上 `s-rt-duplex`（全双工语音对话）。**
-
-### `embodied` 字节跳动 Seed · Seed GR-3（2026-09-23 发现）
-
-**为什么两路都捞不到**：具身卷的 vla 轨 9/10，九个里没有字节。两条自动路对闭源 VLA 都是盲的。
-
-**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
-
-- 官方英文页：「Seed GR-3 A robust vision-language-action model designed to be generalizable and capable of executing long-horizon and dexterous tasks.」
-- 官方中文页：「Seed GR-3 —— 一个可泛化、支持长序列复杂操作任务的机器人操作大模型」
-- ⚠️ 同页另有 **Seed GR-RL**，自述是「强化学习框架」——**框架不是模型**，按 ontology 规则一不收
-
-来源：https://seed.bytedance.com/
-
-****待人工定。** 进 Core 就是 vla 轨第 10 个（刚好满），按负责人 2026-09-19 定的做法，**轨满就进折叠列表、不要为它重做能力矩阵**。**
-
-### `science` 字节跳动 Seed · Protenix（2026-09-23 发现）
-
-**为什么两路都捞不到**：科学卷生物那一档现在是 alphafold / boltz / esm 三家，没有中国厂商。
-
-**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
-
-- 官方中文页：「Protenix —— 生物分子基础模型，支持高精度复合物结构预测和高成功率的蛋白质生成式设计」
-
-来源：https://seed.bytedance.com/
-
-****待人工定。** 科学卷 bio 档有位置。⚠️ 它同时做「结构预测」与「生成式设计」两件事，落哪条能力轴要先看本体。**
-
-## 已处置的人工候选（2）—— 不用再看
+## 已处置的人工候选（5）—— 不用再看
 
 - `video` Black Forest Labs · FLUX 3 —— 2026-08-13 收进**扩展层** `flux-video`（clip 轨 10/10，不为收新的踢老的）。轨满就进折叠列表，是负责人定的做法。
 - `sound` 阿里 · FunAudioLLM · Fun-CineForge —— 2026-09-19 收进**扩展层** `funcineforge`（声音卷 tts 轨 9/10，有位置，但进 Core 要先把 27 条声音能力轴逐格核一遍 —— 那是另一件事）。同日核实：**HF 上有同一份** `FunAudioLLM/Fun-CineForge`（apache-2.0），此前「魔搭页面上没看到 HF 对应仓库」那句不成立了。
+- `sound` 字节跳动 Seed · SeedRealtime —— 2026-09-23 收进**扩展层** `seedrealtime`（实时语音轨此前只有三家）。轨的定义是「语音进语音出可打断」，它自述的「边看、边听、边说」多了视觉输入，比轨宽一层，已写进 note。
+- `embodied` 字节跳动 Seed · Seed GR-3 —— 2026-09-23 收进**扩展层** `seed-gr3`（动作策略轨此前九家没有字节）。进 Core 就是第 10 个刚好满，按「轨满进折叠列表」办。同页的 Seed GR-RL 是强化学习框架，按规则一没收。
+- `science` 字节跳动 Seed · Protenix —— 2026-09-23 收进**扩展层** `protenix`（生物轨此前是 alphafold / boltz / esm，没有中国厂商）。官方页没给版本号也没说权重开不开，两处都按「没出处不写」处理。

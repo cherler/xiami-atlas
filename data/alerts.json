@@ -1,5 +1,49 @@
 {
  "at": "2026-09-23",
  "label": "快讯",
- "items": []
+ "more": 1,
+ "items": [
+  {
+   "id": "eleven-music-v2.5-2026-09-23",
+   "date": "2026-09-23",
+   "until": "2026-09-30",
+   "headline": "Eleven Music v2.5",
+   "auto": true,
+   "why": "**这是提质不是加能力** —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。",
+   "domain": "sound",
+   "src": {
+    "name": "ElevenLabs · Models",
+    "url": "https://elevenlabs.io/docs/models",
+    "tier": "official"
+   }
+  },
+  {
+   "id": "seedrealtime-2026-09-23",
+   "date": "2026-09-23",
+   "until": "2026-09-30",
+   "headline": "SeedRealtime（字节 Seed 的原生音视频全双工模型）",
+   "auto": true,
+   "why": "实时语音这条轨第一次出现**明说「音 + 画一起理解」**的一支 —— 轨的定义是「语音进、语音出、可打断」，它比这个宽一层。收进扩展层，能力未逐格核。",
+   "domain": "sound",
+   "src": {
+    "name": "ByteDance Seed · 模型页",
+    "url": "https://seed.bytedance.com/en/models",
+    "tier": "official"
+   }
+  },
+  {
+   "id": "seed-gr3-2026-09-23",
+   "date": "2026-09-23",
+   "until": "2026-09-30",
+   "headline": "Seed GR-3（字节 Seed 的 VLA）",
+   "auto": true,
+   "why": "字节第一次在 VLA 这条轨上露面。⚠️ 同页另有 Seed GR-RL，自述是**强化学习框架**——框架不是模型，按 ontology 规则一没收。收进扩展层。",
+   "domain": "embodied",
+   "src": {
+    "name": "ByteDance Seed · 模型页",
+    "url": "https://seed.bytedance.com/en/models",
+    "tier": "official"
+   }
+  }
+ ]
 }

@@ -41,6 +41,30 @@
       <description>&lt;p&gt;&lt;b&gt;Eleven Music v2.5&lt;/b&gt; · 版本更迭&lt;/p&gt;&lt;p&gt;此前：atlas 记 Eleven Music v2（核于 2026-08-12）&lt;/p&gt;&lt;p&gt;现在：官方模型页 Music 一节上新 v2.5：「Our most advanced music model」，质量与提示词跟随改善；&lt;b&gt;并明写「Same workflows and support: composition plans, audio reference, and inpainting」&lt;/b&gt;，v2 仍并列在页上&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;这是提质不是加能力&lt;/b&gt; —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。&lt;/p&gt;&lt;p&gt;影响：eleven-music&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://elevenlabs.io/docs/models&quot;&gt;ElevenLabs · Models&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>SeedRealtime（字节 Seed 的原生音视频全双工模型）：官方模型页列出 SeedRealtime：「原生音视频全双工大模型，联合理解声音、画面与时序信息，带来边看、边听、边说的自然交互体验」</title>
+      <link>https://xiamimate.com/atlas/changes#seedrealtime-2026-09-23</link>
+      <guid isPermaLink="false">seedrealtime-2026-09-23</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <category>seedrealtime</category>
+      <description>&lt;p&gt;&lt;b&gt;SeedRealtime（字节 Seed 的原生音视频全双工模型）&lt;/b&gt; · 新模型&lt;/p&gt;&lt;p&gt;此前：实时语音轨只有 glm-voice / gpt-realtime / grok-voice 三家，没有字节&lt;/p&gt;&lt;p&gt;现在：官方模型页列出 SeedRealtime：「原生音视频全双工大模型，联合理解声音、画面与时序信息，带来边看、边听、边说的自然交互体验」&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;实时语音这条轨第一次出现&lt;b&gt;明说「音 + 画一起理解」&lt;/b&gt;的一支 —— 轨的定义是「语音进、语音出、可打断」，它比这个宽一层。收进扩展层，能力未逐格核。&lt;/p&gt;&lt;p&gt;影响：seedrealtime&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://seed.bytedance.com/en/models&quot;&gt;ByteDance Seed · 模型页&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Seed GR-3（字节 Seed 的 VLA）：官方模型页：「Seed GR-3 A robust vision-language-action model designed to be generalizable and capable of executing long-horizon and dexterous tasks.」</title>
+      <link>https://xiamimate.com/atlas/changes#seed-gr3-2026-09-23</link>
+      <guid isPermaLink="false">seed-gr3-2026-09-23</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <category>seed-gr3</category>
+      <description>&lt;p&gt;&lt;b&gt;Seed GR-3（字节 Seed 的 VLA）&lt;/b&gt; · 新模型&lt;/p&gt;&lt;p&gt;此前：动作策略轨九家里没有字节&lt;/p&gt;&lt;p&gt;现在：官方模型页：「Seed GR-3 A robust vision-language-action model designed to be generalizable and capable of executing long-horizon and dexterous tasks.」&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;字节第一次在 VLA 这条轨上露面。⚠️ 同页另有 Seed GR-RL，自述是&lt;b&gt;强化学习框架&lt;/b&gt;——框架不是模型，按 ontology 规则一没收。收进扩展层。&lt;/p&gt;&lt;p&gt;影响：seed-gr3&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://seed.bytedance.com/en/models&quot;&gt;ByteDance Seed · 模型页&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Protenix（字节 Seed 的生物分子基础模型）：官方模型页：「Protenix —— 生物分子基础模型，支持高精度复合物结构预测和高成功率的蛋白质生成式设计」</title>
+      <link>https://xiamimate.com/atlas/changes#protenix-2026-09-23</link>
+      <guid isPermaLink="false">protenix-2026-09-23</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <category>protenix</category>
+      <description>&lt;p&gt;&lt;b&gt;Protenix（字节 Seed 的生物分子基础模型）&lt;/b&gt; · 新模型&lt;/p&gt;&lt;p&gt;此前：科学卷生物轨是 AlphaFold / Boltz / ESM 三家，没有中国厂商&lt;/p&gt;&lt;p&gt;现在：官方模型页：「Protenix —— 生物分子基础模型，支持高精度复合物结构预测和高成功率的蛋白质生成式设计」&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;生物轨第一个中国厂商。⚠️ 它自述同时做&lt;b&gt;结构预测&lt;/b&gt;与&lt;b&gt;生成式设计&lt;/b&gt;两件事，后者这条轨的能力轴里没有对应项。收进扩展层。&lt;/p&gt;&lt;p&gt;影响：protenix&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://seed.bytedance.com/models?view_from=homepage_tab&quot;&gt;ByteDance Seed · Models（首页 tab）&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Vidu S2（实时线换代，兼修一处来源错配）：官方 API 更新日志 09-15 上新 Vidu S2-Avatar（实时语音交互 + 复杂动作控制）与 Vidu S2-Editing（拿参考图实时改进来的视频流）；版本来源改署官方更新日志</title>
       <link>https://xiamimate.com/atlas/changes#vidu-s2-2026-09-15</link>
       <guid isPermaLink="false">vidu-s2-2026-09-15</guid>
@@ -391,31 +415,6 @@
       <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
       <category>grok-video</category>
       <description>&lt;p&gt;&lt;b&gt;Grok Imagine Video 1.5&lt;/b&gt; · 新模型&lt;/p&gt;&lt;p&gt;此前：视频卷没有 xAI 的出片模型&lt;/p&gt;&lt;p&gt;现在：xAI 的图生视频 Grok Imagine Video 1.5：720p、约 6–10 秒，声音与画面同一遍出，主打速度（约 25 秒出 6 秒片）；API / 网页 / 移动端全可用&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;⚠️ 顺带纠了聚合站的错：不是「1080p / 5-31」，官方页是 720p / 06-16 —— 一手源对上才收。extended，未逐格核。&lt;/p&gt;&lt;p&gt;影响：grok-video&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://x.ai/news/grok-imagine-video-1-5&quot;&gt;xAI · Grok Imagine Video 1.5 发布页&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Ideogram 4：官方 HF 组织放出 ideogram-4-fp8 / nf4 权重，可在自己机器上跑</title>
-      <link>https://xiamimate.com/atlas/changes#ideogram-open-2026-05-30</link>
-      <guid isPermaLink="false">ideogram-open-2026-05-30</guid>
-      <pubDate>Sat, 30 May 2026 00:00:00 GMT</pubDate>
-      <category>ideogram</category>
-      <description>&lt;p&gt;&lt;b&gt;Ideogram 4&lt;/b&gt; · capability&lt;/p&gt;&lt;p&gt;此前：Ideogram 只有闭源 API，3.0 是我们记到的最新一代&lt;/p&gt;&lt;p&gt;现在：官方 HF 组织放出 ideogram-4-fp8 / nf4 权重，可在自己机器上跑&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;一条闭源线转开源&lt;/b&gt; —— 这类换向比版本号更值得盯：它把「只能按次买」变成「可以自己部署」&lt;/p&gt;&lt;p&gt;影响：ideogram&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://huggingface.co/api/models&quot;&gt;Hugging Face 官方组织目录（模型接口）&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>LongCat-Video-Avatar 1.5：美团放出 1.5，自述面向生产可用（MIT，♥714）</title>
-      <link>https://xiamimate.com/atlas/changes#longcat-avatar-2026-05-21</link>
-      <guid isPermaLink="false">longcat-avatar-2026-05-21</guid>
-      <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
-      <category>longcat-avatar</category>
-      <description>&lt;p&gt;&lt;b&gt;LongCat-Video-Avatar 1.5&lt;/b&gt; · 新模型&lt;/p&gt;&lt;p&gt;此前：开源侧的音频驱动数字人多是研究项目&lt;/p&gt;&lt;p&gt;现在：美团放出 1.5，自述面向生产可用（MIT，♥714）&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;开源侧关注度最高的一支&lt;/b&gt;，而且是标准 MIT 许可 —— 商用不用先读一份自定义条款&lt;/p&gt;&lt;p&gt;影响：longcat-avatar&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.5&quot;&gt;HF · 美团 LongCat-Video-Avatar-1.5&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Google Veo → Gemini Omni Flash：官方文档原话：「Use Gemini Omni Flash as your default model for video generation」；Veo 3.1 留给 scene extension、last-frame control 与老管线</title>
-      <link>https://xiamimate.com/atlas/changes#omni-default</link>
-      <guid isPermaLink="false">omni-default</guid>
-      <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
-      <category>veo</category>
-      <category>gemini-omni</category>
-      <description>&lt;p&gt;&lt;b&gt;Google Veo → Gemini Omni Flash&lt;/b&gt; · status&lt;/p&gt;&lt;p&gt;此前：Veo 3.1 是 Google 的视频主力&lt;/p&gt;&lt;p&gt;现在：官方文档原话：「Use Gemini Omni Flash as your default model for video generation」；Veo 3.1 留给 scene extension、last-frame control 与老管线&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;厂商自己写明了取舍&lt;/b&gt;。而且这句导购语反过来是 Omni 缺首尾帧与场景延长的官方证据 —— 只在两个模型并排读的时候才看得见。&lt;/p&gt;&lt;p&gt;影响：新项目默认该用 Omni；需要首尾帧或场景延长的仍得回 Veo&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://ai.google.dev/gemini-api/docs/video&quot;&gt;Google · 视频生成总览（两个模型如何取舍）&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

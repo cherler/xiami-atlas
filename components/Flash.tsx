@@ -49,6 +49,7 @@ type FlashItem = {
 
 export default function Flash() {
   const items = (alerts.items ?? []) as FlashItem[];
+  const more = (alerts as { more?: number }).more ?? 0;
   if (!items.length) return null;
   const label = alerts.label ?? "快讯";
   const sig = items.map((a) => a.id).join("|");
@@ -69,7 +70,7 @@ export default function Flash() {
           <span className="shrink-0 px-1.5 py-px bg-chip-warm-ink text-paper text-[11px] tracking-[0.18em]">
             {label}
           </span>
-          <span className="text-[13px] text-muted">{items.length} 条</span>
+          <span className="text-[13px] text-muted">{items.length + more} 条</span>
           <button type="button" data-flash="open"
             className="ml-auto text-[13px] text-muted underline underline-offset-2">
             展开
@@ -118,6 +119,19 @@ export default function Flash() {
                 )}
               </div>
             ))}
+            {/**
+              * **被 3 条上限截掉的那几条，要说出来。**
+              * 横幅只放得下 3 条（再多读者就学会忽略这一整块了），但
+              * 「今天其实新增了 5 条、这里只显示 3 条」如果不写，剩下两条就等于没发生 ——
+              * 静静少一条和没有台账是一回事。数字由 alert.mjs 交出来，组件不自己算。
+              */}
+            {more > 0 && (
+              <div className="mt-3 pt-3 border-t border-rule">
+                <Link href="/changes" className="text-[13px] text-muted underline underline-offset-2">
+                  还有 {more} 条今天够格上头条的，横幅放不下 —— 去「最近有什么变化」看全部 →
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

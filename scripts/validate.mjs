@@ -13,7 +13,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 /** 快讯挂多久的口径和 alert.mjs 共用一份 —— 各算各的会得出不同的条数。 */
-import { untilOf, isLive, CYCLE_DAYS } from "./lib/alert-window.mjs";
+import { untilOf, isLive, CYCLE_DAYS, liveAlerts } from "./lib/alert-window.mjs";
 
 const a = JSON.parse(readFileSync(new URL("../data/atlas.json", import.meta.url), "utf8"));
 const watchRegistry = JSON.parse(readFileSync(new URL("../data/sources.json", import.meta.url), "utf8"));
@@ -1218,8 +1218,15 @@ for (const s of a.support) {
    * **同时在架不超过 3 条。** 横幅一多就没人看了 —— 那时它比没有更糟，
    * 因为读者会学会忽略页面顶部那一整块。
    */
-  const live = hot.filter((e) => isLive(e, today));
-  if (live.length > 3) errs.push(`R99 同时在架的快讯 ${live.length} 条，上限 3 条 —— 横幅一多就没人看了`);
+  /**
+   * **R99 只管手写的那批。** 自动上架（新模型 / 版本更迭）由 `liveAlerts` 截到 3 条，
+   * 截不掉的不会发生 —— 拿它去报错等于自己罚自己。手写超了才是真的作者失误。
+   * 两处用同一个函数算，不再各算各的（2026-08-19 那次两边差一条的根因）。
+   */
+  const { hand, items: shown, more } = liveAlerts(CHANGES, today);
+  if (hand.length > 3) errs.push(`R99 手写在架的快讯 ${hand.length} 条，上限 3 条 —— 横幅一多就没人看了`);
+  const live = shown;
+  if (more) warns.push(`R99b 今天有 ${shown.length + more} 条够格上头条，横幅只放得下 ${shown.length} 条 —— 截掉的 ${more} 条靠「还有 N 条 →/changes」那行兜底`);
   if (hot.length) console.log(`快讯 ${hot.length} 条（在架 ${live.length}）`);
 }
 

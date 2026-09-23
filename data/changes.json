@@ -1045,6 +1045,60 @@
     "eleven-music"
    ],
    "domain": "sound"
+  },
+  {
+   "id": "seedrealtime-2026-09-23",
+   "subject": "SeedRealtime（字节 Seed 的原生音视频全双工模型）",
+   "before": "实时语音轨只有 glm-voice / gpt-realtime / grok-voice 三家，没有字节",
+   "after": "官方模型页列出 SeedRealtime：「原生音视频全双工大模型，联合理解声音、画面与时序信息，带来边看、边听、边说的自然交互体验」",
+   "why": "实时语音这条轨第一次出现**明说「音 + 画一起理解」**的一支 —— 轨的定义是「语音进、语音出、可打断」，它比这个宽一层。收进扩展层，能力未逐格核。",
+   "impact": [
+    "seedrealtime"
+   ],
+   "src": "seed-models",
+   "models": [
+    "seedrealtime"
+   ],
+   "domain": "sound",
+   "date": "2026-09-23",
+   "side": "world",
+   "kind": "新模型"
+  },
+  {
+   "id": "seed-gr3-2026-09-23",
+   "subject": "Seed GR-3（字节 Seed 的 VLA）",
+   "before": "动作策略轨九家里没有字节",
+   "after": "官方模型页：「Seed GR-3 A robust vision-language-action model designed to be generalizable and capable of executing long-horizon and dexterous tasks.」",
+   "why": "字节第一次在 VLA 这条轨上露面。⚠️ 同页另有 Seed GR-RL，自述是**强化学习框架**——框架不是模型，按 ontology 规则一没收。收进扩展层。",
+   "impact": [
+    "seed-gr3"
+   ],
+   "src": "seed-models",
+   "models": [
+    "seed-gr3"
+   ],
+   "domain": "embodied",
+   "date": "2026-09-23",
+   "side": "world",
+   "kind": "新模型"
+  },
+  {
+   "id": "protenix-2026-09-23",
+   "subject": "Protenix（字节 Seed 的生物分子基础模型）",
+   "before": "科学卷生物轨是 AlphaFold / Boltz / ESM 三家，没有中国厂商",
+   "after": "官方模型页：「Protenix —— 生物分子基础模型，支持高精度复合物结构预测和高成功率的蛋白质生成式设计」",
+   "why": "生物轨第一个中国厂商。⚠️ 它自述同时做**结构预测**与**生成式设计**两件事，后者这条轨的能力轴里没有对应项。收进扩展层。",
+   "impact": [
+    "protenix"
+   ],
+   "src": "seed-models-hub",
+   "models": [
+    "protenix"
+   ],
+   "domain": "science",
+   "date": "2026-09-23",
+   "side": "world",
+   "kind": "新模型"
   }
  ]
 }
