@@ -36,6 +36,7 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import {quoteMatches, quoteEntity, quoteFingerprint} from './requote-policy.mjs';
 
 const ROOT = `${dirname(fileURLToPath(import.meta.url))}/..`;
 const a = JSON.parse(readFileSync(`${ROOT}/data/atlas.json`, "utf8"));
@@ -100,7 +101,7 @@ const decided = new Map();
   const f = `${ROOT}/data/requote-decisions.json`;
   if (existsSync(f)) {
     for (const r of JSON.parse(readFileSync(f, "utf8")).rows ?? []) {
-      if (r.action === "accept") decided.set(r.id, r);   // 后写的覆盖先写的
+      if (r.action === "accept" || r.fingerprint) decided.set(r.id, r);
       else decided.delete(r.id);                          // 改过署名/抓法的重新回到检查里
     }
   }
@@ -109,6 +110,10 @@ const decided = new Map();
 const rows = [];
 const push = (src, quote, at) => {
   if (!src || (only && src !== only)) return;
+  const snapshotFile = `${ROOT}/data/snapshots/${src}.json`;
+  const fingerprint = quoteFingerprint(quoteEntity(a,at),existsSync(snapshotFile) ? JSON.parse(readFileSync(snapshotFile,'utf8')) : {});
+  const reviewed = decided.get(`${src}|${at}`);
+  if(reviewed?.fingerprint === fingerprint) return rows.push({at,src,kind:'复核已处置',fingerprint,action:reviewed.action,why:reviewed.why});
   const t = textOf(src);
   if (t === null) return rows.push({ at, src, kind: "无快照", anchor: null });
   const k = anchor(quote ?? "");
@@ -117,7 +122,7 @@ const push = (src, quote, at) => {
   // 结果 `hf-lineage` 这类**正常引用 items 数据**的谱系条目（「官方 HF 仓库 X
   // （createdAt …）」）全被误归成问题 —— 一次跑出 339 条假货。
   // 同一天里第三次栽在「量错了却不自知」上。
-  if (t.includes(k)) return rows.push({ at, src, kind: "对得上", anchor: k });
+  if (quoteMatches(k,t)) return rows.push({ at, src, kind: "对得上", anchor: k });
   // 找不到，且这个源的快照压根没有正文（GitHub release 接口那类）：
   // **是源登记得不对，不是引文错** —— 单独一摞。
   if (!hasText.get(src)) return rows.push({ at, src, kind: "快照无正文", anchor: k });
@@ -132,14 +137,15 @@ const push = (src, quote, at) => {
   if (truncated.get(src)) return rows.push({ at, src, kind: "快照被截断·判不了", anchor: k });
   const elsewhere = ALL.filter((id) => id !== src && (textOf(id) ?? "").includes(k));
   const d = decided.get(`${src}|${at}`);
-  if (d)
+  if (d && !d.fingerprint)
     return rows.push({ at, src, kind: "人审认过·非逐字", anchor: k, elsewhere, since: d.at?.slice(0, 10), why: d.why });
   rows.push({ at, src, kind: elsewhere.length ? "本页没有·别处有" : "找不到", anchor: k, elsewhere });
 };
 
-for (const s of a.support) push(s.src, `${s.quote ?? ""} ${s.note ?? ""}`, `${s.m} × ${s.c}`);
+for (const s of a.support) push(s.src, s.quote || s.note || '', `${s.m} × ${s.c}`);
 for (const m of a.models) push(m.version_src, m.version_quote ?? "", `模型 ${m.id} 版本`);
-for (const v of a.versions) push(v.src, `${v.quote ?? ""} ${v.note ?? ""}`, `发布 ${v.id}`);
+for (const v of a.versions) push(v.src, v.quote || v.note || '', `发布 ${v.id}`);
+if(!only)writeFileSync(`${ROOT}/data/requote-report.json`,JSON.stringify({at:new Date().toISOString(),rows},null,2)+'\n');
 
 const by = {};
 for (const r of rows) (by[r.kind] ??= []).push(r);
@@ -176,7 +182,7 @@ if (process.argv.includes("--report")) {
     `## 失败 ≥3 条的源（${hot.length} 个）—— 这几个大概率是抓法不对`, "",
     ...hot.map(([src, v]) => `- **${src}**（${v.length} 条）：${v.slice(0, 3).map((r) => r.at).join("、")}${v.length > 3 ? " …" : ""}`),
     "", "## 全部", "",
-    ...["本页没有·别处有", "找不到", "快照被截断·判不了", "快照无正文", "无快照", "人审认过·非逐字"].flatMap((k) =>
+    ...["本页没有·别处有", "找不到", "快照被截断·判不了", "快照无正文", "无快照", "人审认过·非逐字", "复核已处置"].flatMap((k) =>
       (by[k] ?? []).length ? [`### ${k}（${(by[k] ?? []).length}）`, "",
         ...(by[k] ?? []).map((r) => `- \`${r.src}\` ${r.at}${r.anchor ? ` —— 锚「${r.anchor.slice(0, 70)}」` : ""}${r.elsewhere?.length ? `（这句在 ${r.elsewhere.slice(0, 2).join("、")}）` : ""}`), ""] : []),
   ].join("\n");

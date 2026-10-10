@@ -107,7 +107,7 @@ function ProjectCard({ p, topic }: { p: TopicProject; topic: string }) {
         </h3>
         <Chip cls={LIC[p.license_class].cls}>{p.license}　{LIC[p.license_class].zh}</Chip>
         <Chip cls={stale ? "border-no text-no" : "border-yes text-yes-ink"}>
-          {stale ? `停更 ${p.stale_months} 个月 · 存量` : "在维护"}
+          {p.pushed_at ? `更新于 ${p.pushed_at} · 距核验日 ${p.stale_months ?? 0} 个月` : "更新日期待核"}
         </Chip>
         <Chip>{stars(p)}</Chip>
         {p.engine && <Chip cls="border-chip-warm-ink text-chip-warm-ink">{ENGINE[p.engine]}</Chip>}

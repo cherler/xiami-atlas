@@ -1,0 +1,12 @@
+{
+  "url": "https://docs.hyper3d.ai/en/api-specification/bang",
+  "kind": "html",
+  "fetched_at": "2026-10-10T02:48:40.642Z",
+  "digest": "ca6140598bf181efeef18491289305eefbdfe552b1caa566f5e741e549734b6d",
+  "items": [],
+  "text": "Submit a Bang task from a Rodin asset or an uploaded model.\nUse the top-level uuid returned by a completed Rodin generation as asset_id.\nstrength accepts 1 to 12 and defaults to 5. Higher values split the model into more pieces.",
+  "excerpt": true,
+  "fetch_method": "primary-source-review",
+  "full_len": 228,
+  "truncated": false
+}

@@ -40,8 +40,9 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { acknowledged } from "./version-review-policy.mjs";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = process.env.ATLAS_REVIEW_ROOT || join(dirname(fileURLToPath(import.meta.url)), "..");
 const argv = process.argv.slice(2);
 const WRITE = argv.includes("--json");
 /**
@@ -266,6 +267,8 @@ for (const m of atlas.models ?? []) {
         if (!像版本号(found, p.cur, before, m)) continue;
         // 前缀短到没有区分度（V / v）时，要求自家名字就在附近 —— 否则那是别家的型号
         if (!过守卫) continue;
+        // Filter acknowledgements before choosing the largest candidate: an old 4.20 must not mask 4.7.
+        if (acknowledged(ack.rows ?? [], m.id, hit[0], sn.text.slice(hit.index + hit[0].length))) continue;
         if (!best || cmp(found, best.found) > 0)
           best = { found, prefix: p.prefix, cur: p.cur, idx: hit.index, raw: hit[0],
             存疑: 口径存疑(found, p.cur), src: sid, src_at: sn.at,
@@ -274,7 +277,7 @@ for (const m of atlas.models ?? []) {
     }
   }
 
-  if (best && !acked.has(`${m.id}\t${best.raw}`)) {
+  if (best) {
     rows.push({
       kind: best.存疑 ? "口径存疑" : "有更新的一代",
       m: m.id, family: m.family, zh: m.zh,

@@ -2913,7 +2913,7 @@
    "kind": "html",
    "vendor": "elevenlabs",
    "name": "ElevenLabs · Models",
-   "url": "https://elevenlabs.io/docs/models",
+   "url": "https://elevenlabs.io/docs/overview/models",
    "refresh_days": 14,
    "good_for": [
     "version",
@@ -5348,11 +5348,11 @@
   },
   {
    "id": "odyssey-site",
-   "tier": "A",
+   "tier": "S",
    "kind": "html",
    "vendor": "odyssey",
    "name": "Odyssey 官网（产品线自述）",
-   "url": "https://odyssey.world/",
+   "url": "https://odyssey.systems/",
    "refresh_days": 14,
    "good_for": [
     "capability",
@@ -6001,6 +6001,381 @@
     "openweights"
    ],
    "note": "🔀 **2026-09-19：它原来登记的 URL 是仓库 API，和 `s-gptsovits-gh` 撞成同一页** —— 而引用簿上它指的一直是中文文档页。按引用簿改回来，两条从此是两页。"
+  },
+  {
+   "id": "gemini-nb21",
+   "tier": "S",
+   "kind": "spa",
+   "vendor": "gemini-image",
+   "name": "Google · Nano Banana 2.1 模型卡",
+   "url": "https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1",
+   "refresh_days": 7,
+   "good_for": [
+    "version",
+    "capability"
+   ]
+  },
+  {
+   "id": "xai-grok47-model",
+   "vendor": "grok",
+   "url": "https://docs.x.ai/developers/models/grok-4.7",
+   "tier": "S",
+   "kind": "html",
+   "refresh_days": 7,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "Grok 4.7 专属模型页，含工具/结构化输出/缓存/上下文与明确 Batch 不支持；不从导航推定。",
+   "name": "Grok 4.7 专属模型页"
+  },
+  {
+   "id": "ideogram-v1-overview",
+   "name": "Ideogram v1 API 概览（4.0 与 3.0）",
+   "url": "https://developer.ideogram.ai/v1/ideogram-api/api-overview",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "ideogram",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "ideogram-v1-upscale",
+   "name": "Ideogram v1 Upscale 端点",
+   "url": "https://developer.ideogram.ai/v1/api-reference/generate/post-upscale-image",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "ideogram",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "rodin-gen25-api",
+   "name": "Rodin Gen-2.5 API 参数",
+   "url": "https://docs.hyper3d.ai/en/api-specification/rodin-gen2-5",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "hyper3d",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "rodin-bang-api",
+   "name": "Rodin Bang 部件分割端点",
+   "url": "https://docs.hyper3d.ai/en/api-specification/bang",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "hyper3d",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-deepseek-ai-deepseek-v3-2",
+   "name": "deepseek-ai/DeepSeek-V3.2 官方模型卡",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "deepseek-ai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-zai-org-glm-4-5",
+   "name": "zai-org/GLM-4.5 官方模型卡",
+   "url": "https://huggingface.co/zai-org/GLM-4.5/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "zai-org",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-zai-org-glm-4-6",
+   "name": "zai-org/GLM-4.6 官方模型卡",
+   "url": "https://huggingface.co/zai-org/GLM-4.6/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "zai-org",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-zai-org-glm-5",
+   "name": "zai-org/GLM-5 官方模型卡",
+   "url": "https://huggingface.co/zai-org/GLM-5/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "zai-org",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-zai-org-glm-5-1",
+   "name": "zai-org/GLM-5.1 官方模型卡",
+   "url": "https://huggingface.co/zai-org/GLM-5.1/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "zai-org",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-zai-org-glm-5-2",
+   "name": "zai-org/GLM-5.2 官方模型卡",
+   "url": "https://huggingface.co/zai-org/GLM-5.2/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "zai-org",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-moonshotai-kimi-k2-base",
+   "name": "moonshotai/Kimi-K2-Base 官方模型卡",
+   "url": "https://huggingface.co/moonshotai/Kimi-K2-Base/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "moonshotai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-moonshotai-kimi-k2-thinking",
+   "name": "moonshotai/Kimi-K2-Thinking 官方模型卡",
+   "url": "https://huggingface.co/moonshotai/Kimi-K2-Thinking/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "moonshotai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-moonshotai-kimi-k2-5",
+   "name": "moonshotai/Kimi-K2.5 官方模型卡",
+   "url": "https://huggingface.co/moonshotai/Kimi-K2.5/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "moonshotai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-moonshotai-kimi-k2-6",
+   "name": "moonshotai/Kimi-K2.6 官方模型卡",
+   "url": "https://huggingface.co/moonshotai/Kimi-K2.6/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "moonshotai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-moonshotai-kimi-k3",
+   "name": "moonshotai/Kimi-K3 官方模型卡",
+   "url": "https://huggingface.co/moonshotai/Kimi-K3/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "moonshotai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-minimaxai-minimax-m2",
+   "name": "MiniMaxAI/MiniMax-M2 官方模型卡",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "MiniMaxAI",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-minimaxai-minimax-m2-5",
+   "name": "MiniMaxAI/MiniMax-M2.5 官方模型卡",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.5/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "MiniMaxAI",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-minimaxai-minimax-m3",
+   "name": "MiniMaxAI/MiniMax-M3 官方模型卡",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "MiniMaxAI",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-mistralai-mistral-large-3-675b-instruct-2512",
+   "name": "mistralai/Mistral-Large-3-675B-Instruct-2512 官方模型卡",
+   "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "mistralai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-mistralai-mistral-small-4-119b-2603",
+   "name": "mistralai/Mistral-Small-4-119B-2603 官方模型卡",
+   "url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "mistralai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-mistralai-mistral-medium-3-5-128b",
+   "name": "mistralai/Mistral-Medium-3.5-128B 官方模型卡",
+   "url": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "mistralai",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-qwen-qwen3-5-27b",
+   "name": "Qwen/Qwen3.5-27B 官方模型卡",
+   "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "Qwen",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-qwen-qwen3-6-27b",
+   "name": "Qwen/Qwen3.6-27B 官方模型卡",
+   "url": "https://huggingface.co/Qwen/Qwen3.6-27B/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "Qwen",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-tencent-hunyuan3d-part",
+   "name": "tencent/Hunyuan3D-Part 官方模型卡",
+   "url": "https://huggingface.co/tencent/Hunyuan3D-Part/raw/main/README.md",
+   "kind": "html",
+   "tier": "A",
+   "vendor": "tencent",
+   "refresh_days": 14,
+   "good_for": [
+    "capability",
+    "version"
+   ],
+   "note": "2026-10-10 回查，绑定具体模型/版本正文。"
+  },
+  {
+   "id": "card-zai-org-glm-4-7",
+   "name": "GLM-4.7 官方模型卡",
+   "url": "https://huggingface.co/zai-org/GLM-4.7/raw/main/README.md",
+   "tier": "A",
+   "kind": "html",
+   "vendor": "zhipu",
+   "refresh_days": 14,
+   "good_for": [
+    "version"
+   ]
   }
  ],
  "$missing": [

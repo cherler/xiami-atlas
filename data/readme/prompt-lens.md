@@ -1,0 +1,264 @@
+# PromptLens
+
+*你是否还在烦恼视频没有创意*
+*你是否还在为写脚本苦恼*
+*你是否找不到创作方向*
+
+## PromptLens - 激发你的灵感创意
+
+在这个 AI 视频和 AI 短剧崛起的时代，如果你也想要创作 AI 视频，可以直接分析他人的视频，一键学习复刻他人视频创意和创作脚本，从而创作出你的爆款 AI 视频——**下一个爆款视频就是你**。
+
+---
+
+AI 视频提示词分析工具 - 网页版
+
+## 功能预览
+
+### 视频演示
+![演示](./demo_small.gif)
+
+### 画面分析
+![画面分析](./public/feature-video-analysis.png)
+
+### 音频识别
+![音频识别](./public/feature-audio-recognition.png)
+
+### 视频剪辑
+![视频剪辑](./public/feature-video-edit.png)
+
+## 创作闭环流程
+
+```
+用户刷到喜欢的AI视频
+         │
+         ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Step 1: 发现灵感                                            │
+│  ─────────────────────────────────────────────────────────  │
+│  刷短视频，看到喜欢的 AI 视频/动画                             │
+└─────────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Step 2: 反推提示词                                          │
+│  ─────────────────────────────────────────────────────────  │
+│  上传视频 → AI 分析画面/场景/动作 → 提取出原视频的提示词       │
+│                    ↓                                        │
+│            Prompt Lens 分析                                 │
+└─────────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Step 3: 二次创作                                           │
+│  ─────────────────────────────────────────────────────────  │
+│  修改提示词：调整场景/风格/角色/动作                           │
+│  添加个性化元素                                              │
+└─────────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Step 4: 生成视频                                           │
+│  ─────────────────────────────────────────────────────────  │
+│  用优化后的提示词 → 调用 AI 视频生成 API → 生成新视频         │
+└─────────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Step 5: 发布作品                                           │
+│  ─────────────────────────────────────────────────────────  │
+│  导出视频 → 发布到抖音/B站/其他平台 → 获得反馈                │
+│                    ↓                                        │
+│              回到 Step 1 (新循环)                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## 功能特性
+
+- 📹 **视频分析**: 上传视频，AI 自动提取关键帧并分析
+- 🖼️ **图片分析**: 支持单图或多图批量分析
+- 🤖 **多 API 支持**: 智谱AI、Google Gemini、OpenRouter
+- 📝 **历史记录**: 保存和分析您的提示词历史
+- 🔐 **用户系统**: Google 登录，数据隔离
+- 📊 **日志系统**: 完整操作记录追踪
+
+- 后续V2版本想做的点：在视频分析阶段支持用户粘贴视频链接或url，无需上传视频文件即可分析（但是用yt-dlp只能解析一些公开视频链接，总是会卡在登录状态或者拿不到cookie上，很多还是解析不出来，好像只能去用第三方的解析服务了，这里不知道还有更好的方法吗）
+- 在视频分析阶段实现自动拆镜，无论是5分钟还是10分钟的视频，都可以自动切分镜头再对每一个镜头进行分析,最后输出可复用的prompt,这里依靠ffmpeg的场景检测经验阈值，超过这个阈值的便认为镜头发生了变化，再结合上PySceneDetect这个开源库，或者结合音频波形图，变化比较明显的地方一般有一个转场
+
+## 技术栈
+
+- **前端**: Next.js 15, React 19, TypeScript
+- **UI**: Tailwind CSS, shadcn/ui
+- **后端**: Next.js API Routes
+- **数据库**: PostgreSQL（本地用 Docker / 云端用 Supabase，二选一）+ Drizzle ORM
+- **认证**: better-auth（支持 Google / GitHub 登录）
+- **存储**: Cloudflare R2
+- **音频转录**: elevenlabs speech to text/ FunASR（自托管，完全免费）
+- **视频生成**: Kie.ai
+- **视频剪辑**: 部署的 FFmpeg 服务
+- **测试**: Vitest, Playwright
+
+## 快速开始
+
+> **小白用户**：可以直接访问线上版 https://prompt-lens.cc.cd ，登录就能用，零配置。
+>
+> **想本地跑/自己部署**：请阅读详细教程 **[本地部署教程](./LOCAL_SETUP.md)** ，从安装软件到启动应用，每一步都有截图级说明。
+
+简要步骤：
+
+```bash
+# 1. 克隆代码
+git clone https://github.com/raojiacui/prompt-lens.git
+cd prompt-lens
+
+# 2. 安装依赖
+pnpm install
+
+# 3. 复制环境变量模板
+cp .env.example .env.local
+# 然后编辑 .env.local 填入配置（数据库、R2、AI key 等）
+# 详细配置说明见 LOCAL_SETUP.md
+
+# 4. 初始化数据库
+pnpm db:push
+
+# 5. 启动开发服务器
+pnpm dev
+```
+
+访问 http://localhost:3000 即可使用。
+
+> 完整的环境变量说明、Docker 数据库一键启动、Google 登录配置、AI key 注册流程等，**全部在 [LOCAL_SETUP.md](./LOCAL_SETUP.md) 里**。
+
+## 使用说明
+
+### 配置 AI API Key
+
+1. **先登录**（不登录会一直报 Unauthorized）—— 可以用 Google 登录，或用邮箱收验证码登录
+2. 进入「设置」页面
+3. 选择 API 提供商（智谱AI / Gemini / OpenRouter / Kie.ai）
+4. 输入对应的 API Key
+5. 保存
+
+> 本项目已内置作者配置的 OpenRouter key，开箱即用。但建议你用自己的 key，避免被限流。
+
+### 分析视频/图片（提取提示词）
+
+1. 在首页点击上传或拖拽文件
+   - **建议**：把长视频切分成 6-10 秒的镜头单独分析，这样抽帧分析的提示词更详细
+   - **不建议**：直接上传几分钟的长视频，会抽不到关键帧，提示词会很笼统
+2. 点击「开始分析」
+3. 等待 AI 分析完成（大概 30 秒）
+4. 复制生成的提示词
+5. 稍加修改后在视频生成页面生成你自己的视频（生成约 2-3 分钟）
+
+### 音频分析（提取字幕 + 智能分段）
+
+1. 进入音频分析页签
+2. 上传视频或填视频 URL
+3. 选择转录引擎：
+   - **AssemblyAI**：云端服务，每月免费 1 小时，开箱即用
+   - **FunASR**：自托管，完全免费，需要自己部署服务（适合高频使用）
+4. 等待转录 + LLM 智能分段完成
+5. 可以勾选感兴趣的片段一键剪辑导出
+
+### 视频剪辑（自托管 FFmpeg 模式）
+
+视频剪辑功能需要一个自托管的 FFmpeg 服务（Vercel 跑不动 FFmpeg）。
+
+**对普通用户的建议**：如果你只是偶尔剪视频，可以用本地的视频剪辑软件（剪映、达芬奇）代替这个功能。
+
+**对开发者**：如果你要完整启用这个功能，需要自己部署一个 HTTP 包装的 FFmpeg 服务，接口约定：
+
+```http
+POST /edit
+Content-Type: application/json
+
+{
+  "videoUrl": "https://签名URL",
+  "instruction": {
+    "action": "trim" | "speed",
+    "start": 0,
+    "end": 10,
+    "speed": 2
+  }
+}
+
+# 响应
+{ "url": "https://处理后的视频URL" }
+```
+
+```http
+POST /concat
+Content-Type: application/json
+
+{
+  "videoUrl": "https://签名URL",
+  "instruction": {
+    "action": "concat",
+    "segments": [{"start":0,"end":5},{"start":10,"end":20}],
+    "transition": "fade"
+  }
+}
+
+# 响应
+{ "url": "https://处理后的视频URL" }
+```
+
+部署好后，在视频剪辑页面填入服务地址即可使用。
+
+## 项目结构
+
+```
+prompt-analyzer/
+├── app/                    # Next.js 应用
+│   ├── api/               # API 路由
+│   ├── dashboard/         # 主功能页面
+│   └── login/             # 登录页面
+├── components/            # React 组件
+├── lib/                   # 核心库
+│   ├── ai/                # AI 分析器
+│   ├── auth/              # 认证配置
+│   ├── cloudflare/        # R2 存储
+│   ├── db/                # 数据库
+│   └── middleware/        # 中间件
+└── tests/                 # 测试文件
+```
+
+## API
+
+### POST /api/upload
+上传视频或图片
+
+### POST /api/analyze
+分析媒体并生成提示词
+
+### GET /api/history
+获取历史记录（需要登录）
+
+## 部署
+
+### Vercel 部署
+
+```bash
+# 构建
+pnpm build
+
+# 部署
+vercel deploy
+```
+
+## License
+
+MIT
+
+## Star 趋势
+
+[![Star History](https://api.star-history.com/svg?repos=raojiacui/prompt-lens&type=Date&legend=top-left)](https://www.star-history.com/?repos=raojiacui%2Fprompt-lens&type=date&legend=top-left)
+
+## 请勿刷 Star 或 Fork
+
+请不要使用机器人、脚本、批量账号或刷星服务给本仓库添加 Star 或 Fork。
+
+欢迎真实用户因兴趣或使用需要自愿 Star、Fork，也欢迎反馈问题、分享使用体验和贡献代码。感谢每一份真实的支持。
+
+Please do not use bots, scripts, bulk accounts, or paid services to inflate this repository's stars or forks, including unsolicited promotion. Genuine interest, feedback, and contributions are welcome.

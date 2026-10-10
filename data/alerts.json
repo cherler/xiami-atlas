@@ -1,47 +1,44 @@
 {
- "at": "2026-09-23",
+ "at": "2026-10-10",
  "label": "快讯",
- "more": 1,
+ "more": 0,
  "items": [
   {
-   "id": "eleven-music-v2.5-2026-09-23",
-   "date": "2026-09-23",
-   "until": "2026-09-30",
-   "headline": "Eleven Music v2.5",
-   "auto": true,
-   "why": "**这是提质不是加能力** —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。",
-   "domain": "sound",
+   "id": "omni-evidence-2026-10-10",
+   "date": "2026-10-10",
+   "until": "2026-10-17",
+   "headline": "今日补核：Gemini Omni 1.1 的六项生成与编辑能力",
+   "why": "这是本站今天补齐的证据，不是今天发布新模型；每格都已绑定 1.1 Flash，旧版能力没有直接继承。",
+   "domain": "video",
    "src": {
-    "name": "ElevenLabs · Models",
-    "url": "https://elevenlabs.io/docs/models",
+    "name": "Google · Gemini Omni Flash 官方文档",
+    "url": "https://ai.google.dev/gemini-api/docs/omni",
     "tier": "official"
    }
   },
   {
-   "id": "seedrealtime-2026-09-23",
-   "date": "2026-09-23",
-   "until": "2026-09-30",
-   "headline": "SeedRealtime（字节 Seed 的原生音视频全双工模型）",
-   "auto": true,
-   "why": "实时语音这条轨第一次出现**明说「音 + 画一起理解」**的一支 —— 轨的定义是「语音进、语音出、可打断」，它比这个宽一层。收进扩展层，能力未逐格核。",
+   "id": "qwen-asr-evidence-2026-10-10",
+   "date": "2026-10-10",
+   "until": "2026-10-17",
+   "headline": "Qwen3-ASR 1.7B：多语种与流式识别已补齐",
+   "why": "选型时能确认语种与流式支持；没有把独立强制对齐器的时间戳能力算进 ASR 本体。",
    "domain": "sound",
    "src": {
-    "name": "ByteDance Seed · 模型页",
-    "url": "https://seed.bytedance.com/en/models",
+    "name": "阿里官方 · Qwen3-ASR 模型卡",
+    "url": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B",
     "tier": "official"
    }
   },
   {
-   "id": "seed-gr3-2026-09-23",
-   "date": "2026-09-23",
-   "until": "2026-09-30",
-   "headline": "Seed GR-3（字节 Seed 的 VLA）",
-   "auto": true,
-   "why": "字节第一次在 VLA 这条轨上露面。⚠️ 同页另有 Seed GR-RL，自述是**强化学习框架**——框架不是模型，按 ontology 规则一没收。收进扩展层。",
-   "domain": "embodied",
+   "id": "hallo-live-evidence-2026-10-10",
+   "date": "2026-10-10",
+   "until": "2026-10-17",
+   "headline": "Hallo-Live：文本驱动与实时生成已补齐",
+   "why": "可据此确认输入与输出方式；性能数字保留硬件条件，不外推到普通显卡。",
+   "domain": "avatar",
    "src": {
-    "name": "ByteDance Seed · 模型页",
-    "url": "https://seed.bytedance.com/en/models",
+    "name": "HF · 复旦 Hallo-Live",
+    "url": "https://huggingface.co/fudan-generative-ai/Hallo-Live",
     "tier": "official"
    }
   }

@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-10",
+  "scope": "只对以下具体仓库作量化/二次分发判定，不排除整个作者或上游模型。",
+  "rows": [
+    {"repo":"AlperKTS/Krea2_FP8","decision":"derivative","url":"https://huggingface.co/AlperKTS/Krea2_FP8","why":"模型卡明确是 Krea 2 OSS Turbo 的 FP8 权重量化，原研究和权重归 KREA.ai；不是新产品线。"},
+    {"repo":"AlperKTS/Qwen-Image-2.1-GGUF","decision":"derivative","url":"https://huggingface.co/AlperKTS/Qwen-Image-2.1-GGUF","why":"Qwen-Image-2.1 的 GGUF 分发档，归上游 Qwen-Image，不另建 AlperKTS 模型线。"},
+    {"repo":"silveroxides/Chroma-GGUF","decision":"derivative","url":"https://huggingface.co/silveroxides/Chroma-GGUF","why":"仓库提供 GGUF 量化文件并指向另一份 Chroma GGUF 分发，不是作者新训基础模型。此裁决不等于否定 Chroma 上游的收录资格。"},
+    {"repo":"silveroxides/FLUX.2-dev-fp8_scaled","decision":"derivative","url":"https://huggingface.co/silveroxides/FLUX.2-dev-fp8_scaled","why":"FLUX.2-dev 的 scaled FP8 分发档，上游 FLUX 已收录；不是独立模型产品线。"}
+  ]
+}

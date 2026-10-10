@@ -538,6 +538,7 @@ export type TopicProject = {
    *   **星数高也不等于活**（ControlNet 3.4 万星，停更 30 个月）
    */
   created_at?: string; pushed_at?: string;
+  repo_id?: number;
   stars_per_month?: number; stale_months?: number;
   /**
    * permissive 可商用 · copyleft 传染性 · noncommercial 不可商用

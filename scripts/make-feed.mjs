@@ -21,6 +21,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { liveAlerts, untilOf, headlineOf } from './lib/alert-window.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const a = JSON.parse(readFileSync(join(ROOT, "data/atlas.json"), "utf8"));
@@ -49,7 +50,8 @@ const rfc = (d) => new Date(`${d}T08:00:00+08:00`).toUTCString();
 const TODAY = new Date().toISOString().slice(0, 10);
 /** 这一层叫什么写在数据里（`changes.json` 的 `$alert_label`）—— 四个出口共用一个名字。 */
 const LABEL = ch.$alert_label ?? "快讯";
-const hot = (e) => Boolean(e.alert && String(e.alert.until) >= TODAY);
+const hotIds = new Set(liveAlerts(ch.events, TODAY).items.map(e=>e.id));
+const hot = (e) => hotIds.has(e.id);
 
 const items = [...ch.events]
   .sort((x, y) => (hot(y) - hot(x)) || y.date.localeCompare(x.date))
@@ -58,7 +60,7 @@ const items = [...ch.events]
     const src = e.src ? a.sources[e.src] : null;
     // Change + So What 三段都进摘要 —— **只有 after 的那是新闻，不是变更事件**
     const body = [
-      hot(e) ? `<p><b>${esc(LABEL)}</b>（挂到 ${esc(e.alert.until)}）：${esc(e.alert.headline)}</p>` : "",
+      hot(e) ? `<p><b>${esc(LABEL)}</b>（挂到 ${esc(untilOf(e))}）：${esc(headlineOf(e))}</p>` : "",
       `<p><b>${esc(e.subject)}</b> · ${esc(e.kind)}${e.side === "ours" ? "（这一条是我们记错了）" : ""}</p>`,
       `<p>此前：${rich(e.before)}</p>`,
       `<p>现在：${rich(e.after)}</p>`,

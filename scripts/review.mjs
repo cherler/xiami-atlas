@@ -15,7 +15,7 @@
  *
  *   ✅ 通过 · 已落格   → 直接写进 atlas.json（只补 ⬜，不覆盖已有结论），
  *                      记 `by: "human"` 和审阅人。这一条马上生效。
- *   📋 通过 · 待补全   → 认了这件事是真的，但缺字段建不了实体。
+ *   📋 暂缓 · 待补采   → 尚不足以确认事实或对应型号，需要补证据。
  *                      写进 `data/review-pending.json`，**带上还缺什么**，
  *                      不进 atlas.json —— 它是一张明确的采集单，不是半成品数据。
  *   ❌ 不通过         → 写进 `data/review-rejected.json`，带理由。
@@ -26,19 +26,27 @@
  * 用 git 当数据库：commit 是 Revision，作者区分人和 bot，diff 就是 ChangeEvent。
  *
  *   node scripts/review.mjs                       # 列队列
- *   node scripts/review.mjs --id X --pass  --who 名字
+ *   node scripts/review.mjs --id X --pass --why "已核对型号与能力定义" --who 名字
  *   node scripts/review.mjs --id X --reject --why "理由" --who 名字
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, readdirSync, rmSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = process.env.ATLAS_REVIEW_ROOT || join(dirname(fileURLToPath(import.meta.url)), "..");
 const P = (f) => join(ROOT, f);
 const readJSON = (f, d) => (existsSync(P(f)) ? JSON.parse(readFileSync(P(f), "utf8")) : d);
 const writeJSON = (f, v) => writeFileSync(P(f), `${JSON.stringify(v, null, 2)}\n`);
 const NOW = () => new Date().toISOString().slice(0, 19).replace("T", " ");
+
+const REVIEW_FILES = ["atlas", "review-log", "review-pending", "review-rejected", "review-conflicts"].map(x => `data/${x}.json`);
+const capture = () => new Map(REVIEW_FILES.map(f => [f, existsSync(P(f)) ? readFileSync(P(f)) : null]));
+const restore = saved => { for (const [f, bytes] of saved) bytes === null ? rmSync(P(f), { force: true }) : writeFileSync(P(f), bytes); };
+function transaction(fn) {
+  const saved = capture();
+  try { return fn(); } catch (error) { restore(saved); throw error; }
+}
 
 /** 稳定 id：同一条 claim 无论跑几遍都是同一个 id，否则「否决过」就记不住。 */
 const idOf = (f, day) =>
@@ -58,53 +66,40 @@ const idOf = (f, day) =>
  * 反过来也会漏：`GR00T N1.7` 比家族名「NVIDIA Isaac GR00T N」短，
  * 子串方向反了就匹配不上，22 条 GR00T 断言被报成「库里没有这条产品线」。
  *
- * 现在：候选名取 family / id / zh / aliases，**双向子串都认，按命中的名字长度取最长**。
- * 太短的名字（<4 字符）必须整词相等才算，否则 `pi` 会吃掉 `pixverse`。
+ * 现在：按明确别名和词边界匹配，取最具体且唯一的命中；不再反向包含匹配。
+ * 家族归属与完整型号适用性分开检查，路由成功不表示可以写入。
  * 真需要短名对上的（openpi → pi）**写进 `aliases` 数据里，不靠启发式猜** ——
  * 这条纪律 atlas 自己在 `$aliases_why` 里写过。
  */
-const norm = (s) => String(s ?? "").toLowerCase().replace(/[\s_·（）()]+/g, " ").trim();
-export function matchModel(atlas, hint) {
-  const h = norm(hint);
-  if (!h) return null;
-  let best = null;  // {m, dir, len}
-  for (const x of atlas.models ?? []) {
-    for (const raw of [x.family, x.id, x.zh, ...(x.aliases ?? [])]) {
-      const n = norm(raw);
-      if (!n) continue;
-      /**
-       * **两个方向不是一回事，不能混在一起比长度。**
-       * · 正向（线索里含这个名字）：名字越长越具体，`Cosmos3-Nano` ⊃ `cosmos`。
-       * · 反向（名字里含这个线索）：那是线索太短、只对上了一截 ——
-       *   线索「Oasis」既落在 Decart 的 `oasis` 上，也落在「Etched Oasis-500M」里，
-       *   按名字长度比的话赢的是后者，**而那是另一家的另一个模型**。
-       * 所以正向一律压过反向，同向之间才比长度。
-       */
-      let dir = 0, len = 0;
-      if (n.length < 4) {
-        if (new RegExp(`(?:^|[^a-z0-9])${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:[^a-z0-9]|$)`).test(h)) { dir = 2; len = n.length; }
-      } else if (h.includes(n)) { dir = 2; len = n.length; }
-      else if (n.includes(h)) { dir = 1; len = h.length; }
-      if (dir && (!best || dir > best.dir || (dir === best.dir && len > best.len))) best = { m: x, dir, len };
-    }
-  }
-  return best?.m ?? null;
-}
-
-/** 收件箱里混着否定型断言（「不支持 Vision」「no tool calls」）。**它们不能按 yes 落格。** */
-const NEGATIVE = /不支持|未支持|没有支持|不可用|已退役|已下线|Not supported|no tool calls|does not support|not available/i;
+export { matchModel } from "./review-policy.mjs";
+import { matchModel, assess, factKey, groupQueue } from "./review-policy.mjs";
+import { closureContext, closureActive } from "./review-closure.mjs";
+import {quoteEntity,quoteFingerprint} from './requote-policy.mjs';
+export { groupQueue };
 
 export function queue() {
   const rejected = new Set((readJSON("data/review-rejected.json", { rows: [] }).rows ?? []).map((r) => r.id));
   const pending = new Set((readJSON("data/review-pending.json", { rows: [] }).rows ?? []).map((r) => r.id));
   const done = new Set((readJSON("data/review-log.json", { rows: [] }).rows ?? []).map((r) => r.id));
+  const legacyClosed = new Set(["review-log", "review-rejected", "review-pending"].flatMap(name =>
+    (readJSON(`data/${name}.json`, { rows: [] }).rows ?? []).filter(r => !r.fact_key).map(r => r.id)));
   const atlas = readJSON("data/atlas.json", {});
   const reg = readJSON("data/sources.json", { sources: [] });
   const tierOf = (id) => reg.sources.find((s) => s.id === id)?.tier ?? "?";
   const capIds = new Set((atlas.capabilities ?? []).map((c) => c.id));
 
+  const snapshots = new Map();
+  const snapshot = id => {
+    if (!snapshots.has(id)) snapshots.set(id, readJSON(`data/snapshots/${id}.json`, {}).text ?? "");
+    return snapshots.get(id);
+  };
+  const closedFacts = new Set((readJSON("data/review-log.json", { rows: [] }).rows ?? []).map(x => x.fact_key).filter(Boolean));
+  const context = closureContext(atlas, snapshot);
+  const automatic = new Map((readJSON("data/review-auto-log.json", { rows: [] }).rows ?? []).map(r => [r.fact_key, r]));
   const out = [];
-  for (const day of readdirSync(P("data/inbox")).filter((f) => f.endsWith(".json")).sort()) {
+  // A fresh checkout has no ignored inbox directory until the first extraction.
+  const inboxFiles = existsSync(P("data/inbox")) ? readdirSync(P("data/inbox")) : [];
+  for (const day of inboxFiles.filter((f) => f.endsWith(".json")).sort()) {
     const box = readJSON(`data/inbox/${day}`, {});
     /**
      * 收件箱是**两层**：`results`（每个源一条）里再套 `findings`。
@@ -115,8 +110,11 @@ export function queue() {
     for (const r of box.results ?? []) {
       for (const raw of r.findings ?? []) {
       const f = { ...raw, source: r.source, url: r.url };
-      const id = idOf(f, day.replace(".json", ""));
-      if (rejected.has(id) || pending.has(id) || done.has(id)) continue;
+      const legacyId = idOf(f, day.replace(".json", ""));
+      const id = `${legacyId}::${factKey(f).slice(0, 12)}`;
+      if (legacyClosed.has(legacyId) || rejected.has(id) || pending.has(id) || done.has(id) || closedFacts.has(factKey(f))) continue;
+      const reviewed = automatic.get(factKey(f));
+      if (reviewed && closureActive(reviewed, context(f))) continue;
       // 能不能落到一个具体格子 —— 这决定「通过」之后走哪一路
       const m = matchModel(atlas, f.model_hint);
       /**
@@ -147,14 +145,19 @@ export function queue() {
        */
       const srcMeta = (reg.sources ?? []).find((s) => s.id === f.source);
       const resold = !!(srcMeta?.resells && m && srcMeta.own_org !== m.org);
-      const landable = !!cell && !resold;
+      const policy = assess(f, m, cell, srcMeta, snapshot(f.source));
+      const landable = policy.landable;
+
       out.push({
         id, day: day.replace(".json", ""), source: f.source, tier: tierOf(f.source),
         kind: f.kind, model_hint: f.model_hint, model: m?.id ?? null,
         capability: f.capability ?? null, claim: f.claim, quote: f.quote,
-        confidence: f.confidence, landable,
-        negated: NEGATIVE.test(`${f.claim ?? ""} ${f.quote ?? ""}`),
+        capability_definition: atlas.capabilities.find(c => c.id === f.capability)?.definition ?? atlas.capabilities.find(c => c.id === f.capability)?.since_note ?? atlas.capabilities.find(c => c.id === f.capability)?.desc ?? atlas.capabilities.find(c => c.id === f.capability)?.zh ?? null,
+        confidence: f.confidence, ...policy, landable, fact_key: factKey(f),
+        url: srcMeta?.url ?? r.url, current_state: cell?.state ?? null,
+        existing: cell ? { state: cell.state, verified_for: cell.verified_for, quote: cell.quote ?? cell.note, src: cell.src } : null,
         missing: landable ? [] : [
+          ...policy.blockers,
           !m && "库里没有这条产品线（要先建实体：公司 / 轨 / 层级 / 架构依据）",
           m && !f.capability && "没落到具体能力上",
           m && f.capability && !capIds.has(f.capability) && `能力 id 「${f.capability}」不在本体里`,
@@ -168,15 +171,43 @@ export function queue() {
       }
     }
   }
-  return out;
+  // Exact evidence only; distinct conditions/versions remain separate. Retain every original id.
+  const unique = new Map();
+  for (const item of out) {
+    const old = unique.get(item.fact_key);
+    if (old) { old.related_ids.push(item.id); old.days.push(item.day); }
+    else unique.set(item.fact_key, { ...item, related_ids: [item.id], days: [item.day] });
+  }
+  return [...unique.values()];
 }
 
-function log(row) {
+export function pendingQueue() {
+  const reg = readJSON("data/sources.json", { sources: [] });
+  return (readJSON("data/review-pending.json", { rows: [] }).rows ?? [])
+    .filter(r => !["resolved", "dismissed"].includes(r.status))
+    .map(r => ({ ...r, url: r.url ?? reg.sources.find(s => s.id === r.source)?.url }));
+}
+
+export const resolvePending = args => transaction(() => performResolvePending(args));
+function performResolvePending({ id, why = "", who = "unknown" }) {
+  if (!why.trim()) throw new Error("请写明处理结果及依据；关闭任务不改变能力结论");
+  const p = readJSON("data/review-pending.json", { rows: [] });
+  const row = p.rows.find(r => r.id === id && !["resolved", "dismissed"].includes(r.status));
+  if (!row) throw new Error("采集单里没有这条未结任务");
+  row.status = "resolved";
+  row.resolution = { at: NOW(), who, why };
+  writeJSON("data/review-pending.json", p);
+  log({ id, at: NOW(), who, verdict: "task-resolved", why });
+  commit(`review: 关闭采集任务（${who}）\n\n${why}`, ["data/review-pending.json", "data/review-log.json"]);
+  return { ok: true };
+}
+
+function log(row, relatedIds = [row.id]) {
   const l = readJSON("data/review-log.json", {
     $note: "人审流水，**只增不改**。git commit 是 Revision，diff 是 ChangeEvent（§59.4.c）。",
     rows: [],
   });
-  l.rows.push(row);
+  for (const id of relatedIds) l.rows.push({ ...row, id, ...(id !== row.id ? { duplicate_of: row.id } : {}) });
   writeJSON("data/review-log.json", l);
 }
 
@@ -192,12 +223,16 @@ function log(row) {
  * 审计看的是那几本账的 diff，不是 commit 的条数。
  */
 let DEFER = null;   // 非 null 时：{ files:Set, lines:[] }
-export function beginBatch() { DEFER = { files: new Set(), lines: [] }; }
+export function beginBatch() {
+  if (DEFER) throw new Error("已有未结束的批次");
+  DEFER = { files: new Set(), lines: [], saved: capture() };
+}
 export function endBatch(msg, who = "batch") {
   const d = DEFER;
   DEFER = null;
   if (!d || !d.files.size) return { ok: true, committed: false };
-  commit(`${msg}\n\n${d.lines.join("\n")}`, [...d.files]);
+  try { commit(`${msg}\n\n${d.lines.join("\n")}`, [...d.files]); }
+  catch (error) { restore(d.saved); throw error; }
   return { ok: true, committed: true, n: d.lines.length };
 }
 
@@ -218,14 +253,25 @@ function commit(msg, files) {
    * 正好都是新文件。端到端一测才发现：数据写了、提交没成，
    * **而「git 当数据库」正是这套的根基**，不提交等于这条决定没发生过。
    */
-  execFileSync("git", ["add", ...files], { cwd: ROOT });
-  execFileSync("git", ["-c", "user.name=atlas-review", "-c", "user.email=review@xiamimate.local",
-    "commit", "-q", "-m", msg], { cwd: ROOT });
+  const index = execFileSync("git", ["rev-parse", "--path-format=absolute", "--git-path", "index"], { cwd: ROOT }).toString().trim();
+  const beforeIndex = existsSync(index) ? readFileSync(index) : null;
+  try {
+    execFileSync("git", ["add", "--", ...files], { cwd: ROOT });
+    execFileSync("git", ["-c", "user.name=atlas-review", "-c", "user.email=review@xiamimate.local",
+      "commit", "-q", "--only", "-m", msg, "--", ...files], { cwd: ROOT });
+  } catch (error) {
+    if (beforeIndex) writeFileSync(index, beforeIndex); else rmSync(index, { force: true });
+    throw error;
+  }
 }
 
-export function decide({ id, verdict, why = "", who = "unknown" }) {
+export const decide = args => transaction(() => performDecision(args));
+function performDecision({ id, verdict, why = "", who = "unknown", actor = "human" }) {
+  if (!["pass", "reject", "defer"].includes(verdict)) throw new Error("未知审阅动作");
+  if (!why.trim()) throw new Error("审阅必须写明判断依据");
   const item = queue().find((x) => x.id === id);
   if (!item) throw new Error(`队列里没有这一条：${id}`);
+  const record = row => log({ ...row, fact_key: item.fact_key }, item.related_ids);
   const at = NOW();
 
   if (verdict === "reject") {
@@ -235,22 +281,22 @@ export function decide({ id, verdict, why = "", who = "unknown" }) {
     });
     r.rows.push({ id, at, who, why, claim: item.claim, source: item.source });
     writeJSON("data/review-rejected.json", r);
-    log({ id, at, who, verdict: "reject", why, claim: item.claim });
+    record({ id, at, who, verdict: "reject", why, claim: item.claim });
     commit(`review: 否决 1 条（${who}）\n\n${item.claim}\n理由：${why || "（未填）"}`,
       ["data/review-rejected.json", "data/review-log.json"]);
     return { ok: true, kind: "reject" };
   }
 
-  if (!item.landable) {
-    // 认了这件事是真的，但缺字段建不了实体 —— 出一张采集单，不写半成品进库
+  if (verdict === "defer" || !item.landable) {
+    // 采集任务不表示认可 claim；证据不足与事实错误分开记录。
     const p = readJSON("data/review-pending.json", {
-      $note: "人审认可、但**信息不够落库**的条目。它是采集单，不是数据 —— 不要读进前端。",
+      $note: "待补证据或实体资料的采集单。defer 不表示认可 claim；历史 pass-pending 保留原判定。不要读进能力图。",
       rows: [],
     });
-    p.rows.push({ id, at, who, claim: item.claim, quote: item.quote, source: item.source, missing: item.missing });
+    p.rows.push({ id, at, who, why, status: "open", verdict: "defer", fact_key: item.fact_key, action: item.action, model: item.model, model_hint: item.model_hint, capability: item.capability, url: item.url, claim: item.claim, quote: item.quote, source: item.source, missing: item.missing });
     writeJSON("data/review-pending.json", p);
-    log({ id, at, who, verdict: "pass-pending", why, claim: item.claim, missing: item.missing });
-    commit(`review: 通过但待补全 1 条（${who}）\n\n${item.claim}\n还缺：${item.missing.join("；")}`,
+    record({ id, at, who, verdict: "defer", why, claim: item.claim, missing: item.missing });
+    commit(`review: 转为采集任务 1 条（${who}）\n\n${item.claim}\n还缺：${item.missing.join("；")}`,
       ["data/review-pending.json", "data/review-log.json"]);
     return { ok: true, kind: "pending", missing: item.missing };
   }
@@ -282,8 +328,8 @@ export function decide({ id, verdict, why = "", who = "unknown" }) {
   if (item.negated)
     throw new Error(`这是否定型断言（「${(item.claim ?? "").slice(0, 40)}」），不能按「支持」落格 —— 要么驳回，要么人工改格子`);
   const claimsYes = true;
-  if (cell.state === "yes" && claimsYes) {
-    log({ id, at, who, verdict: "duplicate", why, claim: item.claim,
+  if (cell.state === "yes" && claimsYes && cell.verified_for === item.verified_for && !cell.recheck && !cell.sibling) {
+    record({ id, at, who, verdict: "duplicate", why, claim: item.claim,
           cell: `${item.model}×${item.capability}`,
           note: `已有结论一致（yes）。这条的核验版本是 ${item.verified_for ?? item.day}，库里那条是 ${cell.verified_for ?? "—"}` });
     commit(`review: 重复 1 条（${who}）\n\n${item.claim}\n` +
@@ -300,7 +346,7 @@ export function decide({ id, verdict, why = "", who = "unknown" }) {
       existing: { state: cell.state, note: cell.note ?? "", src: cell.src ?? "", verified_for: cell.verified_for ?? "" },
       incoming: { claim: item.claim, quote: item.quote, src: item.source, tier: item.tier } });
     writeJSON("data/review-conflicts.json", cf);
-    log({ id, at, who, verdict: "conflict", why, claim: item.claim, cell: `${item.model}×${item.capability}` });
+    record({ id, at, who, verdict: "conflict", why, claim: item.claim, cell: `${item.model}×${item.capability}` });
     commit(`review: 冲突 1 条（${who}）\n\n${item.model} × ${item.capability}\n` +
       `已有：${cell.state}\n新证据：${item.claim}\n\n**没有改动 atlas.json** —— 进冲突台账等人裁决。`,
       ["data/review-conflicts.json", "data/review-log.json"]);
@@ -309,11 +355,16 @@ export function decide({ id, verdict, why = "", who = "unknown" }) {
   cell.state = "yes";
   cell.src = item.source;
   cell.note = `${item.claim}｜原文：「${item.quote}」`;
-  cell.by = "human";
+  cell.by = actor;
+  cell.verified_for = item.verified_for;
+  cell.as_of = at.slice(0, 10);
+  cell.quote = item.quote;
+  delete cell.recheck;
+  delete cell.sibling;
   cell.reviewed_by = who;
   cell.reviewed_at = at;
   writeJSON("data/atlas.json", atlas);
-  log({ id, at, who, verdict: "pass", why, claim: item.claim, wrote: `${item.model}×${item.capability}` });
+  record({ id, at, who, verdict: "pass", why, claim: item.claim, wrote: `${item.model}×${item.capability}` });
   commit(`review: 人审通过并写入 ${item.model} × ${item.capability}（${who}）\n\n` +
     `${item.claim}\n原文：「${item.quote}」\n来源：${item.source}（${item.tier} 级）\n\n` +
     `**只补 ⬜，没有覆盖已有结论。**`,
@@ -327,11 +378,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const id = arg("--id");
   if (!id) {
     const q = queue();
-    console.log(`待审 ${q.length} 条（能直接落格的 ${q.filter((x) => x.landable).length} 条）\n`);
+    console.log(`待审 ${q.length} 条（满足写入前置条件 ${q.filter((x) => x.landable).length} 条，仍需逐条核对）\n`);
     for (const x of q.slice(0, 30))
       console.log(`${x.landable ? "▣" : "▢"} ${x.id}\n   ${x.claim}\n   ${x.landable ? `→ ${x.model} × ${x.capability}` : `缺：${x.missing.join("；")}`}\n`);
   } else {
-    const verdict = process.argv.includes("--reject") ? "reject" : "pass";
+    const verdict = process.argv.includes("--reject") ? "reject" : process.argv.includes("--defer") ? "defer" : "pass";
     console.log(JSON.stringify(decide({ id, verdict, why: arg("--why") ?? "", who: arg("--who") ?? "cli" }), null, 1));
   }
 }
@@ -370,7 +421,16 @@ export const rqId = (src, at) => `${src}|${at}`;
  * 「无快照」那一摞不进来 —— 那是源没登记，跑一次 watch 就没了，**不该占人的注意力**。
  */
 export function requoteQueue() {
-  const decided = new Set((readJSON(RQ_DECISIONS, { rows: [] }).rows ?? []).map((r) => r.id));
+  const decisions = readJSON(RQ_DECISIONS, { rows: [] }).rows ?? [];
+  const decided = new Set(decisions.filter(r=>!r.fingerprint).map(r=>r.id));
+  const atlas = readJSON('data/atlas.json',{});
+  for(const r of decisions.filter(r=>r.fingerprint)) {
+    if(r.fingerprint===quoteFingerprint(quoteEntity(atlas,r.at_label),readJSON(`data/snapshots/${r.src}.json`,{})))decided.add(r.id);
+  }
+  if(existsSync(P('data/requote-report.json'))) {
+    const kinds = new Set(['本页没有·别处有','找不到','快照无正文']);
+    return readJSON('data/requote-report.json',{rows:[]}).rows.filter(r=>(kinds.has(r.kind)||r.kind==='复核已处置')&&!decided.has(rqId(r.src,r.at))).map(r=>({...r,kind:r.kind==='复核已处置'?'复核上下文已变化':r.kind,id:rqId(r.src,r.at),elsewhere:r.elsewhere??[]}));
+  }
   const md = existsSync(P("data/requote-report.md")) ? readFileSync(P("data/requote-report.md"), "utf8") : "";
   const KINDS = ["本页没有·别处有", "找不到", "快照无正文"];
   const out = [];

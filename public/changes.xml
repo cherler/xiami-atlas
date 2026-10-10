@@ -6,15 +6,33 @@
     <atom:link href="https://xiamimate.com/atlas/changes.xml" rel="self" type="application/rss+xml"/>
     <description>AI 视频模型的版本、停服、价格与能力变化。每条带 Before / After / 为什么重要，以及厂商官方来源。</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 GMT</lastBuildDate>
     <item>
-      <title>【快讯】白模预演：空间调度成了可交付的控制信号：Seedance 2.5 官方支持 clay render referencing：「users can build a scene's spatial structure, character poses, motion paths, and camera angles using textureless 3D models」；B 站 updream 于 8-17 上线「预演台」，一张参考图自动生成 3D 白模场景，在里面摆人、画相机轨迹、调关键帧，录成白模视频直接送进模型</title>
-      <link>https://xiamimate.com/atlas/changes#clay-previz-2026-08-17</link>
-      <guid isPermaLink="false">clay-previz-2026-08-17</guid>
-      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <title>【快讯】Gemini Omni 1.1 Flash：今天回查当前型号的官方正文和代码示例，补齐文生视频、图生视频、角色参考、多参考、原生音频和视频转视频。</title>
+      <link>https://xiamimate.com/atlas/changes#omni-evidence-2026-10-10</link>
+      <guid isPermaLink="false">omni-evidence-2026-10-10</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
       <category>快讯</category>
-      <category>seedance</category>
-      <description>&lt;p&gt;&lt;b&gt;快讯&lt;/b&gt;（挂到 ）：白模预演成了新的控制轴：排完再生成，不再抽卡&lt;/p&gt;&lt;p&gt;&lt;b&gt;白模预演：空间调度成了可交付的控制信号&lt;/b&gt; · capability&lt;/p&gt;&lt;p&gt;此前：镜头路径、人物走位、切点只能写进提示词，由模型自己解释 —— 不合意就重抽&lt;/p&gt;&lt;p&gt;现在：Seedance 2.5 官方支持 clay render referencing：「users can build a scene's spatial structure, character poses, motion paths, and camera angles using textureless 3D models」；B 站 updream 于 8-17 上线「预演台」，一张参考图自动生成 3D 白模场景，在里面摆人、画相机轨迹、调关键帧，录成白模视频直接送进模型&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;这是一条新的控制轴，不是运镜控制的加强版。&lt;/b&gt; 运镜控制给的是参数（推 / 拉 / 摇 / 移），白模给的是一整段空间信号 —— 多人的相对位置、朝向、动作先后、切在第几拍，一次全给。它把「抽卡」换成「排完再生成」，而抽卡正是多人复杂场景一直做不出来的原因。&lt;b&gt;限度也要记住&lt;/b&gt;：白模只锁空间调度，出拳打法、防守姿态这类细动作仍归视频模型管。&lt;/p&gt;&lt;p&gt;影响：seedance&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5&quot;&gt;ByteDance Seed 官方博客 · Seedance 2.5（2026-07-31）&lt;/a&gt;&lt;/p&gt;</description>
+      <category>gemini-omni</category>
+      <description>&lt;p&gt;&lt;b&gt;快讯&lt;/b&gt;（挂到 2026-10-17）：今日补核：Gemini Omni 1.1 的六项生成与编辑能力&lt;/p&gt;&lt;p&gt;&lt;b&gt;Gemini Omni 1.1 Flash&lt;/b&gt; · capability（这一条是我们记错了）&lt;/p&gt;&lt;p&gt;此前：版本已更新到 1.1 Flash，但六个能力格仍显示未知。&lt;/p&gt;&lt;p&gt;现在：今天回查当前型号的官方正文和代码示例，补齐文生视频、图生视频、角色参考、多参考、原生音频和视频转视频。&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;这是本站今天补齐的证据，不是今天发布新模型；每格都已绑定 1.1 Flash，旧版能力没有直接继承。&lt;/p&gt;&lt;p&gt;影响：gemini-omni&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://ai.google.dev/gemini-api/docs/omni&quot;&gt;Google · Gemini Omni Flash 官方文档&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【快讯】Qwen3-ASR 1.7B：官方模型卡明确 1.7B 支持 30 种语言及 22 种中文方言，并统一支持流式与离线识别。</title>
+      <link>https://xiamimate.com/atlas/changes#qwen-asr-evidence-2026-10-10</link>
+      <guid isPermaLink="false">qwen-asr-evidence-2026-10-10</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+      <category>快讯</category>
+      <category>qwen3-asr</category>
+      <description>&lt;p&gt;&lt;b&gt;快讯&lt;/b&gt;（挂到 2026-10-17）：Qwen3-ASR 1.7B：多语种与流式识别已补齐&lt;/p&gt;&lt;p&gt;&lt;b&gt;Qwen3-ASR 1.7B&lt;/b&gt; · capability（这一条是我们记错了）&lt;/p&gt;&lt;p&gt;此前：多语种和实时识别两格尚未核实。&lt;/p&gt;&lt;p&gt;现在：官方模型卡明确 1.7B 支持 30 种语言及 22 种中文方言，并统一支持流式与离线识别。&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;选型时能确认语种与流式支持；没有把独立强制对齐器的时间戳能力算进 ASR 本体。&lt;/p&gt;&lt;p&gt;影响：qwen3-asr&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://huggingface.co/Qwen/Qwen3-ASR-1.7B&quot;&gt;阿里官方 · Qwen3-ASR 模型卡&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【快讯】Hallo-Live：今天按 Hallo-Live 官方模型卡补齐文本驱动与流式音视频生成；官方报告在两张 H200 上达到 20.38 FPS、0.94 秒延迟。</title>
+      <link>https://xiamimate.com/atlas/changes#hallo-live-evidence-2026-10-10</link>
+      <guid isPermaLink="false">hallo-live-evidence-2026-10-10</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+      <category>快讯</category>
+      <category>hallo2</category>
+      <description>&lt;p&gt;&lt;b&gt;快讯&lt;/b&gt;（挂到 2026-10-17）：Hallo-Live：文本驱动与实时生成已补齐&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hallo-Live&lt;/b&gt; · capability（这一条是我们记错了）&lt;/p&gt;&lt;p&gt;此前：文本驱动和实时生成仍引用旧版 Hallo2 的未核实说明。&lt;/p&gt;&lt;p&gt;现在：今天按 Hallo-Live 官方模型卡补齐文本驱动与流式音视频生成；官方报告在两张 H200 上达到 20.38 FPS、0.94 秒延迟。&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;可据此确认输入与输出方式；性能数字保留硬件条件，不外推到普通显卡。&lt;/p&gt;&lt;p&gt;影响：hallo2&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://huggingface.co/fudan-generative-ai/Hallo-Live&quot;&gt;HF · 复旦 Hallo-Live&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tripo API V2：官方公告：2026-10-01 起不再更新与支持，2026-11-01 起 V2 端点全部停止接收请求</title>
@@ -38,7 +56,7 @@
       <guid isPermaLink="false">eleven-music-v2.5-2026-09-23</guid>
       <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
       <category>eleven-music</category>
-      <description>&lt;p&gt;&lt;b&gt;Eleven Music v2.5&lt;/b&gt; · 版本更迭&lt;/p&gt;&lt;p&gt;此前：atlas 记 Eleven Music v2（核于 2026-08-12）&lt;/p&gt;&lt;p&gt;现在：官方模型页 Music 一节上新 v2.5：「Our most advanced music model」，质量与提示词跟随改善；&lt;b&gt;并明写「Same workflows and support: composition plans, audio reference, and inpainting」&lt;/b&gt;，v2 仍并列在页上&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;这是提质不是加能力&lt;/b&gt; —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。&lt;/p&gt;&lt;p&gt;影响：eleven-music&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://elevenlabs.io/docs/models&quot;&gt;ElevenLabs · Models&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;b&gt;Eleven Music v2.5&lt;/b&gt; · 版本更迭&lt;/p&gt;&lt;p&gt;此前：atlas 记 Eleven Music v2（核于 2026-08-12）&lt;/p&gt;&lt;p&gt;现在：官方模型页 Music 一节上新 v2.5：「Our most advanced music model」，质量与提示词跟随改善；&lt;b&gt;并明写「Same workflows and support: composition plans, audio reference, and inpainting」&lt;/b&gt;，v2 仍并列在页上&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;这是提质不是加能力&lt;/b&gt; —— 官方自己说工作流照旧，所以 8 个能力格里只有 3 个（提示词作曲 / 作曲方案 / 分段改写）能按 v2.5 重核，纯器乐与多语种那两条原文只印在 v2 名下，进待重核。&lt;/p&gt;&lt;p&gt;影响：eleven-music&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://elevenlabs.io/docs/overview/models&quot;&gt;ElevenLabs · Models&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>SeedRealtime（字节 Seed 的原生音视频全双工模型）：官方模型页列出 SeedRealtime：「原生音视频全双工大模型，联合理解声音、画面与时序信息，带来边看、边听、边说的自然交互体验」</title>
@@ -135,6 +153,14 @@
       <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
       <category>glm</category>
       <description>&lt;p&gt;&lt;b&gt;GLM-5.3(旗舰权重开放,口径了结)&lt;/b&gt; · 版本更迭&lt;/p&gt;&lt;p&gt;此前：atlas 记 GLM-5.2(上次 08-27 因 5.3 旗舰 API-only 未升)&lt;/p&gt;&lt;p&gt;现在：zai-org 放出完整开源权重 GLM-5.3 / GLM-5.3-BF16(HF,08-25)——旗舰不再是 API-only,升到 5.3&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;上次那个「追开源旗舰 vs 追真旗舰」的待拍板口径,随旗舰权重开放自然了结。14 个能力格标 recheck。&lt;/p&gt;&lt;p&gt;影响：glm&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://huggingface.co/api/models&quot;&gt;Hugging Face 官方组织目录（模型接口）&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>白模预演：空间调度成了可交付的控制信号：Seedance 2.5 官方支持 clay render referencing：「users can build a scene's spatial structure, character poses, motion paths, and camera angles using textureless 3D models」；B 站 updream 于 8-17 上线「预演台」，一张参考图自动生成 3D 白模场景，在里面摆人、画相机轨迹、调关键帧，录成白模视频直接送进模型</title>
+      <link>https://xiamimate.com/atlas/changes#clay-previz-2026-08-17</link>
+      <guid isPermaLink="false">clay-previz-2026-08-17</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <category>seedance</category>
+      <description>&lt;p&gt;&lt;b&gt;白模预演：空间调度成了可交付的控制信号&lt;/b&gt; · capability&lt;/p&gt;&lt;p&gt;此前：镜头路径、人物走位、切点只能写进提示词，由模型自己解释 —— 不合意就重抽&lt;/p&gt;&lt;p&gt;现在：Seedance 2.5 官方支持 clay render referencing：「users can build a scene's spatial structure, character poses, motion paths, and camera angles using textureless 3D models」；B 站 updream 于 8-17 上线「预演台」，一张参考图自动生成 3D 白模场景，在里面摆人、画相机轨迹、调关键帧，录成白模视频直接送进模型&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;这是一条新的控制轴，不是运镜控制的加强版。&lt;/b&gt; 运镜控制给的是参数（推 / 拉 / 摇 / 移），白模给的是一整段空间信号 —— 多人的相对位置、朝向、动作先后、切在第几拍，一次全给。它把「抽卡」换成「排完再生成」，而抽卡正是多人复杂场景一直做不出来的原因。&lt;b&gt;限度也要记住&lt;/b&gt;：白模只锁空间调度，出拳打法、防守姿态这类细动作仍归视频模型管。&lt;/p&gt;&lt;p&gt;影响：seedance&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5&quot;&gt;ByteDance Seed 官方博客 · Seedance 2.5（2026-07-31）&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>科学 AI 立为第九卷：那条规则同日作废（它已被世界模型卷与具身智能卷推翻），判据只剩「产出物是不是另一类东西」—— 分子结构、气象场、晶体结构和前八卷全不重合，**按判据它一直是成立的**</title>
@@ -391,30 +417,6 @@
       <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
       <category>seedream</category>
       <description>&lt;p&gt;&lt;b&gt;Seedream&lt;/b&gt; · version&lt;/p&gt;&lt;p&gt;此前：Seedream 4.0：出图与改图并进一个模型&lt;/p&gt;&lt;p&gt;现在：Seedream 5.0 Pro：分层输出 + 圈画标注式改图&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;&lt;b&gt;分层输出把「改图」从重画整张变成动某一层&lt;/b&gt; —— 这是设计流程里差别最大的一步&lt;/p&gt;&lt;p&gt;影响：seedream&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://seed.bytedance.com/en/blog&quot;&gt;ByteDance Seed · 官方博客&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Gemini Omni：gemini-omni-flash 上线，主打高速生成 + 对话式剪辑</title>
-      <link>https://xiamimate.com/atlas/changes#gemini-omni-2026-06-30</link>
-      <guid isPermaLink="false">gemini-omni-2026-06-30</guid>
-      <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-      <category>gemini-omni</category>
-      <description>&lt;p&gt;&lt;b&gt;Gemini Omni&lt;/b&gt; · 版本更迭&lt;/p&gt;&lt;p&gt;此前：Google 在视频这块只有 Veo 一条线&lt;/p&gt;&lt;p&gt;现在：gemini-omni-flash 上线，主打高速生成 + 对话式剪辑&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;「对话式剪辑」是新的交互形态：不是给提示词重生成，是接着改&lt;/p&gt;&lt;p&gt;影响：gemini-omni；capability:extend&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://ai.google.dev/gemini-api/docs/changelog&quot;&gt;Gemini API · Release notes&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Kling：Turbo 档有声 1080P ¥1.0/秒</title>
-      <link>https://xiamimate.com/atlas/changes#kling-2026-06-17</link>
-      <guid isPermaLink="false">kling-2026-06-17</guid>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
-      <category>kling</category>
-      <description>&lt;p&gt;&lt;b&gt;Kling&lt;/b&gt; · 价格&lt;/p&gt;&lt;p&gt;此前：3.0 有声 1080P ¥1.2/秒&lt;/p&gt;&lt;p&gt;现在：Turbo 档有声 1080P ¥1.0/秒&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;Turbo 把「有声」拉进了和无声接近的价位 —— 此前有声要多付 50%&lt;/p&gt;&lt;p&gt;影响：skill:lipsync；capability:audio&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://klingai.com/dev/pricing&quot;&gt;可灵开放平台 · API 价格&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Grok Imagine Video 1.5：xAI 的图生视频 Grok Imagine Video 1.5：720p、约 6–10 秒，声音与画面同一遍出，主打速度（约 25 秒出 6 秒片）；API / 网页 / 移动端全可用</title>
-      <link>https://xiamimate.com/atlas/changes#grok-video-2026-06-16</link>
-      <guid isPermaLink="false">grok-video-2026-06-16</guid>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
-      <category>grok-video</category>
-      <description>&lt;p&gt;&lt;b&gt;Grok Imagine Video 1.5&lt;/b&gt; · 新模型&lt;/p&gt;&lt;p&gt;此前：视频卷没有 xAI 的出片模型&lt;/p&gt;&lt;p&gt;现在：xAI 的图生视频 Grok Imagine Video 1.5：720p、约 6–10 秒，声音与画面同一遍出，主打速度（约 25 秒出 6 秒片）；API / 网页 / 移动端全可用&lt;/p&gt;&lt;p&gt;&lt;b&gt;为什么重要：&lt;/b&gt;⚠️ 顺带纠了聚合站的错：不是「1080p / 5-31」，官方页是 720p / 06-16 —— 一手源对上才收。extended，未逐格核。&lt;/p&gt;&lt;p&gt;影响：grok-video&lt;/p&gt;&lt;p&gt;来源：&lt;a href=&quot;https://x.ai/news/grok-imagine-video-1-5&quot;&gt;xAI · Grok Imagine Video 1.5 发布页&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -39,13 +39,15 @@ try {
    * 后者不知道哪些已经被人处理过，两个数摆在一起会互相打架。
    * 审阅台、命令行、这张待办表，三处必须是同一个口径。
    */
-  const { queue } = await import("./review.mjs");
+  const { queue, groupQueue, pendingQueue } = await import("./review.mjs");
   const q = queue();
   const land = q.filter((x) => x.landable).length;
+  const tasks = pendingQueue();
+  if (tasks.length) groups.push({ n: tasks.length, t: `待补采的任务 ${tasks.length} 条`, how: "审阅台「采集单」查看缺失资料，补齐后记录处理结果；关闭任务不会改变能力结论。" });
   if (q.length > 0)
     groups.push({
       n: q.length,
-      t: `收件箱里等你定的 ${q.length} 条（能直接落格 ${land} 条）`,
+      t: `收件箱里等你定的 ${q.length} 条（${groupQueue(q).length} 个问题，满足写入前置条件 ${land} 条）`,
       how: "**开审阅台**：`node scripts/review-ui.mjs` → http://127.0.0.1:8230 ；" +
         "命令行版 `node scripts/review.mjs`。分级理由看 `node scripts/triage.mjs`",
       why: "红的共同点是**错了会污染整张图且难回滚**：新实体、要推理才得出的结论、摘不出原文的。",
@@ -212,7 +214,7 @@ try {
  * 这个仓库同一天里已经撞到第三个「只写不读」的账了（见 review-conflicts / requote-decisions）。
  */
 const cm = read("data/candidates.md");
-const autoFaces = (cm.match(/^\| /gm) ?? []).length;
+const autoFaces = cm.split("\n").filter(line => line.startsWith("| ") && !/^\| (厂商|组织) \|/.test(line)).length;
 let manualFaces = 0, manualNames = [];
 try {
   const rows = (JSON.parse(read("data/candidates-manual.json") || "{}").rows ?? []).filter((r) => !r.resolved);

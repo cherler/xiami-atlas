@@ -92,6 +92,12 @@ for (const t of a.topics ?? []) {
 
     const created = j.created_at.slice(0, 10);
     const pushed = j.pushed_at.slice(0, 10);
+    // A URL can be reused after a rename/deletion. Never silently attach old judgments to a new repository.
+    if ((p.repo_id && p.repo_id !== j.id) || (p.created_at && p.created_at !== created)) {
+      loud.push(`❗ ${p.zh}：仓库身份变化（ID / 创建日期不一致），先核对历史再写回`);
+      failed.push(`${p.zh}（仓库身份待核）`);
+      continue;
+    }
     const rate = Math.round(j.stargazers_count / months(created, TODAY));
     const stale = Math.max(0, Math.round(months(pushed, TODAY)));
 
@@ -119,6 +125,7 @@ for (const t of a.topics ?? []) {
       p.stars_per_month = rate;
       p.stale_months = stale;
       p.verified_at = TODAY;
+      p.repo_id = j.id;
     }
   }
 }
@@ -149,7 +156,7 @@ if (!DRY) {
    * 那就真的只写这几个字段，别把整份文档当自己的。
    */
   const 现盘 = JSON.parse(readFileSync(F, "utf8"));
-  const 我的字段 = ["stars", "created_at", "pushed_at", "stars_per_month", "stale_months", "verified_at"];
+  const 我的字段 = ["stars", "created_at", "pushed_at", "stars_per_month", "stale_months", "verified_at", "repo_id"];
   let 贴回 = 0;
   for (const t of a.topics ?? []) {
     const t2 = (现盘.topics ?? []).find((x) => x.zh === t.zh);

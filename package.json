@@ -31,7 +31,9 @@
     "verify": "node scripts/verify.mjs",
     "station": "node scripts/review-ui.mjs",
     "todo": "node scripts/todo.mjs",
-    "alert": "node scripts/alert.mjs"
+    "alert": "node scripts/alert.mjs",
+    "test:review": "node scripts/test-review.mjs",
+    "build:static": "node scripts/validate.mjs && node scripts/alert.mjs && node scripts/make-feed.mjs && next build"
   },
   "dependencies": {
     "geist": "^1.7.2",

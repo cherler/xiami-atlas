@@ -1,4 +1,4 @@
-# 收录候选 · 2026-09-23
+# 收录候选 · 2026-10-10
 
 
 
@@ -24,7 +24,7 @@
 
 ### 二、Hugging Face 下载量前列、我们没收的组织（开源侧的实际采用度）
 
-> ⚠️ 另有 **9 个组织被判成量化 / 搬运号**（仓库八成以上是 GGUF、AWQ、mlx 这类二次分发档），已从下表略过：`ChrisColeTech`、`QuantStack`、`city96`、`drbaph`、`joeygambino`、`molbal` 等。**判据是仓库名，不是人品** —— 它们里面若有自训模型，会因为名字不带量化后缀而照常出现在上表。
+> ⚠️ 另有 **8 个组织被判成量化 / 搬运号**（仓库八成以上是 GGUF、AWQ、mlx 这类二次分发档），已从下表略过：`ChrisColeTech`、`QuantStack`、`city96`、`drbaph`、`joeygambino`、`molbal` 等。**判据是仓库名，不是人品** —— 它们里面若有自训模型，会因为名字不带量化后缀而照常出现在上表。
 
 （无）
 
@@ -41,12 +41,12 @@
 - `chat` Muse Spark Muse Spark 1.2（2026-08-27）
 - `asset` Lux3D Lux3D（2026-08-27）
 - `er` LocateAnything LocateAnything-3B（2026-08-27）
-- `clip` Seedance 2.5（2026-07-31）
+- `clip` Seedance 2.5（2026-10-10）
 - `clip` MiniMax Hailuo H3（2026-07-31）
-- `clip` Gemini Omni Flash（2026-05-19）
+- `clip` Gemini Omni 1.1 Flash（2026-10-10）
 - `clip` Wan 3.0（2026-08-07）
 - `clip` Runway Gen Gen-4.5（2025-12-11）
-- `clip` Kling 3.0（2026-02-04）
+- `clip` Kling 4.0（2026-10-10）
 - `clip` Vidu Q Q3（2026-04-13）
 - `clip` Veo 3.1（2025-10） — **superseded**
 - `clip` Sora 2（2025-09） — **discontinued**
@@ -66,7 +66,7 @@
 - `still` Stable Diffusion XL 1.0（2023-07-25）
 - `still` Krea 2-Raw（2026-06-18）
 - `still` Seedream 5.0 Pro（2026-08-11）
-- `still` Nano Banana 2（gemini-3.1-flash-image）（2026-08-11）
+- `still` Nano Banana 2.1（gemini-nano-banana-2.1）（2026-10-10）
 - `still` GPT Image 2.5（sunburst / flare）（2026-09-10）
 - `still` Kolors 待核（2026-08-11）
 - `still` Midjourney 待核（2026-08-11）
@@ -91,10 +91,10 @@
 - `chat` MiniMax M3（2026-06-02）
 - `chat` Doubao Seed-2.1 Pro（2026-06-23）
 - `chat` Llama 4（2025-04-05）
-- `chat` Grok 4.6（2026-08-29）
+- `chat` Grok 4.7（2026-10-10）
 - `chat` Mistral Medium 3.5（2026-03-31）
 - `tts` MiniMax Speech speech-2.8-hd（2026-08-12）
-- `tts` ElevenLabs Eleven v3（2026-08-12）
+- `tts` ElevenLabs Eleven v4（2026-10-10）
 - `tts` Gemini TTS 3.1 Flash TTS Preview（2026-08-12）
 - `tts` GPT TTS GPT-4o mini TTS（2026-08-12）
 - `voice-rt` GLM Voice glm-4-voice（2026-08-12）
@@ -111,7 +111,7 @@
 - `clip` FLUX 3 3（2026-08）
 - `asset` Hunyuan3D 3.1（2026-08-13）
 - `asset` Tripo P1-20260311（2026-08-13）
-- `asset` Meshy 7（2026-08-13）
+- `asset` Meshy 7.1（2026-10-10）
 - `asset` Rodin Gen-2.5（2026-08-13）
 - `asset` TRELLIS TRELLIS.2-4B（2026-08-13）
 - `asset` Seed3D 2.0（2026-08-14）
@@ -147,7 +147,7 @@
 - `world` NVIDIA Cosmos Cosmos3（2026-08-14）
 - `world` Google Genie Genie 3（2026-08-14）
 - `world` World Labs Marble Marble（2026-08-14）
-- `world` Odyssey Odyssey-2（2026-08-14）
+- `world` Odyssey Odyssey-3（2026-10-10）
 - `world` Matrix-Game 3.0（2026-08-14）
 - `world` 混元世界 HY-World 2.0（2026-08-14）
 - `world` Microsoft WHAM WHAM（2026-08-14）
@@ -187,6 +187,8 @@
 > ⚠️ 另有 **4 个组织被判成量化 / 搬运号**（仓库八成以上是 GGUF、AWQ、mlx 这类二次分发档），已从下表略过：`city96`、`xinsir`、`ChrisColeTech`、`QuantStack`。**判据是仓库名，不是人品** —— 它们里面若有自训模型，会因为名字不带量化后缀而照常出现在上表。
 
 （无）
+> 已核 AlperKTS 本次出现的 2 个仓库：量化/格式转换，不另建模型产品线。只记这些具体仓库；新仓库仍会重新检查。
+> 已核 silveroxides 本次出现的 2 个仓库：量化/格式转换，不另建模型产品线。只记这些具体仓库；新仓库仍会重新检查。
 
 > ⚠️ HF 这一路混着个人搬运号与量化号（QuantStack、city96、calcuis 之类）。
 > **脚本分不出「自己训模型」和「搬别人的」** —— 那要人看一眼组织主页。
@@ -201,12 +203,12 @@
 - `chat` Muse Spark Muse Spark 1.2（2026-08-27）
 - `asset` Lux3D Lux3D（2026-08-27）
 - `er` LocateAnything LocateAnything-3B（2026-08-27）
-- `clip` Seedance 2.5（2026-07-31）
+- `clip` Seedance 2.5（2026-10-10）
 - `clip` MiniMax Hailuo H3（2026-07-31）
-- `clip` Gemini Omni Flash（2026-05-19）
+- `clip` Gemini Omni 1.1 Flash（2026-10-10）
 - `clip` Wan 3.0（2026-08-07）
 - `clip` Runway Gen Gen-4.5（2025-12-11）
-- `clip` Kling 3.0（2026-02-04）
+- `clip` Kling 4.0（2026-10-10）
 - `clip` Vidu Q Q3（2026-04-13）
 - `clip` Veo 3.1（2025-10） — **superseded**
 - `clip` Sora 2（2025-09） — **discontinued**
@@ -226,7 +228,7 @@
 - `still` Stable Diffusion XL 1.0（2023-07-25）
 - `still` Krea 2-Raw（2026-06-18）
 - `still` Seedream 5.0 Pro（2026-08-11）
-- `still` Nano Banana 2（gemini-3.1-flash-image）（2026-08-11）
+- `still` Nano Banana 2.1（gemini-nano-banana-2.1）（2026-10-10）
 - `still` GPT Image 2.5（sunburst / flare）（2026-09-10）
 - `still` Kolors 待核（2026-08-11）
 - `still` Midjourney 待核（2026-08-11）
@@ -251,10 +253,10 @@
 - `chat` MiniMax M3（2026-06-02）
 - `chat` Doubao Seed-2.1 Pro（2026-06-23）
 - `chat` Llama 4（2025-04-05）
-- `chat` Grok 4.6（2026-08-29）
+- `chat` Grok 4.7（2026-10-10）
 - `chat` Mistral Medium 3.5（2026-03-31）
 - `tts` MiniMax Speech speech-2.8-hd（2026-08-12）
-- `tts` ElevenLabs Eleven v3（2026-08-12）
+- `tts` ElevenLabs Eleven v4（2026-10-10）
 - `tts` Gemini TTS 3.1 Flash TTS Preview（2026-08-12）
 - `tts` GPT TTS GPT-4o mini TTS（2026-08-12）
 - `voice-rt` GLM Voice glm-4-voice（2026-08-12）
@@ -271,7 +273,7 @@
 - `clip` FLUX 3 3（2026-08）
 - `asset` Hunyuan3D 3.1（2026-08-13）
 - `asset` Tripo P1-20260311（2026-08-13）
-- `asset` Meshy 7（2026-08-13）
+- `asset` Meshy 7.1（2026-10-10）
 - `asset` Rodin Gen-2.5（2026-08-13）
 - `asset` TRELLIS TRELLIS.2-4B（2026-08-13）
 - `asset` Seed3D 2.0（2026-08-14）
@@ -307,7 +309,7 @@
 - `world` NVIDIA Cosmos Cosmos3（2026-08-14）
 - `world` Google Genie Genie 3（2026-08-14）
 - `world` World Labs Marble Marble（2026-08-14）
-- `world` Odyssey Odyssey-2（2026-08-14）
+- `world` Odyssey Odyssey-3（2026-10-10）
 - `world` Matrix-Game 3.0（2026-08-14）
 - `world` 混元世界 HY-World 2.0（2026-08-14）
 - `world` Microsoft WHAM WHAM（2026-08-14）
@@ -336,28 +338,12 @@
 > 最该出去的是 **Sora 2**（已公告停服）。但**停服的模型不该从库里删**：
 > 「它没了」本身是有用的信息，应降到 Extended 层，而不是消失。
 
-## 人工发现的（自动那两路看不见的）
 
-> 两条自动路各有盲区：AA 榜只收上了竞技场的闭源模型，HF 那一路只看开源权重。
-> **落在两边之外的，只能人看见** —— 写在 `data/candidates-manual.json` 里，不会被重跑冲掉。
-
-### `sound` 字节跳动 Seed · Seed Audio 1.0（2026-09-23 发现）
-
-**为什么两路都捞不到**：**两条自动路都看不见**：AA 榜不收音频创作模型，HF 那一路只看开源权重而它是闭源。声音卷里字节一家都没有。
-
-**怎么撞见的**：清 2026-09-23 那 1163 条收件箱时，从 `seed-models-hub` / `seed-models`（字节 Seed 官方模型页，中英两份快照）里捞出来的 —— 这四条在我们库里一条都没有。
-
-- 官方中文页：「Seed Audio 1.0 —— 面向完整声音场景的音频创作模型，端到端完成影视级音频创作」
-- 官方英文页：「Seed Audio 1.0 Designed for full-scene audio generation, it enables end-to-end film-grade audio creation.」
-
-来源：https://seed.bytedance.com/
-
-****留在清单上等口径，不是没看。** 它自述「面向完整声音场景的音频创作模型，端到端完成影视级音频创作」——而音乐生成轨的定义是「给定描述或歌词，产出一段音乐」。**硬塞进 music 是错档**（音效、环境声不在这条轨的能力轴上）；**另开一条轨又会造出一整列假的 ⬜**（新轨零条能力轴，正是 $domains 那段警告的事）。两条路都属于「大改内容」，按负责人 2026-09-19 那条不该顺手做。**要动先定轨的口径，那是范围决定。****
-
-## 已处置的人工候选（5）—— 不用再看
+## 已处置的人工候选（6）—— 不用再看
 
 - `video` Black Forest Labs · FLUX 3 —— 2026-08-13 收进**扩展层** `flux-video`（clip 轨 10/10，不为收新的踢老的）。轨满就进折叠列表，是负责人定的做法。
 - `sound` 阿里 · FunAudioLLM · Fun-CineForge —— 2026-09-19 收进**扩展层** `funcineforge`（声音卷 tts 轨 9/10，有位置，但进 Core 要先把 27 条声音能力轴逐格核一遍 —— 那是另一件事）。同日核实：**HF 上有同一份** `FunAudioLLM/Fun-CineForge`（apache-2.0），此前「魔搭页面上没看到 HF 对应仓库」那句不成立了。
+- `sound` 字节跳动 Seed · Seed Audio 1.0 —— 2026-10-10 暂缓收录（用户授权按建议执行）：待声音卷定义音效／场景音频能力轴，再重启收录；不塞入 music、不新建空轨。
 - `sound` 字节跳动 Seed · SeedRealtime —— 2026-09-23 收进**扩展层** `seedrealtime`（实时语音轨此前只有三家）。轨的定义是「语音进语音出可打断」，它自述的「边看、边听、边说」多了视觉输入，比轨宽一层，已写进 note。
 - `embodied` 字节跳动 Seed · Seed GR-3 —— 2026-09-23 收进**扩展层** `seed-gr3`（动作策略轨此前九家没有字节）。进 Core 就是第 10 个刚好满，按「轨满进折叠列表」办。同页的 Seed GR-RL 是强化学习框架，按规则一没收。
 - `science` 字节跳动 Seed · Protenix —— 2026-09-23 收进**扩展层** `protenix`（生物轨此前是 alphafold / boltz / esm，没有中国厂商）。官方页没给版本号也没说权重开不开，两处都按「没出处不写」处理。

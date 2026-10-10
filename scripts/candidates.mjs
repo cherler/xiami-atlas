@@ -17,11 +17,14 @@
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { NOISE } from "./lib/model-filters.mjs";
+import { reviewedCandidate } from './candidate-policy.mjs';
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = `${dirname(fileURLToPath(import.meta.url))}/..`;
 const atlas = JSON.parse(readFileSync(`${ROOT}/data/atlas.json`, "utf8"));
+const reviewedRepos = new Set(existsSync(`${ROOT}/data/candidates-decisions.json`)
+  ? JSON.parse(readFileSync(`${ROOT}/data/candidates-decisions.json`, 'utf8')).rows.map(r=>r.repo) : []);
 const snap = (id) =>
   existsSync(`${ROOT}/data/snapshots/${id}.json`)
     ? JSON.parse(readFileSync(`${ROOT}/data/snapshots/${id}.json`, "utf8"))
@@ -174,10 +177,10 @@ const isMirror = (repos) => {
   const noisy = arr.filter((r) => NOISE.test(r)).length;
   return arr.length >= 2 && noisy / arr.length >= 0.8;
 };
-const orgRows = [...orgs.entries()].map(([org, repos]) => ({ org, n: repos.size, sample: [...repos][0], mirror: isMirror(repos) }));
+const orgRows = [...orgs.entries()].map(([org, repos]) => ({ org, n: repos.size, sample: [...repos][0], mirror: isMirror(repos), reviewed: reviewedCandidate([...repos],reviewedRepos) }));
 const mirrors = orgRows.filter((x) => x.mirror && isNew(x.org));
 const hfNew = orgRows
-  .filter((x) => x.n >= 2 && isNew(x.org) && !x.mirror)
+  .filter((x) => x.n >= 2 && isNew(x.org) && !x.mirror && !x.reviewed)
   .sort((a, b) => b.n - a.n);
 
 out.push([
@@ -198,6 +201,7 @@ out.push([
   ``,
   hfNew.length ? `| 组织 | 仓库数 | 示例 |\n|---|---:|---|` : "（无）",
   ...hfNew.slice(0, 20).map((x) => `| ${x.org} | ${x.n} | \`${x.sample}\` |`),
+  ...orgRows.filter(x=>x.reviewed).map(x=>`> 已核 ${x.org} 本次出现的 ${x.n} 个仓库：量化/格式转换，不另建模型产品线。只记这些具体仓库；新仓库仍会重新检查。`),
   ``,
   `> ⚠️ HF 这一路混着个人搬运号与量化号（QuantStack、city96、calcuis 之类）。`,
   `> **脚本分不出「自己训模型」和「搬别人的」** —— 那要人看一眼组织主页。`,

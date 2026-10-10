@@ -261,7 +261,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
           {p.stale_months != null && (
             <span className={`border rounded-full px-2.5 py-0.5 tnum ${
               p.stale_months >= 12 ? "border-no text-no" : "border-yes text-yes-ink"}`}>
-              {p.stale_months >= 12 ? `停更 ${p.stale_months} 个月` : "在维护"}
+              {p.pushed_at ? `最后更新 ${p.pushed_at} · 距核验日 ${p.stale_months} 个月` : "更新日期待核"}
             </span>
           )}
           <a href={p.url} target="_blank" rel="noopener noreferrer"

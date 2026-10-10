@@ -1,0 +1,12 @@
+{
+  "url": "https://developer.ideogram.ai/v1/api-reference/generate/post-upscale-image",
+  "kind": "html",
+  "fetched_at": "2026-10-10T02:48:40.641Z",
+  "digest": "7f76141ed79c18fb9bc8439c9ea80949ff13338c6e59f45f72ac9ac762fb65be",
+  "items": [],
+  "text": "Upscale provided images synchronously with an optional prompt.\nPOST /upscale\nSupported image formats include JPEG, PNG, and WebP.\nA request to upscale a provided image with the help of an optional prompt.\nresemblance detail",
+  "excerpt": true,
+  "fetch_method": "primary-source-review",
+  "full_len": 223,
+  "truncated": false
+}

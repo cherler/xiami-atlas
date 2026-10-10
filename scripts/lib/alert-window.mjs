@@ -25,7 +25,7 @@ export const untilOf = (e) => String(e.alert?.until ?? plusDays(e.date, CYCLE_DA
 
 /** 今天还在架吗。 */
 export const isLive = (e, today = new Date().toISOString().slice(0, 10)) =>
-  Boolean(e.alert) && untilOf(e) >= today;
+  Boolean(e.alert) && !e.alert_retired_at && String(e.date) <= today && untilOf(e) >= today;
 
 /**
  * **新增与换代自动上头条 —— 不靠人记得写 `alert`。**
@@ -47,6 +47,7 @@ export const AUTO_KINDS = new Set(["新模型", "版本更迭", "version"]);
 /** 这一条够不够自动上头条。**不改 `isLive`** —— 手写的那套判据一个字没动。 */
 export const isAutoLive = (e, today = new Date().toISOString().slice(0, 10)) =>
   !e.alert &&
+  !e.alert_retired_at &&
   AUTO_KINDS.has(String(e.kind)) &&
   String(e.date) <= today &&
   String(e.date) >= plusDays(today, -CYCLE_DAYS);

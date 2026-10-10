@@ -6,7 +6,7 @@
  * 跑一个 Node 进程只是多一个要守着的东西，换不来任何动态能力。
  *
  * 和 tools-frontend、stocks 同一套形态：`next build` 出 out/，
- * 传到 /srv/<your-app>/current，Caddy 用 handle_path 剥掉前缀（见 deploy/）。
+ * 传到 /srv/<your-app>/current，Caddy 用 handle_path 剥掉 /atlas 前缀。
  *
  * @type {import('next').NextConfig}
  */

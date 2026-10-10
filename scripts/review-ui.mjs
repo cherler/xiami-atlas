@@ -23,7 +23,8 @@ import { spawn, execFile, execFileSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { queue, decide, requoteQueue, requoteDecide } from "./review.mjs";
+import { queue, groupQueue, decide, pendingQueue, resolvePending, requoteQueue, requoteDecide } from "./review.mjs";
+import { reviewReport } from "./review-report.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = Number(process.env.ATLAS_REVIEW_PORT ?? 8230);
@@ -205,11 +206,14 @@ const PAGE = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <header>
   <h1>虾米看AI · 本机审阅台</h1>
   <div class="sub" id="sub">读取中…</div>
+  <a href="/auto-review">查看自动审阅记录与逐条处理理由</a>
+  <a href="/cleanup-review">查看采集单、引文回查与候选清理记录</a>
 </header>
 <main>
   <div id="tabs" style="display:flex;gap:8px;margin-bottom:16px">
     <button id="tab-todo" class="pass">待办 <span id="td-n"></span></button>
     <button id="tab-inbox">收件箱 <span id="ib-n"></span></button>
+    <button id="tab-pending">采集单 <span id="pd-n"></span></button>
     <button id="tab-rq">引文回查 <span id="rq-n"></span></button>
     <button id="tab-git">改了什么 <span id="gt-n"></span></button>
   </div>
@@ -223,8 +227,10 @@ const PAGE = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
   </div>
   <div id="pane-inbox" hidden>
     <div class="todo" id="todo"></div>
+    <div class="row"><button id="ib-prev">上一批</button><span id="ib-page"></span><button id="ib-next">下一批</button></div>
     <div id="list"></div>
   </div>
+  <div id="pane-pending" hidden><p class="hint">待补证据、实体归属或版本资料。转入此处不代表 claim 已获认可；关闭任务也不直接改变能力结论。</p><div class="row"><button id="pd-prev">上一批</button><span id="pd-page"></span><button id="pd-next">下一批</button></div><div id="pd-list"></div></div>
   <div id="pane-rq" hidden></div>
   <div id="pane-git" hidden>
     <p class="hint">改动是台上这些活攒出来的。<b>勾上要提交的，写一句话，一次提交。</b>
@@ -246,7 +252,7 @@ const $=s=>document.querySelector(s);
 let who=localStorage.getItem('atlas-who')||'';
 if(!who){who=prompt('你是谁？（会记进人审流水，用于日后追溯）')||'unknown';localStorage.setItem('atlas-who',who);}
 
-function esc(s){return String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
 /* ── 引文回查那一摞 ────────────────────────────────────────────
  * 和收件箱**不共用一套按钮**：那边是「这条事实对不对」二选一，
@@ -378,16 +384,19 @@ async function poll(id){
 }
 
 function show(name){
-  for(const k of ['todo','inbox','rq','git']){
+  for(const k of ['todo','inbox','pending','rq','git']){
     $('#pane-'+k).hidden = k!==name;
     $('#tab-'+k).className = k===name?'pass':'';
   }
+  if(name==='pending') loadPending();
+  if(name==='inbox') load();
   if(name==='rq') loadRq();
   if(name==='todo') loadTodo();
   if(name==='git') loadGit();
 }
 $('#tab-todo').onclick=()=>show('todo');
 $('#tab-inbox').onclick=()=>show('inbox');
+$('#tab-pending').onclick=()=>show('pending');
 $('#tab-rq').onclick=()=>show('rq');
 $('#tab-git').onclick=()=>show('git');
 
@@ -436,10 +445,37 @@ $('#gt-do').onclick=async function(){
   $('#gt-do').disabled=false;
 };
 
+let pendingPage=0;
+$('#pd-prev').onclick=()=>{pendingPage=Math.max(0,pendingPage-1);loadPending();};
+$('#pd-next').onclick=()=>{pendingPage++;loadPending();};
+async function loadPending(){
+  const r=await fetch('/api/pending?page='+pendingPage).then(r=>r.json());
+  pendingPage=r.page;
+  $('#pd-n').textContent='('+r.total+')';
+  $('#pd-page').textContent='第 '+(r.page+1)+' / '+Math.max(1,Math.ceil(r.total/20))+' 批';
+  $('#pd-prev').disabled=r.page===0;
+  $('#pd-next').disabled=(r.page+1)*20>=r.total;
+  $('#pd-list').innerHTML=r.items.map(it=>'<div class="item"><div class="claim">'+esc(it.claim)+'</div><p>'+esc(it.model_hint||it.model||'待确认产品线')+' · '+esc(it.source)+'</p><div class="quote">'+esc(it.quote)+'</div><p>补采要求：'+esc(it.why||(it.missing||[]).join('；'))+'</p>'+(it.url?'<p><a href="'+esc(it.url)+'" target="_blank" rel="noreferrer">核对来源</a></p>':'')+'<input data-resolution="'+esc(it.id)+'" placeholder="处理结果及依据（必填）"><button data-resolve="'+esc(it.id)+'">记下结果并关闭任务</button></div>').join('')||'<p>没有未结采集任务。</p>';
+}
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('button[data-resolve]');if(!b)return;
+  const id=b.dataset.resolve;
+  const why=b.previousElementSibling.value;
+  if(!why.trim()){alert('请填写处理结果及依据');return;}
+  b.disabled=true;
+  const r=await fetch('/api/pending/resolve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id,why,who})}).then(r=>r.json());
+  if(r.error){alert(r.error);b.disabled=false;}else loadPending();
+});
+
+let inboxPage=0;
+$('#ib-prev').onclick=()=>{inboxPage=Math.max(0,inboxPage-1);load();};
+$('#ib-next').onclick=()=>{inboxPage++;load();};
+const actionNames={conflict:'裁决冲突',fill:'补充空白',evidence:'补充证据',duplicate:'核对已有结论',metadata:'更新版本／状态／价格',mapping:'修正能力归属',identity:'确认产品线'};
 async function load(){
-  const r=await fetch('/api/queue').then(r=>r.json());
+  const r=await fetch('/api/queue?page='+inboxPage).then(r=>r.json());
+  inboxPage=r.page;
   $('#ib-n').textContent=r.total?'('+r.total+')':'';
-  $('#sub').textContent=\`收件箱待审 \${r.total} 条 · 能直接落格 \${r.landable} 条 · 审阅人 \${who}\`;
+  $('#sub').textContent=\`收件箱待审 \${r.total} 条 · 满足写入前置条件 \${r.landable} 条 · \${r.groupTotal} 个问题 · 审阅人 \${who}\`;
   /**
    * 这里原来印的是「下面这几摞不在这里审」。**那句话现在过时了** ——
    * 它们全在「待办」页上，连带那一页还能直接把对应的脚本跑起来。
@@ -457,29 +493,33 @@ async function load(){
       +'</div>';
     return;
   }
-  $('#list').innerHTML=r.items.map(it=>\`
+  $('#ib-page').textContent='第 '+(r.page+1)+' / '+Math.max(1,Math.ceil(r.groupTotal/20))+' 批，每批最多 20 个问题';
+  $('#ib-prev').disabled=r.page===0;
+  $('#ib-next').disabled=(r.page+1)*20>=r.groupTotal;
+  $('#list').innerHTML=r.groups.map(g=>'<details open><summary>'+esc(actionNames[g.action]||g.action)+' · '+esc(g.model||g.items[0].model_hint)+' × '+esc(g.capability||'实体资料')+' · '+g.items.length+' 条证据</summary>'+g.items.map(it=>\`
     <div class="item" id="i-\${btoa(unescape(encodeURIComponent(it.id))).replace(/=/g,'')}">
       <div class="row">
         \${it.landable
-          ? '<span class="tag land">能直接落格 → '+esc(it.model)+' × '+esc(it.capability)+'</span>'
+          ? '<span class="tag land">已定位，需核对能力定义 → '+esc(it.model)+' × '+esc(it.capability)+'</span>'
           : '<span class="tag miss">缺：'+esc(it.missing.join('；'))+'</span>'}
         <span class="meta">\${esc(it.source)}（\${esc(it.tier)} 级）· \${esc(it.day)} · \${esc(it.kind)}</span>
       </div>
       <div class="claim">\${esc(it.claim)}</div>
+      <p class="meta">能力定义：\${esc(it.capability_definition||'非能力事件')}<br>当前结论：\${esc(it.existing?JSON.stringify(it.existing):'无')}<br>建议：\${esc(actionNames[it.action]||it.action)} · <a href="\${esc(it.url)}" target="_blank" rel="noreferrer">核对来源</a></p>
       <div class="quote">原文：\${esc(it.quote)}</div>
       <div class="acts">
-        <button class="pass" data-id="\${esc(it.id)}" data-v="pass">\${it.landable?'通过':'通过 · 记成采集单'}</button>
+        <button class="pass" data-id="\${esc(it.id)}" data-v="\${it.landable?'pass':'defer'}">\${it.landable?'确认原文支持该能力':'转为采集任务'}</button>
         <button class="rej"  data-id="\${esc(it.id)}" data-v="reject">不通过</button>
-        <input placeholder="不通过必须写理由" data-why="\${esc(it.id)}">
+        <input placeholder="填写判断依据（必填）" data-why="\${esc(it.id)}">
       </div>
-    </div>\`).join('');
+    </div>\`).join('')+'</details>').join('');
 }
 
 document.addEventListener('click',async e=>{
   const b=e.target.closest('button[data-v]'); if(!b)return;
   const id=b.dataset.id, verdict=b.dataset.v;
   const why=document.querySelector(\`input[data-why="\${CSS.escape(id)}"]\`)?.value||'';
-  if(verdict==='reject'&&!why.trim()){alert('不通过必须写理由 —— 一条没有理由的否决等于没记');return;}
+  if(!why.trim()){alert('请写明核验依据或需要补采的内容');return;}
   b.closest('.acts').querySelectorAll('button').forEach(x=>x.disabled=true);
   const r=await fetch('/api/decide',{method:'POST',headers:{'content-type':'application/json'},
     body:JSON.stringify({id,verdict,why,who})}).then(r=>r.json());
@@ -499,11 +539,17 @@ document.addEventListener('click',async e=>{
   box.querySelector('.acts').outerHTML='<div class="done">✓ '+esc(said)+'</div>';
 });
 
-loadTodo();load();loadRq();
+loadTodo();load();loadRq();loadPending();
 </script></body></html>`;
 
 createServer(async (req, res) => {
   const path = req.url.split("?")[0];
+  if (path === "/auto-review" || path === "/cleanup-review") {
+    const file = join(ROOT, path === '/cleanup-review' ? 'data/review-cleanup-2026-10-10.json' : "data/review-auto-log.json");
+    const audit = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : {};
+    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+    return res.end(reviewReport(audit, new URL(req.url, 'http://localhost').searchParams));
+  }
 
   if (path === "/" || path === "/index.html") {
     res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
@@ -555,9 +601,26 @@ createServer(async (req, res) => {
     return json(res, 200, { name, path: rel, text: readFileSync(f, "utf8") });
   }
 
+  if (path === "/api/pending") {
+    const all = pendingQueue().slice().reverse();
+    const requested = Number(new URL(req.url, "http://localhost").searchParams.get("page") || 0);
+    const page = Math.min(Math.max(0, Number.isFinite(requested) ? Math.floor(requested) : 0), Math.max(0, Math.ceil(all.length / 20) - 1));
+    return json(res, 200, { total: all.length, page, items: all.slice(page * 20, page * 20 + 20) });
+  }
+  if (path === "/api/pending/resolve" && req.method === "POST") {
+    let raw = "";
+    for await (const c of req) raw += c;
+    try { return json(res, 200, resolvePending(JSON.parse(raw || "{}"))); }
+    catch (e) { return json(res, 400, { error: String(e.message) }); }
+  }
+
   if (path === "/api/queue") {
     try {
       const q = queue();
+      const grouped = groupQueue(q);
+      const requested = Number(new URL(req.url, 'http://localhost').searchParams.get('page') || 0);
+      const page = Math.min(Math.max(0, Number.isFinite(requested) ? Math.floor(requested) : 0), Math.max(0, Math.ceil(grouped.length / 20) - 1));
+      const shown = grouped.slice(page * 20, page * 20 + 20);
       /**
        * 另外几摞待办也带上。**但光带标题不够 —— 那正是这一版要修的。**
        *
@@ -585,7 +648,7 @@ createServer(async (req, res) => {
         }
       }
       return json(res, 200, {
-        total: q.length, landable: q.filter((x) => x.landable).length, items: q,
+        total: q.length, landable: q.filter((x) => x.landable).length, items: shown.flatMap(g => g.items), groups: shown, groupTotal: grouped.length, page,
         todo: others.map((o) => o.title).join("；"),   // 兼容旧字段
         others,
       });
@@ -612,11 +675,11 @@ createServer(async (req, res) => {
     for await (const c of req) raw += c;
     try {
       const { id, verdict, why, who } = JSON.parse(raw || "{}");
-      if (!id || !["pass", "reject"].includes(verdict))
-        return json(res, 400, { error: "要有 id，verdict 只能是 pass 或 reject" });
+      if (!id || !["pass", "reject", "defer"].includes(verdict))
+        return json(res, 400, { error: "要有 id，verdict 只能是 pass、reject 或 defer" });
       // 否决必须写理由 —— **一条没有理由的否决，等于没记**
-      if (verdict === "reject" && !String(why ?? "").trim())
-        return json(res, 400, { error: "否决必须写理由" });
+      if (!String(why ?? "").trim())
+        return json(res, 400, { error: "审阅必须写明依据" });
       return json(res, 200, decide({ id, verdict, why: why ?? "", who: who ?? "local" }));
     } catch (e) { return json(res, 500, { error: String(e.message) }); }
   }

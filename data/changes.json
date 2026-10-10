@@ -11,6 +11,72 @@
  "$alert_label": "快讯",
  "events": [
   {
+   "id": "omni-evidence-2026-10-10",
+   "date": "2026-10-10",
+   "side": "ours",
+   "kind": "capability",
+   "domain": "video",
+   "subject": "Gemini Omni 1.1 Flash",
+   "models": [
+    "gemini-omni"
+   ],
+   "impact": [
+    "gemini-omni"
+   ],
+   "src": "omni-doc",
+   "before": "版本已更新到 1.1 Flash，但六个能力格仍显示未知。",
+   "after": "今天回查当前型号的官方正文和代码示例，补齐文生视频、图生视频、角色参考、多参考、原生音频和视频转视频。",
+   "why": "这是本站今天补齐的证据，不是今天发布新模型；每格都已绑定 1.1 Flash，旧版能力没有直接继承。",
+   "alert": {
+    "headline": "今日补核：Gemini Omni 1.1 的六项生成与编辑能力",
+    "until": "2026-10-17"
+   }
+  },
+  {
+   "id": "qwen-asr-evidence-2026-10-10",
+   "date": "2026-10-10",
+   "side": "ours",
+   "kind": "capability",
+   "domain": "sound",
+   "subject": "Qwen3-ASR 1.7B",
+   "models": [
+    "qwen3-asr"
+   ],
+   "impact": [
+    "qwen3-asr"
+   ],
+   "src": "hf-qwen3-asr",
+   "before": "多语种和实时识别两格尚未核实。",
+   "after": "官方模型卡明确 1.7B 支持 30 种语言及 22 种中文方言，并统一支持流式与离线识别。",
+   "why": "选型时能确认语种与流式支持；没有把独立强制对齐器的时间戳能力算进 ASR 本体。",
+   "alert": {
+    "headline": "Qwen3-ASR 1.7B：多语种与流式识别已补齐",
+    "until": "2026-10-17"
+   }
+  },
+  {
+   "id": "hallo-live-evidence-2026-10-10",
+   "date": "2026-10-10",
+   "side": "ours",
+   "kind": "capability",
+   "domain": "avatar",
+   "subject": "Hallo-Live",
+   "models": [
+    "hallo2"
+   ],
+   "impact": [
+    "hallo2"
+   ],
+   "src": "hf-hallo-live",
+   "before": "文本驱动和实时生成仍引用旧版 Hallo2 的未核实说明。",
+   "after": "今天按 Hallo-Live 官方模型卡补齐文本驱动与流式音视频生成；官方报告在两张 H200 上达到 20.38 FPS、0.94 秒延迟。",
+   "why": "可据此确认输入与输出方式；性能数字保留硬件条件，不外推到普通显卡。",
+   "alert": {
+    "headline": "Hallo-Live：文本驱动与实时生成已补齐",
+    "until": "2026-10-17"
+   }
+  },
+  {
    "id": "sora-2026-09-24",
    "date": "2026-09-24",
    "side": "world",
@@ -774,7 +840,9 @@
    "domain": "video",
    "alert": {
     "headline": "白模预演成了新的控制轴：排完再生成，不再抽卡"
-   }
+   },
+   "alert_retired_at": "2026-10-10",
+   "alert_retired_reason": "用户要求撤下旧快讯，保留历史变更记录。"
   },
   {
    "id": "lux3d-2026-08-27",
